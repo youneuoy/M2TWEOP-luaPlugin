@@ -12,7 +12,6 @@ void replaceAll2(std::string& s, const std::string& search, const std::string& r
 
 bool luaP::init(std::string& luaFilePath, std::string& modPath)
 {
-
 	L = luaL_newstate();
 	std::string packagePS = "package.path = '";
 	packagePS += modPath;
