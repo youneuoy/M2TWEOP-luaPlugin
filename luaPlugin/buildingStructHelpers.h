@@ -1,0 +1,84 @@
+#pragma once
+#include <string>
+#include "realGameTypes.h"
+#include "luaGetSetFuncs.h"
+#define building_dataStruct_type 1
+
+#define buildingDrawInfoStruct_name 1
+namespace buildingStructHelpers
+{
+
+
+#pragma region buildingDrawInfo
+
+	//building_data
+	template <char fieldIndex>
+	std::string getStringProperty(const buildingDrawInfo* bInfo)
+	{
+		char* retS = nullptr;
+		if (fieldIndex == buildingDrawInfoStruct_name)
+		{
+			retS = bInfo->name;
+		}
+
+		if (retS != nullptr)
+		{
+			return std::string(retS);
+		}
+		else
+		{
+			return std::string("");
+		}
+	}
+
+	template <char fieldIndex>
+	void setStringProperty(buildingDrawInfo* bInfo, std::string newS)
+	{
+		char* arg = nullptr;
+		if (fieldIndex == buildingDrawInfoStruct_name)
+		{
+
+			arg = reinterpret_cast<char*>(&bInfo->name);
+		}
+		luaGetSetFuncs::setGameString(arg, newS.c_str());
+	}
+
+#pragma endregion
+#pragma region building_data
+
+	//building_data
+	template <char fieldIndex>
+	std::string getStringProperty(const building_data* bData)
+	{
+		char* retS = nullptr;
+		if (fieldIndex == building_dataStruct_type)
+		{
+			retS = bData->type;
+		}
+
+		if (retS != nullptr)
+		{
+			return std::string(retS);
+		}
+		else
+		{
+			return std::string("");
+		}
+	}
+
+	template <char fieldIndex>
+	void setStringProperty(building_data* bData, std::string newS)
+	{
+		char* arg = nullptr;
+		if (fieldIndex == building_dataStruct_type)
+		{
+
+			arg = reinterpret_cast<char*>(&bData->type);
+		}
+		luaGetSetFuncs::setGameString(arg, newS.c_str());
+	}
+
+#pragma endregion
+
+};
+
