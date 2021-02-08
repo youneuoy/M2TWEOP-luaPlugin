@@ -1,4 +1,6 @@
 #include "luaP.h"
+std::string luaP::logS;
+
 void replaceAll2(std::string& s, const std::string& search, const std::string& replace) {
 	for (size_t pos = 0; ; pos += replace.length())
 	{
@@ -10,6 +12,50 @@ void replaceAll2(std::string& s, const std::string& search, const std::string& r
 	}
 }
 
+void poststring(const char* sv) 
+{ 
+	if (sv == nullptr)return;
+
+	luaP::logS+=sv;
+	luaP::logS+= +"\n";
+}
+
+int l_my_print(lua_State* L) {
+	int nargs = lua_gettop(L);
+	for (int i = 1; i <= nargs; ++i) {
+		poststring(luaL_tolstring(L, i, nullptr));
+		lua_pop(L, 1); // remove the string
+	}
+	return 0;
+}
+
+const char* luaP::runScriptS(std::string* script)
+{
+	const char* retS=nullptr;
+
+	bool err= luaL_dostring(L, script->c_str());
+	if (err)
+	{
+		retS = lua_tostring(L, -1);
+	}
+
+	return retS;
+}
+static const struct luaL_Reg printlib[] = {
+  {"print", l_my_print},
+  {NULL, NULL} /* end of array */
+};
+bool luaP::checkVar(const char* gName,int variable)
+{
+	LuaRef retF = getGlobal(L, gName);
+	if (retF.isNumber()==false)
+	{
+		return false;
+	}
+	
+	return (retF == variable);
+
+}
 bool luaP::init(std::string& luaFilePath, std::string& modPath)
 {
 	L = luaL_newstate();
@@ -20,6 +66,10 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 	std::string r = "/";
 	replaceAll2(packagePS, f, r);
 	luaL_openlibs(L);
+
+
+	lua_getglobal(L, "_G");
+	luaL_setfuncs(L, printlib, 0);
 	//luaL_dostring(L, "package.path = 'D://Game.Helper/Lua/libs/?.lua;'..package.path ");
 	luaL_dostring(L, packagePS.c_str());
 
@@ -241,6 +291,8 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 	onPluginLoadF();
 	return true;
 }
+
+
 
 
 void checkRef(LuaRef** lRef)

@@ -172,6 +172,7 @@
     <ClInclude Include="basicFuncs.h" />
     <ClInclude Include="buildingStructHelpers.h" />
     <ClInclude Include="cameraHelpers.h" />
+    <ClInclude Include="console.h" />
     <ClInclude Include="factionHelpers.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameHelpers.h" />
@@ -183,6 +184,7 @@
     <ClInclude Include="imgui\imgui_impl_dx9.h" />
     <ClInclude Include="imgui\imgui_impl_win32.h" />
     <ClInclude Include="imgui\imgui_internal.h" />
+    <ClInclude Include="imgui\imgui_stdlib.h" />
     <ClInclude Include="imgui\imstb_rectpack.h" />
     <ClInclude Include="imgui\imstb_textedit.h" />
     <ClInclude Include="imgui\imstb_truetype.h" />
@@ -206,6 +208,7 @@
     <ClCompile Include="basicFuncs.cpp" />
     <ClCompile Include="buildingStructHelpers.cpp" />
     <ClCompile Include="cameraHelpers.cpp" />
+    <ClCompile Include="console.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="factionHelpers.cpp" />
     <ClCompile Include="gameHelpers.cpp" />
@@ -216,6 +219,8 @@
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_impl_dx9.cpp" />
     <ClCompile Include="imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="imgui\imgui_stdlib.cpp" />
+    <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="luaGetSetFuncs.cpp" />
     <ClCompile Include="luaP.cpp" />

@@ -26,8 +26,11 @@ using namespace luabridge;
 class luaP
 {
 public:
+	static std::string logS;
+	bool checkVar(const char* gName,int variable);
+	
 	bool init(std::string& luaFilePath,std::string& modPath);
-
+	const char* runScriptS(std::string*script);
 
 	//lua functions and events controllers
 	void onPluginLoadF();

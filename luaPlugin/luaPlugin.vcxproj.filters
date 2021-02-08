@@ -72,6 +72,9 @@
     <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\camera">
       <UniqueIdentifier>{ba79d163-f4bd-47f4-b1e3-e8cc7185c095}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\pluginFuncs\graphics">
+      <UniqueIdentifier>{b1286217-5a62-4d66-b4d7-dd2917cba39d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugData.h">
@@ -170,6 +173,12 @@
     <ClInclude Include="cameraHelpers.h">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\camera</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\imgui_stdlib.h">
+      <Filter>Исходные файлы\technical\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Исходные файлы\pluginFuncs\graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -191,9 +200,6 @@
       <Filter>pluginCodes\events</Filter>
     </ClCompile>
     <ClCompile Include="otherEvents.cpp">
-      <Filter>pluginCodes\events</Filter>
-    </ClCompile>
-    <ClCompile Include="graphicsEvents.cpp">
       <Filter>pluginCodes\events</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui.cpp">
@@ -252,6 +258,18 @@
     </ClCompile>
     <ClCompile Include="cameraHelpers.cpp">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_stdlib.cpp">
+      <Filter>Исходные файлы\technical\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="graphicsEvents.cpp">
+      <Filter>Исходные файлы\pluginFuncs\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>Исходные файлы\pluginFuncs\graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui\imgui_tables.cpp">
+      <Filter>Исходные файлы\technical\ImGui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
