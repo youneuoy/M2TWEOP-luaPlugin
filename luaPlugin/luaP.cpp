@@ -70,6 +70,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	lua_getglobal(L, "_G");
 	luaL_setfuncs(L, printlib, 0);
+	lua_pop(L, 1);
 	//luaL_dostring(L, "package.path = 'D://Game.Helper/Lua/libs/?.lua;'..package.path ");
 	luaL_dostring(L, packagePS.c_str());
 
