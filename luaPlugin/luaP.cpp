@@ -58,6 +58,7 @@ bool luaP::checkVar(const char* gName,int variable)
 }
 bool luaP::init(std::string& luaFilePath, std::string& modPath)
 {
+	luaPath = modPath + "\\youneuoy_Data\\plugins\\lua";
 	L = luaL_newstate();
 	std::string packagePS = "package.path = '";
 	packagePS += modPath;
@@ -83,6 +84,11 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 	lua_pcall(L, 0, 0, 0);
 
 	getGlobalNamespace(L)
+		.beginNamespace("M2TWEOP")
+			.addFunction("getModPath",&m2tweopHelpers::getModPath)
+			.addFunction("getPluginPath",&m2tweopHelpers::getLuaPath)
+
+		.endNamespace()
 		.beginNamespace("stratmap")
 		//strategic map data and functions
 			.beginNamespace("objects")
@@ -119,10 +125,10 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 		.endClass();
 
 	getGlobalNamespace(L)
-		.beginClass<general>("general")
+		.beginClass<general>("character")
 			.addData<int>("xCoord", &general::xCoord)
 			.addData<int>("yCoord", &general::yCoord)
-			.addData<generalCharacterictics*>("genChar", &general::genChar)
+			.addData<generalCharacterictics*>("namedCharacter", &general::genChar)
 			.addData<unit*>("bodyguards", &general::bodyguards)
 			.addData<float>("movepointsMax", &general::movepointsMax)
 			.addData<float>("movepointsModifier", &general::movepointsModifier)
@@ -138,9 +144,9 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 		.endClass();
 
 	getGlobalNamespace(L)
-		.beginClass<generalCharacterictics>("generalCharacterictics")
+		.beginClass<generalCharacterictics>("namedCharacter")
 			.addData<UINT32>("index", &generalCharacterictics::index,false)
-			.addData<general*>("gen", &generalCharacterictics::gen)
+			.addData<general*>("character", &generalCharacterictics::gen)
 			.addProperty("shortName",
 				&luaGetSetFuncs::getStringProperty<generalCharactericticsStruct_shortName>, &luaGetSetFuncs::setStringProperty<generalCharactericticsStruct_shortName>)
 			.addProperty("fullName",
@@ -153,7 +159,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 			.addData<int>("authority", &generalCharacterictics::authority)
 			.addData<int>("loyality", &generalCharacterictics::loyality)
 			.addData<int>("piety", &generalCharacterictics::piety)
-			.addData<int>("nobility", &generalCharacterictics::nobility)
+			.addData<int>("chivalryAndDread", &generalCharacterictics::nobility)
 			.addData<int>("leaderAutority", &generalCharacterictics::leaderAutority)
 			.addFunction("getAnchillary", &generalCharactericticsHelpers::getAnchillary)
 			.addData<UINT32>("anchNum", &generalCharacterictics::anchNum)
@@ -203,10 +209,10 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 			.addData<generalCharacterictics*>("heir", &factionStruct::heir)
 			.addFunction("getFactionName",&factionHelpers::getFactionName)
 			.addData<int>("isPlayerControlled", &factionStruct::isPlayerControlled)
-			.addFunction("getCharacterFromFullList", &factionHelpers::getCharacterFromFullList)
-			.addData<int>("numOfCharactersInFullList", &factionStruct::numOfCharactersAll)
-			.addFunction("getCharacterFromGeneralsList", &factionHelpers::getCharacterFromGeneralsList)
-			.addData<int>("numOfGenerals", &factionStruct::numOfCharacters)
+			.addFunction("getNamedCharacter", &factionHelpers::getCharacterFromFullList)
+			.addData<int>("numOfNamedCharacters", &factionStruct::numOfCharactersAll)
+			.addFunction("getCharacter", &factionHelpers::getCharacterFromGeneralsList)
+			.addData<int>("numOfCharacters", &factionStruct::numOfCharacters)
 			.addFunction("getStack", &factionHelpers::getStack)
 			.addData<int>("stackNum", &factionStruct::stackNum)
 			.addFunction("getSettlement", &factionHelpers::getSettlement)

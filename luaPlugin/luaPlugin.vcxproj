@@ -191,6 +191,7 @@
     <ClInclude Include="luaGetSetFuncs.h" />
     <ClInclude Include="luaP.h" />
     <ClInclude Include="lua\LuaBridge.h" />
+    <ClInclude Include="m2tweopHelpers.h" />
     <ClInclude Include="objectsHelpers.h" />
     <ClInclude Include="otherEvents.h" />
     <ClInclude Include="plugData.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="imgui\imgui_widgets.cpp" />
     <ClCompile Include="luaGetSetFuncs.cpp" />
     <ClCompile Include="luaP.cpp" />
+    <ClCompile Include="m2tweopHelpers.cpp" />
     <ClCompile Include="objectsHelpers.cpp" />
     <ClCompile Include="otherEvents.cpp" />
     <ClCompile Include="plugData.cpp" />

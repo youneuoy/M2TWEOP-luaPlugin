@@ -20,6 +20,7 @@ extern "C" {
 #include "generalHelpers.h"
 #include "unitHelpers.h"
 #include "cameraHelpers.h"
+#include "m2tweopHelpers.h"
 #include "generalCharactericticsHelpers.h"
 using namespace luabridge;
 
@@ -27,6 +28,7 @@ class luaP
 {
 public:
 	static std::string logS;
+	std::string luaPath;
 	bool checkVar(const char* gName,int variable);
 	
 	bool init(std::string& luaFilePath,std::string& modPath);
