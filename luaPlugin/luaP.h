@@ -23,7 +23,7 @@ extern "C" {
 #include "m2tweopHelpers.h"
 #include "generalCharactericticsHelpers.h"
 using namespace luabridge;
-
+#define tryLua(func) try {func;}catch (luabridge::LuaException const& e) {	MessageBoxA(NULL, e.what(),"Lua exception!",NULL);}
 class luaP
 {
 public:

@@ -1,6 +1,7 @@
 #include "luaP.h"
 std::string luaP::logS;
 
+
 void replaceAll2(std::string& s, const std::string& search, const std::string& replace) {
 	for (size_t pos = 0; ; pos += replace.length())
 	{
@@ -577,7 +578,7 @@ void luaP::onPluginLoadF()
 
 	if (onPluginLoad != nullptr)
 	{
-		(*onPluginLoad)();
+		tryLua((*onPluginLoad)());
 	}
 }
 
@@ -585,7 +586,7 @@ void luaP::onChangeTurnNum(int num)
 {
 	if (onChangeTurnNumFunc != nullptr)
 	{
-		(*onChangeTurnNumFunc)(num);
+		tryLua((*onChangeTurnNumFunc)(num));
 	}
 }
 
@@ -593,7 +594,7 @@ void luaP::onCharacterSelected(generalCharacterictics* gen)
 {
 	if (onCharacterSelectedFunc != nullptr)
 	{
-		(*onCharacterSelectedFunc)(gen);
+		tryLua((*onCharacterSelectedFunc)(gen));
 	}
 }
 
@@ -601,7 +602,7 @@ void luaP::onPreFactionTurnStart(factionStruct* fac)
 {
 	if (onPreFactionTurnStartFunc != nullptr)
 	{
-		(*onPreFactionTurnStartFunc)(fac);
+		tryLua((*onPreFactionTurnStartFunc)(fac));
 	}
 }
 
@@ -609,7 +610,7 @@ void luaP::onFactionTurnStart(factionStruct* fac)
 {
 	if (onFactionTurnStartFunc != nullptr)
 	{
-		(*onFactionTurnStartFunc)(fac);
+		tryLua((*onFactionTurnStartFunc)(fac));
 	}
 }
 
@@ -617,7 +618,7 @@ void luaP::onFactionTurnEnd(factionStruct* fac)
 {
 	if (onFactionTurnEndFunc != nullptr)
 	{
-		(*onFactionTurnEndFunc)(fac);
+		tryLua((*onFactionTurnEndFunc)(fac));
 	}
 }
 
@@ -625,7 +626,7 @@ void luaP::onFactionNewCapital(factionStruct* fac)
 {
 	if (onFactionNewCapitalFunc != nullptr)
 	{
-		(*onFactionNewCapitalFunc)(fac);
+		tryLua((*onFactionNewCapitalFunc)(fac));
 	}
 }
 
@@ -633,7 +634,7 @@ void luaP::onFactionWarDeclared(factionStruct* fac, factionStruct* fac2)
 {
 	if (onFactionWarDeclaredFunc != nullptr)
 	{
-		(*onFactionWarDeclaredFunc)(fac, fac2);
+		tryLua((*onFactionWarDeclaredFunc)(fac, fac2));
 	}
 }
 
@@ -641,7 +642,7 @@ void luaP::onFactionAllianceDeclared(factionStruct* fac, factionStruct* fac2)
 {
 	if (onFactionAllianceDeclaredFunc != nullptr)
 	{
-		(*onFactionAllianceDeclaredFunc)(fac, fac2);
+		tryLua((*onFactionAllianceDeclaredFunc)(fac, fac2));
 	}
 }
 
@@ -649,7 +650,7 @@ void luaP::onFactionTradeAgreementMade(factionStruct* fac, factionStruct* fac2)
 {
 	if (onFactionTradeAgreementMadeFunc != nullptr)
 	{
-		(*onFactionTradeAgreementMadeFunc)(fac, fac2);
+		tryLua((*onFactionTradeAgreementMadeFunc)(fac, fac2));
 	}
 }
 
@@ -657,7 +658,7 @@ void luaP::onFactionBreakAlliance(factionStruct* fac, factionStruct* fac2)
 {
 	if (onFactionBreakAllianceFunc != nullptr)
 	{
-		(*onFactionBreakAllianceFunc)(fac, fac2);
+		tryLua((*onFactionBreakAllianceFunc)(fac, fac2));
 	}
 }
 
@@ -665,7 +666,7 @@ void luaP::onGiveMoney(factionStruct* fac, factionStruct* fac2, float amount)
 {
 	if (onGiveMoneyFunc != nullptr)
 	{
-		(*onGiveMoneyFunc)(fac, fac2, amount);
+		tryLua((*onGiveMoneyFunc)(fac, fac2, amount));
 	}
 }
 
@@ -673,7 +674,7 @@ void luaP::onUpdateAttitude(factionStruct* fac, factionStruct* fac2)
 {
 	if (onUpdateAttitudeFunc != nullptr)
 	{
-		(*onUpdateAttitudeFunc)(fac, fac2);
+		tryLua((*onUpdateAttitudeFunc)(fac, fac2));
 	}
 }
 
@@ -681,7 +682,7 @@ void luaP::onDemeanour(factionStruct* fac, factionStruct* fac2, float amount)
 {
 	if (onDemeanourFunc != nullptr)
 	{
-		(*onDemeanourFunc)(fac, fac2,amount);
+		tryLua((*onDemeanourFunc)(fac, fac2,amount));
 	}
 }
 
@@ -689,7 +690,7 @@ void luaP::onGeneralAssaultsGeneral(generalCharacterictics* gen, generalCharacte
 {
 	if (onGeneralAssaultsGeneralFunc != nullptr)
 	{
-		(*onGeneralAssaultsGeneralFunc)(gen, gen2);
+		tryLua((*onGeneralAssaultsGeneralFunc)(gen, gen2));
 	}
 }
 
@@ -697,7 +698,7 @@ void luaP::onGeneralAssaultsResidence(generalCharacterictics* gen, settlementStr
 {
 	if (onGeneralAssaultsResidenceFunc != nullptr)
 	{
-		(*onGeneralAssaultsResidenceFunc)(gen, sett, frt);
+		tryLua((*onGeneralAssaultsResidenceFunc)(gen, sett, frt));
 	}
 }
 
@@ -705,7 +706,7 @@ void luaP::onGeneralCaptureSettlement(generalCharacterictics* gen, settlementStr
 {
 	if (onGeneralCaptureSettlementFunc != nullptr)
 	{
-		(*onGeneralCaptureSettlementFunc)(gen, sett);
+		tryLua((*onGeneralCaptureSettlementFunc)(gen, sett));
 	}
 }
 
@@ -713,7 +714,7 @@ void luaP::onGeneralCaptureResidence(generalCharacterictics* gen)
 {
 	if (onGeneralCaptureResidenceFunc != nullptr)
 	{
-		(*onGeneralCaptureResidenceFunc)(gen);
+		tryLua((*onGeneralCaptureResidenceFunc)(gen));
 	}
 }
 
@@ -721,7 +722,7 @@ void luaP::onSiegeEquipmentCompleted(settlementStruct* sett, fortStruct* frt)
 {
 	if (onSiegeEquipmentCompletedFunc != nullptr)
 	{
-		(*onSiegeEquipmentCompletedFunc)(sett,frt);
+		tryLua((*onSiegeEquipmentCompletedFunc)(sett,frt));
 	}
 }
 
@@ -729,7 +730,7 @@ void luaP::onPostBattle(generalCharacterictics* gen)
 {
 	if (onPostBattleFunc != nullptr)
 	{
-		(*onPostBattleFunc)(gen);
+		tryLua((*onPostBattleFunc)(gen));
 	}
 }
 
@@ -737,7 +738,7 @@ void luaP::onMultiTurnMove(generalCharacterictics* gen)
 {
 	if (onMultiTurnMoveFunc != nullptr)
 	{
-		(*onMultiTurnMoveFunc)(gen);
+		tryLua((*onMultiTurnMoveFunc)(gen));
 	}
 }
 
@@ -745,7 +746,7 @@ void luaP::onSettlementSelected(settlementStruct* sett)
 {
 	if (onSettlementSelectedFunc != nullptr)
 	{
-		(*onSettlementSelectedFunc)(sett);
+		tryLua((*onSettlementSelectedFunc)(sett));
 	}
 }
 
@@ -753,7 +754,7 @@ void luaP::onSettlementUpgraded(settlementStruct* sett)
 {
 	if (onSettlementUpgradedFunc != nullptr)
 	{
-		(*onSettlementUpgradedFunc)(sett);
+		tryLua((*onSettlementUpgradedFunc)(sett));
 	}
 }
 
@@ -761,6 +762,6 @@ void luaP::onSettlementConverted(settlementStruct* sett)
 {
 	if (onSettlementConvertedFunc != nullptr)
 	{
-		(*onSettlementConvertedFunc)(sett);
+		tryLua((*onSettlementConvertedFunc)(sett));
 	}
 }
