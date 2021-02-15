@@ -230,7 +230,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	getGlobalNamespace(L)
 		.beginClass<settlementStruct>("settlementStruct")
-			.addData<general*>("gubernator", &settlementStruct::gubernator)
+			.addData<general*>("governor", &settlementStruct::gubernator)
 			.addData<UINT32>("xCoord", &settlementStruct::xCoord,false)
 			.addData<UINT32>("yCoord", &settlementStruct::yCoord, false)
 			.addData<stackStruct*>("army", &settlementStruct::army)
