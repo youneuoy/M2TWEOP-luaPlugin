@@ -157,13 +157,13 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 			.addProperty("modelName",
 				&luaGetSetFuncs::getStringProperty<generalCharactericticsStruct_modelName>, &luaGetSetFuncs::setStringProperty<generalCharactericticsStruct_modelName>)
 			.addData<unsigned char>("status", &generalCharacterictics::status)
-			.addData<int>("authority", &generalCharacterictics::authority)
-			.addData<int>("loyality", &generalCharacterictics::loyality)
+			.addData<int>("command", &generalCharacterictics::authority)
+			.addData<int>("loyalty", &generalCharacterictics::loyality)
 			.addData<int>("piety", &generalCharacterictics::piety)
 			.addData<int>("chivalryAndDread", &generalCharacterictics::nobility)
-			.addData<int>("leaderAutority", &generalCharacterictics::leaderAutority)
-			.addFunction("getAnchillary", &generalCharactericticsHelpers::getAnchillary)
-			.addData<UINT32>("anchNum", &generalCharacterictics::anchNum)
+			.addData<int>("authority", &generalCharacterictics::leaderAutority)
+			.addFunction("getAncillary", &generalCharactericticsHelpers::getAnchillary)
+			.addData<UINT32>("ancNum", &generalCharacterictics::anchNum)
 			.addData<float>("yearOfBirth", &generalCharacterictics::yearOfBirth)
 			.addData<factionStruct*>("faction", &generalCharacterictics::faction)
 			.addData<int>("subFaction", &generalCharacterictics::subFaction)
@@ -176,13 +176,13 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 			.addProperty("portrait_custom",
 				&luaGetSetFuncs::getStringProperty<generalCharactericticsStruct_portrait_custom>, &luaGetSetFuncs::setStringProperty<generalCharactericticsStruct_portrait_custom>)
 		
-			.addFunction("addAnchillary", &generalCharactericticsHelpers::addAnchillary)
-			.addFunction("removeAnchillary", &generalCharactericticsHelpers::removeAnchillary)
+			.addFunction("addAncillary", &generalCharactericticsHelpers::addAnchillary)
+			.addFunction("removeAncillary", &generalCharactericticsHelpers::removeAnchillary)
 		.endClass();
 
 
 	getGlobalNamespace(L)
-		.beginClass<anchillary>("anchillary")					
+		.beginClass<anchillary>("ancillary")					
 			.addData<UINT32>("index", &anchillary::index)
 			.addProperty("name",
 				&luaGetSetFuncs::getStringProperty<anchillaryStruct_name>, &luaGetSetFuncs::setStringProperty<anchillaryStruct_name>)
@@ -272,6 +272,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 			.addData<float>("reform_point_x", &stackStruct::reform_point_x)
 			.addData<float>("reform_point_y", &stackStruct::reform_point_y)
 			.addFunction("addUnit", &stackStructHelpers::addUnitToArmy)
+			.addFunction("attackArmy", &stackStructHelpers::attackArmy)
 		.endClass();
 
 	getGlobalNamespace(L)

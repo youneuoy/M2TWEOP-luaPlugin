@@ -10,6 +10,18 @@ namespace stackStructHelpers
 	{
 		return army->characters[index];
 	}
+	int attackArmy(stackStruct* army, stackStruct* defender)
+	{
+		general* atkGen = army->gen;
+		general* defGen = army->gen;
+		if (atkGen == nullptr
+			|| defGen == nullptr
+			)return 0;
+
+		(*(*plugData::data.funcs.attackCharacter))(atkGen, defGen);
+
+		return 1;
+	}
 	settlementStruct* findInSettlement(const stackStruct* army)
 	{
 		if (army->settlement == nullptr)

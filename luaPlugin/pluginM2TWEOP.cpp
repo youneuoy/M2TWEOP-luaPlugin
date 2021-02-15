@@ -96,6 +96,10 @@ int initPlugin(std::string* modPath)
 
     fName = "setBodyguard";
     plugData::data.funcs.setBodyguard.Load(&plPath, &fName);
+    
+    fName = "attackCharacter";
+    plugData::data.funcs.attackCharacter.Load(&plPath, &fName);
+
 
 
 

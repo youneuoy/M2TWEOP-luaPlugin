@@ -93,6 +93,7 @@ public:
 
 	ProcLoader<void (__cdecl*)(general*, int, int)> moveNormal;
 	ProcLoader<void (__cdecl*)(general*, settlementStruct*)> siegeSettlement;
+	ProcLoader<void(__cdecl*)(general*, general*)> attackCharacter;
 
 
 	ProcLoader<int (__cdecl*)(generalCharacterictics*, anchillary*)> addAnchillary;
@@ -123,4 +124,7 @@ public:
 
 	ProcLoader<int(__cdecl*)(stackStruct*,unit*)> addUnitToArmy;
 	ProcLoader<void(__cdecl*)(general*,unit*)> setBodyguard;
+
+
+
 };
