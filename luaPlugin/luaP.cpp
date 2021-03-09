@@ -147,7 +147,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 	getGlobalNamespace(L)
 		.beginClass<generalCharacterictics>("namedCharacter")
 			.addData<UINT32>("index", &generalCharacterictics::index,false)
-			.addData<general*>("character", &generalCharacterictics::gen)
+			.addData<general*>("character", &generalCharacterictics::gen) 
 			.addProperty("shortName",
 				&luaGetSetFuncs::getStringProperty<generalCharactericticsStruct_shortName>, &luaGetSetFuncs::setStringProperty<generalCharactericticsStruct_shortName>)
 			.addProperty("fullName",
