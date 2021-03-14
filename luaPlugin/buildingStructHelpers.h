@@ -13,7 +13,7 @@ namespace buildingStructHelpers
 
 	//building_data
 	template <char fieldIndex>
-	std::string getStringProperty(const buildingDrawInfo* bInfo)
+	std::string getStringPropertyBDI(const buildingDrawInfo* bInfo)
 	{
 		char* retS = nullptr;
 		if (fieldIndex == buildingDrawInfoStruct_name)
@@ -32,7 +32,7 @@ namespace buildingStructHelpers
 	}
 
 	template <char fieldIndex>
-	void setStringProperty(buildingDrawInfo* bInfo, std::string newS)
+	void setStringPropertyBDI(buildingDrawInfo* bInfo, std::string newS)
 	{
 		char* arg = nullptr;
 		if (fieldIndex == buildingDrawInfoStruct_name)
@@ -48,7 +48,7 @@ namespace buildingStructHelpers
 
 	//building_data
 	template <char fieldIndex>
-	std::string getStringProperty(const building_data* bData)
+	std::string getStringPropertyBD(const building_data* bData)
 	{
 		char* retS = nullptr;
 		if (fieldIndex == building_dataStruct_type)
@@ -67,7 +67,7 @@ namespace buildingStructHelpers
 	}
 
 	template <char fieldIndex>
-	void setStringProperty(building_data* bData, std::string newS)
+	void setStringPropertyBD(building_data* bData, std::string newS)
 	{
 		char* arg = nullptr;
 		if (fieldIndex == building_dataStruct_type)

@@ -22,13 +22,7 @@ namespace console
 		}
 
 
-		const char* ret = plugData::data.luaAll.runScriptS(&consoleData.input);
-		if (ret != nullptr)
-		{
-			plugData::data.luaAll.logS+=ret;
-			plugData::data.luaAll.logS+= +"\n";
-
-		}
+		plugData::data.luaAll.runScriptS(&consoleData.input);
 
 		consoleData.input.clear();
 	}

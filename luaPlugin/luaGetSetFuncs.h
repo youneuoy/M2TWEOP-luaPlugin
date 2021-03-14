@@ -10,7 +10,7 @@
 #define generalCharactericticsStruct_portrait2 6
 #define generalCharactericticsStruct_portrait_custom 7
 
-#define EduEntryStruct_portrait_Type 1
+#define EduEntryStruct_Type 1
 
 
 #define anchillaryStruct_name 1
@@ -26,7 +26,7 @@ namespace luaGetSetFuncs
 #pragma region anchillary
 	//anchillary
 	template <char fieldIndex>
-	std::string getStringProperty(const anchillary* anch)
+	std::string getStringPropertyAnc(const anchillary* anch)
 	{
 		char* retS = nullptr;
 		if (fieldIndex == anchillaryStruct_name)
@@ -49,7 +49,7 @@ namespace luaGetSetFuncs
 	}
 
 	template <char fieldIndex>
-	void setStringProperty(anchillary* anch, std::string newS)
+	void setStringPropertyAnc(anchillary* anch, std::string newS)
 	{
 		char* arg = nullptr;
 		if (fieldIndex == anchillaryStruct_name)
@@ -72,7 +72,7 @@ namespace luaGetSetFuncs
 
 	//general
 	template <char fieldIndex>
-	std::string getStringProperty(const general* gen)
+	std::string getStringPropertyGen(const general* gen)
 	{
 		char* retS = nullptr;
 		if (fieldIndex == generalStruct_abilityID)
@@ -91,7 +91,7 @@ namespace luaGetSetFuncs
 	}
 
 	template <char fieldIndex>
-	void setStringProperty(general* gen, std::string newS)
+	void setStringPropertyGen(general* gen, std::string newS)
 	{
 		char* arg = nullptr;
 		if (fieldIndex == generalStruct_abilityID)
@@ -108,7 +108,7 @@ namespace luaGetSetFuncs
 
 	//generalCharacterictics
 	template <char fieldIndex>
-	std::string getStringProperty(const generalCharacterictics* genChar)
+	std::string getStringPropertyGenChar(const generalCharacterictics* genChar)
 	{
 		char* retS = nullptr;
 		if (fieldIndex == generalCharactericticsStruct_shortName)
@@ -150,7 +150,7 @@ namespace luaGetSetFuncs
 		}
 	}
 	template <char fieldIndex>
-	void setStringProperty(generalCharacterictics* genChar, std::string newS)
+	void setStringPropertyGenChar(generalCharacterictics* genChar, std::string newS)
 	{
 		char* arg = nullptr;
 		if (fieldIndex == generalCharactericticsStruct_shortName)
@@ -199,10 +199,10 @@ namespace luaGetSetFuncs
 
 	//general
 	template <char fieldIndex>
-	std::string getStringProperty(const EduEntry* eduEn)
+	std::string getStringPropertyEDU(const EduEntry* eduEn)
 	{
 		char* retS = nullptr;
-		if (fieldIndex == EduEntryStruct_portrait_Type)
+		if (fieldIndex == EduEntryStruct_Type)
 		{
 			retS = eduEn->Type;
 		}
@@ -218,10 +218,10 @@ namespace luaGetSetFuncs
 	}
 
 	template <char fieldIndex>
-	void setStringProperty(EduEntry* eduEn, std::string newS)
+	void setStringPropertyEDU(EduEntry* eduEn, std::string newS)
 	{
 		char* arg = nullptr;
-		if (fieldIndex == EduEntryStruct_portrait_Type)
+		if (fieldIndex == EduEntryStruct_Type)
 		{
 
 			arg = reinterpret_cast<char*>(&eduEn->Type);

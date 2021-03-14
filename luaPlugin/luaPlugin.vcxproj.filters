@@ -131,9 +131,6 @@
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Исходные файлы\technical\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="lua\LuaBridge.h">
-      <Filter>lua</Filter>
-    </ClInclude>
     <ClInclude Include="luaP.h">
       <Filter>Исходные файлы\pluginFuncs</Filter>
     </ClInclude>

@@ -73,13 +73,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <TargetName>pluginM2TWEOP</TargetName>
-    <IncludePath>$(SolutionDir)\luaPlugin\imgui;$(DXSDK_DIR)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\luaPlugin\imgui;$(DXSDK_DIR)\include;$(SolutionDir)\luaPlugin\lua\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)\lib\x86;$(SolutionDir)\luaPlugin\lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <TargetName>pluginM2TWEOP</TargetName>
-    <IncludePath>$(SolutionDir)\luaPlugin\imgui;$(DXSDK_DIR)\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)\luaPlugin\imgui;$(DXSDK_DIR)\include;$(SolutionDir)\luaPlugin\lua\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)\lib\x86;$(SolutionDir)\luaPlugin\lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,7 +109,8 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\luaPlugin\lua\libs</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -131,7 +132,8 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableUAC>false</EnableUAC>
-      <AdditionalLibraryDirectories>$(SolutionDir)\luaPlugin\lua\libs</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>
+      </AdditionalLibraryDirectories>
       <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -191,7 +193,6 @@
     <ClInclude Include="imgui\imstb_truetype.h" />
     <ClInclude Include="luaGetSetFuncs.h" />
     <ClInclude Include="luaP.h" />
-    <ClInclude Include="lua\LuaBridge.h" />
     <ClInclude Include="m2tweopHelpers.h" />
     <ClInclude Include="objectsHelpers.h" />
     <ClInclude Include="otherEvents.h" />
