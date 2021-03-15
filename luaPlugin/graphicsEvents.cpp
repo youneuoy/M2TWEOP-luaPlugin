@@ -2,6 +2,11 @@
 #include "console.h"
 void drawOnEndScene(LPDIRECT3DDEVICE9 pDevice)
 {
+	if (plugData::data.luaAll.drawLuaFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.drawLuaFunc)(pDevice));
+	}
+
 	console::draw();
 }
 

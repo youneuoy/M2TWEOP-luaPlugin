@@ -3,8 +3,8 @@
 
 #include "pluginM2TWEOP.h"
 
-
-
+#include "lua/sol.hpp"
+#include <sol_ImGui.h>
 
 int initPlugin(std::string* modPath)
 {
@@ -110,10 +110,14 @@ int initPlugin(std::string* modPath)
 void initLua()
 {
     std::string luaFile = plugData::data.modFolder + "\\youneuoy_Data\\plugins\\lua\\luaPluginScript.lua";
-    if (plugData::data.luaAll.init(luaFile, plugData::data.modFolder))
-    {
-        MessageBoxA(NULL, "LUA HERE", "TEST", NULL);
-    }
 
+    sol::state* luaState = plugData::data.luaAll.init(luaFile, plugData::data.modFolder);
+    if (luaState==nullptr)
+    {
+        MessageBoxA(NULL, "LUA loading error!", "Error!", NULL);
+        exit(0);
+    }
+    sol_ImGui::Init(*luaState);
+    MessageBoxA(NULL, "LUA HERE", "TEST", NULL);
 }
 

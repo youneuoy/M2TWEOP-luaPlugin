@@ -64,9 +64,8 @@ bool luaP::checkVar(const char* gName, int variable)
 
 	return false;
 }
-bool luaP::init(std::string& luaFilePath, std::string& modPath)
+sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 {
-	MessageBoxA(NULL, "T", "T", NULL);
 	luaPath = modPath + "\\youneuoy_Data\\plugins\\lua";
 	luaState.open_libraries(sol::lib::base, sol::lib::package, sol::lib::coroutine, sol::lib::string, sol::lib::os, sol::lib::math, sol::lib::table, sol::lib::bit32, sol::lib::io, sol::lib::ffi, sol::lib::jit);
 
@@ -83,6 +82,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 	{
 		sol::error luaError = funcResult;
 		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+		return nullptr;
 	}
 
 	
@@ -91,6 +91,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 	if (!fileRes.valid()) { // This checks the syntax of your script, but does not execute it
 		sol::error luaError = fileRes;
 		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+		return nullptr;
 	}
 	else
 	{
@@ -98,9 +99,9 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 		if (!result1.valid()) {
 			sol::error luaError = result1;
 			MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+			return nullptr;
 		}
 	}
-
 
 	tables.M2TWEOPTable = luaState.create_table("M2TWEOP");
 	tables.M2TWEOPTable["getModPath"] = &m2tweopHelpers::getModPath;
@@ -298,7 +299,7 @@ bool luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	onPluginLoadF();
-	return true;
+	return &luaState;
 }
 
 
@@ -313,6 +314,9 @@ void checkLuaFunc(sol::function** lRef)
 }
 void luaP::onPluginLoadF()
 {
+	drawLuaFunc = new sol::function(luaState["draw"]);
+	checkLuaFunc(&drawLuaFunc);
+
 	onPluginLoad = new sol::function(luaState["onPluginLoad"]);
 	checkLuaFunc(&onPluginLoad);
 

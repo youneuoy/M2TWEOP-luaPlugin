@@ -2,6 +2,7 @@
 #pragma comment(lib,"lua/lua51.lib")
 #pragma comment(lib,"lua/luajit.lib")
 
+
 #define SOL_SAFE_FUNCTIONS 1
 #define SOL_LUAJIT 1
 #include "lua/sol.hpp"
@@ -24,7 +25,6 @@
 #include "m2tweopHelpers.h"
 #include "generalCharactericticsHelpers.h"
 
-
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\
 if (!funcResult.valid())\
@@ -42,7 +42,7 @@ public:
 	std::string luaPath;
 	bool checkVar(const char* gName,int variable);
 	
-	bool init(std::string& luaFilePath,std::string& modPath);
+	sol::state* init(std::string& luaFilePath,std::string& modPath);
 	void runScriptS(std::string*script);
 
 	//lua functions and events controllers
@@ -105,8 +105,12 @@ public:
 	}types;
 
 
-
+	
 	sol::function* onPluginLoad = nullptr;
+
+	sol::function* drawLuaFunc = nullptr;
+
+
 	sol::function* onChangeTurnNumFunc = nullptr;
 	sol::function* onCharacterSelectedFunc = nullptr;
 	sol::function* onPreFactionTurnStartFunc = nullptr;

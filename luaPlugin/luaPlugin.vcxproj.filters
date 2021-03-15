@@ -182,6 +182,9 @@
     <ClInclude Include="m2tweopHelpers.h">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\m2tweopHelpres</Filter>
     </ClInclude>
+    <ClInclude Include="imgui\sol_ImGui.h">
+      <Filter>lua</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
