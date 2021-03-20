@@ -106,7 +106,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable = luaState.create_table("M2TWEOP");
 	tables.M2TWEOPTable["getModPath"] = &m2tweopHelpers::getModPath;
 	tables.M2TWEOPTable["getPluginPath"] = &m2tweopHelpers::getLuaPath;
-
+	tables.M2TWEOPTable["loadTexture"] = &m2tweopHelpers::loadTextureToGame;
 
 
 	tables.objectsTable = luaState.create_table("objects");
@@ -316,6 +316,12 @@ void luaP::onPluginLoadF()
 {
 	drawLuaFunc = new sol::function(luaState["draw"]);
 	checkLuaFunc(&drawLuaFunc);
+
+	resetDXFunc = new sol::function(luaState["deinitDX"]);
+	checkLuaFunc(&resetDXFunc);
+
+	initDXFunc = new sol::function(luaState["initDX"]);
+	checkLuaFunc(&initDXFunc);
 
 	onPluginLoad = new sol::function(luaState["onPluginLoad"]);
 	checkLuaFunc(&onPluginLoad);

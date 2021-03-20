@@ -109,6 +109,8 @@ public:
 	sol::function* onPluginLoad = nullptr;
 
 	sol::function* drawLuaFunc = nullptr;
+	sol::function* resetDXFunc = nullptr;
+	sol::function* initDXFunc = nullptr;
 
 
 	sol::function* onChangeTurnNumFunc = nullptr;

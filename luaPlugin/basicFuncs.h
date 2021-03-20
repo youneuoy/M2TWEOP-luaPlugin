@@ -1,5 +1,6 @@
 #pragma once
 #include "framework.h"
+#include <d3d9.h>
 class basicStructs
 {
 public:
@@ -127,4 +128,7 @@ public:
 
 
 
+
+	//graphics
+	ProcLoader<LPDIRECT3DTEXTURE9*(__cdecl*)(const char*, int*, int*)> loadTexture;
 };

@@ -11,7 +11,7 @@ namespace sol_ImGui
 		if (!open) return std::make_tuple(false, false);
 
 		bool shouldDraw = ImGui::Begin(name.c_str(), &open);
-		ImGui::GetIO();
+
 		if(!open)
 		{
 		//	ImGui::End();
@@ -203,7 +203,10 @@ namespace sol_ImGui
 	inline bool SmallButton(const std::string& label)													{ return ImGui::SmallButton(label.c_str()); }
 	inline bool InvisibleButton(const std::string& stringID, float sizeX, float sizeY)					{ return ImGui::InvisibleButton(stringID.c_str(), { sizeX, sizeY }); }
 	inline bool ArrowButton(const std::string& stringID, int dir)										{ return ImGui::ArrowButton(stringID.c_str(), static_cast<ImGuiDir>(dir)); }
-	inline void Image()																					{ /* TODO: Image(...) ==> UNSUPPORTED */ }
+	inline void Image(void*texture,float x, float y)
+	{ 
+		ImGui::Image(texture,ImVec2(x,y));
+	}
 	inline void ImageButton()																			{ /* TODO: ImageButton(...) ==> UNSUPPORTED */ }
 	inline std::tuple<bool, bool> Checkbox(const std::string& label, bool v)
 	{
@@ -2304,6 +2307,9 @@ namespace sol_ImGui
 																sol::resolve<void(float, float, float, const std::string&)>(ProgressBar)
 															));
 		ImGui.set_function("Bullet"							, Bullet);
+
+
+		ImGui.set_function("Image"							, Image);
 #pragma endregion Widgets: Main
 		
 #pragma region Widgets: Combo Box
