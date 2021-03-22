@@ -107,6 +107,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable["getModPath"] = &m2tweopHelpers::getModPath;
 	tables.M2TWEOPTable["getPluginPath"] = &m2tweopHelpers::getLuaPath;
 	tables.M2TWEOPTable["loadTexture"] = &m2tweopHelpers::loadTextureToGame;
+	tables.M2TWEOPTable["unloadTexture"] = &m2tweopHelpers::unloadTextureFromGame;
 
 
 	tables.objectsTable = luaState.create_table("objects");

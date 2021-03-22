@@ -104,6 +104,9 @@ int initPlugin(std::string* modPath)
     fName = "loadTexture";
     plugData::data.funcs.loadTexture.Load(&plPath, &fName);
 
+    fName = "unloadTexture";
+    plugData::data.funcs.unloadTexture.Load(&plPath, &fName);
+
 
 
 

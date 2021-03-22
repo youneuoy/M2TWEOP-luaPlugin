@@ -14,5 +14,6 @@ namespace m2tweopHelpers
 
 
 	std::tuple<int, int, void*>  loadTextureToGame(const std::string& path);
+	void unloadTextureFromGame(void* texture);
 };
 

@@ -14,12 +14,18 @@ namespace m2tweopHelpers
 	{
 		int x = 0;
 		int y = 0;
-		LPDIRECT3DTEXTURE9* retTexture = (*(*plugData::data.funcs.loadTexture))(path.c_str(), &x, &y);
+		LPDIRECT3DTEXTURE9 retTexture = (*(*plugData::data.funcs.loadTexture))(path.c_str(), &x, &y);
 
 		sol::as_table_t int2 = sol::as_table(std::vector<int>{
 			x, y
 		});
 
 		return std::make_tuple(x,y, reinterpret_cast<void*>(retTexture));
+	}
+	void unloadTextureFromGame(void* texture)
+	{
+		LPDIRECT3DTEXTURE9 tex = reinterpret_cast<LPDIRECT3DTEXTURE9>(texture);
+		(*(*plugData::data.funcs.unloadTexture))(tex);
+
 	}
 }

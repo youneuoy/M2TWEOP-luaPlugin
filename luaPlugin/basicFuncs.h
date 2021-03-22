@@ -130,5 +130,6 @@ public:
 
 
 	//graphics
-	ProcLoader<LPDIRECT3DTEXTURE9*(__cdecl*)(const char*, int*, int*)> loadTexture;
+	ProcLoader<LPDIRECT3DTEXTURE9(__cdecl*)(const char*, int*, int*)> loadTexture;
+	ProcLoader<void(__cdecl*)(LPDIRECT3DTEXTURE9)> unloadTexture;
 };
