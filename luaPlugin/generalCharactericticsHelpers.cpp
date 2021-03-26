@@ -18,4 +18,16 @@ namespace generalCharactericticsHelpers
 	{
 		(*(*plugData::data.funcs.removeAnchillary))(character, anch);
 	}
+	int getAge(generalCharacterictics* character)
+	{
+		return character->age >> 3 & 0xf7;
+	}
+	void setAge(generalCharacterictics* character, int age)
+	{
+		character->age = character->age ^ (age * 8 ^ character->age) & 0x3f8;
+	}
+	bool isAlive(generalCharacterictics* character)
+	{
+		return character->age&1;
+	}
 }

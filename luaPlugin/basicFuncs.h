@@ -64,6 +64,7 @@ public:
 		return TRUE;
 	};
 
+	T proc;
 	T operator *() const
 	{
 		return m_pProc;
@@ -83,6 +84,10 @@ private:
 class basicFuncs
 {
 public:
+	ProcLoader<void(__cdecl*)(unsigned char)> setAncLimit;
+	ProcLoader<void(__cdecl*)(unsigned char)> setMaxBgSize;
+	ProcLoader<void(__cdecl*)()> unlockConsoleCommands;
+
 	//get current game year
 	ProcLoader<UINT32(__cdecl*)()> getYear;
 	ProcLoader<void(__cdecl*)(char*,const char*)> setCryptedString;

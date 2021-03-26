@@ -108,6 +108,17 @@ int initPlugin(std::string* modPath)
     plugData::data.funcs.unloadTexture.Load(&plPath, &fName);
 
 
+    fName = "setAncLimit";
+    plugData::data.funcs.setAncLimit.Load(&plPath, &fName);
+
+
+    fName = "unlockConsoleCommands";
+    plugData::data.funcs.unlockConsoleCommands.Load(&plPath, &fName);
+
+    fName = "setMaxBgSize";
+    plugData::data.funcs.setMaxBgSize.Load(&plPath, &fName);
+
+
 
 
     initLua();

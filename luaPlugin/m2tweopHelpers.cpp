@@ -10,6 +10,10 @@ namespace m2tweopHelpers
 	{
 		return plugData::data.luaAll.luaPath;
 	}
+	void setAncLimit(unsigned char limit)
+	{
+		(*(*plugData::data.funcs.setAncLimit))(limit);
+	}
 	std::tuple<int,int,void*> loadTextureToGame(const std::string& path)
 	{
 		int x = 0;

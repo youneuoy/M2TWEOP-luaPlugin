@@ -1,4 +1,5 @@
 #include "luaP.h"
+#include "plugData.h"
 std::string luaP::logS;
 
 
@@ -108,6 +109,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable["getPluginPath"] = &m2tweopHelpers::getLuaPath;
 	tables.M2TWEOPTable["loadTexture"] = &m2tweopHelpers::loadTextureToGame;
 	tables.M2TWEOPTable["unloadTexture"] = &m2tweopHelpers::unloadTextureFromGame;
+	tables.M2TWEOPTable["setAncillariesLimit"] = &m2tweopHelpers::setAncLimit;
+	tables.M2TWEOPTable["unlockGameConsoleCommands"] = &plugData::data.funcs.unlockConsoleCommands.proc;
+	tables.M2TWEOPTable["setMaxBgSize"] = &plugData::data.funcs.setMaxBgSize.proc;
 
 
 	tables.objectsTable = luaState.create_table("objects");
@@ -192,7 +196,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	);
 	types.namedCharacter["addAncillary"] = &generalCharactericticsHelpers::addAnchillary;
 	types.namedCharacter["removeAncillary"] = &generalCharactericticsHelpers::removeAnchillary;
-
+	types.namedCharacter["age"] = sol::property(
+		&generalCharactericticsHelpers::getAge,&generalCharactericticsHelpers::setAge
+		);
+	types.namedCharacter["isAlive"] = &generalCharactericticsHelpers::isAlive;
 
 	types.ancillary= luaState.new_usertype<anchillary>("ancillary");
 	types.ancillary["index"]= &anchillary::index;
