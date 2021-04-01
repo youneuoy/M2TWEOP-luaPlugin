@@ -11,7 +11,7 @@ int initPlugin(std::string* modPath)
     plugData::data.modFolder = *modPath;
 
     std::string plPath = plugData::data.modFolder;
-    plPath = plPath + "\\HotSeatToolLib.dll";
+    plPath = plPath + "\\M2TWEOPLibrary.dll";
 
 
     //onChangeTurnNum function
