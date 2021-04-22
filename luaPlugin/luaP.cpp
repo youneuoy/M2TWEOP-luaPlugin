@@ -1,3 +1,6 @@
+///
+// Info about M2TWEOP structures and functions
+//@module LUA-PLUGIN
 #include "luaP.h"
 #include "plugData.h"
 std::string luaP::logS;
@@ -104,49 +107,336 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		}
 	}
 
+
+	///M2TWEOP table section
+	//@section m2tweopTable
+
+	/***
+	Basic M2TWEOP table
+
+	@tfield getModPath getModPath
+	@tfield getPluginPath  getPluginPath
+	@tfield loadTexture loadTexture
+	@tfield unloadTexture unloadTexture
+	@tfield setAncillariesLimit setAncillariesLimit
+	@tfield unlockGameConsoleCommands unlockGameConsoleCommands
+	@tfield setMaxBgSize setMaxBgSize
+	@table M2TWEOP
+	*/
+
+
+
 	tables.M2TWEOPTable = luaState.create_table("M2TWEOP");
+
+
+	/***
+	Get mod path
+
+
+	@function M2TWEOP.getModPath
+	@treturn string mod path
+
+	@usage 
+	mPath=M2TWEOP.getModPath();
+	print(mPath);
+	*/
 	tables.M2TWEOPTable["getModPath"] = &m2tweopHelpers::getModPath;
+	/***
+	Get path of the plugin(your lua files here)
+	@function M2TWEOP.getPluginPath
+	@treturn string plugin path
+	@usage 
+	plPath=M2TWEOP.getPluginPath();
+	print(plPath);
+	*/
+
 	tables.M2TWEOPTable["getPluginPath"] = &m2tweopHelpers::getLuaPath;
+
+	/***
+	Load d3d texture
+	@function M2TWEOP.loadTexture
+	@tparam string path full path to texture
+	@treturn int x size of the image
+	@treturn int y size of the image
+	@treturn int id of the image
+	@usage 
+	local testImage={x=0,y=0,img=nil};
+	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
+	*/
 	tables.M2TWEOPTable["loadTexture"] = &m2tweopHelpers::loadTextureToGame;
+	/***
+	Unload d3d texture
+	@function M2TWEOP.unloadTexture
+	@tparam int id of the image
+	@usage 
+	local testImage={x=0,y=0,img=nil};
+	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
+	M2TWEOP.unloadTexture(testImage.img);
+	*/
 	tables.M2TWEOPTable["unloadTexture"] = &m2tweopHelpers::unloadTextureFromGame;
+	/***
+	Set limit of ancillaries
+	@function M2TWEOP.setAncillariesLimit
+	@tparam int newLimit maximum - 127
+	@usage
+	M2TWEOP.setAncillariesLimit(15);
+	*/
 	tables.M2TWEOPTable["setAncillariesLimit"] = &m2tweopHelpers::setAncLimit;
+	/***
+	Unloc all console commands
+	@function M2TWEOP.unlockGameConsoleCommands
+	@usage
+	M2TWEOP.unlockGameConsoleCommands();
+	*/
 	tables.M2TWEOPTable["unlockGameConsoleCommands"] = &plugData::data.funcs.unlockConsoleCommands.proc;
+	/***
+	Set new max bodyguard size
+	@function M2TWEOP.setMaxBgSize
+	@tparam int newSize maximum bodyguard size - 255
+	@usage
+	M2TWEOP.setMaxBgSize(222);
+	*/
 	tables.M2TWEOPTable["setMaxBgSize"] = &plugData::data.funcs.setMaxBgSize.proc;
 
 
+	///Objects table section
+	//@section objectsTable
+
+
+	/***
+	Basic stratmap.objects table
+
+	@tfield addModelToGame addModelToGame
+	@tfield setModel  setModel
+	@tfield replaceTile  replaceTile
+
+	@table stratmap.objects
+	*/
 	tables.objectsTable = luaState.create_table("objects");
+
+
+	/***
+	Add new cas stratmodel to game
+	@function objects.addModelToGame
+	@tparam string modelPath relative(to modfolder) path
+	@tparam int modelId model id
+	@usage
+	stratmap.objects.addModelToGame("data/models_strat/residences/invisible.CAS",1);
+	*/
 	tables.objectsTable["addModelToGame"] = &objectsHelpers::addModelToGame;
+	/***
+	Set the model for the object at the specified coordinates. Works only for supported object types. 
+	@function objects.setModel
+	@tparam int xCoord
+	@tparam int yCoord
+	@tparam int modelId
+	@tparam int modelId2
+	@usage
+	stratmap.objects.addModelToGame("data/models_strat/residences/invisible.CAS",1);
+	stratmap.objects.setModel(288,257,1,1);
+	*/
 	tables.objectsTable["setModel"] = &objectsHelpers::setModel;
+	/***
+	Replace custom tile. Change custom battlefield for coordinates.
+	@function objects.replaceTile
+	@tparam string label
+	@tparam int xCoord
+	@tparam int yCoord
+	@tparam string filename
+	@tparam string weather
+	@tparam string dayTime
+	@usage
+	stratmap.objects.replaceTile("Helms-Deep_Province",167,158,"hornburg_amb.wfc","clear","midday");
+	*/
 	tables.objectsTable["replaceTile"] = &objectsHelpers::replaceTile;
 
+	///Camera table section
+	//@section cameraTable
 
+
+	/***
+	Basic stratmap.camera table
+
+	@tfield move move
+	@tfield jump  jump
+	@tfield zoom  zoom
+
+	@table stratmap.camera
+	*/
 	tables.cameraTable = luaState.create_table("camera");
+	/***
+	Slow move camera to tile
+	@function camera.move
+	@tparam int xCoord
+	@tparam int yCoord
+	@usage
+	stratmap.camera.move(1,2);
+	*/
 	tables.cameraTable["move"] = &cameraHelpers::moveStratCamera;
+	/***
+	Fast move camera to tile
+	@function camera.jump
+	@tparam int xCoord
+	@tparam int yCoord
+	@usage
+	stratmap.camera.jump(1,2);
+	*/
 	tables.cameraTable["jump"] = &cameraHelpers::snapStratCamera;
+	/***
+	Set zoom of stratcamera
+	@function camera.zoom
+	@tparam float distance
+	@usage
+	stratmap.camera.zoom(0.12);
+	*/
 	tables.cameraTable["zoom"] = &cameraHelpers::zoomStratCamera;
 
+	///Game table section
+	//@section gameTable
+
+
+	/***
+	Basic stratmap.game table
+
+	@tfield getFactionsCount getFactionsCount
+	@tfield getFaction getFaction
+	@tfield createCharacterByString createCharacterByString
+	@tfield createArmy createArmy
+	@tfield createUnitN createUnitN
+	@tfield createUnitIdx createUnitIdx
+
+	@table stratmap.game
+*/
 	tables.gameTable = luaState.create_table("game");
+	/***
+	Get factions number
+	@function game.getFactionsCount
+	@treturn int facNumber number of factions
+	@usage
+	local facNum=stratmap.game.getFactionsCount();
+	*/
 	tables.gameTable["getFactionsCount"] = &gameHelpers::getFactionsCount;
+	/***
+	Get faction with index
+	@function game.getFaction
+	@tparam int index
+	@treturn factionStruct faction
+	@usage
+	faction=stratmap.game.getFaction(2);
+	*/
 	tables.gameTable["getFaction"] = &gameHelpers::getFaction;
+	/***
+	Create character at coords
+	@function game.createCharacterByString
+	@tparam string type
+	@tparam factionStruct faction
+	@tparam int age
+	@tparam string name
+	@tparam string name2
+	@tparam int subFaction
+	@tparam string portrait
+	@tparam int xCoord
+	@tparam int yCoord
+	@treturn character newCharacter
+	@usage
+	newCharacter=stratmap.game.createCharacterByString("named character",stratmap.game.getFaction(0),18,"Name1","Name2",31,nil,character.character.xCoord+5,character.character.yCoord);
+	*/
 	tables.gameTable["createCharacterByString"] = &gameHelpers::createCharacter;
+	/***
+	Create army for character. 
+	@function game.createArmy
+	@tparam character ourGeneral
+	@treturn stackStruct army
+	@usage
+	army=stratmap.game.createArmy(gen);
+	*/
 	tables.gameTable["createArmy"] = &gameHelpers::createArmy;
+	/***
+	create unit by name. 
+	@function game.createUnitN
+	@tparam string type
+	@tparam int facNum
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@treturn unit newUnit
+	@usage
+	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
+	*/
 	tables.gameTable["createUnitN"] = &gameHelpers::createUnitN;
+	/***
+	create unit by index in EDU.
+	@function game.createUnitIdx
+	@tparam int type
+	@tparam int facNum
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@treturn unit newUnit
+	@usage
+	newUnit=stratmap.game.createUnitIdx(52,2,1,1,1);
+*/
 	tables.gameTable["createUnitIdx"] = &gameHelpers::createUnitIdx;
 
+	///Stratmap table section
+	//@section stratmapTable
 
+	/***
+	Basic stratmap table
+
+	@tfield objects objects
+	@tfield camera camera
+	@tfield game game
+
+
+	@table stratmap
+	*/
 	tables.stratmapTable = luaState.create_table("stratmap");
 	tables.stratmapTable.set(&tables.objectsTable);
 	tables.stratmapTable.set(&tables.cameraTable);
 	tables.stratmapTable.set(&tables.gameTable);
 
+	///Unit table section
+	//@section unitTable
 
+	/***
+	Unit table
+
+	@tfield eduEntry eduEntry
+	@tfield float movePoints
+	@tfield int number
+	@tfield int numberTact
+	@tfield int numberMax
+	@tfield kill kill
+	@tfield setParams setParams
+
+
+	@table unit
+	*/
 	types.unit = luaState.new_usertype<unit>("unit");
 	types.unit["eduEntry"] = &unit::eduEntry;
 	types.unit["movePoints"] = sol::property(&unitHelpers::getMovepoints, &unitHelpers::setMovepoints);
 	types.unit["number"] = sol::property(&unit::number, &unitHelpers::setSoldiersCount);
 	types.unit["numberTact"] = &unit::numberTact;
 	types.unit["numberMax"] = &unit::numberMax;
+	/***
+	Kill this unit
+	@function unit:kill
+	@usage
+	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
+	newUnit:kill();
+	*/
 	types.unit["kill"] = &unitHelpers::killUnit;
+	/***
+	Set unit basic parameters
+	@function unit:setParams
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@usage
+	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
+	newUnit:setParams(0,0,0);
+	*/
 	types.unit["setParams"] = &unitHelpers::setUnitParams;
 
 	types.character = luaState.new_usertype<general>("character");
@@ -211,7 +501,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		);
 
 
-	types.EduEntry = luaState.new_usertype<EduEntry>("EduEntry");
+	types.EduEntry = luaState.new_usertype<EduEntry>("eduEntry");
 	types.EduEntry["Type"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyEDU<EduEntryStruct_Type>, &luaGetSetFuncs::setStringPropertyEDU<EduEntryStruct_Type>
 		);
