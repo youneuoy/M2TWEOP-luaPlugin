@@ -212,7 +212,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stratmap.objects
 	*/
-	tables.objectsTable = luaState.create_table("objects");
+	tables.objectsTable = luaState.create_named_table("objects");
 
 
 	/***
@@ -263,7 +263,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stratmap.camera
 	*/
-	tables.cameraTable = luaState.create_table("camera");
+	tables.cameraTable = luaState.create_table();
 	/***
 	Slow move camera to tile
 	@function camera.move
@@ -307,7 +307,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stratmap.game
 */
-	tables.gameTable = luaState.create_table("game");
+	tables.gameTable = luaState.create_table();
 	/***
 	Get factions number
 	@function game.getFactionsCount
@@ -391,10 +391,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stratmap
 	*/
-	tables.stratmapTable = luaState.create_table("stratmap");
-	tables.stratmapTable.set(&tables.objectsTable);
-	tables.stratmapTable.set(&tables.cameraTable);
-	tables.stratmapTable.set(&tables.gameTable);
+	tables.stratmapTable = luaState.create_table();
+
+	/*tables.stratmapTable["objects"] = &tables.objectsTable;
+	tables.stratmapTable["camera"] = &tables.cameraTable;
+	tables.stratmapTable["game"] = &tables.gameTable;*/
+	tables.stratmapTable.set("objects",tables.objectsTable);
+	tables.stratmapTable.set("camera", tables.cameraTable);
+	tables.stratmapTable.set("game" ,&tables.gameTable);
 
 	///Unit table section
 	//@section unitTable
