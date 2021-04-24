@@ -1,6 +1,8 @@
 ///
-// Info about M2TWEOP structures and functions
+//M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
 //@module LUA-PLUGIN
+//@author youneuoy
+//@license GPL-3.0 License
 #include "luaP.h"
 #include "plugData.h"
 std::string luaP::logS;
@@ -212,7 +214,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stratmap.objects
 	*/
-	tables.objectsTable = luaState.create_named_table("objects");
+	tables.objectsTable = luaState.create_table();
 
 
 	/***
@@ -391,14 +393,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stratmap
 	*/
-	tables.stratmapTable = luaState.create_table();
+	tables.stratmapTable = luaState.create_table("stratmap");
 
 	/*tables.stratmapTable["objects"] = &tables.objectsTable;
 	tables.stratmapTable["camera"] = &tables.cameraTable;
 	tables.stratmapTable["game"] = &tables.gameTable;*/
 	tables.stratmapTable.set("objects",tables.objectsTable);
 	tables.stratmapTable.set("camera", tables.cameraTable);
-	tables.stratmapTable.set("game" ,&tables.gameTable);
+	tables.stratmapTable.set("game" ,tables.gameTable);
 
 	///Unit table section
 	//@section unitTable
@@ -443,6 +445,31 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.unit["setParams"] = &unitHelpers::setUnitParams;
 
+
+	///Character table section
+	//@section characterTable
+
+	/***
+	Basic character table
+	This had all characters(princess, diplomat, etc), if character in stratmap (not died,not to young, etc) has this fields.
+
+
+	@tfield int xCoord
+	@tfield int yCoord
+	@tfield namedCharacter namedCharacter
+	@tfield unit bodyguards
+	@tfield float movepointsMax
+	@tfield float movepointsModifier
+	@tfield float movepoints
+	@tfield string ability
+	@tfield moveToTile moveToTile
+	@tfield reposition reposition
+	@tfield siegeSettlement siegeSettlement
+	@tfield kill kill
+	@tfield setBodyguardUnit setBodyguardUnit
+
+	@table character
+	*/
 	types.character = luaState.new_usertype<general>("character");
 	types.character["xCoord"] = &general::xCoord;
 	types.character["yCoord"] = &general::yCoord;
@@ -452,12 +479,85 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.character["movepointsModifier"] = &general::movepointsModifier;
 	types.character["movepoints"] = sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints);
 	types.character["ability"] = sol::property(&luaGetSetFuncs::getStringPropertyGen<generalStruct_abilityID>, &luaGetSetFuncs::setStringPropertyGen<generalStruct_abilityID>);
+	/***
+	Start moving to tale. Need movepoints.
+	@function character:moveToTile
+	@tparam int xCoord
+	@tparam int yCoord
+	@usage
+	ourCharacter:moveToTile(11,25);
+	*/
 	types.character["moveToTile"] = &generalHelpers::moveToTile;
+	/***
+	Character reposition. Just teleports him.
+	@function character:reposition
+	@tparam int xCoord
+	@tparam int yCoord
+	@usage
+	ourCharacter:moveToTile(11,25);
+	*/
 	types.character["reposition"] = &generalHelpers::reposition;
+	/***
+	Siege settlement, or attack it if in siege
+	@function character:siegeSettlement
+	@tparam settlementStruct settlement
+	@usage
+	ourCharacter:siegeSettlement(settlement);
+	*/
 	types.character["siegeSettlement"] = &generalHelpers::siegeSettlement;
+	/***
+	Delete this character
+	@function character:kill
+	@usage
+	ourCharacter:kill();
+	*/
 	types.character["kill"] = &generalHelpers::killGeneral;
+	/***
+	Set bodyguard. Do this only for characters without it (after creating,for example)
+	@function character:setBodyguardUnit
+	@tparam unit unit
+	@usage
+	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
+	ourCharacter:setBodyguardUnit(newUnit);
+	*/
 	types.character["setBodyguardUnit"] = &generalHelpers::setBodyguard;
 
+
+	///NamedCharacter table section
+	//@section namedCharacterTable
+
+	/***
+	Basic namedCharacter table
+
+	@tfield int index
+	@tfield character character
+	@tfield string shortName
+	@tfield string fullName
+	@tfield string label
+	@tfield string modelName
+	@tfield int status 5-leader,2 - heir, 0 - ordinary character. Only read it, not set it!
+	@tfield int command
+	@tfield int loyalty
+	@tfield int piety
+	@tfield int chivalryAndDread Dread if negative value
+	@tfield int authority
+	@tfield getAncillary getAncillary
+	@tfield int ancNum
+	@tfield float yearOfBirth
+	@tfield factionStruct faction
+	@tfield int subFaction
+	@tfield namedCharacter parent
+	@tfield namedCharacter spouse
+	@tfield string portrait
+	@tfield string portrait2
+	@tfield string portrait_custom
+	@tfield addAncillary addAncillary
+	@tfield removeAncillary removeAncillary
+	@tfield int age
+	@tfield isAlive isAlive
+
+	@table namedCharacter
+	*/
 	types.namedCharacter= luaState.new_usertype<generalCharacterictics>("namedCharacter");
 	types.namedCharacter["index"] = &generalCharacterictics::index;
 	types.namedCharacter["character"] = &generalCharacterictics::gen;
@@ -472,6 +572,15 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter["piety"] = &generalCharacterictics::piety;
 	types.namedCharacter["chivalryAndDread"] = &generalCharacterictics::nobility;
 	types.namedCharacter["authority"] = &generalCharacterictics::leaderAutority;
+	/***
+	Get pointer to ancillary with number
+	@function namedCharacter:getAncillary
+	@tparam int index
+	@tparam int yCoord
+	@treturn ancillary ancillary
+	@usage
+	ancillary=ourNamedCharacter:getAncillary(2);
+	*/
 	types.namedCharacter["getAncillary"] = &generalCharactericticsHelpers::getAnchillary;
 	types.namedCharacter["ancNum"] = &generalCharacterictics::anchNum;
 	types.namedCharacter["yearOfBirth"] = &generalCharacterictics::yearOfBirth;
@@ -482,19 +591,57 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter["portrait"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait>
 	);
-	types.namedCharacter["portrait"] = sol::property(
+	types.namedCharacter["portrait2"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait2>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait2>
 	);
 	types.namedCharacter["portrait_custom"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>
 	);
+	/***
+	Add new ancillary
+	@function namedCharacter:addAncillary
+	@tparam string ancillaryName
+	@usage
+	ourNamedCharacter:character:addAncillary("VeryVeryGoodMan");
+	*/
 	types.namedCharacter["addAncillary"] = &generalCharactericticsHelpers::addAnchillary;
+	/***
+	Remove ancillary
+	@function namedCharacter:removeAncillary
+	@tparam ancillary ancillary
+	@usage
+	ourAnc=ourNamedCharacter:getAncillary(2);    
+	ourNamedCharacter:removeAncillary(ourAnc);
+	*/
 	types.namedCharacter["removeAncillary"] = &generalCharactericticsHelpers::removeAnchillary;
 	types.namedCharacter["age"] = sol::property(
 		&generalCharactericticsHelpers::getAge,&generalCharactericticsHelpers::setAge
 		);
+	/***
+	Check if the character is alive
+	@function namedCharacter:isAlive
+	@treturn int liveStatus 1 - live, 0 - dead
+	@usage
+	if(ourcharacter:isAlive()==1)
+	then
+		ourcharacter:kill();
+	end
+	*/
 	types.namedCharacter["isAlive"] = &generalCharactericticsHelpers::isAlive;
 
+
+	///Ancillary table section
+	//@section ancillaryTable
+
+	/***
+	Basic ancillary table
+
+	@tfield int index
+	@tfield string name
+	@tfield string imagePath
+
+	@table ancillary
+	*/
 	types.ancillary= luaState.new_usertype<anchillary>("ancillary");
 	types.ancillary["index"]= &anchillary::index;
 	types.ancillary["name"] = sol::property(
@@ -504,7 +651,19 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		&luaGetSetFuncs::getStringPropertyAnc<anchillaryStruct_imagePath>, &luaGetSetFuncs::setStringPropertyAnc<anchillaryStruct_imagePath>
 		);
 
+	///EduEntry table section
+	//@section eduEntryTable
 
+	/***
+	Basic eduEntry table
+
+	@tfield string Type
+	@tfield int Dictionary
+	@tfield int Index
+	@tfield int UnitCreatedCounter
+
+	@table eduEntry
+	*/
 	types.EduEntry = luaState.new_usertype<EduEntry>("eduEntry");
 	types.EduEntry["Type"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyEDU<EduEntryStruct_Type>, &luaGetSetFuncs::setStringPropertyEDU<EduEntryStruct_Type>
@@ -513,6 +672,37 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.EduEntry["Index"] = &EduEntry::Index;
 	types.EduEntry["UnitCreatedCounter"] = &EduEntry::UnitCreatedCounter;
 
+
+	///FactionStruct table section
+	//@section factionStructTable
+
+	/***
+	Basic factionStruct table
+
+	@tfield int dipNum
+	@tfield string ai_label
+	@tfield settlementStruct capital
+	@tfield namedCharacter leader
+	@tfield namedCharacter heir
+	@tfield getFactionName getFactionName
+	@tfield int isPlayerControlled
+	@tfield getNamedCharacter getNamedCharacter
+	@tfield int numOfNamedCharacters
+	@tfield getCharacter getCharacter
+	@tfield int numOfCharacters	
+	@tfield getStack getStack
+	@tfield int stacksNum
+	@tfield getSettlement getSettlement
+	@tfield int settlementsNum
+	@tfield getFort getFort
+	@tfield int fortsNum	
+	@tfield getFort getPort
+	@tfield int portsNum
+	@tfield int religion
+	@tfield int money
+
+	@table factionStruct
+	*/
 	types.factionStruct = luaState.new_usertype<factionStruct>("factionStruct");
 	types.factionStruct["dipNum"] = &factionStruct::dipNum;
 	types.factionStruct["ai_label"] = sol::property(
@@ -521,23 +711,127 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStruct["capital"] = &factionStruct::capital;
 	types.factionStruct["leader"] = &factionStruct::leader;
 	types.factionStruct["heir"] = &factionStruct::heir;
+	/***
+	Get faction technical name
+	@function factionStruct:getFactionName
+	@treturn string facName
+	@usage
+	ourFac = stratmap.game.getFaction(0);
+	ourFacName = ourFac:getFactionName();
+	if(ourFacName == "hre")
+	then
+		ourFac.money = ourFac.money + (ourFac.fortsNum * 500);
+	end
+	*/
 	types.factionStruct["getFactionName"] = &factionHelpers::getFactionName;
 	types.factionStruct["isPlayerControlled"] = &factionStruct::isPlayerControlled;
+	/***
+	Get named character with number
+	@function factionStruct:getNamedCharacter
+	@tparam int number
+	@treturn namedCharacter retNamedCharacter
+	@usage
+	ourFac = stratmap.game.getFaction(0);
+	ourNamedCharacter = ourFac:getNamedCharacter(0);
+	if(ourNamedCharacter.command > 5)
+	then
+		ourFac.money = ourFac.money - (ourNamedCharacter.command * 10);
+	end
+	*/
 	types.factionStruct["getNamedCharacter"] = &factionHelpers::getCharacterFromFullList;
 	types.factionStruct["numOfNamedCharacters"] = &factionStruct::numOfCharactersAll;
+	/***
+	Get  character with number
+	@function factionStruct:getCharacter
+	@tparam int number
+	@treturn character retCharacter
+	@usage
+	ourFac = stratmap.game.getFaction(0);
+	ourCharacter = ourFac:getCharacter(0);
+	if(ourCharacter.xCoord > 150 and ourCharacter.movepoints<10)
+	then
+		ourCharacter:kill();
+	end
+	*/
 	types.factionStruct["getCharacter"] = &factionHelpers::getCharacterFromGeneralsList;
 	types.factionStruct["numOfCharacters"] = &factionStruct::numOfCharacters;
+	/***
+	Get army with number
+	@function factionStruct:getStack
+	@tparam int number
+	@treturn stackStruct army
+	@usage
+	ourFac = stratmap.game.getFaction(0);
+	ourArmy = ourFac:getCharacter(0);
+	if(ourArmy.totalStrength > 1500)
+	then
+		ourFac.money = ourFac.money - (ourArmy.totalStrength);
+	end
+	*/
 	types.factionStruct["getStack"] = &factionHelpers::getStack;
-	types.factionStruct["stackNum"] = &factionStruct::stackNum;
+	types.factionStruct["stacksNum"] = &factionStruct::stackNum;
+	/***
+	Get settlement with number
+	@function factionStruct:getSettlement
+	@tparam int number
+	@treturn settlementStruct settlement
+	@usage
+	ourFac = stratmap.game.getFaction(0);
+	ourSett = ourFac:getSettlement(0);
+	if(ourSett.isProvokedRebellion ~= 0)
+	then
+		ourFac.money = ourFac.money - (ourSett.level*5000);
+	end
+	*/
 	types.factionStruct["getSettlement"] = &factionHelpers::getSettlement;
 	types.factionStruct["settlementsNum"] = &factionStruct::settlementsNum;
+	/***
+	Get fort with number
+	@function factionStruct:getFort
+	@tparam int number
+	@treturn fortStruct fort
+	@usage
+	later
+	*/
 	types.factionStruct["getFort"] = &factionHelpers::getFort;
 	types.factionStruct["fortsNum"] = &factionStruct::fortsNum;
+	/***
+	Get fort with number
+	@function factionStruct:getPort
+	@tparam int number
+	@treturn portStruct port
+	@usage
+	later
+	*/
 	types.factionStruct["getPort"] = &factionHelpers::getPort;
 	types.factionStruct["portsNum"] = &factionStruct::portBuildingsNum;
 	types.factionStruct["religion"] = &factionStruct::religion;
 	types.factionStruct["money"] = &factionStruct::money;
 
+	///SettlementStruct table section
+	//@section settlementStructTable
+
+	/***
+	Basic settlementStruct table
+
+	@tfield character governor
+	@tfield int xCoord
+	@tfield int yCoord
+	@tfield stackStruct army
+	@tfield string name
+	@tfield factionStruct ownerFaction
+	@tfield int level
+	@tfield int fac_creatorNum
+	@tfield int isCastle
+	@tfield int regionNumber
+	@tfield int isProvokedRebellion
+	@tfield getBuilding getBuilding
+	@tfield int buldingsNum
+	@tfield getResource getResource
+	@tfield int resourcesNum
+
+	@table settlementStruct
+	*/
 	types.settlementStruct = luaState.new_usertype<settlementStruct>("settlementStruct");
 	types.settlementStruct["governor"] = &settlementStruct::gubernator;
 	types.settlementStruct["xCoord"] = &settlementStruct::xCoord;
@@ -552,51 +846,225 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.settlementStruct["isCastle"] = &settlementStruct::isCastle;
 	types.settlementStruct["regionNumber"] = &settlementStruct::regionNumber;
 	types.settlementStruct["isProvokedRebellion"] = &settlementStruct::isProvokedRebellion;
+	/***
+	Get building with number
+	@function settlementStruct:getBuilding
+	@tparam int number
+	@treturn building build
+	@usage
+	ourBuilding=settlementStruct:getBuilding(0);
+	if(ourBuilding.level>1)
+	then
+		print("test");
+	end
+	*/
 	types.settlementStruct["getBuilding"] = &settlementHelpers::getBuilding;
 	types.settlementStruct["buldingsNum"] = &settlementStruct::buldingsNum;	
+	/***
+	Get resource with number
+	@function settlementStruct:getResource
+	@tparam int number
+	@treturn resStrat resource
+	@usage
+	ourResStrat=settlementStruct:getResource(0);
+	*/
 	types.settlementStruct["getResource"] = &settlementHelpers::getResource;
 	types.settlementStruct["resourcesNum"] = &settlementStruct::resourcesNum;
 
+
+	///ResStrat table section
+	//@section resStratTable
+
+	/***
+	Basic resStrat table
+
+	@tfield int xCoord
+	@tfield int yCoord
+	@tfield setStratModel setStratModel
+	@tfield getResourceCode getResourceCode
+
+	@table resStrat
+	*/
 	types.resStrat= luaState.new_usertype<resStrat>("resStrat");
 	types.resStrat["xCoord"] = &resStrat::xCoord;
 	types.resStrat["yCoord"] = &resStrat::yCoord;
+	/***
+	Set resource strat. model
+	@function resStrat:setStratModel
+	@tparam int modelId
+	@usage
+	resStrat:setStratModel(5);
+	*/
 	types.resStrat["setStratModel"] = &resourcesHelpers::setModel;
 	types.resStrat["getResourceCode"] = &resourcesHelpers::getResourceCode;
 
+	///StackStruct table section
+	//@section stackStructTable
+
+	/***
+	Basic stackStruct table
+
+	@tfield factionStruct faction
+	@tfield getUnit getUnit
+	@tfield int numOfUnits
+	@tfield getCharacter getCharacter
+	@tfield int numOfCharacters
+	@tfield stackStruct boardedArmy
+	@tfield portStruct blockedPort
+	@tfield character leader
+	@tfield findInSettlement findInSettlement
+	@tfield findInFort findInFort
+	@tfield int totalStrength
+	@tfield float reform_point_x reform point x coordinate in battle
+	@tfield float reform_point_y reform point y coordinate in battle
+	@tfield addUnit addUnit
+	@tfield attackArmy attackArmy
+
+
+	@table stackStruct
+	*/
 	types.stackStruct= luaState.new_usertype<stackStruct>("stackStruct");
 	types.stackStruct["faction"] = &stackStruct::faction;
+	/***
+	Get unit with number
+	@function stackStruct:getUnit
+	@tparam int number
+	@treturn unit retUnit
+	@usage
+	ourUnit=stackStruct:getUnit(0);
+	ourUnit:kill();
+	*/
 	types.stackStruct["getUnit"] = &stackStructHelpers::getUnit;
 	types.stackStruct["numOfUnits"] = &stackStruct::numOfUnits;
+	/***
+	Get character(agent) with number
+	@function stackStruct:getCharacter
+	@tparam int number
+	@treturn character retCharacter
+	@usage
+	ourChar=stackStruct:getCharacter(0);
+	ourChar:kill();
+	*/
 	types.stackStruct["getCharacter"] = &stackStructHelpers::getCharacter;
 	types.stackStruct["numOfCharacters"] = &stackStruct::charactersNum;
 	types.stackStruct["boardedArmy"] = &stackStruct::boardedArmy;
 	types.stackStruct["blockedPort"] = &stackStruct::blockedPort;
 	types.stackStruct["leader"] = &stackStruct::gen;
+	/***
+	Find the settlement in which the army is located
+	
+	Returns nil if the army is not in the settlement.
+
+	@function stackStruct:findInSettlement
+	@treturn  settlementStruct  settlement
+	@usage
+	ourSett=stackStruct:findInSettlement();
+	if(ourSett~=nil)
+	then
+		--something
+	end
+	*/
 	types.stackStruct["findInSettlement"] = &stackStructHelpers::findInSettlement;
+	/***
+	Find the fort in which the army is located
+
+	Returns nil if the army is not in the fort.
+
+	@function stackStruct:findInFort
+	@treturn  fortStruct  fort
+	@usage
+	ourFort=stackStruct:findInFort();
+	if(ourFort~=nil)
+	then
+		--something
+	end
+	*/
 	types.stackStruct["findInFort"] = &stackStructHelpers::findInFort;
 	types.stackStruct["totalStrength"] = &stackStruct::totalStrength;
 	types.stackStruct["reform_point_x"] = &stackStruct::reform_point_x;
 	types.stackStruct["reform_point_y"] = &stackStruct::reform_point_y;
+	/***
+	Add unit to this army.
+
+	@function stackStruct:addUnit
+	@tparam unit unit
+	@treturn  int  ifSucess
+	@usage
+	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
+	sucess=stackStruct:addUnit(newUnit);
+	if(sucess~=0)
+	then
+		--something
+	end
+	*/
 	types.stackStruct["addUnit"] = &stackStructHelpers::addUnitToArmy;
+	/***
+	Attack another army. Need movepoints.
+
+	@function stackStruct:attackArmy
+	@tparam stackStruct defender
+	@treturn  int  ifSucess
+	@usage
+	sucess=stackStruct:attackArmy(defenderArmy);
+	if(sucess~=0)
+	then
+		--something
+	end
+	*/
 	types.stackStruct["attackArmy"] = &stackStructHelpers::attackArmy;
 
+
+	///Building table section
+	//@section buildingTable
+
+	/***
+	Basic building table
+
+	@tfield buildingData buildingData
+	@tfield int level
+	@tfield int hp
+	@tfield settlementStruct settlement
+
+	@table building
+	*/
 	types.building= luaState.new_usertype<building>("building");
 	types.building["buildingData"] = &building::bData;
 	types.building["level"] = &building::level;
 	types.building["hp"] = &building::hp;
 	types.building["settlement"] = &building::settlement;
 
-	types.building_data = luaState.new_usertype<building_data>("building_data");
+	///BuildingData table section
+	//@section buildingDataTable
+
+	/***
+	Basic buildingData table
+
+	@tfield string type
+	@tfield buildingInfo buildingInfo
+
+	@table buildingData
+	*/
+	types.building_data = luaState.new_usertype<building_data>("buildingData");
 	types.building_data["type"] = sol::property(
 		&buildingStructHelpers::getStringPropertyBD<building_dataStruct_type>, &buildingStructHelpers::setStringPropertyBD<building_dataStruct_type>
 		);
 	types.building_data["buildingInfo"] = &building_data::drawInfo;
 
-	types.buildingDrawInfo= luaState.new_usertype<buildingDrawInfo>("buildingDrawInfo");
+
+	///BuildingInfo table section
+	//@section buildingInfoTable
+
+	/***
+	Basic buildingInfo table
+
+	@tfield string name
+
+	@table buildingInfo
+	*/
+	types.buildingDrawInfo= luaState.new_usertype<buildingDrawInfo>("buildingInfo");
 	types.buildingDrawInfo["name"] = sol::property(
 		&buildingStructHelpers::getStringPropertyBDI<buildingDrawInfoStruct_name>, &buildingStructHelpers::setStringPropertyBDI<buildingDrawInfoStruct_name>
 		);
-
 
 
 
@@ -616,6 +1084,119 @@ void checkLuaFunc(sol::function** lRef)
 }
 void luaP::onPluginLoadF()
 {
+	///EVENTS TABLE SECTION
+	//@section eventsList
+
+	/***
+	Events functions list.
+	Just list, use it without EventsFunctionsList.!!!
+
+	@tfield draw draw
+	@tfield onPluginLoad onPluginLoad
+	@tfield onChangeTurnNum onChangeTurnNum
+	@tfield onCharacterSelected onCharacterSelected
+	@tfield onPreFactionTurnStart onPreFactionTurnStart
+	@tfield onFactionTurnStart onFactionTurnStart
+	@tfield onFactionTurnEnd onFactionTurnEnd
+	@tfield onFactionNewCapital onFactionNewCapital
+	@tfield onFactionWarDeclared onFactionWarDeclared
+	@tfield onFactionAllianceDeclared onFactionAllianceDeclared
+	@tfield onFactionTradeAgreementMade onFactionTradeAgreementMade
+	@tfield onFactionBreakAlliance onFactionBreakAlliance
+	@tfield onGiveMoney onGiveMoney
+	@tfield onUpdateAttitude onUpdateAttitude
+	@tfield onDemeanour onDemeanour
+	@tfield onGeneralAssaultsGeneral onGeneralAssaultsGeneral
+	@tfield onGeneralAssaultsResidence onGeneralAssaultsResidence
+	@tfield onGeneralCaptureSettlement onGeneralCaptureSettlement
+	@tfield onGeneralCaptureResidence onGeneralCaptureResidence
+	@tfield onSiegeEquipmentCompleted onSiegeEquipmentCompleted
+	@tfield onPostBattle onPostBattle
+	@tfield onMultiTurnMove onMultiTurnMove
+	@tfield onSettlementSelected onSettlementSelected
+	@tfield onSettlementUpgraded onSettlementUpgraded
+	@tfield onSettlementConverted onSettlementConverted
+	@tfield onCityRiots onCityRiots
+	@tfield onUngarrisonedSettlement onUngarrisonedSettlement
+	@tfield onUngarrisonedFort onUngarrisonedFort
+	@tfield onGiveSettlement onGiveSettlement
+	@tfield onOccupySettlement onOccupySettlement
+	@tfield onExterminatePopulation onExterminatePopulation
+	@tfield onSackSettlement onSackSettlement
+	@tfield onAddedToBuildingQueue onAddedToBuildingQueue
+	@tfield onBuildingDestroyed onBuildingDestroyed
+	@tfield onBuildingCompleted onBuildingCompleted
+	@tfield onEventCounter onEventCounter
+	@tfield onFactionExcommunicated onFactionExcommunicated
+	@tfield onDisaster onDisaster
+	@tfield onHordeFormed onHordeFormed
+	@tfield onAddedToTrainingQueue onAddedToTrainingQueue
+	@tfield onUnitDisbanded onUnitDisbanded
+	@tfield onUnitTrained onUnitTrained
+	@tfield onAgentCreated onAgentCreated
+	@tfield onObjSeen onObjSeen
+	@tfield onTileSeen onTileSeen
+	@tfield onGameReloaded onGameReloaded
+	@tfield onTransgression onTransgression
+	@tfield onPopeAcceptsCrusadeTarget onPopeAcceptsCrusadeTarget
+	@tfield onCrusadeCalled onCrusadeCalled
+	@tfield onCrusadeEnds onCrusadeEnds
+	@tfield onPopeRejectsCrusadeTarget onPopeRejectsCrusadeTarget
+	@tfield onArmyTakesCrusadeTarget onArmyTakesCrusadeTarget
+	@tfield onUnitsDesertCrusade onUnitsDesertCrusade
+	@tfield onPopeElected onPopeElected
+	@tfield onVotedForPope onVotedForPope
+	@tfield onAssassinCaughtAttackingPope onAssassinCaughtAttackingPope
+	@tfield onInquisitorAppointed onInquisitorAppointed
+	@tfield onSettlementPanelOpen onSettlementPanelOpen
+	@tfield onFinancesPanelOpen onFinancesPanelOpen
+	@tfield onFactionSummaryPanelOpen onFactionSummaryPanelOpen
+	@tfield onFamilyTreePanelOpenFunc onFamilyTreePanelOpenFunc
+	@tfield onDiplomaticStandingPanelOpen onDiplomaticStandingPanelOpen
+	@tfield onDiplomacyPanelOpen onDiplomacyPanelOpen
+	@tfield onPreBattlePanelOpen onPreBattlePanelOpen
+	@tfield onNavalAutoResolvePanelOpen onNavalAutoResolvePanelOpen
+	@tfield onCharacterPanelOpen onCharacterPanelOpen
+	@tfield onTradePanelOpen onTradePanelOpen
+	@tfield onRequestBuildingAdvice onRequestBuildingAdvice
+	@tfield onRequestTrainingAdvice onRequestTrainingAdvice
+	@tfield onMessageOpen onMessageOpen
+	@tfield onIncomingMessage onIncomingMessage
+	@tfield onMessageClosed onMessageClosed
+	@tfield onButtonPressed onButtonPressed
+	@tfield onScrollClosed onScrollClosed
+	@tfield onScrollOpened onScrollOpened
+	@tfield onUIElementVisible onUIElementVisible
+	@tfield onScrollAdviceRequested onScrollAdviceRequested
+	@tfield onSettlementScrollAdviceRequested onSettlementScrollAdviceRequested
+	@tfield onPreBattleScrollAdviceRequested onPreBattleScrollAdviceRequested
+	@tfield onNavalPreBattleScrollAdviceRequested onNavalPreBattleScrollAdviceRequested
+	@tfield onCollegeOfCardinalsPanelOpen onCollegeOfCardinalsPanelOpen
+
+
+
+
+	@table EventsFunctionsList
+	*/
+
+
+
+
+	/***
+	Called every time an image is rendered for display
+
+	@function draw
+	@tparam LPDIRECT3DDEVICE9 pDevice
+
+	@usage
+	function draw(device)
+		ImGui.Begin("test");
+
+		ImGui.Text("Some test text")
+
+		ImGui.End();
+	end
+	*/
 	drawLuaFunc = new sol::function(luaState["draw"]);
 	checkLuaFunc(&drawLuaFunc);
 
@@ -625,257 +1206,1013 @@ void luaP::onPluginLoadF()
 	initDXFunc = new sol::function(luaState["initDX"]);
 	checkLuaFunc(&initDXFunc);
 
+	/***
+	Called on plugin load(at game start)
+
+	@function onPluginLoad
+
+	@usage
+	function onPluginLoad()
+	--something here
+	end
+	*/
 	onPluginLoad = new sol::function(luaState["onPluginLoad"]);
 	checkLuaFunc(&onPluginLoad);
 
+	/***
+	Called on every turn
+
+	@function onChangeTurnNum
+	@tparam int turnNumber
+
+	@usage
+	function onChangeTurnNum(turnNum)
+	--something here
+	end
+	*/
 	onChangeTurnNumFunc = new sol::function(luaState["onChangeTurnNum"]);
 	checkLuaFunc(&onChangeTurnNumFunc);
 
+	/***
+	Called on character selection
+
+	@function onCharacterSelected
+	@tparam namedCharacter selectedChar
+
+	@usage
+	function onChangeTurnNum(onCharacterSelected)
+	--something here
+	end
+	*/
 	onCharacterSelectedFunc = new sol::function(luaState["onCharacterSelected"]);
 	checkLuaFunc(&onCharacterSelectedFunc);
 
+	/***
+	Called before faction turn start
+
+	@function onPreFactionTurnStart
+	@tparam factionStruct faction
+
+	@usage
+	function onPreFactionTurnStart(fac)
+	--something here
+	end
+	*/
 	onPreFactionTurnStartFunc = new sol::function(luaState["onPreFactionTurnStart"]);
 	checkLuaFunc(&onPreFactionTurnStartFunc);
 
+	/***
+	Called at faction turn start
+
+	@function onFactionTurnStart
+	@tparam factionStruct faction
+
+	@usage
+	function onFactionTurnStart(fac)
+	--something here
+	end
+	*/
 	onFactionTurnStartFunc = new sol::function(luaState["onFactionTurnStart"]);
 	checkLuaFunc(&onFactionTurnStartFunc);
+
+	/***
+	Called at faction turn end
+
+	@function onFactionTurnEnd
+	@tparam factionStruct faction
+
+	@usage
+	function onFactionTurnEnd(fac)
+	--something here
+	end
+	*/
 
 	onFactionTurnEndFunc = new sol::function(luaState["onFactionTurnEnd"]);
 	checkLuaFunc(&onFactionTurnEndFunc);
 
+	/***
+	Called after faction has new capital
+
+	@function onFactionNewCapital
+	@tparam factionStruct faction
+
+	@usage
+	function onFactionNewCapital(fac)
+	newCapital=fac.capital();
+	end
+	*/
 	onFactionNewCapitalFunc = new sol::function(luaState["onFactionNewCapital"]);
 	checkLuaFunc(&onFactionNewCapitalFunc);
 
+	/***
+	Called after declaring war
+
+	@function onFactionWarDeclared
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+
+	@usage
+	function onFactionWarDeclared(faction,targetFaction)
+	-something
+	end
+	*/
 	onFactionWarDeclaredFunc = new sol::function(luaState["onFactionWarDeclared"]);
 	checkLuaFunc(&onFactionWarDeclaredFunc);
+
+	/***
+	Called after declaring alliance
+
+	@function onFactionAllianceDeclared
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+
+	@usage
+	function onFactionAllianceDeclared(faction,targetFaction)
+	-something
+	end
+	*/
 
 	onFactionAllianceDeclaredFunc = new sol::function(luaState["onFactionAllianceDeclared"]);
 	checkLuaFunc(&onFactionAllianceDeclaredFunc);
 
+	/***
+	Called after declaring trade agreement
+
+	@function onFactionTradeAgreementMade
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+
+	@usage
+	function onFactionTradeAgreementMade(faction,targetFaction)
+	-something
+	end
+	*/
+
 	onFactionTradeAgreementMadeFunc = new sol::function(luaState["onFactionTradeAgreementMade"]);
 	checkLuaFunc(&onFactionTradeAgreementMadeFunc);
+
+	/***
+	Called after break alliance
+
+	@function onFactionBreakAlliance
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+
+	@usage
+	function onFactionBreakAlliance(faction,targetFaction)
+	-something
+	end
+	*/
+
 
 	onFactionBreakAllianceFunc = new sol::function(luaState["onFactionBreakAlliance"]);
 	checkLuaFunc(&onFactionBreakAllianceFunc);
 
+
+	/***
+	Called after giving money
+
+	@function onGiveMoney
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+	@tparam int amount
+
+	@usage
+	function onGiveMoney(faction,targetFaction,amount)
+	-something
+	end
+	*/
+
+
 	onGiveMoneyFunc = new sol::function(luaState["onGiveMoney"]);
 	checkLuaFunc(&onGiveMoneyFunc);
+
+
+	/***
+	Called after update attitude
+
+	@function onUpdateAttitude
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+
+	@usage
+	function onUpdateAttitude(faction,targetFaction)
+	-something
+	end
+	*/
+
 
 	onUpdateAttitudeFunc = new sol::function(luaState["onUpdateAttitude"]);
 	checkLuaFunc(&onUpdateAttitudeFunc);
 
+
+	/***
+	A demeanour response has occured in diplomacy talks
+
+	@function onDemeanour
+	@tparam factionStruct faction
+	@tparam factionStruct targetFaction
+	@tparam float amount
+
+	@usage
+	function onDemeanour(faction,targetFaction,amount)
+	-something
+	end
+	*/
+
 	onDemeanourFunc = new sol::function(luaState["onDemeanour"]);
 	checkLuaFunc(&onDemeanourFunc);
 
+	/***
+	A general has attacked another general
 
+	@function onGeneralAssaultsGeneral
+	@tparam namedCharacter attacker
+	@tparam namedCharacter defender
+
+	@usage
+	function onGeneralAssaultsGeneral(attacker,defender)
+	-something
+	end
+	*/
 	onGeneralAssaultsGeneralFunc = new sol::function(luaState["onGeneralAssaultsGeneral"]);
 	checkLuaFunc(&onGeneralAssaultsGeneralFunc);
 
+	/***
+	An assault has taken place
+
+	@function onGeneralAssaultsResidence
+	@tparam namedCharacter attacker
+	@tparam settlementStruct settlement nil if it is fort
+	@tparam fortStruct fort nil if it is settlement
+
+	@usage
+	function onGeneralAssaultsResidence(attacker,settlement,fort)
+		if(settlement~=nil)
+		then
+			-settlement
+		else
+			-fort
+		end
+
+	end
+	*/
 	onGeneralAssaultsResidenceFunc = new sol::function(luaState["onGeneralAssaultsResidence"]);
 	checkLuaFunc(&onGeneralAssaultsResidenceFunc);
 
+	/***
+	Settlement captured
 
+	@function onGeneralCaptureSettlement
+	@tparam namedCharacter attacker
+	@tparam settlementStruct settlement
+
+	@usage
+	function onGeneralCaptureSettlement(attacker,settlement)
+	--something
+	end
+	*/
 	onGeneralCaptureSettlementFunc = new sol::function(luaState["onGeneralCaptureSettlement"]);
 	checkLuaFunc(&onGeneralCaptureSettlementFunc);
 
 
+	/***
+	A General has captured a residence(fort, watchtower, check it yourself)
+
+	@function onGeneralCaptureResidence
+	@tparam namedCharacter attacker
+
+	@usage
+	function onGeneralCaptureResidence(attacker)
+	--something
+	end
+	*/
 	onGeneralCaptureResidenceFunc = new sol::function(luaState["onGeneralCaptureResidence"]);
 	checkLuaFunc(&onGeneralCaptureResidenceFunc);
+
+
+	/***
+	@function onSiegeEquipmentCompleted
+	@tparam settlementStruct settlement nil if it is fort
+	@tparam fortStruct fort nil if it is settlement
+
+	@usage
+	--something
+	*/
 
 	onSiegeEquipmentCompletedFunc = new sol::function(luaState["onSiegeEquipmentCompleted"]);
 	checkLuaFunc(&onSiegeEquipmentCompletedFunc);
 
+	/***
+	@function onPostBattle
+	@tparam namedCharacter character
+
+	@usage
+	--something
+	*/
 
 	onPostBattleFunc = new sol::function(luaState["onPostBattle"]);
 	checkLuaFunc(&onPostBattleFunc);
 
+	/***
+	@function onMultiTurnMove
+	@tparam namedCharacter character
 
+	@usage
+	--something
+	*/
 	onMultiTurnMoveFunc = new sol::function(luaState["onMultiTurnMove"]);
 	checkLuaFunc(&onMultiTurnMoveFunc);
 
+	/***
+	@function onSettlementSelected
+	@tparam settlementStruct settlement
+
+	@usage
+	--something
+	*/
 	onSettlementSelectedFunc = new sol::function(luaState["onSettlementSelected"]);
 	checkLuaFunc(&onSettlementSelectedFunc);
 
+	/***
+	@function onSettlementUpgraded
+	@tparam settlementStruct settlement
+
+	@usage
+	--something
+	*/
 
 	onSettlementUpgradedFunc = new sol::function(luaState["onSettlementUpgraded"]);
 	checkLuaFunc(&onSettlementUpgradedFunc);
 
+	/***
+	@function onSettlementConverted
+	@tparam settlementStruct settlement
+
+	@usage
+	--something
+	*/
 	onSettlementConvertedFunc = new sol::function(luaState["onSettlementConverted"]);
 	checkLuaFunc(&onSettlementConvertedFunc);
 
+	/***
+	@function onCityRiots
+	@tparam settlementStruct settlement
+
+	@usage
+	--something
+	*/
 
 	onCityRiotsFunc = new sol::function(luaState["onCityRiots"]);
 	checkLuaFunc(&onCityRiotsFunc);
 
+	/***
+	@function onUngarrisonedSettlement
+	@tparam settlementStruct settlement
+
+	@usage
+	--something
+	*/
+
 	onUngarrisonedSettlementFunc = new sol::function(luaState["onUngarrisonedSettlement"]);
 	checkLuaFunc(&onUngarrisonedSettlementFunc);
 
+	/***
+	@function onUngarrisonedFort
+	@tparam forttruct settlement
 
+	@usage
+	--something
+	*/
 	onUngarrisonedFortFunc = new sol::function(luaState["onUngarrisonedFort"]);
 	checkLuaFunc(&onUngarrisonedFortFunc);
 
+	/***
+	@function onGiveSettlement
+	@tparam settlementStruct settlement
+	@tparam factionStruct fac1
+	@tparam factionStruct fac2
+
+
+	@usage
+	--something
+	*/
 	onGiveSettlementFunc = new sol::function(luaState["onGiveSettlement"]);
 	checkLuaFunc(&onGiveSettlementFunc);
 
+	/***
+	@function onOccupySettlement
+	@tparam namedharacter char1
+	@tparam settlementStruct settlement
+
+
+	@usage
+	--something
+	*/
 	onOccupySettlementFunc = new sol::function(luaState["onOccupySettlement"]);
 	checkLuaFunc(&onOccupySettlementFunc);
 
+	/***
+	@function onExterminatePopulation
+	@tparam namedharacter char1
+	@tparam settlementStruct settlement
+
+
+	@usage
+	--something
+	*/
 	onExterminatePopulationFunc = new sol::function(luaState["onExterminatePopulation"]);
 	checkLuaFunc(&onExterminatePopulationFunc);
+
+	/***
+	@function onSackSettlement
+	@tparam namedharacter char1
+	@tparam settlementStruct settlement
+
+
+	@usage
+	--something
+	*/
 
 	onSackSettlementFunc = new sol::function(luaState["onSackSettlement"]);
 	checkLuaFunc(&onSackSettlementFunc);
 
+
+	/***
+	@function onAddedToBuildingQueue
+	@tparam settlementStruct settlement
+	@tparam string buildNme
+
+
+	@usage
+	--something
+	*/
 	onAddedToBuildingQueueFunc = new sol::function(luaState["onAddedToBuildingQueue"]);
 	checkLuaFunc(&onAddedToBuildingQueueFunc);
 
+	/***
+	@function onBuildingDestroyed
+	@tparam settlementStruct settlement
+	@tparam string buildNme
+
+
+	@usage
+	--something
+	*/
 	onBuildingDestroyedFunc = new sol::function(luaState["onBuildingDestroyed"]);
 	checkLuaFunc(&onBuildingDestroyedFunc);
+
+	/***
+	@function onBuildingCompleted
+	@tparam factionStruct fac
+	@tparam settlementStruct settlement
+
+
+	@usage
+	--something
+	*/
 
 	onBuildingCompletedFunc = new sol::function(luaState["onBuildingCompleted"]);
 	checkLuaFunc(&onBuildingCompletedFunc);
 
+	/***
+	@function onEventCounter
+	@tparam string counter
 
+	@usage
+	--something
+	*/
 	onEventCounterFunc = new sol::function(luaState["onEventCounter"]);
 	checkLuaFunc(&onEventCounterFunc);
 
+	/***
+	@function onFactionExcommunicated
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
 	onFactionExcommunicatedFunc = new sol::function(luaState["onFactionExcommunicated"]);
 	checkLuaFunc(&onFactionExcommunicatedFunc);
 
+	/***
+	@function onDisaster
+	@tparam int eventType
+
+	@usage
+	--something
+	*/
 	onDisasterFunc = new sol::function(luaState["onDisaster"]);
 	checkLuaFunc(&onDisasterFunc);
+
+	/***
+	@function onHordeFormed
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
 
 	onHordeFormedFunc = new sol::function(luaState["onHordeFormed"]);
 	checkLuaFunc(&onHordeFormedFunc);
 
+	/***
+	@function onAddedToTrainingQueue
+	@tparam settlementStruct sett
+	@tparam string unitName
+
+	@usage
+	--something
+	*/
 	onAddedToTrainingQueueFunc = new sol::function(luaState["onAddedToTrainingQueue"]);
 	checkLuaFunc(&onAddedToTrainingQueueFunc);
 
+
+	/***
+	@function onUnitDisbanded
+	@tparam factionStruct fac
+	@tparam unit unit
+
+	@usage
+	--something
+	*/
 	onUnitDisbandedFunc = new sol::function(luaState["onUnitDisbanded"]);
 	checkLuaFunc(&onUnitDisbandedFunc);
 
+	/***
+	@function onUnitTrained
+	@tparam factionStruct fac
+	@tparam settlementStruct sett
+	@tparam unit unit
+
+	@usage
+	--something
+	*/
 	onUnitTrainedFunc = new sol::function(luaState["onUnitTrained"]);
 	checkLuaFunc(&onUnitTrainedFunc);
 
+	/***
+	@function onAgentCreated
+	@tparam factionStruct fac
+	@tparam int agentType
+	@tparam settlementStruct sett
+
+	@usage
+	--something
+	*/
 	onAgentCreatedFunc = new sol::function(luaState["onAgentCreated"]);
 	checkLuaFunc(&onAgentCreatedFunc);
 
+	/***
+	@function onObjSeen
+	@tparam factionStruct fac
+	@tparam factionStruct fac2
+	@tparam int xCoord
+	@tparam int yCoord
 
+	@usage
+	--something
+	*/
 	onObjSeenFunc = new sol::function(luaState["onObjSeen"]);
 	checkLuaFunc(&onObjSeenFunc);
+
+	/***
+	@function onTileSeen
+	@tparam factionStruct fac
+	@tparam int xCoord
+	@tparam int yCoord
+
+	@usage
+	--something
+	*/
 
 	onTileSeenFunc = new sol::function(luaState["onTileSeen"]);
 	checkLuaFunc(&onTileSeenFunc);
 
+
+	/***
+	@function onGameReloaded
+	@tparam int something
+
+	@usage
+	--something
+	*/
 	onGameReloadedFunc = new sol::function(luaState["onGameReloaded"]);
 	checkLuaFunc(&onGameReloadedFunc);
 
+	/***
+	@function onTransgression
+	@tparam factionStruct fac1
+	@tparam string description
+	@tparam factionStruct fac2
+
+	@usage
+	--something
+	*/
 	onTransgressionFunc = new sol::function(luaState["onTransgression"]);
 	checkLuaFunc(&onTransgressionFunc);
 
 
 
+	/***
+	@function onPopeAcceptsCrusadeTarget
+	@tparam crusadeStruct crusade
+	@tparam settlementStruct target
 
+	@usage
+	--something
+	*/
 	onPopeAcceptsCrusadeTargetFunc = new sol::function(luaState["onPopeAcceptsCrusadeTarget"]);
 	checkLuaFunc(&onPopeAcceptsCrusadeTargetFunc);
 
+	/***
+	@function onCrusadeCalled
+	@tparam crusadeStruct crusade
+	@tparam settlementStruct target
+
+	@usage
+	--something
+	*/
 	onCrusadeCalledFunc = new sol::function(luaState["onCrusadeCalled"]);
 	checkLuaFunc(&onCrusadeCalledFunc);
 
+	/***
+	@function onCrusadeEnds
+	@tparam crusadeStruct crusade
+	@tparam settlementStruct target
+
+	@usage
+	--something
+	*/
 	onCrusadeEndsFunc = new sol::function(luaState["onCrusadeEnds"]);
 	checkLuaFunc(&onCrusadeEndsFunc);
 
+
+	/***
+	@function onPopeRejectsCrusadeTarget
+	@tparam crusadeStruct crusade
+	@tparam settlementStruct target
+
+	@usage
+	--something
+	*/
 	onPopeRejectsCrusadeTargetFunc = new sol::function(luaState["onPopeRejectsCrusadeTarget"]);
 	checkLuaFunc(&onPopeRejectsCrusadeTargetFunc);
 
+	/***
+	@function onArmyTakesCrusadeTarget
+	@tparam crusadeStruct crusade
+	@tparam settlementStruct target
+	@tparam stackStruct army
+
+	@usage
+	--something
+	*/
 	onArmyTakesCrusadeTargetFunc = new sol::function(luaState["onArmyTakesCrusadeTarget"]);
 	checkLuaFunc(&onArmyTakesCrusadeTargetFunc);
+
+	/***
+	@function onUnitsDesertCrusade
+	@tparam crusadeStruct crusade
+	@tparam settlementStruct target
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
 
 	onUnitsDesertCrusadeFunc = new sol::function(luaState["onUnitsDesertCrusade"]);
 	checkLuaFunc(&onUnitsDesertCrusadeFunc);
 
+
+	/***
+	@function onPopeElected
+	@tparam factionStruct fac
+	@tparam factionStruct fac2
+
+	@usage
+	--something
+	*/
+
 	onPopeElectedFunc = new sol::function(luaState["onPopeElected"]);
 	checkLuaFunc(&onPopeElectedFunc);
+
+	/***
+	@function onVotedForPope
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
+
 
 	onVotedForPopeFunc = new sol::function(luaState["onVotedForPope"]);
 	checkLuaFunc(&onVotedForPopeFunc);
 
+	/***
+	@function onAssassinCaughtAttackingPope
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
+
+
 	onAssassinCaughtAttackingPopeFunc = new sol::function(luaState["onAssassinCaughtAttackingPope"]);
 	checkLuaFunc(&onAssassinCaughtAttackingPopeFunc);
+
+	/***
+	@function onInquisitorAppointed
+	@tparam factionStruct fac
+	@tparam settlementStruct sett
+
+	@usage
+	--something
+	*/
 
 	onInquisitorAppointedFunc = new sol::function(luaState["onInquisitorAppointed"]);
 	checkLuaFunc(&onInquisitorAppointedFunc);
 
 
 
+	/***
+	@function onSettlementPanelOpen
+	@tparam settlementStruct sett
+
+	@usage
+	--something
+	*/
+
 	onSettlementPanelOpenFunc = new sol::function(luaState["onSettlementPanelOpen"]);
 	checkLuaFunc(&onSettlementPanelOpenFunc);
+
+
+	/***
+	@function onFinancesPanelOpen
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
 
 	onFinancesPanelOpenFunc = new sol::function(luaState["onFinancesPanelOpen"]);
 	checkLuaFunc(&onFinancesPanelOpenFunc);
 
+	/***
+	@function onFactionSummaryPanelOpen
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
+
 	onFactionSummaryPanelOpenFunc = new sol::function(luaState["onFactionSummaryPanelOpen"]);
 	checkLuaFunc(&onFactionSummaryPanelOpenFunc);
+
+	/***
+	@function onFamilyTreePanelOpenFunc
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
+
 
 	onFamilyTreePanelOpenFunc = new sol::function(luaState["onFamilyTreePanelOpenFunc"]);
 	checkLuaFunc(&onFamilyTreePanelOpenFunc);
 
+	/***
+	@function onDiplomaticStandingPanelOpen
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
+
+
 	onDiplomaticStandingPanelOpenFunc = new sol::function(luaState["onDiplomaticStandingPanelOpen"]);
 	checkLuaFunc(&onDiplomaticStandingPanelOpenFunc);
+
+	/***
+	@function onDiplomacyPanelOpen
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
 
 	onDiplomacyPanelOpenFunc = new sol::function(luaState["onDiplomacyPanelOpen"]);
 	checkLuaFunc(&onDiplomacyPanelOpenFunc);
 
+	/***
+	@function onPreBattlePanelOpen
+	@tparam factionStruct fac
+
+	@usage
+	--something
+	*/
+
 	onPreBattlePanelOpenFunc = new sol::function(luaState["onPreBattlePanelOpen"]);
 	checkLuaFunc(&onPreBattlePanelOpenFunc);
+
+	/***
+	@function onNavalAutoResolvePanelOpen
+
+	@usage
+	--something
+	*/
 
 	onNavalAutoResolvePanelOpenFunc = new sol::function(luaState["onNavalAutoResolvePanelOpen"]);
 	checkLuaFunc(&onNavalAutoResolvePanelOpenFunc);
 
+	/***
+	@function onCharacterPanelOpen
+	@tparam namedCharacter selectedChar
+
+	@usage
+	--something
+	*/
+
+
 	onCharacterPanelOpenFunc = new sol::function(luaState["onCharacterPanelOpen"]);
 	checkLuaFunc(&onCharacterPanelOpenFunc);
+
+
+	/***
+	@function onTradePanelOpen
+	@tparam settlementStruct sett
+
+	@usage
+	--something
+	*/
+
 
 	onTradePanelOpenFunc = new sol::function(luaState["onTradePanelOpen"]);
 	checkLuaFunc(&onTradePanelOpenFunc);
 
+	/***
+	@function onRequestBuildingAdvice
+	@tparam settlementStruct sett
+
+	@usage
+	--something
+	*/
+
+
+
 	onRequestBuildingAdviceFunc = new sol::function(luaState["onRequestBuildingAdvice"]);
 	checkLuaFunc(&onRequestBuildingAdviceFunc);
+
+	/***
+	@function onRequestTrainingAdvice
+	@tparam settlementStruct sett
+	@tparam eduEntry recommendedUnitEntry
+
+	@usage
+	--something
+	*/
+
 
 	onRequestTrainingAdviceFunc = new sol::function(luaState["onRequestTrainingAdvice"]);
 	checkLuaFunc(&onRequestTrainingAdviceFunc);
 
+	/***
+	@function onMessageOpen
+	@tparam factionStruct fac
+	@tparam int msgType
+
+	@usage
+	--something
+	*/
+
+
 	onMessageOpenFunc = new sol::function(luaState["onMessageOpen"]);
 	checkLuaFunc(&onMessageOpenFunc);
+
+	/***
+	@function onIncomingMessage
+	@tparam factionStruct fac
+	@tparam int msgType
+
+	@usage
+	--something
+	*/
+
 
 	onIncomingMessageFunc = new sol::function(luaState["onIncomingMessage"]);
 	checkLuaFunc(&onIncomingMessageFunc);
 
+	/***
+	@function onMessageClosed
+	@tparam int msgType
+
+	@usage
+	--something
+	*/
+
 	onMessageClosedFunc = new sol::function(luaState["onMessageClosed"]);
 	checkLuaFunc(&onMessageClosedFunc);
+
+	/***
+	@function onButtonPressed
+	@tparam string buttonName
+
+	@usage
+	--something
+	*/
+
 
 	onButtonPressedFunc = new sol::function(luaState["onButtonPressed"]);
 	checkLuaFunc(&onButtonPressedFunc);
 
+	/***
+	@function onScrollClosed
+	@tparam string scrollName
+
+	@usage
+	--something
+	*/
+
 	onScrollClosedFunc = new sol::function(luaState["onScrollClosed"]);
 	checkLuaFunc(&onScrollClosedFunc);
+
+	/***
+	@function onScrollOpened
+	@tparam string scrollName
+
+	@usage
+	--something
+	*/
+
 
 	onScrollOpenedFunc = new sol::function(luaState["onScrollOpened"]);
 	checkLuaFunc(&onScrollOpenedFunc);
 
+	/***
+	@function onUIElementVisible
+	@tparam string elementName
+
+	@usage
+	--something
+	*/
+
+
 	onUIElementVisibleFunc = new sol::function(luaState["onUIElementVisible"]);
 	checkLuaFunc(&onUIElementVisibleFunc);
+
+	/***
+	@function onScrollAdviceRequested
+	@tparam string scrollName
+
+	@usage
+	--something
+	*/
+
 
 	onScrollAdviceRequestedFunc = new sol::function(luaState["onScrollAdviceRequested"]);
 	checkLuaFunc(&onScrollAdviceRequestedFunc);
 
+	/***
+	@function onSettlementScrollAdviceRequested
+	@tparam settlementStruct sett
+	@tparam string scrollName
+
+	@usage
+	--something
+	*/
+
 	onSettlementScrollAdviceRequestedFunc = new sol::function(luaState["onSettlementScrollAdviceRequested"]);
 	checkLuaFunc(&onSettlementScrollAdviceRequestedFunc);
+
+	/***
+	@function onPreBattleScrollAdviceRequested
+
+	@usage
+	--something
+	*/
+
 
 	onPreBattleScrollAdviceRequestedFunc = new sol::function(luaState["onPreBattleScrollAdviceRequested"]);
 	checkLuaFunc(&onPreBattleScrollAdviceRequestedFunc);
 
+	/***
+	@function onNavalPreBattleScrollAdviceRequested
+
+	@usage
+	--something
+	*/
+
 	onNavalPreBattleScrollAdviceRequestedFunc = new sol::function(luaState["onNavalPreBattleScrollAdviceRequested"]);
 	checkLuaFunc(&onNavalPreBattleScrollAdviceRequestedFunc);
+
+	/***
+	@function onCollegeOfCardinalsPanelOpen
+	@tparam collegeCardinalsStruct college
+
+	@usage
+	--something
+	*/
+
 
 	onCollegeOfCardinalsPanelOpenFunc = new sol::function(luaState["onCollegeOfCardinalsPanelOpen"]);
 	checkLuaFunc(&onCollegeOfCardinalsPanelOpenFunc);

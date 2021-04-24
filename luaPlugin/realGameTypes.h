@@ -401,7 +401,7 @@ struct factionStruct {
 	int money; /* money of the faction */
 };
 
-//tupe of unit from edu
+//type of unit from edu
 struct EduEntry
 {
 	char* Type; //0x0000

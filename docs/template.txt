@@ -1,0 +1,20 @@
+	///NamedCharacter table section
+	//@section namedCharacterTable
+
+	/***
+	Basic namedCharacter table
+
+	@tfield type name
+
+	@table namedCharacter
+	*/
+	
+	
+	/***
+	Get fort with number
+	@function factionStruct:getFort
+	@tparam int number
+	@treturn fortStruct fort
+	@usage
+	later
+	*/
