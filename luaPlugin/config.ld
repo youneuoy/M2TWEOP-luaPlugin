@@ -1,2 +1,9 @@
 style='E:\\codes\\m2tw\\plugins\\luaPlugin\\docs\\ldocTheme'
 dir='E:\\codes\\m2tw\\plugins\\luaPlugin\\docs\\generatedLuaDocs'
+format ='markdown'
+project = 'M2TW Engine Overhaul Project'
+description='Project, created to expand M2TW engine'
+one=true
+title='M2TW Engine Overhaul Project'
+use_markdown_titles=true
+readme = 'E:/codes/m2tw/plugins/luaPlugin/docs/README.md'

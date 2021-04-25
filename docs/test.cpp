@@ -1,7 +1,7 @@
 ///
 //![image Info](file:///E:/logoAbout.png "Image Description")
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
-//@module LUA-PLUGIN
+//@module LUA-PLUGINsad
 //@author youneuoy
 //@license GPL-3.0 License
 #include "luaP.h"
@@ -603,7 +603,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@function namedCharacter:addAncillary
 	@tparam string ancillaryName
 	@usage
-	ourNamedCharacter:addAncillary("VeryVeryGoodMan");
+	ourNamedCharacter:character:addAncillary("VeryVeryGoodMan");
 	*/
 	types.namedCharacter["addAncillary"] = &generalCharactericticsHelpers::addAnchillary;
 	/***
