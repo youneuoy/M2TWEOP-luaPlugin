@@ -136,6 +136,5 @@ void initLua()
         exit(0);
     }
     sol_ImGui::Init(*luaState);
-    MessageBoxA(NULL, "LUA HERE", "TEST", NULL);
 }
 

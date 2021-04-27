@@ -193,7 +193,7 @@ namespace sol_ImGui
 	inline void Text(const std::string& text)															{ ImGui::Text(text.c_str()); }
 	inline void TextColored(float colR, float colG, float colB, float colA, const std::string& text)	{ ImGui::TextColored({ colR, colG, colB, colA }, text.c_str()); }
 	inline void TextDisabled(const std::string& text)													{ ImGui::TextDisabled(text.c_str()); }
-	inline void TextWrapped(const std::string text)														{ ImGui::TextWrapped(text.c_str()); }
+	inline void TextWrapped(const std::string& text)														{ ImGui::TextWrapped(text.c_str()); }
 	inline void LabelText(const std::string& label, const std::string& text)							{ ImGui::LabelText(label.c_str(), text.c_str()); }
 	inline void BulletText(const std::string& text)														{ ImGui::BulletText(text.c_str()); }
 
@@ -802,7 +802,7 @@ namespace sol_ImGui
 		bool used = ImGui::SliderFloat3(label.c_str(), value, v_min, v_max);
 
 		sol::as_table_t float3 = sol::as_table(std::vector<float>{
-			value[0], value[1], value[3]
+			value[0], value[1], value[2]
 		});
 
 		return std::make_tuple(float3, used);
@@ -816,7 +816,7 @@ namespace sol_ImGui
 		bool used = ImGui::SliderFloat3(label.c_str(), value, v_min, v_max, format.c_str());
 
 		sol::as_table_t float3 = sol::as_table(std::vector<float>{
-			value[0], value[1], value[3]
+			value[0], value[1], value[2]
 		});
 
 		return std::make_tuple(float3, used);
@@ -830,7 +830,7 @@ namespace sol_ImGui
 		bool used = ImGui::SliderFloat3(label.c_str(), value, v_min, v_max, format.c_str(), power);
 
 		sol::as_table_t float3 = sol::as_table(std::vector<float>{
-			value[0], value[1], value[3]
+			value[0], value[1], value[2]
 		});
 
 		return std::make_tuple(float3, used);

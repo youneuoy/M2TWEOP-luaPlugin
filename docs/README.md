@@ -49,14 +49,14 @@ All changes made work correctly in an ongoing campaign, nothing breaks during up
 If you use an antivirus, add the program to the exceptions! There may be false positives.
 
 ## Build
-M2TWEOP is developed in C++ and Assembly. You can get support for building/developing on the [Discord](https://discord.gg/AfFNeQhf).
+M2TWEOP is developed in C++ and Assembly. You can get support for building/developing on the [Discord](https://discord.gg/Epqjm8u2WK).
 
 ## Documentation
 Detailed documentation on all features can be found on the [Total War Center Forums](https://www.twcenter.net/forums/showthread.php?803575-Download-links-important-information-and-instructions-for-the-program-in-pictures).
 
 You can find videos on various features on [YouTube](https://www.youtube.com/channel/UCMyHomaKeeGR4ZPGrBo9dYw).
 
-Come join the [Discord](https://discord.gg/AfFNeQhf) if you have questions or suggestions.
+Come join the [Discord](https://discord.gg/Epqjm8u2WK) if you have questions or suggestions.
 
 Also see - **M2TW Ultimate Docudemons 4.0.xls** (included in this repo) for more information on documentation for specific functions.
 

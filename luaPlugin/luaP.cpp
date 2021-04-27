@@ -1,9 +1,9 @@
 ///
-//![image Info](file:///E:/logoAbout.png "Image Description")
+//![Lua logo](_static/Lua.png)
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
 //@module LUA-PLUGIN
 //@author youneuoy
-//@license GPL-3.0 License
+//@license GPL-3.0
 #include "luaP.h"
 #include "plugData.h"
 std::string luaP::logS;
@@ -56,7 +56,8 @@ void luaP::runScriptS(std::string* script)
 	if (!funcResult.valid())
 	{
 		sol::error luaError = funcResult; 
-		luaP::logS += luaError.what()+'\n';
+		luaP::logS += luaError.what();
+		luaP::logS += '\n';
 	}
 	return;
 }
@@ -94,7 +95,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	
 
-	sol::load_result fileRes = luaState.load_file(luaFilePath.c_str());
+	sol::load_result fileRes = luaState.load_file(luaFilePath);
 	if (!fileRes.valid()) { // This checks the syntax of your script, but does not execute it
 		sol::error luaError = fileRes;
 		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
