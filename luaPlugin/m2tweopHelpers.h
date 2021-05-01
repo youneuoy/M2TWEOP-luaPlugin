@@ -12,6 +12,9 @@ namespace m2tweopHelpers
 	std::string getLuaPath();
 
 	void setAncLimit(unsigned char limit);
+	void setMaxBgSize(unsigned char maxBgSize);
+	void unlockGameConsoleCommands();
+
 
 	std::tuple<int, int, void*>  loadTextureToGame(const std::string& path);
 	void unloadTextureFromGame(void* texture);

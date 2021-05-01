@@ -14,6 +14,14 @@ namespace m2tweopHelpers
 	{
 		(*(*plugData::data.funcs.setAncLimit))(limit);
 	}
+	void setMaxBgSize(unsigned char maxBgSize)
+	{
+		(*(*plugData::data.funcs.setMaxBgSize))(maxBgSize);
+	}
+	void unlockGameConsoleCommands()
+	{
+		(*(*plugData::data.funcs.unlockConsoleCommands))();
+	}
 	std::tuple<int,int,void*> loadTextureToGame(const std::string& path)
 	{
 		int x = 0;

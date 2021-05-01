@@ -52,10 +52,10 @@ void replaceAll2(std::string& s, const std::string& search, const std::string& r
 void luaP::runScriptS(std::string* script)
 {
 	const char* retS = nullptr;
-	auto funcResult = luaState.script(*script); 
+	auto funcResult = luaState.script(*script);
 	if (!funcResult.valid())
 	{
-		sol::error luaError = funcResult; 
+		sol::error luaError = funcResult;
 		luaP::logS += luaError.what();
 		luaP::logS += '\n';
 	}
@@ -67,7 +67,7 @@ bool luaP::checkVar(const char* gName, int variable)
 	sol::optional<int> scriptVar = luaState[gName];
 	if (scriptVar)
 	{
-		return scriptVar.value()==variable;
+		return scriptVar.value() == variable;
 	}
 
 	return false;
@@ -93,7 +93,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		return nullptr;
 	}
 
-	
+
 
 	sol::load_result fileRes = luaState.load_file(luaFilePath);
 	if (!fileRes.valid()) { // This checks the syntax of your script, but does not execute it
@@ -101,15 +101,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
 		return nullptr;
 	}
-	else
-	{
-		sol::protected_function_result result1 = fileRes(); // this causes the script to execute
-		if (!result1.valid()) {
-			sol::error luaError = result1;
-			MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
-			return nullptr;
-		}
+	sol::protected_function_result result1 = fileRes(); // this causes the script to execute
+	if (!result1.valid()) {
+		sol::error luaError = result1;
+		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+		return nullptr;
 	}
+
+
 
 
 	///M2TWEOP table section
@@ -140,7 +139,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@function M2TWEOP.getModPath
 	@treturn string mod path
 
-	@usage 
+	@usage
 	mPath=M2TWEOP.getModPath();
 	print(mPath);
 	*/
@@ -149,7 +148,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Get path of the plugin(your lua files here)
 	@function M2TWEOP.getPluginPath
 	@treturn string plugin path
-	@usage 
+	@usage
 	plPath=M2TWEOP.getPluginPath();
 	print(plPath);
 	*/
@@ -163,7 +162,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@treturn int x size of the image
 	@treturn int y size of the image
 	@treturn int id of the image
-	@usage 
+	@usage
 	local testImage={x=0,y=0,img=nil};
 	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
 	*/
@@ -172,7 +171,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Unload d3d texture
 	@function M2TWEOP.unloadTexture
 	@tparam int id of the image
-	@usage 
+	@usage
 	local testImage={x=0,y=0,img=nil};
 	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
 	M2TWEOP.unloadTexture(testImage.img);
@@ -192,7 +191,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.unlockGameConsoleCommands();
 	*/
-	tables.M2TWEOPTable["unlockGameConsoleCommands"] = &plugData::data.funcs.unlockConsoleCommands.proc;
+	tables.M2TWEOPTable["unlockGameConsoleCommands"] = &m2tweopHelpers::unlockGameConsoleCommands;
 	/***
 	Set new max bodyguard size
 	@function M2TWEOP.setMaxBgSize
@@ -200,7 +199,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setMaxBgSize(222);
 	*/
-	tables.M2TWEOPTable["setMaxBgSize"] = &plugData::data.funcs.setMaxBgSize.proc;
+	tables.M2TWEOPTable["setMaxBgSize"] = &m2tweopHelpers::setMaxBgSize;
 
 
 	///Objects table section
@@ -229,7 +228,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.objectsTable["addModelToGame"] = &objectsHelpers::addModelToGame;
 	/***
-	Set the model for the object at the specified coordinates. Works only for supported object types. 
+	Set the model for the object at the specified coordinates. Works only for supported object types.
 	@function objects.setModel
 	@tparam int xCoord
 	@tparam int yCoord
@@ -347,7 +346,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.gameTable["createCharacterByString"] = &gameHelpers::createCharacter;
 	/***
-	Create army for character. 
+	Create army for character.
 	@function game.createArmy
 	@tparam character ourGeneral
 	@treturn stackStruct army
@@ -356,7 +355,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.gameTable["createArmy"] = &gameHelpers::createArmy;
 	/***
-	create unit by name. 
+	create unit by name.
 	@function game.createUnitN
 	@tparam string type
 	@tparam int facNum
@@ -400,9 +399,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/*tables.stratmapTable["objects"] = &tables.objectsTable;
 	tables.stratmapTable["camera"] = &tables.cameraTable;
 	tables.stratmapTable["game"] = &tables.gameTable;*/
-	tables.stratmapTable.set("objects",tables.objectsTable);
+	tables.stratmapTable.set("objects", tables.objectsTable);
 	tables.stratmapTable.set("camera", tables.cameraTable);
-	tables.stratmapTable.set("game" ,tables.gameTable);
+	tables.stratmapTable.set("game", tables.gameTable);
 
 	///Unit table section
 	//@section unitTable
@@ -560,7 +559,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table namedCharacter
 	*/
-	types.namedCharacter= luaState.new_usertype<generalCharacterictics>("namedCharacter");
+	types.namedCharacter = luaState.new_usertype<generalCharacterictics>("namedCharacter");
 	types.namedCharacter["index"] = &generalCharacterictics::index;
 	types.namedCharacter["character"] = &generalCharacterictics::gen;
 	types.namedCharacter["shortName"] = sol::property(
@@ -592,13 +591,13 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter["spouse"] = &generalCharacterictics::spouse;
 	types.namedCharacter["portrait"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait>
-	);
+		);
 	types.namedCharacter["portrait2"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait2>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait2>
-	);
+		);
 	types.namedCharacter["portrait_custom"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>
-	);
+		);
 	/***
 	Add new ancillary
 	@function namedCharacter:addAncillary
@@ -612,12 +611,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@function namedCharacter:removeAncillary
 	@tparam ancillary ancillary
 	@usage
-	ourAnc=ourNamedCharacter:getAncillary(2);    
+	ourAnc=ourNamedCharacter:getAncillary(2);
 	ourNamedCharacter:removeAncillary(ourAnc);
 	*/
 	types.namedCharacter["removeAncillary"] = &generalCharactericticsHelpers::removeAnchillary;
 	types.namedCharacter["age"] = sol::property(
-		&generalCharactericticsHelpers::getAge,&generalCharactericticsHelpers::setAge
+		&generalCharactericticsHelpers::getAge, &generalCharactericticsHelpers::setAge
 		);
 	/***
 	Check if the character is alive
@@ -644,8 +643,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table ancillary
 	*/
-	types.ancillary= luaState.new_usertype<anchillary>("ancillary");
-	types.ancillary["index"]= &anchillary::index;
+	types.ancillary = luaState.new_usertype<anchillary>("ancillary");
+	types.ancillary["index"] = &anchillary::index;
 	types.ancillary["name"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyAnc<anchillaryStruct_name>, &luaGetSetFuncs::setStringPropertyAnc<anchillaryStruct_name>
 		);
@@ -691,13 +690,13 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield getNamedCharacter getNamedCharacter
 	@tfield int numOfNamedCharacters
 	@tfield getCharacter getCharacter
-	@tfield int numOfCharacters	
+	@tfield int numOfCharacters
 	@tfield getStack getStack
 	@tfield int stacksNum
 	@tfield getSettlement getSettlement
 	@tfield int settlementsNum
 	@tfield getFort getFort
-	@tfield int fortsNum	
+	@tfield int fortsNum
 	@tfield getFort getPort
 	@tfield int portsNum
 	@tfield int religion
@@ -861,7 +860,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	end
 	*/
 	types.settlementStruct["getBuilding"] = &settlementHelpers::getBuilding;
-	types.settlementStruct["buldingsNum"] = &settlementStruct::buldingsNum;	
+	types.settlementStruct["buldingsNum"] = &settlementStruct::buldingsNum;
 	/***
 	Get resource with number
 	@function settlementStruct:getResource
@@ -887,7 +886,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table resStrat
 	*/
-	types.resStrat= luaState.new_usertype<resStrat>("resStrat");
+	types.resStrat = luaState.new_usertype<resStrat>("resStrat");
 	types.resStrat["xCoord"] = &resStrat::xCoord;
 	types.resStrat["yCoord"] = &resStrat::yCoord;
 	/***
@@ -925,7 +924,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table stackStruct
 	*/
-	types.stackStruct= luaState.new_usertype<stackStruct>("stackStruct");
+	types.stackStruct = luaState.new_usertype<stackStruct>("stackStruct");
 	types.stackStruct["faction"] = &stackStruct::faction;
 	/***
 	Get unit with number
@@ -954,7 +953,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.stackStruct["leader"] = &stackStruct::gen;
 	/***
 	Find the settlement in which the army is located
-	
+
 	Returns nil if the army is not in the settlement.
 
 	@function stackStruct:findInSettlement
@@ -1029,7 +1028,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table building
 	*/
-	types.building= luaState.new_usertype<building>("building");
+	types.building = luaState.new_usertype<building>("building");
 	types.building["buildingData"] = &building::bData;
 	types.building["level"] = &building::level;
 	types.building["hp"] = &building::hp;
@@ -1063,14 +1062,16 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@table buildingInfo
 	*/
-	types.buildingDrawInfo= luaState.new_usertype<buildingDrawInfo>("buildingInfo");
+	types.buildingDrawInfo = luaState.new_usertype<buildingDrawInfo>("buildingInfo");
 	types.buildingDrawInfo["name"] = sol::property(
 		&buildingStructHelpers::getStringPropertyBDI<buildingDrawInfoStruct_name>, &buildingStructHelpers::setStringPropertyBDI<buildingDrawInfoStruct_name>
 		);
 
 
-
 	onPluginLoadF();
+
+
+
 	return &luaState;
 }
 
@@ -1218,8 +1219,13 @@ void luaP::onPluginLoadF()
 	--something here
 	end
 	*/
+
+
+
 	onPluginLoad = new sol::function(luaState["onPluginLoad"]);
+
 	checkLuaFunc(&onPluginLoad);
+
 
 	/***
 	Called on every turn
@@ -1288,7 +1294,6 @@ void luaP::onPluginLoadF()
 	--something here
 	end
 	*/
-
 	onFactionTurnEndFunc = new sol::function(luaState["onFactionTurnEnd"]);
 	checkLuaFunc(&onFactionTurnEndFunc);
 
