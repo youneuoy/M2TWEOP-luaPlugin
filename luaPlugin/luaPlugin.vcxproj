@@ -72,13 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <TargetName>pluginM2TWEOP</TargetName>
+    <TargetName>luaPlugin</TargetName>
     <IncludePath>$(SolutionDir)\luaPlugin\imgui;$(DXSDK_DIR)\include;$(SolutionDir)\luaPlugin\lua\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)\lib\x86;$(SolutionDir)\luaPlugin\lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <TargetName>pluginM2TWEOP</TargetName>
+    <TargetName>luaPlugin</TargetName>
     <IncludePath>$(SolutionDir)\luaPlugin\imgui;$(DXSDK_DIR)\include;$(SolutionDir)\luaPlugin\lua\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(DXSDK_DIR)\lib\x86;$(SolutionDir)\luaPlugin\lua;$(LibraryPath)</LibraryPath>
   </PropertyGroup>

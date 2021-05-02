@@ -2,6 +2,7 @@
 #include "imgui.h"
 #include <string>
 #include "../lua/sol.hpp"
+#include <imgui_internal.h>
 namespace sol_ImGui
 {
 	// Windows
