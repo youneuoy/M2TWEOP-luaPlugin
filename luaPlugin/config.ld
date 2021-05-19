@@ -1,5 +1,7 @@
 style='E:\\codes\\m2tw\\plugins\\luaPlugin\\docs\\ldocTheme'
 dir='E:\\codes\\m2tw\\plugins\\luaPlugin\\docs\\generatedLuaDocs'
+file = {'luaP.cpp','luaP2.cpp','luaEvents.cpp'}
+merge=true
 format ='markdown'
 project = 'M2TW Engine Overhaul Project'
 description='Project, created to expand M2TW engine'

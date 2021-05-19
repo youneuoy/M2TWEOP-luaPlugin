@@ -80,10 +80,17 @@ private:
 	std::string			m_strNameProcedure;
 };
 
-
+class battleFuncs
+{
+public:
+	ProcLoader<int(__cdecl*)(DWORD)> getBattleCondCode;
+};
 class basicFuncs
 {
 public:
+	ProcLoader<gameDataAllStruct*(__cdecl*)()> getGameDataAll;
+
+
 	ProcLoader<void(__cdecl*)(unsigned char)> setAncLimit;
 	ProcLoader<void(__cdecl*)(unsigned char)> setMaxBgSize;
 	ProcLoader<void(__cdecl*)()> unlockConsoleCommands;
@@ -130,6 +137,10 @@ public:
 
 	ProcLoader<int(__cdecl*)(stackStruct*,unit*)> addUnitToArmy;
 	ProcLoader<void(__cdecl*)(general*,unit*)> setBodyguard;
+
+
+	ProcLoader<void(__cdecl*)(settlementStruct*, const char*, bool)> destroyBuilding;
+	ProcLoader<void(__cdecl*)(settlementStruct*, const char*)> createBuilding;
 
 
 

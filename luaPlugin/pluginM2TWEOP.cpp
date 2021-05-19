@@ -22,7 +22,11 @@ int initPlugin(std::string* modPath)
     fName = "getBattleStacksListP";
     plugData::data.funcs.getBattleArmies.Load(&plPath, &fName);
     */
-    std::string fName = "setCryptedString";
+    std::string fName = "getGameDataAll";
+    plugData::data.funcs.getGameDataAll.Load(&plPath, &fName);
+
+
+   fName = "setCryptedString";
     plugData::data.funcs.setCryptedString.Load(&plPath, &fName);
 
 
@@ -120,6 +124,21 @@ int initPlugin(std::string* modPath)
 
 
 
+    fName = "destroyBuilding";
+    plugData::data.funcs.destroyBuilding.Load(&plPath, &fName);
+
+    fName = "createBuilding";
+    plugData::data.funcs.createBuilding.Load(&plPath, &fName);
+    
+
+
+
+    //battle functions
+    fName = "getBattleCondCode";
+    plugData::data.funcsBattle.getBattleCondCode.Load(&plPath, &fName);
+
+
+
 
     initLua();
     return 1;
@@ -130,6 +149,8 @@ void initLua()
     std::string luaFile = plugData::data.modFolder + "\\youneuoy_Data\\plugins\\lua\\luaPluginScript.lua";
 
     sol::state* luaState = plugData::data.luaAll.init(luaFile, plugData::data.modFolder);
+    plugData::data.luaAll.initP2();
+    plugData::data.luaAll.onPluginLoadF();
     if (luaState==nullptr)
     {
         MessageBoxA(NULL, "LUA loading error!", "Error!", NULL);

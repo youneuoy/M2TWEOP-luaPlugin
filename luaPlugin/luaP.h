@@ -43,7 +43,10 @@ public:
 	std::string luaPath;
 	bool checkVar(const char* gName,int variable);
 	
+	//create lua instance, init some basic tables
 	sol::state* init(std::string& luaFilePath,std::string& modPath);
+	//init part 2 of tables
+	void initP2();
 	void runScriptS(std::string*script);
 
 	//lua functions and events controllers
@@ -79,15 +82,31 @@ public:
 	void onSettlementConverted(settlementStruct* sett);
 
 	sol::state luaState;
+
+
 	struct
 	{
 		sol::table M2TWEOPTable;
+
+
 		sol::table stratmapTable;
+		//this inside stratmap table
 		sol::table objectsTable;
 		sol::table cameraTable;
 		sol::table gameTable;
 
+
 	}tables;
+	struct
+	{
+		//global game table
+		sol::usertype<gameDataAllStruct> gameDataAllTable;
+		//this inside gameDataAll table
+		sol::usertype<battleDataS> battleTable;
+		sol::usertype<battleSide> battleSideTable;
+		sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
+		sol::usertype<deploymentAreaS> deploymentAreaTable;
+	}typeAll;
 	struct
 	{
 		sol::usertype<unit>unit;
@@ -213,6 +232,7 @@ public:
 	sol::function* onCollegeOfCardinalsPanelOpenFunc = nullptr;
 
 
-
+private:
+	void checkLuaFunc(sol::function** lRef);
 };
 

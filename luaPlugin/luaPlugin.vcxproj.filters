@@ -78,6 +78,15 @@
     <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\m2tweopHelpres">
       <UniqueIdentifier>{582e2a69-e0f7-480f-ab53-e180097096a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers">
+      <UniqueIdentifier>{dad8c65e-6f56-487a-b637-892c39dbe6a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind">
+      <UniqueIdentifier>{b606360f-7b2b-4ee3-846b-5c1bc18ed243}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers">
+      <UniqueIdentifier>{69807e60-4fc9-4a09-a1cc-755c0c364162}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugData.h">
@@ -131,9 +140,6 @@
     <ClInclude Include="imgui\imstb_truetype.h">
       <Filter>Исходные файлы\technical\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="luaP.h">
-      <Filter>Исходные файлы\pluginFuncs</Filter>
-    </ClInclude>
     <ClInclude Include="pluginM2TWEOP.h">
       <Filter>Исходные файлы\pluginFuncs</Filter>
     </ClInclude>
@@ -185,6 +191,15 @@
     <ClInclude Include="imgui\sol_ImGui.h">
       <Filter>lua</Filter>
     </ClInclude>
+    <ClInclude Include="gameDataAllHelper.h">
+      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="luaP.h">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClInclude>
+    <ClInclude Include="battleHandlerHelpers.h">
+      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -222,9 +237,6 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>Исходные файлы\technical\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="luaP.cpp">
-      <Filter>Исходные файлы\pluginFuncs</Filter>
     </ClCompile>
     <ClCompile Include="pluginM2TWEOP.cpp">
       <Filter>Исходные файлы\pluginFuncs</Filter>
@@ -279,6 +291,21 @@
     </ClCompile>
     <ClCompile Include="m2tweopHelpers.cpp">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\m2tweopHelpres</Filter>
+    </ClCompile>
+    <ClCompile Include="gameDataAllHelper.cpp">
+      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="luaP.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="luaP2.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="luaEvents.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="battleHandlerHelpers.cpp">
+      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

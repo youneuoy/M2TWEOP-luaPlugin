@@ -173,11 +173,13 @@
   <ItemGroup>
     <ClInclude Include="basicEvents.h" />
     <ClInclude Include="basicFuncs.h" />
+    <ClInclude Include="battleHandlerHelpers.h" />
     <ClInclude Include="buildingStructHelpers.h" />
     <ClInclude Include="cameraHelpers.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="factionHelpers.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="gameDataAllHelper.h" />
     <ClInclude Include="gameHelpers.h" />
     <ClInclude Include="generalCharactericticsHelpers.h" />
     <ClInclude Include="generalHelpers.h" />
@@ -210,11 +212,13 @@
   <ItemGroup>
     <ClCompile Include="basicEvents.cpp" />
     <ClCompile Include="basicFuncs.cpp" />
+    <ClCompile Include="battleHandlerHelpers.cpp" />
     <ClCompile Include="buildingStructHelpers.cpp" />
     <ClCompile Include="cameraHelpers.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="factionHelpers.cpp" />
+    <ClCompile Include="gameDataAllHelper.cpp" />
     <ClCompile Include="gameHelpers.cpp" />
     <ClCompile Include="generalCharactericticsHelpers.cpp" />
     <ClCompile Include="generalHelpers.cpp" />
@@ -226,8 +230,10 @@
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="luaEvents.cpp" />
     <ClCompile Include="luaGetSetFuncs.cpp" />
     <ClCompile Include="luaP.cpp" />
+    <ClCompile Include="luaP2.cpp" />
     <ClCompile Include="m2tweopHelpers.cpp" />
     <ClCompile Include="objectsHelpers.cpp" />
     <ClCompile Include="otherEvents.cpp" />

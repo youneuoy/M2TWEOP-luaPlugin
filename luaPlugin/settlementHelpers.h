@@ -7,6 +7,8 @@ namespace settlementHelpers
 {
 	resStrat* getResource(const settlementStruct* sett, int index);
 	building* getBuilding(const settlementStruct* sett, int index);
+	void destroyBuilding(settlementStruct* sett, const char* typeName, bool isReturnMoney);
+	void createBuilding(settlementStruct* sett, const char* building_level_id);
 
 	//settlement
 	template <char fieldIndex>
