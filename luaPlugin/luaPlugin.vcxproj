@@ -234,6 +234,7 @@
     <ClCompile Include="luaGetSetFuncs.cpp" />
     <ClCompile Include="luaP.cpp" />
     <ClCompile Include="luaP2.cpp" />
+    <ClCompile Include="luaTech.cpp" />
     <ClCompile Include="m2tweopHelpers.cpp" />
     <ClCompile Include="objectsHelpers.cpp" />
     <ClCompile Include="otherEvents.cpp" />

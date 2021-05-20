@@ -307,6 +307,9 @@
     <ClCompile Include="battleHandlerHelpers.cpp">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
     </ClCompile>
+    <ClCompile Include="luaTech.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint">

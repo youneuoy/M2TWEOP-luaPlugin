@@ -47,6 +47,7 @@ public:
 	sol::state* init(std::string& luaFilePath,std::string& modPath);
 	//init part 2 of tables
 	void initP2();
+	void initTech();
 	void runScriptS(std::string*script);
 
 	//lua functions and events controllers
@@ -107,6 +108,10 @@ public:
 		sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
 		sol::usertype<deploymentAreaS> deploymentAreaTable;
 	}typeAll;
+	struct
+	{
+		sol::usertype<UNICODE_STRING>uniString;
+	}techTypes;
 	struct
 	{
 		sol::usertype<unit>unit;

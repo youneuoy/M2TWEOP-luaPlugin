@@ -832,6 +832,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int resourcesNum
 	@tfield destroyBuilding destroyBuilding
 	@tfield createBuilding createBuilding
+	@tfield int populationSize
 
 	@table settlementStruct
 	*/
@@ -890,6 +891,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.settlementStruct["getResource"] = &settlementHelpers::getResource;
 	types.settlementStruct["resourcesNum"] = &settlementStruct::resourcesNum;
+
+	types.settlementStruct["populationSize"] = &settlementStruct::populationSize;
 
 
 	///ResStrat table section

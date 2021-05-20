@@ -150,6 +150,7 @@ void initLua()
 
     sol::state* luaState = plugData::data.luaAll.init(luaFile, plugData::data.modFolder);
     plugData::data.luaAll.initP2();
+    plugData::data.luaAll.initTech();
     plugData::data.luaAll.onPluginLoadF();
     if (luaState==nullptr)
     {

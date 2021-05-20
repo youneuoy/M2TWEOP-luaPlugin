@@ -6,5 +6,5 @@ Remove-item generatedLuaDocs -recurse
 Remove-item EOPDocs/source/_static/LuaLib/* -recurse
 Remove-item EOPDocs/build/* -recurse
 Copy-Item -Path "generatedLuaDocs/*" -Destination "EOPDocs/source/_static/LuaLib" -recurse
-.\EOPDocs\make.bat html
+.\EOPDocs\WPy32-3890\scripts\cmdEOPDOCS.bat
 pause
