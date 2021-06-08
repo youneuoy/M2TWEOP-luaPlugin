@@ -3,8 +3,12 @@
 #include <string>
 #include "../lua/sol.hpp"
 #include <imgui_internal.h>
+#include "imgui_stdlib.h"
 namespace sol_ImGui
 {
+	inline ImGuiIO* GetIO() { return &ImGui::GetIO(); }
+
+
 	// Windows
 	inline bool Begin(const std::string& name)															{ return ImGui::Begin(name.c_str()); }
 	inline std::tuple<bool, bool> Begin(const std::string& name, bool open)
@@ -981,7 +985,10 @@ namespace sol_ImGui
 	inline void VSliderScalar()																																							{ /* TODO: VSliderScalar(...) ==> UNSUPPORTED */ }
 
 	// Widgets: Input with Keyboard
-	inline std::tuple<std::string, bool> InputText(const std::string& label, std::string text, unsigned int buf_size)																	{ bool selected = ImGui::InputText(label.c_str(), &text[0], buf_size); return std::make_tuple(text, selected); }
+	inline std::tuple<std::string, bool> InputText(const std::string& label, std::string text)	
+	{ 
+		bool selected = ImGui::InputText(label.c_str(), &text); return std::make_tuple(text, selected); 
+	}
 	inline std::tuple<std::string, bool> InputText(const std::string& label, std::string text, unsigned int buf_size, int flags)														{ bool selected = ImGui::InputText(label.c_str(), &text[0], buf_size, static_cast<ImGuiInputTextFlags>(flags)); return std::make_tuple(text, selected); }
 	inline std::tuple<std::string, bool> InputTextMultiline(const std::string& label, std::string text, unsigned int buf_size)															{ bool selected = ImGui::InputTextMultiline(label.c_str(), &text[0], buf_size); return std::make_tuple(text, selected); }
 	inline std::tuple<std::string, bool> InputTextMultiline(const std::string& label, std::string text, unsigned int buf_size, float sizeX, float sizeY)								{ bool selected = ImGui::InputTextMultiline(label.c_str(), &text[0], buf_size, { sizeX, sizeY }); return std::make_tuple(text, selected); }
@@ -2446,7 +2453,7 @@ namespace sol_ImGui
 
 #pragma region Widgets: Inputs using Keyboard
 		ImGui.set_function("InputText"						, sol::overload(
-																sol::resolve<std::tuple<std::string, bool>(const std::string&, std::string, unsigned int)>(InputText),
+																sol::resolve<std::tuple<std::string, bool>(const std::string&, std::string)>(InputText),
 																sol::resolve<std::tuple<std::string, bool>(const std::string&, std::string, unsigned int, int)>(InputText)
 															));
 		ImGui.set_function("InputTextMultiline"				, sol::overload(
@@ -2842,5 +2849,15 @@ namespace sol_ImGui
 		ImGui.set_function("GetClipboardText"				, GetClipboardText);
 		ImGui.set_function("SetClipboardText"				, SetClipboardText);
 #pragma endregion Clipboard Utilities
+
+
+		/*ImGuiIO& I = ImGui::GetIO();
+		I.KeysDownDuration[];*/
+		ImGui.set_function("GetIO", GetIO);
+		sol::usertype<ImGuiIO>IO = lua.new_usertype<ImGuiIO>("ImGuiIO");
+#pragma region IO
+		IO["KeysDownDuration"]= sol::property([](ImGuiIO* self) { return std::ref(self->KeysDownDuration); });
+
+#pragma endregion IO
 	}
 }

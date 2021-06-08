@@ -25,7 +25,7 @@
 #include "cameraHelpers.h"
 #include "m2tweopHelpers.h"
 #include "generalCharactericticsHelpers.h"
-
+#include "technicalHelpers.h"
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\
 if (!funcResult.valid())\
@@ -45,6 +45,7 @@ public:
 	
 	//create lua instance, init some basic tables
 	sol::state* init(std::string& luaFilePath,std::string& modPath);
+	sol::state* resetState();
 	//init part 2 of tables
 	void initP2();
 	void initTech();
@@ -110,7 +111,7 @@ public:
 	}typeAll;
 	struct
 	{
-		sol::usertype<UNICODE_STRING>uniString;
+		sol::table uniString;
 	}techTypes;
 	struct
 	{

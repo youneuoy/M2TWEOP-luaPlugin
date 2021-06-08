@@ -10,6 +10,7 @@ public:
 	{
 		std::string modFolder;
 		basicFuncs funcs;
+		technicalFuncs funcsTech;
 		battleFuncs funcsBattle;
 
 		luaP luaAll;

@@ -29,10 +29,21 @@ namespace console
 
 	void draw()
 	{
+
+		if ((ImGui::GetIO().KeysDownDuration[VK_CONTROL] > 0.f && ImGui::GetIO().KeysDownDuration['1'] > 0.f&& ImGui::GetIO().KeysDownDuration['9']>0.f)
+			&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f|| ImGui::GetIO().KeysDownDuration['9'] == 0.f)
+			)
+		{
+			plugData::data.luaAll.resetState();
+			return;
+
+		}
+
 		if ((ImGui::GetIO().KeysDownDuration[VK_CONTROL] > 0.f && ImGui::GetIO().KeysDownDuration['1'] > 0.f)
 			&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f)
 			)
 		{
+
 			consoleData.isDraw = !consoleData.isDraw;
 
 			if (plugData::data.luaAll.checkVar("enableConsole", 1) == false)

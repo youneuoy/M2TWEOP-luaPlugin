@@ -85,6 +85,11 @@ class battleFuncs
 public:
 	ProcLoader<int(__cdecl*)(DWORD)> getBattleCondCode;
 };
+class technicalFuncs
+{
+public:
+	ProcLoader<void(__cdecl*)(UNICODE_STRING**&, const char*)> createUniString;
+};
 class basicFuncs
 {
 public:

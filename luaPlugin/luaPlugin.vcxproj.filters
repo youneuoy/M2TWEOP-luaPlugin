@@ -87,6 +87,9 @@
     <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers">
       <UniqueIdentifier>{69807e60-4fc9-4a09-a1cc-755c0c364162}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers">
+      <UniqueIdentifier>{211cefee-cf6e-426a-a92a-1e3f9a57ab1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugData.h">
@@ -200,6 +203,9 @@
     <ClInclude Include="battleHandlerHelpers.h">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="technicalHelpers.h">
+      <Filter>Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -309,6 +315,9 @@
     </ClCompile>
     <ClCompile Include="luaTech.cpp">
       <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="technicalHelpers.cpp">
+      <Filter>Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

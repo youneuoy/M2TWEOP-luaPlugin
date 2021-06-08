@@ -28,6 +28,7 @@ struct trackedPointerArmy {
 	undefined field_0x38[40];
 };
 
+
 struct battleSide {
 	bool isDefender;
 	uchar field_0x1;
@@ -59,13 +60,14 @@ struct battleDataS {
 	int sidesNum;
 };
 
-
+#pragma pack(push,1) 
 struct UNICODE_STRING {
-	USHORT Length;
-	USHORT MaximumLength;
-	PWSTR Buffer;
+	USHORT something;//idk
+	USHORT Length;//idk
+	USHORT something2;//idk
+	PWSTR Buffer;//y
 };
-
+#pragma pack(pop)
 struct stratPortModel {
 	struct model_Rigid* model_rigid;
 	undefined field_0x4[4];
@@ -310,6 +312,7 @@ struct general { /* character on the stratmap, who has a unit in a stack */
 	undefined field_0x1f0[64];
 	char* ability; /* custom ability */
 };
+
 //additional character data(name,label,traits, etc)
 struct generalCharacterictics { /* many important info about character */
 	UINT32 index; /* index of character */
@@ -408,9 +411,16 @@ struct sometNameStruct { /* char* at 0x4 */
 	undefined field_0x3;
 	char* name;
 };
+struct trackedPointerUnit {
+	undefined field_0x0[4];
+	struct unit* unit;
+	undefined field_0x8[88];
+};
 //unit data
 struct unit {
-	undefined field_0x0[660];
+	undefined field_0x0[4];
+	struct trackedPointerUnit** trackedUnitPointerP;
+	undefined field_0x8[652];
 	struct EduEntry* eduEntry;
 	undefined field_0x298[616];
 	int expScreen; /* screen expierence */
@@ -423,7 +433,9 @@ struct unit {
 	UINT32 stats; /* def/atk/etc */
 	undefined field_0x5f4[4];
 	struct soldierData* soldiersArr; /* array of soldiers data */
-	undefined field_0x5fc[6828];
+	undefined field_0x5fc[6780];
+	UNICODE_STRING** alias; /* Legio string etc */
+	undefined field_0x207c[44];
 	struct siegeEngine** siegeEngine;
 	undefined field_0x20ac[4];
 	int siegeEnNum; /* number of siege engines */
@@ -784,3 +796,4 @@ struct console_command { /* structure of console command */
 	int type;
 	int idk;
 };
+

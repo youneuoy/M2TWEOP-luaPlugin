@@ -4,6 +4,10 @@ void objectsHelpers::setModel(int x, int y, UINT32 modelId, UINT32 modelId2)
 {
 	(*(*plugData::data.funcs.setModel))(x, y, modelId, modelId2);
 }
+void objectsHelpers::setModelOneVar(int x, int y, UINT32 modelId)
+{
+	(*(*plugData::data.funcs.setModel))(x, y, modelId, modelId);
+}
 void objectsHelpers::addModelToGame(const std::string &path, UINT32 modelId)
 {
 	(*(*plugData::data.funcs.addModelToGame))(path.c_str(), modelId);

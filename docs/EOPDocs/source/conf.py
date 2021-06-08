@@ -55,6 +55,10 @@ exclude_patterns = []
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+html_theme_options = {
+    'github_user': 'youneuoy',
+    'github_repo': 'M2TWEOP-library',
+}
 html_favicon = '_static/EOPIcon.png'
 
 # Add any paths that contain custom static files (such as style sheets) here,

@@ -26,6 +26,10 @@ int initPlugin(std::string* modPath)
     plugData::data.funcs.getGameDataAll.Load(&plPath, &fName);
 
 
+    fName = "createUniString";
+    plugData::data.funcsTech.createUniString.Load(&plPath, &fName);
+
+
    fName = "setCryptedString";
     plugData::data.funcs.setCryptedString.Load(&plPath, &fName);
 
@@ -80,6 +84,9 @@ int initPlugin(std::string* modPath)
 
     fName = "setUnitParams";
     plugData::data.funcs.setUnitParams.Load(&plPath, &fName);
+
+    fName = "killUnit";
+    plugData::data.funcs.killUnit.Load(&plPath, &fName);
 
     fName = "killCharacter";
     plugData::data.funcs.killCharacter.Load(&plPath, &fName);

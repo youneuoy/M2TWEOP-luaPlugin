@@ -7,22 +7,11 @@
 #include "luaP.h"
 #include "plugData.h"
 #include "gameDataAllHelper.h"
-#include "battleHandlerHelpers.h"
+#include "technicalHelpers.h"
+
 void luaP::initTech()
 {
-	///uniString table section
-	//@section uniString
 
-	/***
-	Basic uniString table
 
-	@tfield int Length used by game
-	@tfield int MaximumLength used by game
-	@tfield PWSTR Buffer utf-16 buffer, dont have good support in lua. Used by game
-	@tfield convertToStr convertToStr make utf-8 version, you can use this in your stuff 
-	@tfield createString setString set your utf-8 string to game, 
-
-	@table uniString
-	*/
-	techTypes.uniString = luaState.new_usertype<UNICODE_STRING>("uniString");
+	
 }

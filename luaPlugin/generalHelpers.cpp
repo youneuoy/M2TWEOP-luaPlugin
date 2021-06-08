@@ -26,6 +26,19 @@ namespace generalHelpers
 
 	void setBodyguard(general* gen, unit* un)
 	{
+		if (gen->bodyguards != nullptr)
+		{
+			un->general = gen;
+			un->trackedUnitPointerP = gen->bodyguards->trackedUnitPointerP;
+			gen->bodyguards->trackedUnitPointerP = 0;
+			gen->bodyguards->general = 0;
+
+			gen->bodyguards = un;
+
+			(*un->trackedUnitPointerP)->unit = un;
+			return;
+
+		}
 		(*(*plugData::data.funcs.setBodyguard))(gen, un);
 	}
 

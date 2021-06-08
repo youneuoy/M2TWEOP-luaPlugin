@@ -5,6 +5,7 @@
 namespace objectsHelpers
 {
 	void setModel(int x,int y, UINT32 modelId, UINT32 modelId2);
+	void setModelOneVar(int x,int y, UINT32 modelId);
 	void addModelToGame(const std::string& path,UINT32 modelId);
 
 

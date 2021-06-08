@@ -238,7 +238,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	stratmap.objects.addModelToGame("data/models_strat/residences/invisible.CAS",1);
 	stratmap.objects.setModel(288,257,1,1);
 	*/
-	tables.objectsTable["setModel"] = &objectsHelpers::setModel;
+	tables.objectsTable["setModel"] = sol::overload(&objectsHelpers::setModel,
+		&objectsHelpers::setModelOneVar);
 	/***
 	Replace custom tile. Change custom battlefield for coordinates.
 	@function objects.replaceTile
@@ -414,8 +415,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int number
 	@tfield int numberTact
 	@tfield int numberMax
+	@tfield character character
 	@tfield kill kill
 	@tfield setParams setParams
+	@tfield string alias
 
 
 	@table unit
@@ -426,6 +429,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit["number"] = sol::property(&unit::number, &unitHelpers::setSoldiersCount);
 	types.unit["numberTact"] = &unit::numberTact;
 	types.unit["numberMax"] = &unit::numberMax;
+	types.unit["character"] = &unit::general;
 	/***
 	Kill this unit
 	@function unit:kill
@@ -445,6 +449,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	newUnit:setParams(0,0,0);
 	*/
 	types.unit["setParams"] = &unitHelpers::setUnitParams;
+	types.unit["alias"] = sol::property(&technicalHelpers::unitUniStringToStr, &technicalHelpers::setUnitUniStr);
+	//types.unit["alias"] = sol::property([](unit& self) { return (int)self.alias; });
 
 
 	///Character table section
@@ -459,6 +465,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int yCoord
 	@tfield namedCharacter namedCharacter
 	@tfield unit bodyguards
+	@tfield stackStruct armyLeaded
+	@tfield stackStruct armyNotLeaded
 	@tfield float movepointsMax
 	@tfield float movepointsModifier
 	@tfield float movepoints
@@ -476,6 +484,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.character["yCoord"] = &general::yCoord;
 	types.character["namedCharacter"] = &general::genChar;
 	types.character["bodyguards"] = &general::bodyguards;
+	types.character["armyLeaded"] = &general::armyLeaded;
+	types.character["armyNotLeaded"] = &general::armyNotLeaded;
 	types.character["movepointsMax"] = &general::movepointsMax;
 	types.character["movepointsModifier"] = &general::movepointsModifier;
 	types.character["movepoints"] = sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints);
@@ -1092,6 +1102,28 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 
+
+	return &luaState;
+}
+
+sol::state* luaP::resetState()
+{
+	std::string luaFile = plugData::data.modFolder + "\\youneuoy_Data\\plugins\\lua\\luaPluginScript.lua";
+
+	sol::load_result fileRes = luaState.load_file(luaFile);
+	if (!fileRes.valid()) { // This checks the syntax of your script, but does not execute it
+		sol::error luaError = fileRes;
+		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+		return nullptr;
+	}
+	sol::protected_function_result result1 = fileRes(); // this causes the script to execute
+	if (!result1.valid()) {
+		sol::error luaError = result1;
+		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+		return nullptr;
+	}
+
+	plugData::data.luaAll.onPluginLoadF();
 
 	return &luaState;
 }
