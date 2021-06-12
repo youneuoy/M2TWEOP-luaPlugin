@@ -84,6 +84,7 @@ class battleFuncs
 {
 public:
 	ProcLoader<int(__cdecl*)(DWORD)> getBattleCondCode;
+	ProcLoader<void(__cdecl*)()> swUnBMapHighlight;
 };
 class technicalFuncs
 {
@@ -97,6 +98,7 @@ public:
 
 
 	ProcLoader<void(__cdecl*)(unsigned char)> setAncLimit;
+	ProcLoader<void(__cdecl*)(unsigned char)> setReligionsLimit;
 	ProcLoader<void(__cdecl*)(unsigned char)> setMaxBgSize;
 	ProcLoader<void(__cdecl*)()> unlockConsoleCommands;
 

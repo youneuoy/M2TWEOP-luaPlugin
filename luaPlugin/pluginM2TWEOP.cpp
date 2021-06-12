@@ -34,6 +34,9 @@ int initPlugin(std::string* modPath)
     plugData::data.funcs.setCryptedString.Load(&plPath, &fName);
 
 
+    fName = "setReligionsLimit";
+    plugData::data.funcs.setReligionsLimit.Load(&plPath, &fName);
+
     fName = "setModel";
     plugData::data.funcs.setModel.Load(&plPath, &fName);
 
@@ -142,7 +145,10 @@ int initPlugin(std::string* modPath)
 
     //battle functions
     fName = "getBattleCondCode";
-    plugData::data.funcsBattle.getBattleCondCode.Load(&plPath, &fName);
+    plugData::data.funcsBattle.getBattleCondCode.Load(&plPath, &fName);   
+    
+    fName = "swUnBMapHighlight";
+    plugData::data.funcsBattle.swUnBMapHighlight.Load(&plPath, &fName);
 
 
 

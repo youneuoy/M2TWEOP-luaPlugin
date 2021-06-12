@@ -124,6 +124,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield setAncillariesLimit setAncillariesLimit
 	@tfield unlockGameConsoleCommands unlockGameConsoleCommands
 	@tfield setMaxBgSize setMaxBgSize
+	@tfield toggleUnitsBMapHighlight toggleUnitsBMapHighlight
+	@tfield setReligionsLimit setReligionsLimit
 	@table M2TWEOP
 	*/
 
@@ -200,6 +202,25 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	M2TWEOP.setMaxBgSize(222);
 	*/
 	tables.M2TWEOPTable["setMaxBgSize"] = &m2tweopHelpers::setMaxBgSize;
+
+
+	/***
+	toggle the highlighting of units on the tactical map.
+	@function M2TWEOP.toggleUnitsBMapHighlight
+	@usage
+	M2TWEOP.toggleUnitsBMapHighlight();
+	*/
+	tables.M2TWEOPTable["toggleUnitsBMapHighlight "] = &m2tweopHelpers::toggleUnitsBMapHighlight;
+
+
+	/***
+	Set limit of religions
+	@function M2TWEOP.setReligionsLimit
+	@tparam int newLimit maximum limit ~ 127
+	@usage
+	M2TWEOP.setReligionsLimit(25);
+	*/
+	tables.M2TWEOPTable["setReligionsLimit "] = &m2tweopHelpers::seReligionsLimit;
 
 
 	///Objects table section

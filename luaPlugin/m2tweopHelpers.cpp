@@ -14,6 +14,10 @@ namespace m2tweopHelpers
 	{
 		(*(*plugData::data.funcs.setAncLimit))(limit);
 	}
+	void seReligionsLimit(unsigned char limit)
+	{
+		(*(*plugData::data.funcs.setReligionsLimit))(limit);
+	}
 	void setMaxBgSize(unsigned char maxBgSize)
 	{
 		(*(*plugData::data.funcs.setMaxBgSize))(maxBgSize);
@@ -39,5 +43,9 @@ namespace m2tweopHelpers
 		LPDIRECT3DTEXTURE9 tex = reinterpret_cast<LPDIRECT3DTEXTURE9>(texture);
 		(*(*plugData::data.funcs.unloadTexture))(tex);
 
+	}
+	void toggleUnitsBMapHighlight()
+	{
+		(*(*plugData::data.funcsBattle.swUnBMapHighlight))();
 	}
 }
