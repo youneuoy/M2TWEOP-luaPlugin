@@ -16,6 +16,8 @@ void luaP::onPluginLoadF()
 	Just list, use it without EventsFunctionsList.!!!
 
 	@tfield draw draw
+	@tfield onCreateSaveFile onCreateSaveFile
+	@tfield onLoadSaveFile onLoadSaveFile
 	@tfield onPluginLoad onPluginLoad
 	@tfield onChangeTurnNum onChangeTurnNum
 	@tfield onCharacterSelected onCharacterSelected
@@ -144,8 +146,65 @@ void luaP::onPluginLoadF()
 
 
 	onPluginLoad = new sol::function(luaState["onPluginLoad"]);
-
 	checkLuaFunc(&onPluginLoad);
+
+
+	/***
+	Called on creating save file
+
+	@function onCreateSaveFile
+
+	@usage
+		savefiles = {};
+		currentPath=M2TWEOP.getPluginPath();
+
+		savefiles[1]=currentPath.."\\testSaveFile1.ourSave";
+		savefiles[2]=currentPath.."\\testSaveFile2.ourSave";
+
+		file1 = io.open(savefiles[1], "w")
+		file1:write("This is save file 1!!!")
+		file1:close()
+
+		file2 = io.open(savefiles[2], "w")
+		file2:write("This is save file 2!!!")
+		file2:close()
+
+		return savefiles;
+	*/
+	onCreateSaveFile = new sol::function(luaState["onCreateSaveFile"]);
+	checkLuaFunc(&onCreateSaveFile);
+
+	/***
+	Called on loading save file
+
+	@function onLoadSaveFile
+
+	@usage
+	function onLoadSaveFile(paths)
+		lastSaveFiles={};
+		for key, value in pairs(paths) do
+
+		print(key, " -- ", value);
+
+		lastSaveFiles[key]={};
+		lastSaveFiles[key][1]=value;
+		lastSaveFiles[key][2]=readFile(value);
+
+		end
+	end
+
+
+	--read file and return it`s content
+	local function readFile(path)
+		local file = io.open(path, "r") ;
+		if (not file) then return nil end
+		local content = file:read "*a";
+		file:close();
+		return content;
+	end
+	*/
+	onLoadSaveFile = new sol::function(luaState["onLoadSaveFile"]);
+	checkLuaFunc(&onLoadSaveFile);
 
 
 	/***

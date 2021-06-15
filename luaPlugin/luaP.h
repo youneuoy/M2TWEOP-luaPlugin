@@ -133,6 +133,8 @@ public:
 
 	
 	sol::function* onPluginLoad = nullptr;
+	sol::function* onCreateSaveFile = nullptr;
+	sol::function* onLoadSaveFile = nullptr;
 
 	sol::function* drawLuaFunc = nullptr;
 	sol::function* resetDXFunc = nullptr;

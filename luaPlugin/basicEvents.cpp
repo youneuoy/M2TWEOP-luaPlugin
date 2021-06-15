@@ -5,6 +5,38 @@ void onChangeTurnNum(int num)
 	plugData::data.luaAll.onChangeTurnNum(num);
 }
 
+void onLoadGamePl(std::vector<std::string>* saveFiles)
+{
+	
+	if (plugData::data.luaAll.onLoadSaveFile != nullptr)
+	{
+		sol::as_table_t<std::vector<std::string>> wrapped_vec = *saveFiles;
+		tryLua((*plugData::data.luaAll.onLoadSaveFile)(wrapped_vec));
+	}
+}
+
+std::vector<std::string>* onSaveGamePl(UNICODE_STRING**& savePath)
+{
+	sol::as_table_t<std::vector<std::string>> wrapped_vec;
+	if (plugData::data.luaAll.onCreateSaveFile != nullptr)
+	{
+			auto funcResult = (*plugData::data.luaAll.onCreateSaveFile)();
+			if (!funcResult.valid())
+			{
+				sol::error luaError = funcResult; 
+				MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL); \
+			}
+			else
+			{
+				wrapped_vec = funcResult;
+			}
+	}
+	std::vector<std::string>* retVec = new std::vector<std::string>();
+	*retVec = wrapped_vec.value();
+
+	return retVec;
+}
+
 void onPreFactionTurnStart(factionStruct* fac)
 {
 	plugData::data.luaAll.onPreFactionTurnStart(fac);
