@@ -5,6 +5,12 @@ void onChangeTurnNum(int num)
 	plugData::data.luaAll.onChangeTurnNum(num);
 }
 
+void onNewGameStart()
+{
+	tryLua((*plugData::data.luaAll.onNewGameStart)());
+
+}
+
 void onLoadGamePl(std::vector<std::string>* saveFiles)
 {
 	

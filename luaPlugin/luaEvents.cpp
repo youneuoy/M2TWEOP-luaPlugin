@@ -16,6 +16,7 @@ void luaP::onPluginLoadF()
 	Just list, use it without EventsFunctionsList.!!!
 
 	@tfield draw draw
+	@tfield onNewGameStart onNewGameStart
 	@tfield onCreateSaveFile onCreateSaveFile
 	@tfield onLoadSaveFile onLoadSaveFile
 	@tfield onPluginLoad onPluginLoad
@@ -131,6 +132,22 @@ void luaP::onPluginLoadF()
 
 	initDXFunc = new sol::function(luaState["initDX"]);
 	checkLuaFunc(&initDXFunc);
+
+	/***
+	Called on new campaign start
+
+	@function onNewGameStart
+
+	@usage
+	function onNewGameStart()
+	--something here
+	end
+	*/
+
+
+
+	onNewGameStart = new sol::function(luaState["onNewGameStart"]);
+	checkLuaFunc(&onNewGameStart);
 
 	/***
 	Called on plugin load(at game start)

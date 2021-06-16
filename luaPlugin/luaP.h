@@ -132,6 +132,7 @@ public:
 
 
 	
+	sol::function* onNewGameStart = nullptr;
 	sol::function* onPluginLoad = nullptr;
 	sol::function* onCreateSaveFile = nullptr;
 	sol::function* onLoadSaveFile = nullptr;
