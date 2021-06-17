@@ -10,6 +10,11 @@ namespace m2tweopHelpers
 	{
 		return plugData::data.luaAll.luaPath;
 	}
+	bool isTileFree(int x, int y)
+	{
+		int xy[2]{x,y};
+		return (*(*plugData::data.funcs.isTileFree))(xy);
+	}
 	void setAncLimit(unsigned char limit)
 	{
 		(*(*plugData::data.funcs.setAncLimit))(limit);

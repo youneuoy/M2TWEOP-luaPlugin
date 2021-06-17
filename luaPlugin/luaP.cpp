@@ -126,6 +126,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield setMaxBgSize setMaxBgSize
 	@tfield toggleUnitsBMapHighlight toggleUnitsBMapHighlight
 	@tfield setReligionsLimit setReligionsLimit
+	@tfield isTileFree isTileFree
 	@table M2TWEOP
 	*/
 
@@ -210,7 +211,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.toggleUnitsBMapHighlight();
 	*/
-	tables.M2TWEOPTable["toggleUnitsBMapHighlight "] = &m2tweopHelpers::toggleUnitsBMapHighlight;
+	tables.M2TWEOPTable["toggleUnitsBMapHighlight"] = &m2tweopHelpers::toggleUnitsBMapHighlight;
 
 
 	/***
@@ -220,7 +221,18 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setReligionsLimit(25);
 	*/
-	tables.M2TWEOPTable["setReligionsLimit "] = &m2tweopHelpers::seReligionsLimit;
+	tables.M2TWEOPTable["setReligionsLimit"] = &m2tweopHelpers::seReligionsLimit;
+
+	/***
+	Check tile
+	@function M2TWEOP.isTileFree
+	@tparam int x
+	@tparam int y
+	@treturn bool isFree
+	@usage
+	M2TWEOP.isTileFree(55,25);
+	*/
+	tables.M2TWEOPTable["isTileFree"] = &m2tweopHelpers::isTileFree;
 
 
 	///Objects table section

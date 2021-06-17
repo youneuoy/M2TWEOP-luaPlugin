@@ -11,6 +11,8 @@ namespace m2tweopHelpers
 	std::string getModPath();
 	std::string getLuaPath();
 
+	bool isTileFree(int x, int y);
+
 	void setAncLimit(unsigned char limit);
 	void seReligionsLimit(unsigned char limit);
 	void setMaxBgSize(unsigned char maxBgSize);

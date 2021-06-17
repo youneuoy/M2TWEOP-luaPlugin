@@ -22,7 +22,10 @@ int initPlugin(std::string* modPath)
     fName = "getBattleStacksListP";
     plugData::data.funcs.getBattleArmies.Load(&plPath, &fName);
     */
-    std::string fName = "getGameDataAll";
+    std::string fName = "isTileFree";
+    plugData::data.funcs.isTileFree.Load(&plPath, &fName);
+
+    fName = "getGameDataAll";
     plugData::data.funcs.getGameDataAll.Load(&plPath, &fName);
 
 

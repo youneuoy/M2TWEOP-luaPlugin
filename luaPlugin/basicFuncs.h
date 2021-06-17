@@ -94,6 +94,7 @@ public:
 class basicFuncs
 {
 public:
+	ProcLoader<bool(__cdecl*)(int*)> isTileFree;
 	ProcLoader<gameDataAllStruct*(__cdecl*)()> getGameDataAll;
 
 
