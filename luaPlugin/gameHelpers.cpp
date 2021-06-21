@@ -30,3 +30,16 @@ unit* gameHelpers::createUnitIdx(int eduIdx, int facNum, int exp, int arm, int w
 {
 	return (*(*plugData::data.funcs.createUnitIdx))(eduIdx, facNum, exp, arm, weap);
 }
+
+std::tuple<bool, int> gameHelpers::getScriptCounter(const char* type)
+{
+	bool isExist = false;
+	int counterValue=(*(*plugData::data.funcs.getScriptCounter))(type,isExist);
+
+	return std::make_tuple(isExist, counterValue);
+}
+
+void gameHelpers::setScriptCounter(const char* type, int value)
+{
+	(*(*plugData::data.funcs.setScriptCounter))(type, value);
+}

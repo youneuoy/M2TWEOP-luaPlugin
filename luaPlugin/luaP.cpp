@@ -1,7 +1,7 @@
 ///
 //![Lua logo](_static/Lua.png)
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
-//@module Basic
+//@module LuaPlugin 
 //@author youneuoy
 //@license GPL-3.0
 #include "luaP.h"
@@ -341,6 +341,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield createArmy createArmy
 	@tfield createUnitN createUnitN
 	@tfield createUnitIdx createUnitIdx
+	@tfield getScriptCounter getScriptCounter
+	@tfield setScriptCounter setScriptCounter
 
 	@table stratmap.game
 */
@@ -414,6 +416,26 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	newUnit=stratmap.game.createUnitIdx(52,2,1,1,1);
 */
 	tables.gameTable["createUnitIdx"] = &gameHelpers::createUnitIdx;
+
+
+	/***
+	Get gamescript counter value. Return value of any counter - event_counter or simple counter etc.
+	@function game.getScriptCounter
+	@tparam string counterName
+	@treturn bool isExist, int counterValue
+	@usage
+	isExist, counterValue=stratmap.game.getScriptCounter("SomeCounter");
+*/
+	tables.gameTable["getScriptCounter"] = &gameHelpers::getScriptCounter;
+	/***
+	Set gamescript events counter value. Set it only for events counter.
+	@function game.setScriptCounter
+	@tparam string counterName
+	@tparam int value
+	@usage
+	stratmap.game.setScriptCounter("SomeCounter",25);
+*/
+	tables.gameTable["setScriptCounter"] = &gameHelpers::setScriptCounter;
 
 	///Stratmap table section
 	//@section stratmapTable

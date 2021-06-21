@@ -28,6 +28,12 @@ int initPlugin(std::string* modPath)
     fName = "getGameDataAll";
     plugData::data.funcs.getGameDataAll.Load(&plPath, &fName);
 
+    fName = "getScriptCounter";
+    plugData::data.funcs.getScriptCounter.Load(&plPath, &fName);
+
+    fName = "setScriptCounter";
+    plugData::data.funcs.setScriptCounter.Load(&plPath, &fName);
+
 
     fName = "createUniString";
     plugData::data.funcsTech.createUniString.Load(&plPath, &fName);

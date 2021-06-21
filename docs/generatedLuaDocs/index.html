@@ -27,12 +27,37 @@
 <h1>M2TW Engine Overhaul Project</h1>
 
 
+<h2>Contents</h2>
+<ul>
+<li><a href="#M2TWEOP_table_section">M2TWEOP table section </a></li>
+<li><a href="#Objects_table_section">Objects table section </a></li>
+<li><a href="#Camera_table_section">Camera table section </a></li>
+<li><a href="#Game_table_section">Game table section </a></li>
+<li><a href="#Stratmap_table_section">Stratmap table section </a></li>
+<li><a href="#Unit_table_section">Unit table section </a></li>
+<li><a href="#Character_table_section">Character table section </a></li>
+<li><a href="#NamedCharacter_table_section">NamedCharacter table section </a></li>
+<li><a href="#Ancillary_table_section">Ancillary table section </a></li>
+<li><a href="#EduEntry_table_section">EduEntry table section </a></li>
+<li><a href="#FactionStruct_table_section">FactionStruct table section </a></li>
+<li><a href="#SettlementStruct_table_section">SettlementStruct table section </a></li>
+<li><a href="#ResStrat_table_section">ResStrat table section </a></li>
+<li><a href="#StackStruct_table_section">StackStruct table section </a></li>
+<li><a href="#Building_table_section">Building table section </a></li>
+<li><a href="#BuildingData_table_section">BuildingData table section </a></li>
+<li><a href="#BuildingInfo_table_section">BuildingInfo table section </a></li>
+<li><a href="#gameDataAll_table_section">gameDataAll table section </a></li>
+<li><a href="#battleStruct_table_section">battleStruct table section </a></li>
+<li><a href="#battleSide_table_section">battleSide table section </a></li>
+<li><a href="#trackedPointerArmy_table_section">trackedPointerArmy table section </a></li>
+<li><a href="#deploymentAreaS_table_section">deploymentAreaS table section </a></li>
+<li><a href="#EVENTS_TABLE_SECTION">EVENTS TABLE SECTION </a></li>
+</ul>
 
 
 <h2>Modules</h2>
 <ul class="nowrap">
-  <li><a href="modules/Basic.html">Basic</a></li>
-  <li><a href="modules/Advanced.html">Advanced</a></li>
+  <li><strong>LuaPlugin</strong></li>
 </ul>
 <h2>Topics</h2>
 <ul class="">
@@ -43,35 +68,7442 @@
 
 <div id="content">
 
+<h1>Module <code>LuaPlugin</code></h1>
+<p><img src="_static/Lua.png" alt="Lua logo"/>
+M2TWEOP structures and functions.</p>
+<p> There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.</p>
+    <h3>Info:</h3>
+    <ul>
+        <li><strong>License</strong>: GPL-3.0</li>
+        <li><strong>Author</strong>: youneuoy</li>
+    </ul>
 
-  <h2>Project, created to expand M2TW engine</h2>
 
-<h2>Modules</h2>
-<table class="module_list">
+<h2><a href="#M2TWEOP_table_section">M2TWEOP table section </a></h2>
+<table class="function_list">
 	<tr>
-		<td class="name"  nowrap><a href="modules/Basic.html">Basic</a></td>
-		<td class="summary"><img src="_static/Lua.png" alt="Lua logo"/>
-M2TWEOP structures and functions.</td>
+	<td class="name" nowrap><a href="#M2TWEOP">M2TWEOP</a></td>
+	<td class="summary">Basic M2TWEOP table</td>
 	</tr>
 	<tr>
-		<td class="name"  nowrap><a href="modules/Advanced.html">Advanced</a></td>
-		<td class="summary"><img src="_static/Lua.png" alt="Lua logo"/>
-M2TWEOP structures and functions.</td>
+	<td class="name" nowrap><a href="#M2TWEOP.getModPath">M2TWEOP.getModPath ()</a></td>
+	<td class="summary">Get mod path</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.getPluginPath">M2TWEOP.getPluginPath ()</a></td>
+	<td class="summary">Get path of the plugin(your lua files here)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.loadTexture">M2TWEOP.loadTexture (path)</a></td>
+	<td class="summary">Load d3d texture</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.unloadTexture">M2TWEOP.unloadTexture (id)</a></td>
+	<td class="summary">Unload d3d texture</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.setAncillariesLimit">M2TWEOP.setAncillariesLimit (newLimit)</a></td>
+	<td class="summary">Set limit of ancillaries</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.unlockGameConsoleCommands">M2TWEOP.unlockGameConsoleCommands ()</a></td>
+	<td class="summary">Unloc all console commands</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.setMaxBgSize">M2TWEOP.setMaxBgSize (newSize)</a></td>
+	<td class="summary">Set new max bodyguard size</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.toggleUnitsBMapHighlight">M2TWEOP.toggleUnitsBMapHighlight ()</a></td>
+	<td class="summary">toggle the highlighting of units on the tactical map.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.setReligionsLimit">M2TWEOP.setReligionsLimit (newLimit)</a></td>
+	<td class="summary">Set limit of religions</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.isTileFree">M2TWEOP.isTileFree (x, y)</a></td>
+	<td class="summary">Check tile</td>
 	</tr>
 </table>
-<h2>Topics</h2>
-<table class="module_list">
+<h2><a href="#Objects_table_section">Objects table section </a></h2>
+<table class="function_list">
 	<tr>
-		<td class="name"  nowrap><a href="topics/readme.md.html">readme.md</a></td>
-		<td class="summary"></td>
+	<td class="name" nowrap><a href="#stratmap.objects">stratmap.objects</a></td>
+	<td class="summary">Basic stratmap.objects table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#objects.addModelToGame">objects.addModelToGame (modelPath, modelId)</a></td>
+	<td class="summary">Add new cas stratmodel to game</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#objects.setModel">objects.setModel (xCoord, yCoord, modelId, modelId2)</a></td>
+	<td class="summary">Set the model for the object at the specified coordinates.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#objects.replaceTile">objects.replaceTile (label, xCoord, yCoord, filename, weather, dayTime)</a></td>
+	<td class="summary">Replace custom tile.</td>
 	</tr>
 </table>
+<h2><a href="#Camera_table_section">Camera table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#stratmap.camera">stratmap.camera</a></td>
+	<td class="summary">Basic stratmap.camera table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera.move">camera.move (xCoord, yCoord)</a></td>
+	<td class="summary">Slow move camera to tile</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera.jump">camera.jump (xCoord, yCoord)</a></td>
+	<td class="summary">Fast move camera to tile</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#camera.zoom">camera.zoom (distance)</a></td>
+	<td class="summary">Set zoom of stratcamera</td>
+	</tr>
+</table>
+<h2><a href="#Game_table_section">Game table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#stratmap.game">stratmap.game</a></td>
+	<td class="summary">Basic stratmap.game table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.getFactionsCount">game.getFactionsCount ()</a></td>
+	<td class="summary">Get factions number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.getFaction">game.getFaction (index)</a></td>
+	<td class="summary">Get faction with index</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.createCharacterByString">game.createCharacterByString (type, faction, age, name, name2, subFaction, portrait, xCoord, yCoord)</a></td>
+	<td class="summary">Create character at coords</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.createArmy">game.createArmy (ourGeneral)</a></td>
+	<td class="summary">Create army for character.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.createUnitN">game.createUnitN (type, facNum, exp, armor, weapon)</a></td>
+	<td class="summary">create unit by name.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.createUnitIdx">game.createUnitIdx (type, facNum, exp, armor, weapon)</a></td>
+	<td class="summary">create unit by index in EDU.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.getScriptCounter">game.getScriptCounter (counterName)</a></td>
+	<td class="summary">Get gamescript counter value.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.setScriptCounter">game.setScriptCounter (counterName, value)</a></td>
+	<td class="summary">Set gamescript events counter value.</td>
+	</tr>
+</table>
+<h2><a href="#Stratmap_table_section">Stratmap table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#stratmap">stratmap</a></td>
+	<td class="summary">Basic stratmap table</td>
+	</tr>
+</table>
+<h2><a href="#Unit_table_section">Unit table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#unit">unit</a></td>
+	<td class="summary">Unit table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#unit:kill">unit:kill ()</a></td>
+	<td class="summary">Kill this unit</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#unit:setParams">unit:setParams (exp, armor, weapon)</a></td>
+	<td class="summary">Set unit basic parameters</td>
+	</tr>
+</table>
+<h2><a href="#Character_table_section">Character table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#character">character</a></td>
+	<td class="summary">
+<p>Basic character table</p>
+<pre><code>This had all characters(princess, diplomat, etc), if character in stratmap (not died,not to young, etc) has this fields.
+</code></pre>
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#character:moveToTile">character:moveToTile (xCoord, yCoord)</a></td>
+	<td class="summary">Start moving to tale.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#character:reposition">character:reposition (xCoord, yCoord)</a></td>
+	<td class="summary">Character reposition.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#character:siegeSettlement">character:siegeSettlement (settlement)</a></td>
+	<td class="summary">Siege settlement, or attack it if in siege</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#character:kill">character:kill ()</a></td>
+	<td class="summary">Delete this character</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#character:setBodyguardUnit">character:setBodyguardUnit (unit)</a></td>
+	<td class="summary">Set bodyguard.</td>
+	</tr>
+</table>
+<h2><a href="#NamedCharacter_table_section">NamedCharacter table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#namedCharacter">namedCharacter</a></td>
+	<td class="summary">Basic namedCharacter table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#namedCharacter:getAncillary">namedCharacter:getAncillary (index, yCoord)</a></td>
+	<td class="summary">Get pointer to ancillary with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#namedCharacter:addAncillary">namedCharacter:addAncillary (ancillaryName)</a></td>
+	<td class="summary">Add new ancillary</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#namedCharacter:removeAncillary">namedCharacter:removeAncillary (ancillary)</a></td>
+	<td class="summary">Remove ancillary</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#namedCharacter:isAlive">namedCharacter:isAlive ()</a></td>
+	<td class="summary">Check if the character is alive</td>
+	</tr>
+</table>
+<h2><a href="#Ancillary_table_section">Ancillary table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#ancillary">ancillary</a></td>
+	<td class="summary">Basic ancillary table</td>
+	</tr>
+</table>
+<h2><a href="#EduEntry_table_section">EduEntry table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#eduEntry">eduEntry</a></td>
+	<td class="summary">Basic eduEntry table</td>
+	</tr>
+</table>
+<h2><a href="#FactionStruct_table_section">FactionStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct">factionStruct</a></td>
+	<td class="summary">Basic factionStruct table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getFactionName">factionStruct:getFactionName ()</a></td>
+	<td class="summary">Get faction technical name</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getNamedCharacter">factionStruct:getNamedCharacter (number)</a></td>
+	<td class="summary">Get named character with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getCharacter">factionStruct:getCharacter (number)</a></td>
+	<td class="summary">Get  character with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getStack">factionStruct:getStack (number)</a></td>
+	<td class="summary">Get army with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getSettlement">factionStruct:getSettlement (number)</a></td>
+	<td class="summary">Get settlement with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getFort">factionStruct:getFort (number)</a></td>
+	<td class="summary">Get fort with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#factionStruct:getPort">factionStruct:getPort (number)</a></td>
+	<td class="summary">Get fort with number</td>
+	</tr>
+</table>
+<h2><a href="#SettlementStruct_table_section">SettlementStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct">settlementStruct</a></td>
+	<td class="summary">Basic settlementStruct table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct:destroyBuilding">settlementStruct:destroyBuilding (typeName, isReturnMoney)</a></td>
+	<td class="summary">Destroy building of type.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct:createBuilding">settlementStruct:createBuilding (building_level_id)</a></td>
+	<td class="summary">Create building.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct:getBuilding">settlementStruct:getBuilding (number)</a></td>
+	<td class="summary">Get building with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct:getResource">settlementStruct:getResource (number)</a></td>
+	<td class="summary">Get resource with number</td>
+	</tr>
+</table>
+<h2><a href="#ResStrat_table_section">ResStrat table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#resStrat">resStrat</a></td>
+	<td class="summary">Basic resStrat table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#resStrat:setStratModel">resStrat:setStratModel (modelId)</a></td>
+	<td class="summary">Set resource strat.</td>
+	</tr>
+</table>
+<h2><a href="#StackStruct_table_section">StackStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct">stackStruct</a></td>
+	<td class="summary">Basic stackStruct table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct:getUnit">stackStruct:getUnit (number)</a></td>
+	<td class="summary">Get unit with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct:getCharacter">stackStruct:getCharacter (number)</a></td>
+	<td class="summary">Get character(agent) with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct:findInSettlement">stackStruct:findInSettlement ()</a></td>
+	<td class="summary">Find the settlement in which the army is located</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct:findInFort">stackStruct:findInFort ()</a></td>
+	<td class="summary">Find the fort in which the army is located</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct:addUnit">stackStruct:addUnit (unit)</a></td>
+	<td class="summary">Add unit to this army.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stackStruct:attackArmy">stackStruct:attackArmy (defender)</a></td>
+	<td class="summary">Attack another army.</td>
+	</tr>
+</table>
+<h2><a href="#Building_table_section">Building table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#building">building</a></td>
+	<td class="summary">Basic building table</td>
+	</tr>
+</table>
+<h2><a href="#BuildingData_table_section">BuildingData table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#buildingData">buildingData</a></td>
+	<td class="summary">Basic buildingData table</td>
+	</tr>
+</table>
+<h2><a href="#BuildingInfo_table_section">BuildingInfo table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#buildingInfo">buildingInfo</a></td>
+	<td class="summary">Basic buildingInfo table</td>
+	</tr>
+</table>
+<h2><a href="#gameDataAll_table_section">gameDataAll table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#gameDataAll">gameDataAll</a></td>
+	<td class="summary">Basic gameDataAll table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gameDataAll.get">gameDataAll.get ()</a></td>
+	<td class="summary">Call it on start of your script, this is static object and pointer to it dont changed</td>
+	</tr>
+</table>
+<h2><a href="#battleStruct_table_section">battleStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#gameDataAll.battleStruct">gameDataAll.battleStruct</a></td>
+	<td class="summary">basic battleStruct table</td>
+	</tr>
+</table>
+<h2><a href="#battleSide_table_section">battleSide table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#battleStruct.battleSide">battleStruct.battleSide</a></td>
+	<td class="summary">basic battleStruct table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#battleSide:getWinConditionString">battleSide:getWinConditionString (condition)</a></td>
+	<td class="summary">Get win condition string, for example: destroy<em>or</em>rout_enemy</td>
+	</tr>
+</table>
+<h2><a href="#trackedPointerArmy_table_section">trackedPointerArmy table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#battleSide.trackedPointerArmy">battleSide.trackedPointerArmy</a></td>
+	<td class="summary">basic trackedPointerArmy table</td>
+	</tr>
+</table>
+<h2><a href="#deploymentAreaS_table_section">deploymentAreaS table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#trackedPointerArmy.deploymentAreaS">trackedPointerArmy.deploymentAreaS</a></td>
+	<td class="summary">basic trackedPointerArmy table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#deploymentAreaS:getCoordPair">deploymentAreaS:getCoordPair ()</a></td>
+	<td class="summary">Get pair of coords with number</td>
+	</tr>
+</table>
+<h2><a href="#EVENTS_TABLE_SECTION">EVENTS TABLE SECTION </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#EventsFunctionsList">EventsFunctionsList</a></td>
+	<td class="summary">Events functions list.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#draw">draw (pDevice)</a></td>
+	<td class="summary">Called every time an image is rendered for display</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onNewGameStart">onNewGameStart ()</a></td>
+	<td class="summary">Called on new campaign start</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPluginLoad">onPluginLoad ()</a></td>
+	<td class="summary">Called on plugin load(at game start)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCreateSaveFile">onCreateSaveFile ()</a></td>
+	<td class="summary">Called on creating save file</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onLoadSaveFile">onLoadSaveFile ()</a></td>
+	<td class="summary">Called on loading save file</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onChangeTurnNum">onChangeTurnNum (turnNumber)</a></td>
+	<td class="summary">Called on every turn</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCharacterSelected">onCharacterSelected (selectedChar)</a></td>
+	<td class="summary">Called on character selection</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPreFactionTurnStart">onPreFactionTurnStart (faction)</a></td>
+	<td class="summary">Called before faction turn start</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionTurnStart">onFactionTurnStart (faction)</a></td>
+	<td class="summary">Called at faction turn start</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionTurnEnd">onFactionTurnEnd (faction)</a></td>
+	<td class="summary">Called at faction turn end</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionNewCapital">onFactionNewCapital (faction)</a></td>
+	<td class="summary">Called after faction has new capital</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionWarDeclared">onFactionWarDeclared (faction, targetFaction)</a></td>
+	<td class="summary">Called after declaring war</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionAllianceDeclared">onFactionAllianceDeclared (faction, targetFaction)</a></td>
+	<td class="summary">Called after declaring alliance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionTradeAgreementMade">onFactionTradeAgreementMade (faction, targetFaction)</a></td>
+	<td class="summary">Called after declaring trade agreement</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionBreakAlliance">onFactionBreakAlliance (faction, targetFaction)</a></td>
+	<td class="summary">Called after break alliance</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGiveMoney">onGiveMoney (faction, targetFaction, amount)</a></td>
+	<td class="summary">Called after giving money</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUpdateAttitude">onUpdateAttitude (faction, targetFaction)</a></td>
+	<td class="summary">Called after update attitude</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDemeanour">onDemeanour (faction, targetFaction, amount)</a></td>
+	<td class="summary">A demeanour response has occured in diplomacy talks</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGeneralAssaultsGeneral">onGeneralAssaultsGeneral (attacker, defender)</a></td>
+	<td class="summary">A general has attacked another general</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGeneralAssaultsResidence">onGeneralAssaultsResidence (attacker, settlement, fort)</a></td>
+	<td class="summary">An assault has taken place</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGeneralCaptureSettlement">onGeneralCaptureSettlement (attacker, settlement)</a></td>
+	<td class="summary">Settlement captured</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGeneralCaptureResidence">onGeneralCaptureResidence (attacker)</a></td>
+	<td class="summary">A General has captured a residence(fort, watchtower, check it yourself)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSiegeEquipmentCompleted">onSiegeEquipmentCompleted (settlement, fort)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPostBattle">onPostBattle (character)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMultiTurnMove">onMultiTurnMove (character)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSettlementSelected">onSettlementSelected (settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSettlementUpgraded">onSettlementUpgraded (settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSettlementConverted">onSettlementConverted (settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCityRiots">onCityRiots (settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUngarrisonedSettlement">onUngarrisonedSettlement (settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUngarrisonedFort">onUngarrisonedFort (settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGiveSettlement">onGiveSettlement (settlement, fac1, fac2)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onOccupySettlement">onOccupySettlement (char1, settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onExterminatePopulation">onExterminatePopulation (char1, settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSackSettlement">onSackSettlement (char1, settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onAddedToBuildingQueue">onAddedToBuildingQueue (settlement, buildNme)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBuildingDestroyed">onBuildingDestroyed (settlement, buildNme)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBuildingCompleted">onBuildingCompleted (fac, settlement)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onEventCounter">onEventCounter (counter)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionExcommunicated">onFactionExcommunicated (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDisaster">onDisaster (eventType)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onHordeFormed">onHordeFormed (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onAddedToTrainingQueue">onAddedToTrainingQueue (sett, unitName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUnitDisbanded">onUnitDisbanded (fac, unit)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUnitTrained">onUnitTrained (fac, sett, unit)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onAgentCreated">onAgentCreated (fac, agentType, sett)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onObjSeen">onObjSeen (fac, fac2, xCoord, yCoord)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onTileSeen">onTileSeen (fac, xCoord, yCoord)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGameReloaded">onGameReloaded (something)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onTransgression">onTransgression (fac1, description, fac2)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPopeAcceptsCrusadeTarget">onPopeAcceptsCrusadeTarget (crusade, target)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCrusadeCalled">onCrusadeCalled (crusade, target)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCrusadeEnds">onCrusadeEnds (crusade, target)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPopeRejectsCrusadeTarget">onPopeRejectsCrusadeTarget (crusade, target)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onArmyTakesCrusadeTarget">onArmyTakesCrusadeTarget (crusade, target, army)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUnitsDesertCrusade">onUnitsDesertCrusade (crusade, target, fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPopeElected">onPopeElected (fac, fac2)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onVotedForPope">onVotedForPope (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onAssassinCaughtAttackingPope">onAssassinCaughtAttackingPope (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onInquisitorAppointed">onInquisitorAppointed (fac, sett)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSettlementPanelOpen">onSettlementPanelOpen (sett)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFinancesPanelOpen">onFinancesPanelOpen (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFactionSummaryPanelOpen">onFactionSummaryPanelOpen (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onFamilyTreePanelOpenFunc">onFamilyTreePanelOpenFunc (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDiplomaticStandingPanelOpen">onDiplomaticStandingPanelOpen (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onDiplomacyPanelOpen">onDiplomacyPanelOpen (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPreBattlePanelOpen">onPreBattlePanelOpen (fac)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onNavalAutoResolvePanelOpen">onNavalAutoResolvePanelOpen ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCharacterPanelOpen">onCharacterPanelOpen (selectedChar)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onTradePanelOpen">onTradePanelOpen (sett)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onRequestBuildingAdvice">onRequestBuildingAdvice (sett)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onRequestTrainingAdvice">onRequestTrainingAdvice (sett, recommendedUnitEntry)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMessageOpen">onMessageOpen (fac, msgType)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onIncomingMessage">onIncomingMessage (fac, msgType)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onMessageClosed">onMessageClosed (msgType)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onButtonPressed">onButtonPressed (buttonName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onScrollClosed">onScrollClosed (scrollName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onScrollOpened">onScrollOpened (scrollName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onUIElementVisible">onUIElementVisible (elementName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onScrollAdviceRequested">onScrollAdviceRequested (scrollName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onSettlementScrollAdviceRequested">onSettlementScrollAdviceRequested (sett, scrollName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onPreBattleScrollAdviceRequested">onPreBattleScrollAdviceRequested ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onNavalPreBattleScrollAdviceRequested">onNavalPreBattleScrollAdviceRequested ()</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCollegeOfCardinalsPanelOpen">onCollegeOfCardinalsPanelOpen (college)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="M2TWEOP_table_section"></a>M2TWEOP table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "M2TWEOP"></a>
+    <strong>M2TWEOP</strong>
+    </dt>
+    <dd>
+    Basic M2TWEOP table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">getModPath</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getModPath">getModPath</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getPluginPath</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getPluginPath">getPluginPath</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">loadTexture</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.loadTexture">loadTexture</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unloadTexture</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.unloadTexture">unloadTexture</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setAncillariesLimit</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setAncillariesLimit">setAncillariesLimit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unlockGameConsoleCommands</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.unlockGameConsoleCommands">unlockGameConsoleCommands</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setMaxBgSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setMaxBgSize">setMaxBgSize</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">toggleUnitsBMapHighlight</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.toggleUnitsBMapHighlight">toggleUnitsBMapHighlight</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setReligionsLimit</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setReligionsLimit">setReligionsLimit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">isTileFree</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.isTileFree">isTileFree</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.getModPath"></a>
+    <strong>M2TWEOP.getModPath ()</strong>
+    </dt>
+    <dd>
+    Get mod path
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        mod path
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">mPath=M2TWEOP.getModPath();
+<span class="global">print</span>(mPath);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.getPluginPath"></a>
+    <strong>M2TWEOP.getPluginPath ()</strong>
+    </dt>
+    <dd>
+    Get path of the plugin(your lua files here)
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        plugin path
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">plPath=M2TWEOP.getPluginPath();
+<span class="global">print</span>(plPath);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.loadTexture"></a>
+    <strong>M2TWEOP.loadTexture (path)</strong>
+    </dt>
+    <dd>
+    Load d3d texture
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">path</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         full path to texture
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">int</span></span>
+        x size of the image</li>
+        <li>
+           <span class="types"><span class="type">int</span></span>
+        y size of the image</li>
+        <li>
+           <span class="types"><span class="type">int</span></span>
+        id of the image</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> testImage={x=<span class="number">0</span>,y=<span class="number">0</span>,img=<span class="keyword">nil</span>};
+testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath()..<span class="string">"/youneuoy_textures/test.dds"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.unloadTexture"></a>
+    <strong>M2TWEOP.unloadTexture (id)</strong>
+    </dt>
+    <dd>
+    Unload d3d texture
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">id</span>
+            <span class="types"><span class="type">int</span></span>
+         of the image
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> testImage={x=<span class="number">0</span>,y=<span class="number">0</span>,img=<span class="keyword">nil</span>};
+testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath()..<span class="string">"/youneuoy_textures/test.dds"</span>);
+M2TWEOP.unloadTexture(testImage.img);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.setAncillariesLimit"></a>
+    <strong>M2TWEOP.setAncillariesLimit (newLimit)</strong>
+    </dt>
+    <dd>
+    Set limit of ancillaries
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newLimit</span>
+            <span class="types"><span class="type">int</span></span>
+         maximum - 127
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.setAncillariesLimit(<span class="number">15</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.unlockGameConsoleCommands"></a>
+    <strong>M2TWEOP.unlockGameConsoleCommands ()</strong>
+    </dt>
+    <dd>
+    Unloc all console commands
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.unlockGameConsoleCommands();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.setMaxBgSize"></a>
+    <strong>M2TWEOP.setMaxBgSize (newSize)</strong>
+    </dt>
+    <dd>
+    Set new max bodyguard size
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newSize</span>
+            <span class="types"><span class="type">int</span></span>
+         maximum bodyguard size - 255
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.setMaxBgSize(<span class="number">222</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.toggleUnitsBMapHighlight"></a>
+    <strong>M2TWEOP.toggleUnitsBMapHighlight ()</strong>
+    </dt>
+    <dd>
+    toggle the highlighting of units on the tactical map.
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.toggleUnitsBMapHighlight();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.setReligionsLimit"></a>
+    <strong>M2TWEOP.setReligionsLimit (newLimit)</strong>
+    </dt>
+    <dd>
+    Set limit of religions
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">newLimit</span>
+            <span class="types"><span class="type">int</span></span>
+         maximum limit ~ 127
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.setReligionsLimit(<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.isTileFree"></a>
+    <strong>M2TWEOP.isTileFree (x, y)</strong>
+    </dt>
+    <dd>
+    Check tile
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        isFree
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.isTileFree(<span class="number">55</span>,<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Objects_table_section"></a>Objects table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "stratmap.objects"></a>
+    <strong>stratmap.objects</strong>
+    </dt>
+    <dd>
+    Basic stratmap.objects table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">addModelToGame</span>
+            <span class="types"><a class="type" href="index.html#objects.addModelToGame">addModelToGame</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setModel</span>
+            <span class="types"><a class="type" href="index.html#objects.setModel">setModel</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">replaceTile</span>
+            <span class="types"><a class="type" href="index.html#objects.replaceTile">replaceTile</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "objects.addModelToGame"></a>
+    <strong>objects.addModelToGame (modelPath, modelId)</strong>
+    </dt>
+    <dd>
+    Add new cas stratmodel to game
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modelPath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         relative(to modfolder) path
+        </li>
+        <li><span class="parameter">modelId</span>
+            <span class="types"><span class="type">int</span></span>
+         model id
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.objects.addModelToGame(<span class="string">"data/models_strat/residences/invisible.CAS"</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "objects.setModel"></a>
+    <strong>objects.setModel (xCoord, yCoord, modelId, modelId2)</strong>
+    </dt>
+    <dd>
+    Set the model for the object at the specified coordinates.  Works only for supported object types.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">modelId</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">modelId2</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.objects.addModelToGame(<span class="string">"data/models_strat/residences/invisible.CAS"</span>,<span class="number">1</span>);
+stratmap.objects.setModel(<span class="number">288</span>,<span class="number">257</span>,<span class="number">1</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "objects.replaceTile"></a>
+    <strong>objects.replaceTile (label, xCoord, yCoord, filename, weather, dayTime)</strong>
+    </dt>
+    <dd>
+    Replace custom tile.  Change custom battlefield for coordinates.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">label</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">filename</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">weather</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">dayTime</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.objects.replaceTile(<span class="string">"Helms-Deep_Province"</span>,<span class="number">167</span>,<span class="number">158</span>,<span class="string">"hornburg_amb.wfc"</span>,<span class="string">"clear"</span>,<span class="string">"midday"</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Camera_table_section"></a>Camera table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "stratmap.camera"></a>
+    <strong>stratmap.camera</strong>
+    </dt>
+    <dd>
+    Basic stratmap.camera table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">move</span>
+            <span class="types"><a class="type" href="index.html#camera.move">move</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">jump</span>
+            <span class="types"><a class="type" href="index.html#camera.jump">jump</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">zoom</span>
+            <span class="types"><a class="type" href="index.html#camera.zoom">zoom</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "camera.move"></a>
+    <strong>camera.move (xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+    Slow move camera to tile
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.camera.move(<span class="number">1</span>,<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "camera.jump"></a>
+    <strong>camera.jump (xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+    Fast move camera to tile
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.camera.jump(<span class="number">1</span>,<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "camera.zoom"></a>
+    <strong>camera.zoom (distance)</strong>
+    </dt>
+    <dd>
+    Set zoom of stratcamera
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">distance</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.camera.zoom(<span class="number">0.12</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Game_table_section"></a>Game table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "stratmap.game"></a>
+    <strong>stratmap.game</strong>
+    </dt>
+    <dd>
+    Basic stratmap.game table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">getFactionsCount</span>
+            <span class="types"><a class="type" href="index.html#game.getFactionsCount">getFactionsCount</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFaction</span>
+            <span class="types"><a class="type" href="index.html#game.getFaction">getFaction</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">createCharacterByString</span>
+            <span class="types"><a class="type" href="index.html#game.createCharacterByString">createCharacterByString</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">createArmy</span>
+            <span class="types"><a class="type" href="index.html#game.createArmy">createArmy</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">createUnitN</span>
+            <span class="types"><a class="type" href="index.html#game.createUnitN">createUnitN</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">createUnitIdx</span>
+            <span class="types"><a class="type" href="index.html#game.createUnitIdx">createUnitIdx</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getScriptCounter</span>
+            <span class="types"><a class="type" href="index.html#game.getScriptCounter">getScriptCounter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setScriptCounter</span>
+            <span class="types"><a class="type" href="index.html#game.setScriptCounter">setScriptCounter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "game.getFactionsCount"></a>
+    <strong>game.getFactionsCount ()</strong>
+    </dt>
+    <dd>
+    Get factions number
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        facNumber number of factions
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> facNum=stratmap.game.getFactionsCount();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.getFaction"></a>
+    <strong>game.getFaction (index)</strong>
+    </dt>
+    <dd>
+    Get faction with index
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+        faction
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">faction=stratmap.game.getFaction(<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.createCharacterByString"></a>
+    <strong>game.createCharacterByString (type, faction, age, name, name2, subFaction, portrait, xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+    Create character at coords
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">age</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">name2</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">subFaction</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">portrait</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#character">character</a></span>
+        newCharacter
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newCharacter=stratmap.game.createCharacterByString(<span class="string">"named character"</span>,stratmap.game.getFaction(<span class="number">0</span>),<span class="number">18</span>,<span class="string">"Name1"</span>,<span class="string">"Name2"</span>,<span class="number">31</span>,<span class="keyword">nil</span>,character.character.xCoord+<span class="number">5</span>,character.character.yCoord);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.createArmy"></a>
+    <strong>game.createArmy (ourGeneral)</strong>
+    </dt>
+    <dd>
+    Create army for character.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ourGeneral</span>
+            <span class="types"><a class="type" href="index.html#character">character</a></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+        army
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">army=stratmap.game.createArmy(gen);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.createUnitN"></a>
+    <strong>game.createUnitN (type, facNum, exp, armor, weapon)</strong>
+    </dt>
+    <dd>
+    create unit by name.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">facNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">exp</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">armor</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">weapon</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+        newUnit
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newUnit=stratmap.game.createUnitN(<span class="string">"Axemen of Lossarnach"</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.createUnitIdx"></a>
+    <strong>game.createUnitIdx (type, facNum, exp, armor, weapon)</strong>
+    </dt>
+    <dd>
+    create unit by index in EDU.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">facNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">exp</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">armor</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">weapon</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+        newUnit
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newUnit=stratmap.game.createUnitIdx(<span class="number">52</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.getScriptCounter"></a>
+    <strong>game.getScriptCounter (counterName)</strong>
+    </dt>
+    <dd>
+    Get gamescript counter value.  Return value of any counter - event_counter or simple counter etc.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">counterName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        isExist, int counterValue
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">isExist, counterValue=stratmap.game.getScriptCounter(<span class="string">"SomeCounter"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "game.setScriptCounter"></a>
+    <strong>game.setScriptCounter (counterName, value)</strong>
+    </dt>
+    <dd>
+    Set gamescript events counter value.  Set it only for events counter.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">counterName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">stratmap.game.setScriptCounter(<span class="string">"SomeCounter"</span>,<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Stratmap_table_section"></a>Stratmap table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "stratmap"></a>
+    <strong>stratmap</strong>
+    </dt>
+    <dd>
+    Basic stratmap table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">objects</span>
+            <span class="types"><a class="type" href="index.html#stratmap.objects">objects</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">camera</span>
+            <span class="types"><a class="type" href="index.html#stratmap.camera">camera</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">game</span>
+            <span class="types"><a class="type" href="index.html#stratmap.game">game</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Unit_table_section"></a>Unit table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "unit"></a>
+    <strong>unit</strong>
+    </dt>
+    <dd>
+    Unit table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">eduEntry</span>
+            <span class="types"><a class="type" href="index.html#eduEntry">eduEntry</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">movePoints</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">numberTact</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">numberMax</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#character">character</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">kill</span>
+            <span class="types"><a class="type" href="index.html#character:kill">kill</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setParams</span>
+            <span class="types"><a class="type" href="index.html#unit:setParams">setParams</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">alias</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "unit:kill"></a>
+    <strong>unit:kill ()</strong>
+    </dt>
+    <dd>
+    Kill this unit
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newUnit=stratmap.game.createUnitN(<span class="string">"Axemen of Lossarnach"</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);
+newUnit:kill();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "unit:setParams"></a>
+    <strong>unit:setParams (exp, armor, weapon)</strong>
+    </dt>
+    <dd>
+    Set unit basic parameters
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">exp</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">armor</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">weapon</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newUnit=stratmap.game.createUnitN(<span class="string">"Axemen of Lossarnach"</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);
+newUnit:setParams(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Character_table_section"></a>Character table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "character"></a>
+    <strong>character</strong>
+    </dt>
+    <dd>
+
+<p>Basic character table</p>
+<pre><code>This had all characters(princess, diplomat, etc), if character in stratmap (not died,not to young, etc) has this fields.
+</code></pre>
+
+
+
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">namedCharacter</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">bodyguards</span>
+            <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">armyLeaded</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">armyNotLeaded</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">movepointsMax</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">movepointsModifier</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">movepoints</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">ability</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">moveToTile</span>
+            <span class="types"><a class="type" href="index.html#character:moveToTile">moveToTile</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">reposition</span>
+            <span class="types"><a class="type" href="index.html#character:reposition">reposition</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">siegeSettlement</span>
+            <span class="types"><a class="type" href="index.html#character:siegeSettlement">siegeSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">kill</span>
+            <span class="types"><a class="type" href="index.html#character:kill">kill</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setBodyguardUnit</span>
+            <span class="types"><a class="type" href="index.html#character:setBodyguardUnit">setBodyguardUnit</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "character:moveToTile"></a>
+    <strong>character:moveToTile (xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+    Start moving to tale.  Need movepoints.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourCharacter:moveToTile(<span class="number">11</span>,<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "character:reposition"></a>
+    <strong>character:reposition (xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+    Character reposition.  Just teleports him.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourCharacter:moveToTile(<span class="number">11</span>,<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "character:siegeSettlement"></a>
+    <strong>character:siegeSettlement (settlement)</strong>
+    </dt>
+    <dd>
+    Siege settlement, or attack it if in siege
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourCharacter:siegeSettlement(settlement);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "character:kill"></a>
+    <strong>character:kill ()</strong>
+    </dt>
+    <dd>
+    Delete this character
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourCharacter:kill();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "character:setBodyguardUnit"></a>
+    <strong>character:setBodyguardUnit (unit)</strong>
+    </dt>
+    <dd>
+    Set bodyguard.  Do this only for characters without it (after creating,for example)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">unit</span>
+            <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newUnit=stratmap.game.createUnitN(<span class="string">"Axemen of Lossarnach"</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);
+ourCharacter:setBodyguardUnit(newUnit);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="NamedCharacter_table_section"></a>NamedCharacter table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "namedCharacter"></a>
+    <strong>namedCharacter</strong>
+    </dt>
+    <dd>
+    Basic namedCharacter table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#character">character</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">shortName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fullName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">label</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">modelName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">status</span>
+            <span class="types"><span class="type">int</span></span>
+         5-leader,2 - heir, 0 - ordinary character. Only read it, not set it!
+        </li>
+        <li><span class="parameter">command</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">loyalty</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">piety</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">chivalryAndDread</span>
+            <span class="types"><span class="type">int</span></span>
+         Dread if negative value
+        </li>
+        <li><span class="parameter">authority</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getAncillary</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter:getAncillary">getAncillary</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">ancNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yearOfBirth</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">subFaction</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">parent</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">spouse</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">portrait</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">portrait2</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">portrait_custom</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">addAncillary</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter:addAncillary">addAncillary</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">removeAncillary</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter:removeAncillary">removeAncillary</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">age</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">isAlive</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter:isAlive">isAlive</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "namedCharacter:getAncillary"></a>
+    <strong>namedCharacter:getAncillary (index, yCoord)</strong>
+    </dt>
+    <dd>
+    Get pointer to ancillary with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#ancillary">ancillary</a></span>
+        ancillary
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ancillary=ourNamedCharacter:getAncillary(<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "namedCharacter:addAncillary"></a>
+    <strong>namedCharacter:addAncillary (ancillaryName)</strong>
+    </dt>
+    <dd>
+    Add new ancillary
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ancillaryName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourNamedCharacter:addAncillary(<span class="string">"VeryVeryGoodMan"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "namedCharacter:removeAncillary"></a>
+    <strong>namedCharacter:removeAncillary (ancillary)</strong>
+    </dt>
+    <dd>
+    Remove ancillary
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">ancillary</span>
+            <span class="types"><a class="type" href="index.html#ancillary">ancillary</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourAnc=ourNamedCharacter:getAncillary(<span class="number">2</span>);
+ourNamedCharacter:removeAncillary(ourAnc);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "namedCharacter:isAlive"></a>
+    <strong>namedCharacter:isAlive ()</strong>
+    </dt>
+    <dd>
+    Check if the character is alive
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        liveStatus 1 - live, 0 - dead
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">if</span>(ourcharacter:isAlive()==<span class="number">1</span>)
+<span class="keyword">then</span>
+	ourcharacter:kill();
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Ancillary_table_section"></a>Ancillary table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "ancillary"></a>
+    <strong>ancillary</strong>
+    </dt>
+    <dd>
+    Basic ancillary table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">imagePath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="EduEntry_table_section"></a>EduEntry table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "eduEntry"></a>
+    <strong>eduEntry</strong>
+    </dt>
+    <dd>
+    Basic eduEntry table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">Type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">Dictionary</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">Index</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">UnitCreatedCounter</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="FactionStruct_table_section"></a>FactionStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "factionStruct"></a>
+    <strong>factionStruct</strong>
+    </dt>
+    <dd>
+    Basic factionStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">dipNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">ai_label</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">capital</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">leader</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">heir</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFactionName</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getFactionName">getFactionName</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">isPlayerControlled</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getNamedCharacter</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getNamedCharacter">getNamedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">numOfNamedCharacters</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getCharacter</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getCharacter">getCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">numOfCharacters</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getStack</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getStack">getStack</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">stacksNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getSettlement</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getSettlement">getSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlementsNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFort</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getFort">getFort</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fortsNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getPort</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getFort">getFort</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">portsNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">religion</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">money</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getFactionName"></a>
+    <strong>factionStruct:getFactionName ()</strong>
+    </dt>
+    <dd>
+    Get faction technical name
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        facName
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourFac = stratmap.game.getFaction(<span class="number">0</span>);
+ourFacName = ourFac:getFactionName();
+<span class="keyword">if</span>(ourFacName == <span class="string">"hre"</span>)
+<span class="keyword">then</span>
+	ourFac.money = ourFac.money + (ourFac.fortsNum * <span class="number">500</span>);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getNamedCharacter"></a>
+    <strong>factionStruct:getNamedCharacter (number)</strong>
+    </dt>
+    <dd>
+    Get named character with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+        retNamedCharacter
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourFac = stratmap.game.getFaction(<span class="number">0</span>);
+ourNamedCharacter = ourFac:getNamedCharacter(<span class="number">0</span>);
+<span class="keyword">if</span>(ourNamedCharacter.command &gt; <span class="number">5</span>)
+<span class="keyword">then</span>
+	ourFac.money = ourFac.money - (ourNamedCharacter.command * <span class="number">10</span>);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getCharacter"></a>
+    <strong>factionStruct:getCharacter (number)</strong>
+    </dt>
+    <dd>
+    Get  character with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#character">character</a></span>
+        retCharacter
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourFac = stratmap.game.getFaction(<span class="number">0</span>);
+ourCharacter = ourFac:getCharacter(<span class="number">0</span>);
+<span class="keyword">if</span>(ourCharacter.xCoord &gt; <span class="number">150</span> <span class="keyword">and</span> ourCharacter.movepoints&lt;<span class="number">10</span>)
+<span class="keyword">then</span>
+	ourCharacter:kill();
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getStack"></a>
+    <strong>factionStruct:getStack (number)</strong>
+    </dt>
+    <dd>
+    Get army with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+        army
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourFac = stratmap.game.getFaction(<span class="number">0</span>);
+ourArmy = ourFac:getCharacter(<span class="number">0</span>);
+<span class="keyword">if</span>(ourArmy.totalStrength &gt; <span class="number">1500</span>)
+<span class="keyword">then</span>
+	ourFac.money = ourFac.money - (ourArmy.totalStrength);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getSettlement"></a>
+    <strong>factionStruct:getSettlement (number)</strong>
+    </dt>
+    <dd>
+    Get settlement with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+        settlement
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourFac = stratmap.game.getFaction(<span class="number">0</span>);
+ourSett = ourFac:getSettlement(<span class="number">0</span>);
+<span class="keyword">if</span>(ourSett.isProvokedRebellion ~= <span class="number">0</span>)
+<span class="keyword">then</span>
+	ourFac.money = ourFac.money - (ourSett.level*<span class="number">5000</span>);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getFort"></a>
+    <strong>factionStruct:getFort (number)</strong>
+    </dt>
+    <dd>
+    Get fort with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">fortStruct</span></span>
+        fort
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">later</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "factionStruct:getPort"></a>
+    <strong>factionStruct:getPort (number)</strong>
+    </dt>
+    <dd>
+    Get fort with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">portStruct</span></span>
+        port
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">later</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="SettlementStruct_table_section"></a>SettlementStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "settlementStruct"></a>
+    <strong>settlementStruct</strong>
+    </dt>
+    <dd>
+    Basic settlementStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">governor</span>
+            <span class="types"><a class="type" href="index.html#character">character</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">army</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">ownerFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">level</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac_creatorNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">isCastle</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">regionNumber</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">isProvokedRebellion</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getBuilding</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct:getBuilding">getBuilding</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">buldingsNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getResource</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct:getResource">getResource</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">resourcesNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">destroyBuilding</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct:destroyBuilding">destroyBuilding</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">createBuilding</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct:createBuilding">createBuilding</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">populationSize</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "settlementStruct:destroyBuilding"></a>
+    <strong>settlementStruct:destroyBuilding (typeName, isReturnMoney)</strong>
+    </dt>
+    <dd>
+
+<p>Destroy building of type. </p>
+<pre><code>Does nothing for indestructible buildings!
+</code></pre>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">typeName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         type of building
+        </li>
+        <li><span class="parameter">isReturnMoney</span>
+            <span class="types"><span class="type">boolean</span></span>
+         return money or not
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">settlementStruct:destroyBuilding(<span class="string">"some_buildType"</span>,<span class="keyword">false</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "settlementStruct:createBuilding"></a>
+    <strong>settlementStruct:createBuilding (building_level_id)</strong>
+    </dt>
+    <dd>
+    Create building.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">building_level_id</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">settlementStruct:createBuilding(<span class="string">"some_build1"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "settlementStruct:getBuilding"></a>
+    <strong>settlementStruct:getBuilding (number)</strong>
+    </dt>
+    <dd>
+    Get building with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#building">building</a></span>
+        build
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourBuilding=settlementStruct:getBuilding(<span class="number">0</span>);
+<span class="keyword">if</span>(ourBuilding.level&gt;<span class="number">1</span>)
+<span class="keyword">then</span>
+	<span class="global">print</span>(<span class="string">"test"</span>);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "settlementStruct:getResource"></a>
+    <strong>settlementStruct:getResource (number)</strong>
+    </dt>
+    <dd>
+    Get resource with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#resStrat">resStrat</a></span>
+        resource
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourResStrat=settlementStruct:getResource(<span class="number">0</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="ResStrat_table_section"></a>ResStrat table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "resStrat"></a>
+    <strong>resStrat</strong>
+    </dt>
+    <dd>
+    Basic resStrat table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">setStratModel</span>
+            <span class="types"><a class="type" href="index.html#resStrat:setStratModel">setStratModel</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getResourceCode</span>
+            <span class="types"><span class="type">getResourceCode</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "resStrat:setStratModel"></a>
+    <strong>resStrat:setStratModel (modelId)</strong>
+    </dt>
+    <dd>
+    Set resource strat.  model
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modelId</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">resStrat:setStratModel(<span class="number">5</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="StackStruct_table_section"></a>StackStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "stackStruct"></a>
+    <strong>stackStruct</strong>
+    </dt>
+    <dd>
+    Basic stackStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getUnit</span>
+            <span class="types"><a class="type" href="index.html#stackStruct:getUnit">getUnit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">numOfUnits</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getCharacter</span>
+            <span class="types"><a class="type" href="index.html#factionStruct:getCharacter">getCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">numOfCharacters</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">boardedArmy</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">blockedPort</span>
+            <span class="types"><span class="type">portStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">leader</span>
+            <span class="types"><a class="type" href="index.html#character">character</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">findInSettlement</span>
+            <span class="types"><a class="type" href="index.html#stackStruct:findInSettlement">findInSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">findInFort</span>
+            <span class="types"><a class="type" href="index.html#stackStruct:findInFort">findInFort</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">totalStrength</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">reform_point_x</span>
+            <span class="types"><span class="type">float</span></span>
+         reform point x coordinate in battle
+        </li>
+        <li><span class="parameter">reform_point_y</span>
+            <span class="types"><span class="type">float</span></span>
+         reform point y coordinate in battle
+        </li>
+        <li><span class="parameter">addUnit</span>
+            <span class="types"><a class="type" href="index.html#stackStruct:addUnit">addUnit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">attackArmy</span>
+            <span class="types"><a class="type" href="index.html#stackStruct:attackArmy">attackArmy</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "stackStruct:getUnit"></a>
+    <strong>stackStruct:getUnit (number)</strong>
+    </dt>
+    <dd>
+    Get unit with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+        retUnit
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourUnit=stackStruct:getUnit(<span class="number">0</span>);
+ourUnit:kill();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "stackStruct:getCharacter"></a>
+    <strong>stackStruct:getCharacter (number)</strong>
+    </dt>
+    <dd>
+    Get character(agent) with number
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">number</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#character">character</a></span>
+        retCharacter
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourChar=stackStruct:getCharacter(<span class="number">0</span>);
+ourChar:kill();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "stackStruct:findInSettlement"></a>
+    <strong>stackStruct:findInSettlement ()</strong>
+    </dt>
+    <dd>
+    Find the settlement in which the army is located    Returns nil if the army is not in the settlement.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+        settlement
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourSett=stackStruct:findInSettlement();
+<span class="keyword">if</span>(ourSett~=<span class="keyword">nil</span>)
+<span class="keyword">then</span>
+	<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "stackStruct:findInFort"></a>
+    <strong>stackStruct:findInFort ()</strong>
+    </dt>
+    <dd>
+    Find the fort in which the army is located  Returns nil if the army is not in the fort.
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">fortStruct</span></span>
+        fort
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourFort=stackStruct:findInFort();
+<span class="keyword">if</span>(ourFort~=<span class="keyword">nil</span>)
+<span class="keyword">then</span>
+	<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "stackStruct:addUnit"></a>
+    <strong>stackStruct:addUnit (unit)</strong>
+    </dt>
+    <dd>
+    Add unit to this army.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">unit</span>
+            <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        ifSucess
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">newUnit=stratmap.game.createUnitN(<span class="string">"Axemen of Lossarnach"</span>,<span class="number">2</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);
+sucess=stackStruct:addUnit(newUnit);
+<span class="keyword">if</span>(sucess~=<span class="number">0</span>)
+<span class="keyword">then</span>
+	<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "stackStruct:attackArmy"></a>
+    <strong>stackStruct:attackArmy (defender)</strong>
+    </dt>
+    <dd>
+    Attack another army.  Need movepoints.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">defender</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        ifSucess
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">sucess=stackStruct:attackArmy(defenderArmy);
+<span class="keyword">if</span>(sucess~=<span class="number">0</span>)
+<span class="keyword">then</span>
+	<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Building_table_section"></a>Building table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "building"></a>
+    <strong>building</strong>
+    </dt>
+    <dd>
+    Basic building table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">buildingData</span>
+            <span class="types"><a class="type" href="index.html#buildingData">buildingData</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">level</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">hp</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="BuildingData_table_section"></a>BuildingData table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "buildingData"></a>
+    <strong>buildingData</strong>
+    </dt>
+    <dd>
+    Basic buildingData table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">type</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">buildingInfo</span>
+            <span class="types"><a class="type" href="index.html#buildingInfo">buildingInfo</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="BuildingInfo_table_section"></a>BuildingInfo table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "buildingInfo"></a>
+    <strong>buildingInfo</strong>
+    </dt>
+    <dd>
+    Basic buildingInfo table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="gameDataAll_table_section"></a>gameDataAll table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "gameDataAll"></a>
+    <strong>gameDataAll</strong>
+    </dt>
+    <dd>
+    Basic gameDataAll table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">get</span>
+            <span class="types"><a class="type" href="index.html#gameDataAll.get">get</a></span>
+         call it on start of your script, this is static object and pointer to it dont changes
+        </li>
+        <li><span class="parameter">battleStruct</span>
+            <span class="types"><a class="type" href="index.html#gameDataAll.battleStruct">battleStruct</a></span>
+         many battle data
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "gameDataAll.get"></a>
+    <strong>gameDataAll.get ()</strong>
+    </dt>
+    <dd>
+    Call it on start of your script, this is static object and pointer to it dont changed
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">gameDataAllStruct</span></span>
+        gameDataAll
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">gameData=gameDataAll.get();
+battleXCoord=gameData.battleStruct.xCoord;</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="battleStruct_table_section"></a>battleStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "gameDataAll.battleStruct"></a>
+    <strong>gameDataAll.battleStruct</strong>
+    </dt>
+    <dd>
+    basic battleStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">attackerXCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">attackerYCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">defenderXCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">defenderYCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">sides</span>
+            <span class="types"><a class="type" href="index.html#battleStruct.battleSide">battleSide[8]</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">sidesNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="battleSide_table_section"></a>battleSide table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "battleStruct.battleSide"></a>
+    <strong>battleStruct.battleSide</strong>
+    </dt>
+    <dd>
+    basic battleStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">isDefender</span>
+            <span class="types"><span class="type">boolean</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">isCanDeploy</span>
+            <span class="types"><span class="type">boolean</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">winConditions</span>
+            <span class="types"><span class="type">int[4]</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getWinConditionString</span>
+            <span class="types"><a class="type" href="index.html#battleSide:getWinConditionString">getWinConditionString</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">armiesNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">armies</span>
+            <span class="types"><a class="type" href="index.html#battleSide.trackedPointerArmy">trackedPointerArmy[8]</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "battleSide:getWinConditionString"></a>
+    <strong>battleSide:getWinConditionString (condition)</strong>
+    </dt>
+    <dd>
+    Get win condition string, for example: destroy<em>or</em>rout_enemy
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">condition</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        winCondition
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">gameData=gameDataAll.get();
+battleS=gameData.battleStruct;
+side1=gameData.battleStruct.sides[<span class="number">1</span>];
+<span class="keyword">for</span> i=<span class="number">1</span>,<span class="number">4</span> <span class="keyword">do</span>
+	winCond=side1.winConditions[i];
+	<span class="keyword">if</span>(winCond~=<span class="number">0</span>)<span class="keyword">then</span>
+		<span class="global">print</span>(side1.getWinConditionString(winCond));
+	<span class="keyword">end</span>
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="trackedPointerArmy_table_section"></a>trackedPointerArmy table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "battleSide.trackedPointerArmy"></a>
+    <strong>battleSide.trackedPointerArmy</strong>
+    </dt>
+    <dd>
+    basic trackedPointerArmy table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">army</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">deploymentArea</span>
+            <span class="types"><a class="type" href="index.html#trackedPointerArmy.deploymentAreaS">deploymentAreaS</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="deploymentAreaS_table_section"></a>deploymentAreaS table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "trackedPointerArmy.deploymentAreaS"></a>
+    <strong>trackedPointerArmy.deploymentAreaS</strong>
+    </dt>
+    <dd>
+    basic trackedPointerArmy table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">coordsNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">getCoordPair</span>
+            <span class="types"><a class="type" href="index.html#deploymentAreaS:getCoordPair">getCoordPair</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "deploymentAreaS:getCoordPair"></a>
+    <strong>deploymentAreaS:getCoordPair ()</strong>
+    </dt>
+    <dd>
+    Get pair of coords with number
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">float</span></span>
+        xCoord x coordinate of area</li>
+        <li>
+           <span class="types"><span class="type">float</span></span>
+        yCoord y coordinate of area</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">gameData=gameDataAll.get();
+battleS=gameData.battleStruct;
+side1=gameData.battleStruct.sides[<span class="number">1</span>];
+deployArea1=side1.armies[<span class="number">1</span>].deploymentArea;
+
+<span class="keyword">for</span> i = <span class="number">0</span>, deployArea1.coordsNum-<span class="number">1</span> <span class="keyword">do</span>
+	xCoord,yCoord=side1.armies[<span class="number">1</span>].deploymentArea:getCoordPair(i);
+	<span class="global">print</span>(xCoord,yCoord);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="EVENTS_TABLE_SECTION"></a>EVENTS TABLE SECTION </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "EventsFunctionsList"></a>
+    <strong>EventsFunctionsList</strong>
+    </dt>
+    <dd>
+
+<p>Events functions list. </p>
+<pre><code>Just list, use it without EventsFunctionsList.!!!
+</code></pre>
+
+
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">draw</span>
+            <span class="types"><a class="type" href="index.html#draw">draw</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onNewGameStart</span>
+            <span class="types"><a class="type" href="index.html#onNewGameStart">onNewGameStart</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCreateSaveFile</span>
+            <span class="types"><a class="type" href="index.html#onCreateSaveFile">onCreateSaveFile</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onLoadSaveFile</span>
+            <span class="types"><a class="type" href="index.html#onLoadSaveFile">onLoadSaveFile</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPluginLoad</span>
+            <span class="types"><a class="type" href="index.html#onPluginLoad">onPluginLoad</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onChangeTurnNum</span>
+            <span class="types"><a class="type" href="index.html#onChangeTurnNum">onChangeTurnNum</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCharacterSelected</span>
+            <span class="types"><a class="type" href="index.html#onCharacterSelected">onCharacterSelected</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPreFactionTurnStart</span>
+            <span class="types"><a class="type" href="index.html#onPreFactionTurnStart">onPreFactionTurnStart</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionTurnStart</span>
+            <span class="types"><a class="type" href="index.html#onFactionTurnStart">onFactionTurnStart</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionTurnEnd</span>
+            <span class="types"><a class="type" href="index.html#onFactionTurnEnd">onFactionTurnEnd</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionNewCapital</span>
+            <span class="types"><a class="type" href="index.html#onFactionNewCapital">onFactionNewCapital</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionWarDeclared</span>
+            <span class="types"><a class="type" href="index.html#onFactionWarDeclared">onFactionWarDeclared</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionAllianceDeclared</span>
+            <span class="types"><a class="type" href="index.html#onFactionAllianceDeclared">onFactionAllianceDeclared</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionTradeAgreementMade</span>
+            <span class="types"><a class="type" href="index.html#onFactionTradeAgreementMade">onFactionTradeAgreementMade</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionBreakAlliance</span>
+            <span class="types"><a class="type" href="index.html#onFactionBreakAlliance">onFactionBreakAlliance</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGiveMoney</span>
+            <span class="types"><a class="type" href="index.html#onGiveMoney">onGiveMoney</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUpdateAttitude</span>
+            <span class="types"><a class="type" href="index.html#onUpdateAttitude">onUpdateAttitude</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onDemeanour</span>
+            <span class="types"><a class="type" href="index.html#onDemeanour">onDemeanour</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGeneralAssaultsGeneral</span>
+            <span class="types"><a class="type" href="index.html#onGeneralAssaultsGeneral">onGeneralAssaultsGeneral</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGeneralAssaultsResidence</span>
+            <span class="types"><a class="type" href="index.html#onGeneralAssaultsResidence">onGeneralAssaultsResidence</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGeneralCaptureSettlement</span>
+            <span class="types"><a class="type" href="index.html#onGeneralCaptureSettlement">onGeneralCaptureSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGeneralCaptureResidence</span>
+            <span class="types"><a class="type" href="index.html#onGeneralCaptureResidence">onGeneralCaptureResidence</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSiegeEquipmentCompleted</span>
+            <span class="types"><a class="type" href="index.html#onSiegeEquipmentCompleted">onSiegeEquipmentCompleted</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPostBattle</span>
+            <span class="types"><a class="type" href="index.html#onPostBattle">onPostBattle</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onMultiTurnMove</span>
+            <span class="types"><a class="type" href="index.html#onMultiTurnMove">onMultiTurnMove</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSettlementSelected</span>
+            <span class="types"><a class="type" href="index.html#onSettlementSelected">onSettlementSelected</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSettlementUpgraded</span>
+            <span class="types"><a class="type" href="index.html#onSettlementUpgraded">onSettlementUpgraded</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSettlementConverted</span>
+            <span class="types"><a class="type" href="index.html#onSettlementConverted">onSettlementConverted</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCityRiots</span>
+            <span class="types"><a class="type" href="index.html#onCityRiots">onCityRiots</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUngarrisonedSettlement</span>
+            <span class="types"><a class="type" href="index.html#onUngarrisonedSettlement">onUngarrisonedSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUngarrisonedFort</span>
+            <span class="types"><a class="type" href="index.html#onUngarrisonedFort">onUngarrisonedFort</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGiveSettlement</span>
+            <span class="types"><a class="type" href="index.html#onGiveSettlement">onGiveSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onOccupySettlement</span>
+            <span class="types"><a class="type" href="index.html#onOccupySettlement">onOccupySettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onExterminatePopulation</span>
+            <span class="types"><a class="type" href="index.html#onExterminatePopulation">onExterminatePopulation</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSackSettlement</span>
+            <span class="types"><a class="type" href="index.html#onSackSettlement">onSackSettlement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onAddedToBuildingQueue</span>
+            <span class="types"><a class="type" href="index.html#onAddedToBuildingQueue">onAddedToBuildingQueue</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onBuildingDestroyed</span>
+            <span class="types"><a class="type" href="index.html#onBuildingDestroyed">onBuildingDestroyed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onBuildingCompleted</span>
+            <span class="types"><a class="type" href="index.html#onBuildingCompleted">onBuildingCompleted</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onEventCounter</span>
+            <span class="types"><a class="type" href="index.html#onEventCounter">onEventCounter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionExcommunicated</span>
+            <span class="types"><a class="type" href="index.html#onFactionExcommunicated">onFactionExcommunicated</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onDisaster</span>
+            <span class="types"><a class="type" href="index.html#onDisaster">onDisaster</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onHordeFormed</span>
+            <span class="types"><a class="type" href="index.html#onHordeFormed">onHordeFormed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onAddedToTrainingQueue</span>
+            <span class="types"><a class="type" href="index.html#onAddedToTrainingQueue">onAddedToTrainingQueue</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUnitDisbanded</span>
+            <span class="types"><a class="type" href="index.html#onUnitDisbanded">onUnitDisbanded</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUnitTrained</span>
+            <span class="types"><a class="type" href="index.html#onUnitTrained">onUnitTrained</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onAgentCreated</span>
+            <span class="types"><a class="type" href="index.html#onAgentCreated">onAgentCreated</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onObjSeen</span>
+            <span class="types"><a class="type" href="index.html#onObjSeen">onObjSeen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onTileSeen</span>
+            <span class="types"><a class="type" href="index.html#onTileSeen">onTileSeen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGameReloaded</span>
+            <span class="types"><a class="type" href="index.html#onGameReloaded">onGameReloaded</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onTransgression</span>
+            <span class="types"><a class="type" href="index.html#onTransgression">onTransgression</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPopeAcceptsCrusadeTarget</span>
+            <span class="types"><a class="type" href="index.html#onPopeAcceptsCrusadeTarget">onPopeAcceptsCrusadeTarget</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCrusadeCalled</span>
+            <span class="types"><a class="type" href="index.html#onCrusadeCalled">onCrusadeCalled</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCrusadeEnds</span>
+            <span class="types"><a class="type" href="index.html#onCrusadeEnds">onCrusadeEnds</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPopeRejectsCrusadeTarget</span>
+            <span class="types"><a class="type" href="index.html#onPopeRejectsCrusadeTarget">onPopeRejectsCrusadeTarget</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onArmyTakesCrusadeTarget</span>
+            <span class="types"><a class="type" href="index.html#onArmyTakesCrusadeTarget">onArmyTakesCrusadeTarget</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUnitsDesertCrusade</span>
+            <span class="types"><a class="type" href="index.html#onUnitsDesertCrusade">onUnitsDesertCrusade</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPopeElected</span>
+            <span class="types"><a class="type" href="index.html#onPopeElected">onPopeElected</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onVotedForPope</span>
+            <span class="types"><a class="type" href="index.html#onVotedForPope">onVotedForPope</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onAssassinCaughtAttackingPope</span>
+            <span class="types"><a class="type" href="index.html#onAssassinCaughtAttackingPope">onAssassinCaughtAttackingPope</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onInquisitorAppointed</span>
+            <span class="types"><a class="type" href="index.html#onInquisitorAppointed">onInquisitorAppointed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSettlementPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onSettlementPanelOpen">onSettlementPanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFinancesPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onFinancesPanelOpen">onFinancesPanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFactionSummaryPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onFactionSummaryPanelOpen">onFactionSummaryPanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onFamilyTreePanelOpenFunc</span>
+            <span class="types"><a class="type" href="index.html#onFamilyTreePanelOpenFunc">onFamilyTreePanelOpenFunc</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onDiplomaticStandingPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onDiplomaticStandingPanelOpen">onDiplomaticStandingPanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onDiplomacyPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onDiplomacyPanelOpen">onDiplomacyPanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPreBattlePanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onPreBattlePanelOpen">onPreBattlePanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onNavalAutoResolvePanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onNavalAutoResolvePanelOpen">onNavalAutoResolvePanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCharacterPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onCharacterPanelOpen">onCharacterPanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onTradePanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onTradePanelOpen">onTradePanelOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onRequestBuildingAdvice</span>
+            <span class="types"><a class="type" href="index.html#onRequestBuildingAdvice">onRequestBuildingAdvice</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onRequestTrainingAdvice</span>
+            <span class="types"><a class="type" href="index.html#onRequestTrainingAdvice">onRequestTrainingAdvice</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onMessageOpen</span>
+            <span class="types"><a class="type" href="index.html#onMessageOpen">onMessageOpen</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onIncomingMessage</span>
+            <span class="types"><a class="type" href="index.html#onIncomingMessage">onIncomingMessage</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onMessageClosed</span>
+            <span class="types"><a class="type" href="index.html#onMessageClosed">onMessageClosed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onButtonPressed</span>
+            <span class="types"><a class="type" href="index.html#onButtonPressed">onButtonPressed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onScrollClosed</span>
+            <span class="types"><a class="type" href="index.html#onScrollClosed">onScrollClosed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onScrollOpened</span>
+            <span class="types"><a class="type" href="index.html#onScrollOpened">onScrollOpened</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onUIElementVisible</span>
+            <span class="types"><a class="type" href="index.html#onUIElementVisible">onUIElementVisible</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onScrollAdviceRequested</span>
+            <span class="types"><a class="type" href="index.html#onScrollAdviceRequested">onScrollAdviceRequested</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onSettlementScrollAdviceRequested</span>
+            <span class="types"><a class="type" href="index.html#onSettlementScrollAdviceRequested">onSettlementScrollAdviceRequested</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onPreBattleScrollAdviceRequested</span>
+            <span class="types"><a class="type" href="index.html#onPreBattleScrollAdviceRequested">onPreBattleScrollAdviceRequested</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onNavalPreBattleScrollAdviceRequested</span>
+            <span class="types"><a class="type" href="index.html#onNavalPreBattleScrollAdviceRequested">onNavalPreBattleScrollAdviceRequested</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCollegeOfCardinalsPanelOpen</span>
+            <span class="types"><a class="type" href="index.html#onCollegeOfCardinalsPanelOpen">onCollegeOfCardinalsPanelOpen</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "draw"></a>
+    <strong>draw (pDevice)</strong>
+    </dt>
+    <dd>
+    Called every time an image is rendered for display
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">pDevice</span>
+            <span class="types"><span class="type">LPDIRECT3DDEVICE9</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> draw(device)
+	ImGui.Begin(<span class="string">"test"</span>);
+
+	ImGui.Text(<span class="string">"Some test text"</span>)
+
+	ImGui.End();
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onNewGameStart"></a>
+    <strong>onNewGameStart ()</strong>
+    </dt>
+    <dd>
+    Called on new campaign start
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onNewGameStart()
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPluginLoad"></a>
+    <strong>onPluginLoad ()</strong>
+    </dt>
+    <dd>
+    Called on plugin load(at game start)
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onPluginLoad()
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCreateSaveFile"></a>
+    <strong>onCreateSaveFile ()</strong>
+    </dt>
+    <dd>
+    Called on creating save file
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">savefiles = {};
+currentPath=M2TWEOP.getPluginPath();
+
+savefiles[<span class="number">1</span>]=currentPath..<span class="string">"\\testSaveFile1.ourSave"</span>;
+savefiles[<span class="number">2</span>]=currentPath..<span class="string">"\\testSaveFile2.ourSave"</span>;
+
+file1 = <span class="global">io</span>.open(savefiles[<span class="number">1</span>], <span class="string">"w"</span>)
+file1:write(<span class="string">"This is save file 1!!!"</span>)
+file1:close()
+
+file2 = <span class="global">io</span>.open(savefiles[<span class="number">2</span>], <span class="string">"w"</span>)
+file2:write(<span class="string">"This is save file 2!!!"</span>)
+file2:close()
+
+<span class="keyword">return</span> savefiles;</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onLoadSaveFile"></a>
+    <strong>onLoadSaveFile ()</strong>
+    </dt>
+    <dd>
+    Called on loading save file
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onLoadSaveFile(paths)
+	lastSaveFiles={};
+	<span class="keyword">for</span> key, value <span class="keyword">in</span> <span class="global">pairs</span>(paths) <span class="keyword">do</span>
+
+	<span class="global">print</span>(key, <span class="string">" -- "</span>, value);
+
+	lastSaveFiles[key]={};
+	lastSaveFiles[key][<span class="number">1</span>]=value;
+	lastSaveFiles[key][<span class="number">2</span>]=readFile(value);
+
+	<span class="keyword">end</span>
+<span class="keyword">end</span>
+
+
+<span class="comment">--read file and return it`s content
+</span><span class="keyword">local</span> <span class="keyword">function</span> readFile(path)
+	<span class="keyword">local</span> file = <span class="global">io</span>.open(path, <span class="string">"r"</span>) ;
+	<span class="keyword">if</span> (<span class="keyword">not</span> file) <span class="keyword">then</span> <span class="keyword">return</span> <span class="keyword">nil</span> <span class="keyword">end</span>
+	<span class="keyword">local</span> content = file:read <span class="string">"*a"</span>;
+	file:close();
+	<span class="keyword">return</span> content;
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onChangeTurnNum"></a>
+    <strong>onChangeTurnNum (turnNumber)</strong>
+    </dt>
+    <dd>
+    Called on every turn
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">turnNumber</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onChangeTurnNum(turnNum)
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCharacterSelected"></a>
+    <strong>onCharacterSelected (selectedChar)</strong>
+    </dt>
+    <dd>
+    Called on character selection
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selectedChar</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onChangeTurnNum(onCharacterSelected)
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPreFactionTurnStart"></a>
+    <strong>onPreFactionTurnStart (faction)</strong>
+    </dt>
+    <dd>
+    Called before faction turn start
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onPreFactionTurnStart(fac)
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionTurnStart"></a>
+    <strong>onFactionTurnStart (faction)</strong>
+    </dt>
+    <dd>
+    Called at faction turn start
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionTurnStart(fac)
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionTurnEnd"></a>
+    <strong>onFactionTurnEnd (faction)</strong>
+    </dt>
+    <dd>
+    Called at faction turn end
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionTurnEnd(fac)
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionNewCapital"></a>
+    <strong>onFactionNewCapital (faction)</strong>
+    </dt>
+    <dd>
+    Called after faction has new capital
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionNewCapital(fac)
+newCapital=fac.capital();
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionWarDeclared"></a>
+    <strong>onFactionWarDeclared (faction, targetFaction)</strong>
+    </dt>
+    <dd>
+    Called after declaring war
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionWarDeclared(faction,targetFaction)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionAllianceDeclared"></a>
+    <strong>onFactionAllianceDeclared (faction, targetFaction)</strong>
+    </dt>
+    <dd>
+    Called after declaring alliance
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionAllianceDeclared(faction,targetFaction)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionTradeAgreementMade"></a>
+    <strong>onFactionTradeAgreementMade (faction, targetFaction)</strong>
+    </dt>
+    <dd>
+    Called after declaring trade agreement
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionTradeAgreementMade(faction,targetFaction)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionBreakAlliance"></a>
+    <strong>onFactionBreakAlliance (faction, targetFaction)</strong>
+    </dt>
+    <dd>
+    Called after break alliance
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onFactionBreakAlliance(faction,targetFaction)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGiveMoney"></a>
+    <strong>onGiveMoney (faction, targetFaction, amount)</strong>
+    </dt>
+    <dd>
+    Called after giving money
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">amount</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onGiveMoney(faction,targetFaction,amount)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUpdateAttitude"></a>
+    <strong>onUpdateAttitude (faction, targetFaction)</strong>
+    </dt>
+    <dd>
+    Called after update attitude
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onUpdateAttitude(faction,targetFaction)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onDemeanour"></a>
+    <strong>onDemeanour (faction, targetFaction, amount)</strong>
+    </dt>
+    <dd>
+    A demeanour response has occured in diplomacy talks
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">targetFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">amount</span>
+            <span class="types"><span class="type">float</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onDemeanour(faction,targetFaction,amount)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGeneralAssaultsGeneral"></a>
+    <strong>onGeneralAssaultsGeneral (attacker, defender)</strong>
+    </dt>
+    <dd>
+    A general has attacked another general
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">attacker</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">defender</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onGeneralAssaultsGeneral(attacker,defender)
+-something
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGeneralAssaultsResidence"></a>
+    <strong>onGeneralAssaultsResidence (attacker, settlement, fort)</strong>
+    </dt>
+    <dd>
+    An assault has taken place
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">attacker</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+         nil if it is fort
+        </li>
+        <li><span class="parameter">fort</span>
+            <span class="types"><span class="type">fortStruct</span></span>
+         nil if it is settlement
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onGeneralAssaultsResidence(attacker,settlement,fort)
+	<span class="keyword">if</span>(settlement~=<span class="keyword">nil</span>)
+	<span class="keyword">then</span>
+		-settlement
+	<span class="keyword">else</span>
+		-fort
+	<span class="keyword">end</span>
+
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGeneralCaptureSettlement"></a>
+    <strong>onGeneralCaptureSettlement (attacker, settlement)</strong>
+    </dt>
+    <dd>
+    Settlement captured
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">attacker</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onGeneralCaptureSettlement(attacker,settlement)
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGeneralCaptureResidence"></a>
+    <strong>onGeneralCaptureResidence (attacker)</strong>
+    </dt>
+    <dd>
+    A General has captured a residence(fort, watchtower, check it yourself)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">attacker</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onGeneralCaptureResidence(attacker)
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSiegeEquipmentCompleted"></a>
+    <strong>onSiegeEquipmentCompleted (settlement, fort)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+         nil if it is fort
+        </li>
+        <li><span class="parameter">fort</span>
+            <span class="types"><span class="type">fortStruct</span></span>
+         nil if it is settlement
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPostBattle"></a>
+    <strong>onPostBattle (character)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onMultiTurnMove"></a>
+    <strong>onMultiTurnMove (character)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSettlementSelected"></a>
+    <strong>onSettlementSelected (settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSettlementUpgraded"></a>
+    <strong>onSettlementUpgraded (settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSettlementConverted"></a>
+    <strong>onSettlementConverted (settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCityRiots"></a>
+    <strong>onCityRiots (settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUngarrisonedSettlement"></a>
+    <strong>onUngarrisonedSettlement (settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUngarrisonedFort"></a>
+    <strong>onUngarrisonedFort (settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><span class="type">forttruct</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGiveSettlement"></a>
+    <strong>onGiveSettlement (settlement, fac1, fac2)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac1</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac2</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onOccupySettlement"></a>
+    <strong>onOccupySettlement (char1, settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">char1</span>
+            <span class="types"><span class="type">namedharacter</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onExterminatePopulation"></a>
+    <strong>onExterminatePopulation (char1, settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">char1</span>
+            <span class="types"><span class="type">namedharacter</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSackSettlement"></a>
+    <strong>onSackSettlement (char1, settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">char1</span>
+            <span class="types"><span class="type">namedharacter</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onAddedToBuildingQueue"></a>
+    <strong>onAddedToBuildingQueue (settlement, buildNme)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">buildNme</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onBuildingDestroyed"></a>
+    <strong>onBuildingDestroyed (settlement, buildNme)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">buildNme</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onBuildingCompleted"></a>
+    <strong>onBuildingCompleted (fac, settlement)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">settlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onEventCounter"></a>
+    <strong>onEventCounter (counter)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">counter</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionExcommunicated"></a>
+    <strong>onFactionExcommunicated (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onDisaster"></a>
+    <strong>onDisaster (eventType)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eventType</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onHordeFormed"></a>
+    <strong>onHordeFormed (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onAddedToTrainingQueue"></a>
+    <strong>onAddedToTrainingQueue (sett, unitName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unitName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUnitDisbanded"></a>
+    <strong>onUnitDisbanded (fac, unit)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unit</span>
+            <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUnitTrained"></a>
+    <strong>onUnitTrained (fac, sett, unit)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unit</span>
+            <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onAgentCreated"></a>
+    <strong>onAgentCreated (fac, agentType, sett)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">agentType</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onObjSeen"></a>
+    <strong>onObjSeen (fac, fac2, xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac2</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onTileSeen"></a>
+    <strong>onTileSeen (fac, xCoord, yCoord)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGameReloaded"></a>
+    <strong>onGameReloaded (something)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">something</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onTransgression"></a>
+    <strong>onTransgression (fac1, description, fac2)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac1</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">description</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac2</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPopeAcceptsCrusadeTarget"></a>
+    <strong>onPopeAcceptsCrusadeTarget (crusade, target)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">crusade</span>
+            <span class="types"><span class="type">crusadeStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCrusadeCalled"></a>
+    <strong>onCrusadeCalled (crusade, target)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">crusade</span>
+            <span class="types"><span class="type">crusadeStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCrusadeEnds"></a>
+    <strong>onCrusadeEnds (crusade, target)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">crusade</span>
+            <span class="types"><span class="type">crusadeStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPopeRejectsCrusadeTarget"></a>
+    <strong>onPopeRejectsCrusadeTarget (crusade, target)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">crusade</span>
+            <span class="types"><span class="type">crusadeStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onArmyTakesCrusadeTarget"></a>
+    <strong>onArmyTakesCrusadeTarget (crusade, target, army)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">crusade</span>
+            <span class="types"><span class="type">crusadeStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">army</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUnitsDesertCrusade"></a>
+    <strong>onUnitsDesertCrusade (crusade, target, fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">crusade</span>
+            <span class="types"><span class="type">crusadeStruct</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">target</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPopeElected"></a>
+    <strong>onPopeElected (fac, fac2)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">fac2</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onVotedForPope"></a>
+    <strong>onVotedForPope (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onAssassinCaughtAttackingPope"></a>
+    <strong>onAssassinCaughtAttackingPope (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onInquisitorAppointed"></a>
+    <strong>onInquisitorAppointed (fac, sett)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSettlementPanelOpen"></a>
+    <strong>onSettlementPanelOpen (sett)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFinancesPanelOpen"></a>
+    <strong>onFinancesPanelOpen (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFactionSummaryPanelOpen"></a>
+    <strong>onFactionSummaryPanelOpen (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onFamilyTreePanelOpenFunc"></a>
+    <strong>onFamilyTreePanelOpenFunc (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onDiplomaticStandingPanelOpen"></a>
+    <strong>onDiplomaticStandingPanelOpen (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onDiplomacyPanelOpen"></a>
+    <strong>onDiplomacyPanelOpen (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPreBattlePanelOpen"></a>
+    <strong>onPreBattlePanelOpen (fac)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onNavalAutoResolvePanelOpen"></a>
+    <strong>onNavalAutoResolvePanelOpen ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCharacterPanelOpen"></a>
+    <strong>onCharacterPanelOpen (selectedChar)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">selectedChar</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onTradePanelOpen"></a>
+    <strong>onTradePanelOpen (sett)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onRequestBuildingAdvice"></a>
+    <strong>onRequestBuildingAdvice (sett)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onRequestTrainingAdvice"></a>
+    <strong>onRequestTrainingAdvice (sett, recommendedUnitEntry)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">recommendedUnitEntry</span>
+            <span class="types"><a class="type" href="index.html#eduEntry">eduEntry</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onMessageOpen"></a>
+    <strong>onMessageOpen (fac, msgType)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">msgType</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onIncomingMessage"></a>
+    <strong>onIncomingMessage (fac, msgType)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fac</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">msgType</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onMessageClosed"></a>
+    <strong>onMessageClosed (msgType)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">msgType</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onButtonPressed"></a>
+    <strong>onButtonPressed (buttonName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">buttonName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onScrollClosed"></a>
+    <strong>onScrollClosed (scrollName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">scrollName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onScrollOpened"></a>
+    <strong>onScrollOpened (scrollName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">scrollName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onUIElementVisible"></a>
+    <strong>onUIElementVisible (elementName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">elementName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onScrollAdviceRequested"></a>
+    <strong>onScrollAdviceRequested (scrollName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">scrollName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onSettlementScrollAdviceRequested"></a>
+    <strong>onSettlementScrollAdviceRequested (sett, scrollName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">scrollName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onPreBattleScrollAdviceRequested"></a>
+    <strong>onPreBattleScrollAdviceRequested ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onNavalPreBattleScrollAdviceRequested"></a>
+    <strong>onNavalPreBattleScrollAdviceRequested ()</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCollegeOfCardinalsPanelOpen"></a>
+    <strong>onCollegeOfCardinalsPanelOpen (college)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">college</span>
+            <span class="types"><span class="type">collegeCardinalsStruct</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+</dl>
+
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-06-12 19:41:33 </i>
+<i style="float:right;">Last updated 2021-06-21 21:46:34 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

@@ -204,6 +204,7 @@
     <ClInclude Include="realGameTypes.h" />
     <ClInclude Include="religionEvents.h" />
     <ClInclude Include="resourcesHelpers.h" />
+    <ClInclude Include="seaBattle.h" />
     <ClInclude Include="settlementHelpers.h" />
     <ClInclude Include="stackStructHelpers.h" />
     <ClInclude Include="technicalHelpers.h" />
@@ -243,6 +244,7 @@
     <ClCompile Include="pluginM2TWEOP.cpp" />
     <ClCompile Include="religionEvents.cpp" />
     <ClCompile Include="resourcesHelpers.cpp" />
+    <ClCompile Include="seaBattle.cpp" />
     <ClCompile Include="settlementHelpers.cpp" />
     <ClCompile Include="stackStructHelpers.cpp" />
     <ClCompile Include="technicalHelpers.cpp" />

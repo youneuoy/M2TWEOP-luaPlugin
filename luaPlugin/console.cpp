@@ -1,6 +1,7 @@
 #include "console.h"
 #include "imgui_stdlib.h"
 #include "plugData.h"
+
 namespace console
 {
 	struct
@@ -55,6 +56,8 @@ namespace console
 		{
 			return;
 		}
+
+
 
 		ImGuiWindowFlags iwf = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoResize;
 		ImGui::SetNextWindowSize(ImVec2(800, 0));

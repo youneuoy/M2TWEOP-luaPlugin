@@ -94,6 +94,10 @@ public:
 class basicFuncs
 {
 public:
+	ProcLoader<int(__cdecl*)(const char* counterName, bool&)> getScriptCounter;
+	ProcLoader<void(__cdecl*)(const char*, int)> setScriptCounter;
+
+
 	ProcLoader<bool(__cdecl*)(int*)> isTileFree;
 	ProcLoader<gameDataAllStruct*(__cdecl*)()> getGameDataAll;
 

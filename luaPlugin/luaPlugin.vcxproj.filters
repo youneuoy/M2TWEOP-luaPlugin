@@ -90,6 +90,9 @@
     <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers">
       <UniqueIdentifier>{211cefee-cf6e-426a-a92a-1e3f9a57ab1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\pluginFuncs\seaBattle">
+      <UniqueIdentifier>{ed7ca528-5761-446b-8639-18aba068872a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="plugData.h">
@@ -206,6 +209,9 @@
     <ClInclude Include="technicalHelpers.h">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="seaBattle.h">
+      <Filter>Исходные файлы\pluginFuncs\seaBattle</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -318,6 +324,9 @@
     </ClCompile>
     <ClCompile Include="technicalHelpers.cpp">
       <Filter>Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="seaBattle.cpp">
+      <Filter>Исходные файлы\pluginFuncs\seaBattle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
