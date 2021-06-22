@@ -77,6 +77,8 @@ Please do not include the program in your modifications without my permission (a
 https://github.com/MSeys/sol2_ImGui_Bindings
 
 ## Version History
+* **v.2.0:**
+A huge number of fixes and optimizations. Lots of new features in the lua plugin, as well as features exported for use in other plugins.
 * **v.2.0 test2:**
 Changed initializing way
 Added an option to hide the launcher at startup

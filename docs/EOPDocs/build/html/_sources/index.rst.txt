@@ -5,6 +5,8 @@
 
 Welcome to M2TWEOP's documentation!
 ===================================
+
+
 .. raw:: html
 
 	<div align="center">
@@ -12,20 +14,20 @@ Welcome to M2TWEOP's documentation!
 		<br>
 		<br>
 	  <p>
-		<a href="https://github.com/youneuoy/M2TWEOP-library"><img src="_static/github.png" alt="github repository" width="250" height="70"></a>
+	  	<a href="https://www.twcenter.net/forums/forumdisplay.php?2296-M2TW-Engine-Overhaul-Project"><img src="_static/twc.png" alt="TWC" width="250" height="70"/></a>
 		<a href="https://discord.gg/Epqjm8u2WK"><img src="_static/discorsd.png" alt="Discord server" width="250" height="70"></a>
-		<a href="https://www.twcenter.net/forums/forumdisplay.php?2296-M2TW-Engine-Overhaul-Project"><img src="_static/twc.png" alt="TWC" width="250" height="70"/></a>
 		<a href="https://www.youtube.com/channel/UCMyHomaKeeGR4ZPGrBo9dYw"><img src="_static/youtube.png" alt="YouTube" width="250" height="70"/></a>
 	  </p>
 	</div>
 
 
-   
 .. toctree::
-   :maxdepth: 2
-   
-   M2TWEOP.md
+	:maxdepth: 2
 
-`M2TWEOP LUA plugin docs <_static/LuaLib/index.html>`_
+
+	M2TWEOP.md
+
+`M2TWEOP LUA plugin <_static/LuaLib/index.html>`_
+----------------------------------------------------------------------------------------------------------------------------
 
 

@@ -13,7 +13,20 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+import alabaster
 
+html_theme_path = [alabaster.get_path()]
+extensions = ['alabaster']
+html_theme = 'alabaster'
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',
+        'relations.html',
+        'searchbox.html',
+        'donate.html',
+    ]
+}
 
 # -- Project information -----------------------------------------------------
 
@@ -54,14 +67,34 @@ exclude_patterns = []
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+
+
+
 html_theme_options = {
+    'description': 'Designed to expand the capabilities of the game Medieval 2: Total War',
     'github_user': 'youneuoy',
     'github_repo': 'M2TWEOP-library',
+    'github_button': True,
+    'fixed_sidebar': True,
+    'extra_nav_links': {
+        'M2TWEOP LUA plugin': '_static/LuaLib/index.html',
+    },
+    'donate_url':'https://www.patreon.com/m2tweop',
+
 }
+
 html_favicon = '_static/EOPIcon.png'
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+
+#<p>
+#<a class="badge" href="https://www.patreon.com/m2tweop">
+#<img src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3DM2TWEOP%26type%3Dpatrons&style=flat" alt="Donate">
+#</a>
+#</p>
+
