@@ -7,8 +7,10 @@ void onChangeTurnNum(int num)
 
 void onNewGameStart()
 {
-	tryLua((*plugData::data.luaAll.onNewGameStart)());
-
+	if (plugData::data.luaAll.onNewGameStart != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onNewGameStart)());
+	}
 }
 
 void onLoadGamePl(std::vector<std::string>* saveFiles)

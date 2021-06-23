@@ -30,68 +30,68 @@
     <Filter Include="Исходные файлы\pluginFuncs">
       <UniqueIdentifier>{70fa15da-9f57-4cf0-a1bc-56c792963e6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers">
-      <UniqueIdentifier>{5e4075d4-bff7-4071-973c-3b6854122b3f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\structHelpers">
-      <UniqueIdentifier>{79c02052-bdaf-4109-922a-e9537025ca16}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers">
-      <UniqueIdentifier>{23fd0284-655d-440f-ad0b-d0613cbcac3a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\structHelpers\faction">
-      <UniqueIdentifier>{94cb3b75-f2bb-4618-9af5-048f085f03f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\structHelpers\resources">
-      <UniqueIdentifier>{9bddf84a-21c6-473e-99d0-a41d8045eb2e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\structHelpers\setlement">
-      <UniqueIdentifier>{8049f164-137d-4e4e-b8b1-62dc94e979e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\structHelpers\stackStruct">
-      <UniqueIdentifier>{f1f249ef-3a0c-48eb-b4d1-8e1716d7c01d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\structHelpers\setlement\buildings">
-      <UniqueIdentifier>{16761283-b53f-4427-bca3-c3c888c35bbe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\game">
-      <UniqueIdentifier>{feb064e2-aad1-46c5-8eae-dcec25197dab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\generalHelpers">
-      <UniqueIdentifier>{e5269dca-d848-4933-abe3-398e186d1fb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\unitHelpers">
-      <UniqueIdentifier>{0ea50778-bd0b-47ec-bfd3-e7e6711a825a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap">
-      <UniqueIdentifier>{12267017-112a-4137-aad8-36d3d637231b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\objects">
-      <UniqueIdentifier>{4d669216-7bbc-49c5-902d-2f0a96c22824}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\camera">
-      <UniqueIdentifier>{ba79d163-f4bd-47f4-b1e3-e8cc7185c095}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\pluginFuncs\graphics">
       <UniqueIdentifier>{b1286217-5a62-4d66-b4d7-dd2917cba39d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\m2tweopHelpres">
-      <UniqueIdentifier>{582e2a69-e0f7-480f-ab53-e180097096a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers">
-      <UniqueIdentifier>{dad8c65e-6f56-487a-b637-892c39dbe6a5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Исходные файлы\luaBind">
       <UniqueIdentifier>{b606360f-7b2b-4ee3-846b-5c1bc18ed243}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers">
-      <UniqueIdentifier>{69807e60-4fc9-4a09-a1cc-755c0c364162}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers">
-      <UniqueIdentifier>{211cefee-cf6e-426a-a92a-1e3f9a57ab1a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\pluginFuncs\seaBattle">
       <UniqueIdentifier>{ed7ca528-5761-446b-8639-18aba068872a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers">
+      <UniqueIdentifier>{5e4075d4-bff7-4071-973c-3b6854122b3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers">
+      <UniqueIdentifier>{79c02052-bdaf-4109-922a-e9537025ca16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\faction">
+      <UniqueIdentifier>{94cb3b75-f2bb-4618-9af5-048f085f03f8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\resources">
+      <UniqueIdentifier>{9bddf84a-21c6-473e-99d0-a41d8045eb2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\setlement">
+      <UniqueIdentifier>{8049f164-137d-4e4e-b8b1-62dc94e979e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\setlement\buildings">
+      <UniqueIdentifier>{16761283-b53f-4427-bca3-c3c888c35bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\stackStruct">
+      <UniqueIdentifier>{f1f249ef-3a0c-48eb-b4d1-8e1716d7c01d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers">
+      <UniqueIdentifier>{23fd0284-655d-440f-ad0b-d0613cbcac3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\game">
+      <UniqueIdentifier>{feb064e2-aad1-46c5-8eae-dcec25197dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\generalHelpers">
+      <UniqueIdentifier>{e5269dca-d848-4933-abe3-398e186d1fb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\unitHelpers">
+      <UniqueIdentifier>{0ea50778-bd0b-47ec-bfd3-e7e6711a825a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap">
+      <UniqueIdentifier>{12267017-112a-4137-aad8-36d3d637231b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\objects">
+      <UniqueIdentifier>{4d669216-7bbc-49c5-902d-2f0a96c22824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\camera">
+      <UniqueIdentifier>{ba79d163-f4bd-47f4-b1e3-e8cc7185c095}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\m2tweopHelpres">
+      <UniqueIdentifier>{582e2a69-e0f7-480f-ab53-e180097096a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\gameDataAllHelpers">
+      <UniqueIdentifier>{dad8c65e-6f56-487a-b637-892c39dbe6a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\gameDataAllHelpers\battleHelpers">
+      <UniqueIdentifier>{69807e60-4fc9-4a09-a1cc-755c0c364162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\technicalHelpers">
+      <UniqueIdentifier>{211cefee-cf6e-426a-a92a-1e3f9a57ab1a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,40 +150,40 @@
       <Filter>Исходные файлы\pluginFuncs</Filter>
     </ClInclude>
     <ClInclude Include="luaGetSetFuncs.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers</Filter>
     </ClInclude>
     <ClInclude Include="factionHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\faction</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\faction</Filter>
     </ClInclude>
     <ClInclude Include="resourcesHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\resources</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\resources</Filter>
     </ClInclude>
     <ClInclude Include="settlementHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\setlement</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement</Filter>
     </ClInclude>
     <ClInclude Include="stackStructHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\stackStruct</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\stackStruct</Filter>
     </ClInclude>
     <ClInclude Include="buildingStructHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\setlement\buildings</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement\buildings</Filter>
     </ClInclude>
     <ClInclude Include="objectsHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\objects</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\objects</Filter>
     </ClInclude>
     <ClInclude Include="gameHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\game</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\game</Filter>
     </ClInclude>
     <ClInclude Include="generalHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\generalHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\generalHelpers</Filter>
     </ClInclude>
     <ClInclude Include="generalCharactericticsHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\generalHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\generalHelpers</Filter>
     </ClInclude>
     <ClInclude Include="unitHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\unitHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\unitHelpers</Filter>
     </ClInclude>
     <ClInclude Include="cameraHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\camera</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\camera</Filter>
     </ClInclude>
     <ClInclude Include="imgui\imgui_stdlib.h">
       <Filter>Исходные файлы\technical\ImGui</Filter>
@@ -192,22 +192,22 @@
       <Filter>Исходные файлы\pluginFuncs\graphics</Filter>
     </ClInclude>
     <ClInclude Include="m2tweopHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\m2tweopHelpres</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\m2tweopHelpres</Filter>
     </ClInclude>
     <ClInclude Include="imgui\sol_ImGui.h">
       <Filter>lua</Filter>
     </ClInclude>
     <ClInclude Include="gameDataAllHelper.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\gameDataAllHelpers</Filter>
     </ClInclude>
     <ClInclude Include="luaP.h">
       <Filter>Исходные файлы\luaBind</Filter>
     </ClInclude>
     <ClInclude Include="battleHandlerHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
     </ClInclude>
     <ClInclude Include="technicalHelpers.h">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\technicalHelpers</Filter>
     </ClInclude>
     <ClInclude Include="seaBattle.h">
       <Filter>Исходные файлы\pluginFuncs\seaBattle</Filter>
@@ -254,40 +254,40 @@
       <Filter>Исходные файлы\pluginFuncs</Filter>
     </ClCompile>
     <ClCompile Include="luaGetSetFuncs.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers</Filter>
     </ClCompile>
     <ClCompile Include="factionHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\faction</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\faction</Filter>
     </ClCompile>
     <ClCompile Include="resourcesHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\resources</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\resources</Filter>
     </ClCompile>
     <ClCompile Include="settlementHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\setlement</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement</Filter>
     </ClCompile>
     <ClCompile Include="stackStructHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\stackStruct</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\stackStruct</Filter>
     </ClCompile>
     <ClCompile Include="buildingStructHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\structHelpers\setlement\buildings</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement\buildings</Filter>
     </ClCompile>
     <ClCompile Include="objectsHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\objects</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\objects</Filter>
     </ClCompile>
     <ClCompile Include="gameHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\game</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\game</Filter>
     </ClCompile>
     <ClCompile Include="generalHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\generalHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\generalHelpers</Filter>
     </ClCompile>
     <ClCompile Include="generalCharactericticsHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\generalHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\generalHelpers</Filter>
     </ClCompile>
     <ClCompile Include="unitHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\unitHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\unitHelpers</Filter>
     </ClCompile>
     <ClCompile Include="cameraHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\namespaceHelpers\stratmap\camera</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\camera</Filter>
     </ClCompile>
     <ClCompile Include="imgui\imgui_stdlib.cpp">
       <Filter>Исходные файлы\technical\ImGui</Filter>
@@ -302,10 +302,10 @@
       <Filter>Исходные файлы\technical\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="m2tweopHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\m2tweopHelpres</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\m2tweopHelpres</Filter>
     </ClCompile>
     <ClCompile Include="gameDataAllHelper.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\gameDataAllHelpers</Filter>
     </ClCompile>
     <ClCompile Include="luaP.cpp">
       <Filter>Исходные файлы\luaBind</Filter>
@@ -317,13 +317,13 @@
       <Filter>Исходные файлы\luaBind</Filter>
     </ClCompile>
     <ClCompile Include="battleHandlerHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\gameDataAllHelpers\battleHelpers</Filter>
     </ClCompile>
     <ClCompile Include="luaTech.cpp">
       <Filter>Исходные файлы\luaBind</Filter>
     </ClCompile>
     <ClCompile Include="technicalHelpers.cpp">
-      <Filter>Исходные файлы\pluginFuncs\luaHelpers\technicalHelpers</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\technicalHelpers</Filter>
     </ClCompile>
     <ClCompile Include="seaBattle.cpp">
       <Filter>Исходные файлы\pluginFuncs\seaBattle</Filter>
