@@ -18,6 +18,8 @@ namespace m2tweopHelpers
 	void setMaxBgSize(unsigned char maxBgSize);
 	void unlockGameConsoleCommands();
 
+	void setEDUUnitsSize(signed short min, signed short max);
+
 
 	std::tuple<int, int, void*>  loadTextureToGame(const std::string& path);
 	void unloadTextureFromGame(void* texture);

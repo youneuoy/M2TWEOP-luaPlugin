@@ -30,4 +30,8 @@ namespace generalCharactericticsHelpers
 	{
 		return character->age&1;
 	}
+	void setAsHeir(generalCharacterictics* character, bool isJustSet)
+	{
+		(*(*plugData::data.funcs.setHeir))(character, isJustSet);
+	}
 }

@@ -28,6 +28,12 @@ int initPlugin(std::string* modPath)
     fName = "getGameDataAll";
     plugData::data.funcs.getGameDataAll.Load(&plPath, &fName);
 
+    fName = "setEDUUnitsSize";
+    plugData::data.funcs.setEDUUnitsSize.Load(&plPath, &fName);
+
+    fName = "setHeir";
+    plugData::data.funcs.setHeir.Load(&plPath, &fName);
+
     fName = "getScriptCounter";
     plugData::data.funcs.getScriptCounter.Load(&plPath, &fName);
 

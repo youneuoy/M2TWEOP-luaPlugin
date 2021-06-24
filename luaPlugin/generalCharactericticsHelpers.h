@@ -14,5 +14,6 @@ namespace generalCharactericticsHelpers
 	void setAge(generalCharacterictics* character,int age);
 
 	bool isAlive(generalCharacterictics* character);
+	void setAsHeir(generalCharacterictics* character,bool isJustSet);
 };
 

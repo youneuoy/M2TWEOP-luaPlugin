@@ -31,6 +31,10 @@ namespace m2tweopHelpers
 	{
 		(*(*plugData::data.funcs.unlockConsoleCommands))();
 	}
+	void setEDUUnitsSize(signed short min, signed short max)
+	{
+		(*(*plugData::data.funcs.setEDUUnitsSize))(min,max);
+	}
 	std::tuple<int,int,void*> loadTextureToGame(const std::string& path)
 	{
 		int x = 0;

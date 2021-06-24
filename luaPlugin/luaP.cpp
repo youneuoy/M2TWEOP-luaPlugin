@@ -127,6 +127,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield toggleUnitsBMapHighlight toggleUnitsBMapHighlight
 	@tfield setReligionsLimit setReligionsLimit
 	@tfield isTileFree isTileFree
+	@tfield setEDUUnitsSize setEDUUnitsSize
 	@table M2TWEOP
 	*/
 
@@ -189,7 +190,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable["setAncillariesLimit"] = &m2tweopHelpers::setAncLimit;
 	/***
-	Unloc all console commands
+	Unloc all console commands, also allow use change_faction console command
 	@function M2TWEOP.unlockGameConsoleCommands
 	@usage
 	M2TWEOP.unlockGameConsoleCommands();
@@ -202,7 +203,17 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setMaxBgSize(222);
 	*/
-	tables.M2TWEOPTable["setMaxBgSize"] = &m2tweopHelpers::setMaxBgSize;
+	tables.M2TWEOPTable["setMaxBgSize"] = &m2tweopHelpers::setMaxBgSize;	
+	
+	/***
+	Set new edu units size
+	@function M2TWEOP.setEDUUnitsSize
+	@tparam int minSize maximum value - 300!
+	@tparam int maxSize maximum value - 300!
+	@usage
+	M2TWEOP.setEDUUnitsSize(1,300);
+	*/
+	tables.M2TWEOPTable["setEDUUnitsSize"] = &m2tweopHelpers::setEDUUnitsSize;
 
 
 	/***
@@ -621,6 +632,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield removeAncillary removeAncillary
 	@tfield int age
 	@tfield isAlive isAlive
+	@tfield setAsHeir setAsHeir
+	@tfield namedCharacter[4] childs check for nil!
 
 	@table namedCharacter
 	*/
@@ -654,6 +667,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter["subFaction"] = &generalCharacterictics::subFaction;
 	types.namedCharacter["parent"] = &generalCharacterictics::parent;
 	types.namedCharacter["spouse"] = &generalCharacterictics::spouse;
+	types.namedCharacter["childs"] = sol::property([](generalCharacterictics& self) { return std::ref(self.childs); });
 	types.namedCharacter["portrait"] = sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait>
 		);
@@ -694,6 +708,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	end
 	*/
 	types.namedCharacter["isAlive"] = &generalCharactericticsHelpers::isAlive;
+	/***
+	Set character as heir of his faction
+	@function namedCharacter:setAsHeir
+	@tparam bool isJustSet if true then make many additional operations, else just set as heir(both need some tests)
+	@usage
+	ourcharacter:setAsHeir(false);
+	*/
+	types.namedCharacter["setAsHeir"] = &generalCharactericticsHelpers::setAsHeir;
 
 
 	///Ancillary table section

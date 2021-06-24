@@ -102,6 +102,10 @@ public:
 	ProcLoader<gameDataAllStruct*(__cdecl*)()> getGameDataAll;
 
 
+	ProcLoader<void(__cdecl*)(signed short, signed short)> setEDUUnitsSize;
+	ProcLoader<void(__cdecl*)(generalCharacterictics*, bool)> setHeir;
+
+
 	ProcLoader<void(__cdecl*)(unsigned char)> setAncLimit;
 	ProcLoader<void(__cdecl*)(unsigned char)> setReligionsLimit;
 	ProcLoader<void(__cdecl*)(unsigned char)> setMaxBgSize;
