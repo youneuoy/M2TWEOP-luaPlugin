@@ -132,6 +132,8 @@ public:
 
 
 	
+	sol::function* onCampaignMapLoaded = nullptr;
+
 	sol::function* onNewGameStart = nullptr;
 	sol::function* onPluginLoad = nullptr;
 	sol::function* onCreateSaveFile = nullptr;

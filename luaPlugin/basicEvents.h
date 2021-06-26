@@ -4,6 +4,7 @@
 
 extern "C" PLUGINM2TWEOP_API void onChangeTurnNum(int num);
 extern "C" PLUGINM2TWEOP_API void onNewGameStart();
+extern "C" PLUGINM2TWEOP_API void onCampaignMapLoaded();
 extern "C" PLUGINM2TWEOP_API void onLoadGamePl(std::vector<std::string>* saveFiles);
 extern "C" PLUGINM2TWEOP_API std::vector<std::string>*onSaveGamePl(UNICODE_STRING * *&savePath);
 

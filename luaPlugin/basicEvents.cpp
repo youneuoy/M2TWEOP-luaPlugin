@@ -13,6 +13,14 @@ void onNewGameStart()
 	}
 }
 
+void onCampaignMapLoaded()
+{
+	if (plugData::data.luaAll.onCampaignMapLoaded != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onCampaignMapLoaded)());
+	}
+}
+
 void onLoadGamePl(std::vector<std::string>* saveFiles)
 {
 	

@@ -17,6 +17,7 @@ void luaP::onPluginLoadF()
 
 	@tfield draw draw
 	@tfield onNewGameStart onNewGameStart
+	@tfield onCampaignMapLoaded onCampaignMapLoaded
 	@tfield onCreateSaveFile onCreateSaveFile
 	@tfield onLoadSaveFile onLoadSaveFile
 	@tfield onPluginLoad onPluginLoad
@@ -150,13 +151,43 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onNewGameStart);
 
 	/***
+	Called after loading of campaign map
+
+	@function onCampaignMapLoaded
+
+	@usage
+	function onCampaignMapLoaded()
+	--something here
+	end
+	*/
+
+
+
+	onCampaignMapLoaded = new sol::function(luaState["onCampaignMapLoaded"]);
+	checkLuaFunc(&onCampaignMapLoaded);
+
+	/***
 	Called on plugin load(at game start)
 
 	@function onPluginLoad
 
 	@usage
-	function onPluginLoad()
-	--something here
+	--An example of using this event to perform actions at the beginning of a campaign once:
+
+	isCampaignLoadedFirstTime=false;
+	function onNewGameStart()
+	  isCampaignLoadedFirstTime=true;
+	end
+
+	function onCampaignMapLoaded()
+	  if(isCampaignLoadedFirstTime==false)
+		then
+		  do return end
+		end
+
+
+	  --here we do our stuff, what works only one time for each campaign
+	  isCampaignLoadedFirstTime=false;
 	end
 	*/
 
