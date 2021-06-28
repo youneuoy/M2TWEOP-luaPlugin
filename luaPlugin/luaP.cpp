@@ -147,7 +147,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	mPath=M2TWEOP.getModPath();
 	print(mPath);
 	*/
-	tables.M2TWEOPTable["getModPath"] = &m2tweopHelpers::getModPath;
+
+	tables.M2TWEOPTable.set_function("getModPath", &m2tweopHelpers::getModPath); 
 	/***
 	Get path of the plugin(your lua files here)
 	@function M2TWEOP.getPluginPath
@@ -157,7 +158,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	print(plPath);
 	*/
 
-	tables.M2TWEOPTable["getPluginPath"] = &m2tweopHelpers::getLuaPath;
+
+	tables.M2TWEOPTable.set_function("getPluginPath", &m2tweopHelpers::getLuaPath);
 
 	/***
 	Load d3d texture
@@ -170,7 +172,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	local testImage={x=0,y=0,img=nil};
 	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
 	*/
-	tables.M2TWEOPTable["loadTexture"] = &m2tweopHelpers::loadTextureToGame;
+
+	tables.M2TWEOPTable.set_function("loadTexture",&m2tweopHelpers::loadTextureToGame);
 	/***
 	Unload d3d texture
 	@function M2TWEOP.unloadTexture
@@ -180,7 +183,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
 	M2TWEOP.unloadTexture(testImage.img);
 	*/
-	tables.M2TWEOPTable["unloadTexture"] = &m2tweopHelpers::unloadTextureFromGame;
+	tables.M2TWEOPTable.set_function("unloadTexture", &m2tweopHelpers::unloadTextureFromGame);
 	/***
 	Set limit of ancillaries
 	@function M2TWEOP.setAncillariesLimit
@@ -188,14 +191,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setAncillariesLimit(15);
 	*/
-	tables.M2TWEOPTable["setAncillariesLimit"] = &m2tweopHelpers::setAncLimit;
+	tables.M2TWEOPTable.set_function("setAncillariesLimit", &m2tweopHelpers::setAncLimit);
 	/***
 	Unloc all console commands, also allow use change_faction console command
 	@function M2TWEOP.unlockGameConsoleCommands
 	@usage
 	M2TWEOP.unlockGameConsoleCommands();
 	*/
-	tables.M2TWEOPTable["unlockGameConsoleCommands"] = &m2tweopHelpers::unlockGameConsoleCommands;
+	tables.M2TWEOPTable.set_function("unlockGameConsoleCommands", &m2tweopHelpers::unlockGameConsoleCommands);
 	/***
 	Set new max bodyguard size
 	@function M2TWEOP.setMaxBgSize
@@ -203,7 +206,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setMaxBgSize(222);
 	*/
-	tables.M2TWEOPTable["setMaxBgSize"] = &m2tweopHelpers::setMaxBgSize;	
+	tables.M2TWEOPTable.set_function("setMaxBgSize", &m2tweopHelpers::setMaxBgSize);
 	
 	/***
 	Set new edu units size
@@ -213,7 +216,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setEDUUnitsSize(1,300);
 	*/
-	tables.M2TWEOPTable["setEDUUnitsSize"] = &m2tweopHelpers::setEDUUnitsSize;
+	tables.M2TWEOPTable.set_function("setEDUUnitsSize",&m2tweopHelpers::setEDUUnitsSize);
 
 
 	/***
@@ -222,7 +225,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.toggleUnitsBMapHighlight();
 	*/
-	tables.M2TWEOPTable["toggleUnitsBMapHighlight"] = &m2tweopHelpers::toggleUnitsBMapHighlight;
+	tables.M2TWEOPTable.set_function("toggleUnitsBMapHighlight", &m2tweopHelpers::toggleUnitsBMapHighlight);
 
 
 	/***
@@ -232,7 +235,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.setReligionsLimit(25);
 	*/
-	tables.M2TWEOPTable["setReligionsLimit"] = &m2tweopHelpers::seReligionsLimit;
+	tables.M2TWEOPTable.set_function("setReligionsLimit", &m2tweopHelpers::seReligionsLimit);
 
 	/***
 	Check tile
@@ -243,7 +246,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	M2TWEOP.isTileFree(55,25);
 	*/
-	tables.M2TWEOPTable["isTileFree"] = &m2tweopHelpers::isTileFree;
+	tables.M2TWEOPTable.set_function("isTileFree", &m2tweopHelpers::isTileFree);
 
 
 	///Objects table section
@@ -270,7 +273,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.objects.addModelToGame("data/models_strat/residences/invisible.CAS",1);
 	*/
-	tables.objectsTable["addModelToGame"] = &objectsHelpers::addModelToGame;
+	tables.objectsTable.set_function("addModelToGame", &objectsHelpers::addModelToGame);
 	/***
 	Set the model for the object at the specified coordinates. Works only for supported object types.
 	@function objects.setModel
@@ -282,8 +285,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	stratmap.objects.addModelToGame("data/models_strat/residences/invisible.CAS",1);
 	stratmap.objects.setModel(288,257,1,1);
 	*/
-	tables.objectsTable["setModel"] = sol::overload(&objectsHelpers::setModel,
-		&objectsHelpers::setModelOneVar);
+	tables.objectsTable.set_function("setModel", sol::overload(&objectsHelpers::setModel,
+		&objectsHelpers::setModelOneVar));
 	/***
 	Replace custom tile. Change custom battlefield for coordinates.
 	@function objects.replaceTile
@@ -296,7 +299,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.objects.replaceTile("Helms-Deep_Province",167,158,"hornburg_amb.wfc","clear","midday");
 	*/
-	tables.objectsTable["replaceTile"] = &objectsHelpers::replaceTile;
+	tables.objectsTable.set_function("replaceTile", &objectsHelpers::replaceTile);
 
 	///Camera table section
 	//@section cameraTable
@@ -320,7 +323,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.camera.move(1,2);
 	*/
-	tables.cameraTable["move"] = &cameraHelpers::moveStratCamera;
+	tables.cameraTable.set_function("move", &cameraHelpers::moveStratCamera);
 	/***
 	Fast move camera to tile
 	@function camera.jump
@@ -329,7 +332,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.camera.jump(1,2);
 	*/
-	tables.cameraTable["jump"] = &cameraHelpers::snapStratCamera;
+	tables.cameraTable.set_function("jump", &cameraHelpers::snapStratCamera);
 	/***
 	Set zoom of stratcamera
 	@function camera.zoom
@@ -337,7 +340,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.camera.zoom(0.12);
 	*/
-	tables.cameraTable["zoom"] = &cameraHelpers::zoomStratCamera;
+	tables.cameraTable.set_function("zoom", &cameraHelpers::zoomStratCamera);
 
 	///Game table section
 	//@section gameTable
@@ -365,7 +368,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	local facNum=stratmap.game.getFactionsCount();
 	*/
-	tables.gameTable["getFactionsCount"] = &gameHelpers::getFactionsCount;
+	tables.gameTable.set_function("getFactionsCount", &gameHelpers::getFactionsCount);
 	/***
 	Get faction with index
 	@function game.getFaction
@@ -374,7 +377,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	faction=stratmap.game.getFaction(2);
 	*/
-	tables.gameTable["getFaction"] = &gameHelpers::getFaction;
+	tables.gameTable.set_function("getFaction", &gameHelpers::getFaction);
 	/***
 	Create character at coords
 	@function game.createCharacterByString
@@ -391,7 +394,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	newCharacter=stratmap.game.createCharacterByString("named character",stratmap.game.getFaction(0),18,"Name1","Name2",31,nil,character.character.xCoord+5,character.character.yCoord);
 	*/
-	tables.gameTable["createCharacterByString"] = &gameHelpers::createCharacter;
+	tables.gameTable.set_function("createCharacterByString", &gameHelpers::createCharacter);
 	/***
 	Create army for character.
 	@function game.createArmy
@@ -400,7 +403,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	army=stratmap.game.createArmy(gen);
 	*/
-	tables.gameTable["createArmy"] = &gameHelpers::createArmy;
+	tables.gameTable.set_function("createArmy", &gameHelpers::createArmy);
 	/***
 	create unit by name.
 	@function game.createUnitN
@@ -413,7 +416,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
 	*/
-	tables.gameTable["createUnitN"] = &gameHelpers::createUnitN;
+	tables.gameTable.set_function("createUnitN", &gameHelpers::createUnitN);
 	/***
 	create unit by index in EDU.
 	@function game.createUnitIdx
@@ -426,7 +429,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	newUnit=stratmap.game.createUnitIdx(52,2,1,1,1);
 */
-	tables.gameTable["createUnitIdx"] = &gameHelpers::createUnitIdx;
+	tables.gameTable.set_function("createUnitIdx", &gameHelpers::createUnitIdx);
 
 
 	/***
@@ -437,7 +440,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	isExist, counterValue=stratmap.game.getScriptCounter("SomeCounter");
 */
-	tables.gameTable["getScriptCounter"] = &gameHelpers::getScriptCounter;
+	tables.gameTable.set_function("getScriptCounter", &gameHelpers::getScriptCounter);
 	/***
 	Set gamescript events counter value. Set it only for events counter.
 	@function game.setScriptCounter
@@ -446,7 +449,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.game.setScriptCounter("SomeCounter",25);
 */
-	tables.gameTable["setScriptCounter"] = &gameHelpers::setScriptCounter;
 
 	///Stratmap table section
 	//@section stratmapTable
@@ -463,9 +465,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.stratmapTable = luaState.create_table("stratmap");
 
-	/*tables.stratmapTable["objects"] = &tables.objectsTable;
-	tables.stratmapTable["camera"] = &tables.cameraTable;
-	tables.stratmapTable["game"] = &tables.gameTable;*/
+
 	tables.stratmapTable.set("objects", tables.objectsTable);
 	tables.stratmapTable.set("camera", tables.cameraTable);
 	tables.stratmapTable.set("game", tables.gameTable);
@@ -490,12 +490,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table unit
 	*/
 	types.unit = luaState.new_usertype<unit>("unit");
-	types.unit["eduEntry"] = &unit::eduEntry;
-	types.unit["movePoints"] = sol::property(&unitHelpers::getMovepoints, &unitHelpers::setMovepoints);
-	types.unit["number"] = sol::property(&unit::number, &unitHelpers::setSoldiersCount);
-	types.unit["numberTact"] = &unit::numberTact;
-	types.unit["numberMax"] = &unit::numberMax;
-	types.unit["character"] = &unit::general;
+	types.unit.set("eduEntry", &unit::eduEntry);
+	types.unit.set("movePoints", sol::property(&unitHelpers::getMovepoints, &unitHelpers::setMovepoints));
+	types.unit.set("number", sol::property(&unit::number, &unitHelpers::setSoldiersCount));
+	types.unit.set("numberTact", &unit::numberTact);
+	types.unit.set("numberMax", &unit::numberMax);
+	types.unit.set("character", &unit::general);
 	/***
 	Kill this unit
 	@function unit:kill
@@ -503,7 +503,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
 	newUnit:kill();
 	*/
-	types.unit["kill"] = &unitHelpers::killUnit;
+	types.unit.set_function("kill", &unitHelpers::killUnit);
 	/***
 	Set unit basic parameters
 	@function unit:setParams
@@ -514,9 +514,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
 	newUnit:setParams(0,0,0);
 	*/
-	types.unit["setParams"] = &unitHelpers::setUnitParams;
-	types.unit["alias"] = sol::property(&technicalHelpers::unitUniStringToStr, &technicalHelpers::setUnitUniStr);
-	//types.unit["alias"] = sol::property([](unit& self) { return (int)self.alias; });
+	types.unit.set_function("setParams", &unitHelpers::setUnitParams);
+	types.unit.set("alias", sol::property(&technicalHelpers::unitUniStringToStr, &technicalHelpers::setUnitUniStr));
+
 
 
 	///Character table section
@@ -546,16 +546,16 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table character
 	*/
 	types.character = luaState.new_usertype<general>("character");
-	types.character["xCoord"] = &general::xCoord;
-	types.character["yCoord"] = &general::yCoord;
-	types.character["namedCharacter"] = &general::genChar;
-	types.character["bodyguards"] = &general::bodyguards;
-	types.character["armyLeaded"] = &general::armyLeaded;
-	types.character["armyNotLeaded"] = &general::armyNotLeaded;
-	types.character["movepointsMax"] = &general::movepointsMax;
-	types.character["movepointsModifier"] = &general::movepointsModifier;
-	types.character["movepoints"] = sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints);
-	types.character["ability"] = sol::property(&luaGetSetFuncs::getStringPropertyGen<generalStruct_abilityID>, &luaGetSetFuncs::setStringPropertyGen<generalStruct_abilityID>);
+	types.character.set("xCoord", &general::xCoord);
+	types.character.set("yCoord", &general::yCoord);
+	types.character.set("namedCharacter", &general::genChar);
+	types.character.set("bodyguards", &general::bodyguards);
+	types.character.set("armyLeaded", &general::armyLeaded);
+	types.character.set("armyNotLeaded", &general::armyNotLeaded);
+	types.character.set("movepointsMax", &general::movepointsMax);
+	types.character.set("movepointsModifier", &general::movepointsModifier);
+	types.character.set("movepoints", sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints));
+	types.character.set("ability", sol::property(&luaGetSetFuncs::getStringPropertyGen<generalStruct_abilityID>, &luaGetSetFuncs::setStringPropertyGen<generalStruct_abilityID>));
 	/***
 	Start moving to tale. Need movepoints.
 	@function character:moveToTile
@@ -564,7 +564,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourCharacter:moveToTile(11,25);
 	*/
-	types.character["moveToTile"] = &generalHelpers::moveToTile;
+	types.character.set_function("moveToTile", &generalHelpers::moveToTile);
 	/***
 	Character reposition. Just teleports him.
 	@function character:reposition
@@ -573,7 +573,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourCharacter:moveToTile(11,25);
 	*/
-	types.character["reposition"] = &generalHelpers::reposition;
+	types.character.set_function("reposition", &generalHelpers::reposition);
 	/***
 	Siege settlement, or attack it if in siege
 	@function character:siegeSettlement
@@ -581,14 +581,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourCharacter:siegeSettlement(settlement);
 	*/
-	types.character["siegeSettlement"] = &generalHelpers::siegeSettlement;
+	types.character.set_function("siegeSettlement", &generalHelpers::siegeSettlement);
 	/***
 	Delete this character
 	@function character:kill
 	@usage
 	ourCharacter:kill();
 	*/
-	types.character["kill"] = &generalHelpers::killGeneral;
+	types.character.set_function("kill", &generalHelpers::killGeneral);
 	/***
 	Set bodyguard. Do this only for characters without it (after creating,for example)
 	@function character:setBodyguardUnit
@@ -597,7 +597,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
 	ourCharacter:setBodyguardUnit(newUnit);
 	*/
-	types.character["setBodyguardUnit"] = &generalHelpers::setBodyguard;
+	types.character.set_function("setBodyguardUnit", &generalHelpers::setBodyguard);
 
 
 	///NamedCharacter table section
@@ -638,19 +638,19 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table namedCharacter
 	*/
 	types.namedCharacter = luaState.new_usertype<generalCharacterictics>("namedCharacter");
-	types.namedCharacter["index"] = &generalCharacterictics::index;
-	types.namedCharacter["character"] = &generalCharacterictics::gen;
-	types.namedCharacter["shortName"] = sol::property(
-		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_shortName>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_shortName>);
-	types.namedCharacter["fullName"] = sol::property(&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_fullName>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_fullName>);
-	types.namedCharacter["label"] = sol::property(&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_label>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_label>);
-	types.namedCharacter["modelName"] = sol::property(&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_modelName>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_modelName>);
-	types.namedCharacter["status"] = &generalCharacterictics::status;
-	types.namedCharacter["command"] = &generalCharacterictics::authority;
-	types.namedCharacter["loyalty"] = &generalCharacterictics::loyality;
-	types.namedCharacter["piety"] = &generalCharacterictics::piety;
-	types.namedCharacter["chivalryAndDread"] = &generalCharacterictics::nobility;
-	types.namedCharacter["authority"] = &generalCharacterictics::leaderAutority;
+	types.namedCharacter.set("index", &generalCharacterictics::index);
+	types.namedCharacter.set("character", &generalCharacterictics::gen);
+	types.namedCharacter.set("shortName", sol::property(
+		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_shortName>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_shortName>));
+	types.namedCharacter.set("fullName", sol::property(&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_fullName>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_fullName>));
+	types.namedCharacter.set("label", sol::property(&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_label>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_label>));
+	types.namedCharacter.set("modelName", sol::property(&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_modelName>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_modelName>));
+	types.namedCharacter.set("status", &generalCharacterictics::status);
+	types.namedCharacter.set("command", &generalCharacterictics::authority);
+	types.namedCharacter.set("loyalty", &generalCharacterictics::loyality);
+	types.namedCharacter.set("piety", &generalCharacterictics::piety);
+	types.namedCharacter.set("chivalryAndDread", &generalCharacterictics::nobility);
+	types.namedCharacter.set("authority", &generalCharacterictics::leaderAutority);
 	/***
 	Get pointer to ancillary with number
 	@function namedCharacter:getAncillary
@@ -660,23 +660,23 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ancillary=ourNamedCharacter:getAncillary(2);
 	*/
-	types.namedCharacter["getAncillary"] = &generalCharactericticsHelpers::getAnchillary;
-	types.namedCharacter["ancNum"] = &generalCharacterictics::anchNum;
-	types.namedCharacter["yearOfBirth"] = &generalCharacterictics::yearOfBirth;
-	types.namedCharacter["faction"] = &generalCharacterictics::faction;
-	types.namedCharacter["subFaction"] = &generalCharacterictics::subFaction;
-	types.namedCharacter["parent"] = &generalCharacterictics::parent;
-	types.namedCharacter["spouse"] = &generalCharacterictics::spouse;
-	types.namedCharacter["childs"] = sol::property([](generalCharacterictics& self) { return std::ref(self.childs); });
-	types.namedCharacter["portrait"] = sol::property(
+	types.namedCharacter.set_function("getAncillary", &generalCharactericticsHelpers::getAnchillary);
+	types.namedCharacter.set("ancNum", &generalCharacterictics::anchNum);
+	types.namedCharacter.set("yearOfBirth", &generalCharacterictics::yearOfBirth);
+	types.namedCharacter.set("faction", &generalCharacterictics::faction);
+	types.namedCharacter.set("subFaction", &generalCharacterictics::subFaction);
+	types.namedCharacter.set("parent", &generalCharacterictics::parent);
+	types.namedCharacter.set("spouse", &generalCharacterictics::spouse);
+	types.namedCharacter.set("childs", sol::property([](generalCharacterictics& self) { return std::ref(self.childs); }));
+	types.namedCharacter.set("portrait", sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait>
-		);
-	types.namedCharacter["portrait2"] = sol::property(
+		));
+	types.namedCharacter.set("portrait2", sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait2>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait2>
-		);
-	types.namedCharacter["portrait_custom"] = sol::property(
+		));
+	types.namedCharacter.set("portrait_custom", sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>
-		);
+		));
 	/***
 	Add new ancillary
 	@function namedCharacter:addAncillary
@@ -684,7 +684,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourNamedCharacter:addAncillary("VeryVeryGoodMan");
 	*/
-	types.namedCharacter["addAncillary"] = &generalCharactericticsHelpers::addAnchillary;
+	types.namedCharacter.set_function("addAncillary", &generalCharactericticsHelpers::addAnchillary);
 	/***
 	Remove ancillary
 	@function namedCharacter:removeAncillary
@@ -693,10 +693,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	ourAnc=ourNamedCharacter:getAncillary(2);
 	ourNamedCharacter:removeAncillary(ourAnc);
 	*/
-	types.namedCharacter["removeAncillary"] = &generalCharactericticsHelpers::removeAnchillary;
-	types.namedCharacter["age"] = sol::property(
+	types.namedCharacter.set_function("removeAncillary", &generalCharactericticsHelpers::removeAnchillary);
+	types.namedCharacter.set("age", sol::property(
 		&generalCharactericticsHelpers::getAge, &generalCharactericticsHelpers::setAge
-		);
+		));
 	/***
 	Check if the character is alive
 	@function namedCharacter:isAlive
@@ -707,7 +707,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		ourcharacter:kill();
 	end
 	*/
-	types.namedCharacter["isAlive"] = &generalCharactericticsHelpers::isAlive;
+	types.namedCharacter.set_function("isAlive", &generalCharactericticsHelpers::isAlive);
 	/***
 	Set character as heir of his faction
 	@function namedCharacter:setAsHeir
@@ -715,7 +715,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourcharacter:setAsHeir(false);
 	*/
-	types.namedCharacter["setAsHeir"] = &generalCharactericticsHelpers::setAsHeir;
+	types.namedCharacter.set_function("setAsHeir", &generalCharactericticsHelpers::setAsHeir);
 
 
 	///Ancillary table section
@@ -731,13 +731,13 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table ancillary
 	*/
 	types.ancillary = luaState.new_usertype<anchillary>("ancillary");
-	types.ancillary["index"] = &anchillary::index;
-	types.ancillary["name"] = sol::property(
+	types.ancillary.set("index", &anchillary::index);
+	types.ancillary.set("name", sol::property(
 		&luaGetSetFuncs::getStringPropertyAnc<anchillaryStruct_name>, &luaGetSetFuncs::setStringPropertyAnc<anchillaryStruct_name>
-		);
-	types.ancillary["imagePath"] = sol::property(
+		));
+	types.ancillary.set("imagePath", sol::property(
 		&luaGetSetFuncs::getStringPropertyAnc<anchillaryStruct_imagePath>, &luaGetSetFuncs::setStringPropertyAnc<anchillaryStruct_imagePath>
-		);
+		));
 
 	///EduEntry table section
 	//@section eduEntryTable
@@ -753,12 +753,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table eduEntry
 	*/
 	types.EduEntry = luaState.new_usertype<EduEntry>("eduEntry");
-	types.EduEntry["Type"] = sol::property(
+	types.EduEntry.set("Type", sol::property(
 		&luaGetSetFuncs::getStringPropertyEDU<EduEntryStruct_Type>, &luaGetSetFuncs::setStringPropertyEDU<EduEntryStruct_Type>
-		);
-	types.EduEntry["Dictionary"] = &EduEntry::Dictionary;
-	types.EduEntry["Index"] = &EduEntry::Index;
-	types.EduEntry["UnitCreatedCounter"] = &EduEntry::UnitCreatedCounter;
+		));
+	types.EduEntry.set("Dictionary", &EduEntry::Dictionary);
+	types.EduEntry.set("Index", &EduEntry::Index);
+	types.EduEntry.set("UnitCreatedCounter", &EduEntry::UnitCreatedCounter);
 
 
 	///FactionStruct table section
@@ -792,13 +792,13 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table factionStruct
 	*/
 	types.factionStruct = luaState.new_usertype<factionStruct>("factionStruct");
-	types.factionStruct["dipNum"] = &factionStruct::dipNum;
-	types.factionStruct["ai_label"] = sol::property(
+	types.factionStruct.set("dipNum", &factionStruct::dipNum);
+	types.factionStruct.set("ai_label", sol::property(
 		&factionHelpers::getStringProperty<factionStruct_ai_label>, &factionHelpers::setStringProperty<factionStruct_ai_label>
-		);
-	types.factionStruct["capital"] = &factionStruct::capital;
-	types.factionStruct["leader"] = &factionStruct::leader;
-	types.factionStruct["heir"] = &factionStruct::heir;
+		));
+	types.factionStruct.set("capital", &factionStruct::capital);
+	types.factionStruct.set("leader", &factionStruct::leader);
+	types.factionStruct.set("heir", &factionStruct::heir);
 	/***
 	Get faction technical name
 	@function factionStruct:getFactionName
@@ -811,8 +811,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		ourFac.money = ourFac.money + (ourFac.fortsNum * 500);
 	end
 	*/
-	types.factionStruct["getFactionName"] = &factionHelpers::getFactionName;
-	types.factionStruct["isPlayerControlled"] = &factionStruct::isPlayerControlled;
+	types.factionStruct.set_function("getFactionName", &factionHelpers::getFactionName);
+	types.factionStruct.set("isPlayerControlled", &factionStruct::isPlayerControlled);
 	/***
 	Get named character with number
 	@function factionStruct:getNamedCharacter
@@ -826,8 +826,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		ourFac.money = ourFac.money - (ourNamedCharacter.command * 10);
 	end
 	*/
-	types.factionStruct["getNamedCharacter"] = &factionHelpers::getCharacterFromFullList;
-	types.factionStruct["numOfNamedCharacters"] = &factionStruct::numOfCharactersAll;
+	types.factionStruct.set_function("getNamedCharacter", &factionHelpers::getCharacterFromFullList);
+	types.factionStruct.set("numOfNamedCharacters", &factionStruct::numOfCharactersAll);
 	/***
 	Get  character with number
 	@function factionStruct:getCharacter
@@ -841,8 +841,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		ourCharacter:kill();
 	end
 	*/
-	types.factionStruct["getCharacter"] = &factionHelpers::getCharacterFromGeneralsList;
-	types.factionStruct["numOfCharacters"] = &factionStruct::numOfCharacters;
+	types.factionStruct.set_function("getCharacter", &factionHelpers::getCharacterFromGeneralsList);
+	types.factionStruct.set("numOfCharacters", &factionStruct::numOfCharacters);
 	/***
 	Get army with number
 	@function factionStruct:getStack
@@ -856,8 +856,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		ourFac.money = ourFac.money - (ourArmy.totalStrength);
 	end
 	*/
-	types.factionStruct["getStack"] = &factionHelpers::getStack;
-	types.factionStruct["stacksNum"] = &factionStruct::stackNum;
+	types.factionStruct.set_function("getStack", &factionHelpers::getStack);
+	types.factionStruct.set("stacksNum", &factionStruct::stackNum);
 	/***
 	Get settlement with number
 	@function factionStruct:getSettlement
@@ -871,8 +871,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		ourFac.money = ourFac.money - (ourSett.level*5000);
 	end
 	*/
-	types.factionStruct["getSettlement"] = &factionHelpers::getSettlement;
-	types.factionStruct["settlementsNum"] = &factionStruct::settlementsNum;
+	types.factionStruct.set_function("getSettlement", &factionHelpers::getSettlement);
+	types.factionStruct.set("settlementsNum", &factionStruct::settlementsNum);
 	/***
 	Get fort with number
 	@function factionStruct:getFort
@@ -881,8 +881,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	later
 	*/
-	types.factionStruct["getFort"] = &factionHelpers::getFort;
-	types.factionStruct["fortsNum"] = &factionStruct::fortsNum;
+	types.factionStruct.set_function("getFort", &factionHelpers::getFort);
+	types.factionStruct.set("fortsNum", &factionStruct::fortsNum);
 	/***
 	Get fort with number
 	@function factionStruct:getPort
@@ -891,10 +891,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	later
 	*/
-	types.factionStruct["getPort"] = &factionHelpers::getPort;
-	types.factionStruct["portsNum"] = &factionStruct::portBuildingsNum;
-	types.factionStruct["religion"] = &factionStruct::religion;
-	types.factionStruct["money"] = &factionStruct::money;
+	types.factionStruct.set_function("getPort", &factionHelpers::getPort);
+	types.factionStruct.set("portsNum", &factionStruct::portBuildingsNum);
+	types.factionStruct.set("religion", &factionStruct::religion);
+	types.factionStruct.set("money", &factionStruct::money);
 
 	///SettlementStruct table section
 	//@section settlementStructTable
@@ -933,7 +933,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	settlementStruct:destroyBuilding("some_buildType",false);
 	*/
-	types.settlementStruct["destroyBuilding"] = &settlementHelpers::destroyBuilding;
+	types.settlementStruct.set_function("destroyBuilding", &settlementHelpers::destroyBuilding);
 	/***
 	Create building.
 	@function settlementStruct:createBuilding
@@ -941,19 +941,19 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	settlementStruct:createBuilding("some_build1");
 	*/
-	types.settlementStruct["createBuilding"] = &settlementHelpers::createBuilding;
-	types.settlementStruct["xCoord"] = &settlementStruct::xCoord;
-	types.settlementStruct["yCoord"] = &settlementStruct::yCoord;
-	types.settlementStruct["army"] = &settlementStruct::army;
-	types.settlementStruct["name"] = sol::property(
+	types.settlementStruct.set_function("createBuilding", &settlementHelpers::createBuilding);
+	types.settlementStruct.set("xCoord", &settlementStruct::xCoord);
+	types.settlementStruct.set("yCoord", &settlementStruct::yCoord);
+	types.settlementStruct.set("army", &settlementStruct::army);
+	types.settlementStruct.set("name", sol::property(
 		&settlementHelpers::getStringProperty<settlementStruct_name>, &settlementHelpers::setStringProperty<settlementStruct_name>
-		);
-	types.settlementStruct["ownerFaction"] = &settlementStruct::ownerFac;
-	types.settlementStruct["level"] = &settlementStruct::level;
-	types.settlementStruct["fac_creatorNum"] = &settlementStruct::fac_creatorModNum;
-	types.settlementStruct["isCastle"] = &settlementStruct::isCastle;
-	types.settlementStruct["regionNumber"] = &settlementStruct::regionNumber;
-	types.settlementStruct["isProvokedRebellion"] = &settlementStruct::isProvokedRebellion;
+		));
+	types.settlementStruct.set("ownerFaction", &settlementStruct::ownerFac);
+	types.settlementStruct.set("level", &settlementStruct::level);
+	types.settlementStruct.set("fac_creatorNum", &settlementStruct::fac_creatorModNum);
+	types.settlementStruct.set("isCastle", &settlementStruct::isCastle);
+	types.settlementStruct.set("regionNumber", &settlementStruct::regionNumber);
+	types.settlementStruct.set("isProvokedRebellion", &settlementStruct::isProvokedRebellion);
 	/***
 	Get building with number
 	@function settlementStruct:getBuilding
@@ -966,8 +966,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		print("test");
 	end
 	*/
-	types.settlementStruct["getBuilding"] = &settlementHelpers::getBuilding;
-	types.settlementStruct["buldingsNum"] = &settlementStruct::buldingsNum;
+	types.settlementStruct.set_function("getBuilding", &settlementHelpers::getBuilding);
+	types.settlementStruct.set("buldingsNum", &settlementStruct::buldingsNum);
 	/***
 	Get resource with number
 	@function settlementStruct:getResource
@@ -976,10 +976,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourResStrat=settlementStruct:getResource(0);
 	*/
-	types.settlementStruct["getResource"] = &settlementHelpers::getResource;
-	types.settlementStruct["resourcesNum"] = &settlementStruct::resourcesNum;
+	types.settlementStruct.set_function("getResource", &settlementHelpers::getResource);
+	types.settlementStruct.set("resourcesNum", &settlementStruct::resourcesNum);
 
-	types.settlementStruct["populationSize"] = &settlementStruct::populationSize;
+	types.settlementStruct.set("populationSize", &settlementStruct::populationSize);
 
 
 	///ResStrat table section
@@ -996,8 +996,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table resStrat
 	*/
 	types.resStrat = luaState.new_usertype<resStrat>("resStrat");
-	types.resStrat["xCoord"] = &resStrat::xCoord;
-	types.resStrat["yCoord"] = &resStrat::yCoord;
+	types.resStrat.set("xCoord", &resStrat::xCoord);
+	types.resStrat.set("yCoord", &resStrat::yCoord);
 	/***
 	Set resource strat. model
 	@function resStrat:setStratModel
@@ -1005,8 +1005,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	resStrat:setStratModel(5);
 	*/
-	types.resStrat["setStratModel"] = &resourcesHelpers::setModel;
-	types.resStrat["getResourceCode"] = &resourcesHelpers::getResourceCode;
+	types.resStrat.set_function("setStratModel", &resourcesHelpers::setModel);
+	types.resStrat.set_function("getResourceCode", &resourcesHelpers::getResourceCode);
 
 	///StackStruct table section
 	//@section stackStructTable
@@ -1034,7 +1034,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table stackStruct
 	*/
 	types.stackStruct = luaState.new_usertype<stackStruct>("stackStruct");
-	types.stackStruct["faction"] = &stackStruct::faction;
+	types.stackStruct.set("faction", &stackStruct::faction);
 	/***
 	Get unit with number
 	@function stackStruct:getUnit
@@ -1044,8 +1044,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	ourUnit=stackStruct:getUnit(0);
 	ourUnit:kill();
 	*/
-	types.stackStruct["getUnit"] = &stackStructHelpers::getUnit;
-	types.stackStruct["numOfUnits"] = &stackStruct::numOfUnits;
+	types.stackStruct.set_function("getUnit", &stackStructHelpers::getUnit);
+	types.stackStruct.set("numOfUnits", &stackStruct::numOfUnits);
 	/***
 	Get character(agent) with number
 	@function stackStruct:getCharacter
@@ -1055,11 +1055,11 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	ourChar=stackStruct:getCharacter(0);
 	ourChar:kill();
 	*/
-	types.stackStruct["getCharacter"] = &stackStructHelpers::getCharacter;
-	types.stackStruct["numOfCharacters"] = &stackStruct::charactersNum;
-	types.stackStruct["boardedArmy"] = &stackStruct::boardedArmy;
-	types.stackStruct["blockedPort"] = &stackStruct::blockedPort;
-	types.stackStruct["leader"] = &stackStruct::gen;
+	types.stackStruct.set_function("getCharacter", &stackStructHelpers::getCharacter);
+	types.stackStruct.set("numOfCharacters", &stackStruct::charactersNum);
+	types.stackStruct.set("boardedArmy", &stackStruct::boardedArmy);
+	types.stackStruct.set("blockedPort", &stackStruct::blockedPort);
+	types.stackStruct.set("leader", &stackStruct::gen);
 	/***
 	Find the settlement in which the army is located
 
@@ -1074,7 +1074,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		--something
 	end
 	*/
-	types.stackStruct["findInSettlement"] = &stackStructHelpers::findInSettlement;
+	types.stackStruct.set_function("findInSettlement", &stackStructHelpers::findInSettlement);
 	/***
 	Find the fort in which the army is located
 
@@ -1089,10 +1089,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		--something
 	end
 	*/
-	types.stackStruct["findInFort"] = &stackStructHelpers::findInFort;
-	types.stackStruct["totalStrength"] = &stackStruct::totalStrength;
-	types.stackStruct["reform_point_x"] = &stackStruct::reform_point_x;
-	types.stackStruct["reform_point_y"] = &stackStruct::reform_point_y;
+	types.stackStruct.set_function("findInFort", &stackStructHelpers::findInFort);
+	types.stackStruct.set("totalStrength", &stackStruct::totalStrength);
+	types.stackStruct.set("reform_point_x", &stackStruct::reform_point_x);
+	types.stackStruct.set("reform_point_y", &stackStruct::reform_point_y);
 	/***
 	Add unit to this army.
 
@@ -1107,7 +1107,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		--something
 	end
 	*/
-	types.stackStruct["addUnit"] = &stackStructHelpers::addUnitToArmy;
+	types.stackStruct.set_function("addUnit", &stackStructHelpers::addUnitToArmy);
 	/***
 	Attack another army. Need movepoints.
 
@@ -1121,7 +1121,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		--something
 	end
 	*/
-	types.stackStruct["attackArmy"] = &stackStructHelpers::attackArmy;
+	types.stackStruct.set_function("attackArmy", &stackStructHelpers::attackArmy);
 
 
 	///Building table section
@@ -1138,10 +1138,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table building
 	*/
 	types.building = luaState.new_usertype<building>("building");
-	types.building["buildingData"] = &building::bData;
-	types.building["level"] = &building::level;
-	types.building["hp"] = &building::hp;
-	types.building["settlement"] = &building::settlement;
+	types.building.set("buildingData", &building::bData);
+	types.building.set("level", &building::level);
+	types.building.set("hp", &building::hp);
+	types.building.set("settlement", &building::settlement);
 
 	///BuildingData table section
 	//@section buildingDataTable
@@ -1155,10 +1155,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table buildingData
 	*/
 	types.building_data = luaState.new_usertype<building_data>("buildingData");
-	types.building_data["type"] = sol::property(
+	types.building_data.set("type", sol::property(
 		&buildingStructHelpers::getStringPropertyBD<building_dataStruct_type>, &buildingStructHelpers::setStringPropertyBD<building_dataStruct_type>
-		);
-	types.building_data["buildingInfo"] = &building_data::drawInfo;
+		));
+	types.building_data.set("buildingInfo", &building_data::drawInfo);
 
 
 	///BuildingInfo table section
@@ -1172,9 +1172,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table buildingInfo
 	*/
 	types.buildingDrawInfo = luaState.new_usertype<buildingDrawInfo>("buildingInfo");
-	types.buildingDrawInfo["name"] = sol::property(
+	types.buildingDrawInfo.set("name", sol::property(
 		&buildingStructHelpers::getStringPropertyBDI<buildingDrawInfoStruct_name>, &buildingStructHelpers::setStringPropertyBDI<buildingDrawInfoStruct_name>
-		);
+		));
 
 
 

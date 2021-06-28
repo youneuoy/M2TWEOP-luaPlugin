@@ -1,5 +1,13 @@
 #include "basicEvents.h"
 
+void onClickAtTile(int x, int y)
+{
+	if (plugData::data.luaAll.onClickAtTile != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onClickAtTile)(x,y));
+	}
+}
+
 void onChangeTurnNum(int num)
 {
 	plugData::data.luaAll.onChangeTurnNum(num);

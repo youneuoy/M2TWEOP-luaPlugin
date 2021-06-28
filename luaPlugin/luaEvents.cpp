@@ -16,6 +16,7 @@ void luaP::onPluginLoadF()
 	Just list, use it without EventsFunctionsList.!!!
 
 	@tfield draw draw
+	@tfield onClickAtTile onClickAtTile
 	@tfield onNewGameStart onNewGameStart
 	@tfield onCampaignMapLoaded onCampaignMapLoaded
 	@tfield onCreateSaveFile onCreateSaveFile
@@ -149,6 +150,37 @@ void luaP::onPluginLoadF()
 
 	onNewGameStart = new sol::function(luaState["onNewGameStart"]);
 	checkLuaFunc(&onNewGameStart);
+
+	/***
+	Called on clicked at stratmap. Use it ONLY in the way like in usage example!!
+
+	@function onClickAtTile
+	@tparam int x
+	@tparam int y
+	@usage
+	clickAtMap={["isClicked"]=false,["xTile"]=0,["yTile"]=0}
+	function draw(device)
+		if(clickAtMap.isClicked==true)
+		then
+			print(tostring(ImGui.IsMouseDown(ImGuiMouseButton.ImGuiMouseButton_Right)).."\n");
+			print(tostring(ImGui.IsMouseDown(ImGuiMouseButton.ImGuiMouseButton_Left)).."\n");
+			print(tostring(clickAtMap.xTile).." "..tostring(clickAtMap.yTile));
+
+			clickAtMap.isClicked=false;
+		end
+	end
+
+	function onClickAtTile(x,y)
+		clickAtMap.isClicked=true;
+		clickAtMap.xTile=x;
+		clickAtMap.yTile=y;
+	end
+	*/
+
+
+
+	onClickAtTile = new sol::function(luaState["onClickAtTile"]);
+	checkLuaFunc(&onClickAtTile);
 
 	/***
 	Called after loading of campaign map

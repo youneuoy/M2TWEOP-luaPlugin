@@ -134,6 +134,7 @@ public:
 	
 	sol::function* onCampaignMapLoaded = nullptr;
 
+	sol::function* onClickAtTile = nullptr;
 	sol::function* onNewGameStart = nullptr;
 	sol::function* onPluginLoad = nullptr;
 	sol::function* onCreateSaveFile = nullptr;
@@ -245,5 +246,6 @@ public:
 
 private:
 	void checkLuaFunc(sol::function** lRef);
+
 };
 

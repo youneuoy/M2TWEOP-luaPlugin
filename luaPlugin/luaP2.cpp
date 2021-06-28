@@ -30,8 +30,8 @@ void luaP::initP2()
 	gameData=gameDataAll.get();
 	battleXCoord=gameData.battleStruct.xCoord;
 	*/
-	typeAll.gameDataAllTable["get"] = &gameDataAllHelper::get;
-	typeAll.gameDataAllTable["battleStruct"] = &gameDataAllStruct::battleHandler;
+	typeAll.gameDataAllTable.set_function("get", &gameDataAllHelper::get);
+	typeAll.gameDataAllTable.set("battleStruct", &gameDataAllStruct::battleHandler);
 
 
 
@@ -55,14 +55,14 @@ void luaP::initP2()
 	@table gameDataAll.battleStruct
 	*/
 	typeAll.battleTable = luaState.new_usertype<battleDataS>("battleStruct");
-	typeAll.battleTable["xCoord"] = &battleDataS::xCoord;
-	typeAll.battleTable["yCoord"] = &battleDataS::yCoord;
-	typeAll.battleTable["attackerXCoord"] = &battleDataS::attackerXCoord;
-	typeAll.battleTable["attackerYCoord"] = &battleDataS::attackerYCoord;
-	typeAll.battleTable["defenderXCoord"] = &battleDataS::defenderXCoord;
-	typeAll.battleTable["defenderYCoord"] = &battleDataS::defenderYCoord;
-	typeAll.battleTable["sides"] = sol::property([](battleDataS& self) { return std::ref(self.sides); });
-	typeAll.battleTable["sidesNum"] = &battleDataS::sidesNum;
+	typeAll.battleTable.set("xCoord", &battleDataS::xCoord);
+	typeAll.battleTable.set("yCoord", &battleDataS::yCoord);
+	typeAll.battleTable.set("attackerXCoord", &battleDataS::attackerXCoord);
+	typeAll.battleTable.set("attackerYCoord", &battleDataS::attackerYCoord);
+	typeAll.battleTable.set("defenderXCoord", &battleDataS::defenderXCoord);
+	typeAll.battleTable.set("defenderYCoord", &battleDataS::defenderYCoord);
+	typeAll.battleTable.set("sides", sol::property([](battleDataS& self) { return std::ref(self.sides); }));
+	typeAll.battleTable.set("sidesNum", &battleDataS::sidesNum);
 
 
 	///battleSide table section
@@ -83,16 +83,16 @@ void luaP::initP2()
 	@table battleStruct.battleSide
 	*/
 	typeAll.battleSideTable= luaState.new_usertype<battleSide>("battleSide");
-	typeAll.battleSideTable["isDefender"] = &battleSide::isDefender;
-	typeAll.battleSideTable["isCanDeploy"] = &battleSide::isCanDeploy;
-	typeAll.battleSideTable["winConditions"] = sol::property([](battleSide& self) { return std::ref(self.winConditions); });
+	typeAll.battleSideTable.set("isDefender", &battleSide::isDefender);
+	typeAll.battleSideTable.set("isCanDeploy", &battleSide::isCanDeploy);
+	typeAll.battleSideTable.set("winConditions", sol::property([](battleSide& self) { return std::ref(self.winConditions); }));
 	/***
 	Get win condition string, for example: destroy_or_rout_enemy
 	@function battleSide:getWinConditionString
 	@tparam int condition
 	@treturn string winCondition
 	@usage
-	gameData=gameDataAll.get();
+	gameData=gameDataAll.get());
 	battleS=gameData.battleStruct;
 	side1=gameData.battleStruct.sides[1];
 	for i=1,4 do
@@ -102,9 +102,9 @@ void luaP::initP2()
 		end
 	end
 	*/
-	typeAll.battleSideTable["getWinConditionString"] = &battleHandlerHelpers::getWinConditionS;
-	typeAll.battleSideTable["armies"] = sol::property([](battleSide& self) { return std::ref(self.armies); });
-	typeAll.battleSideTable["armiesNum"] = &battleSide::armiesNum;
+	typeAll.battleSideTable.set_function("getWinConditionString", &battleHandlerHelpers::getWinConditionS);
+	typeAll.battleSideTable.set("armies", sol::property([](battleSide& self) { return std::ref(self.armies); }));
+	typeAll.battleSideTable.set("armiesNum", &battleSide::armiesNum);
 
 
 	///trackedPointerArmy table section
@@ -121,8 +121,8 @@ void luaP::initP2()
 	@table battleSide.trackedPointerArmy
 	*/
 	typeAll.trackedPointerArmyTable = luaState.new_usertype<trackedPointerArmy>("trackedPointerArmy");
-	typeAll.trackedPointerArmyTable["army"] = &trackedPointerArmy::stack;
-	typeAll.trackedPointerArmyTable["deploymentArea"] = &trackedPointerArmy::deploymentArea;	
+	typeAll.trackedPointerArmyTable.set("army", &trackedPointerArmy::stack);
+	typeAll.trackedPointerArmyTable.set("deploymentArea", &trackedPointerArmy::deploymentArea);
 	
 	///deploymentAreaS table section
 	//@section deploymentAreaS
@@ -138,7 +138,7 @@ void luaP::initP2()
 	@table trackedPointerArmy.deploymentAreaS
 	*/
 	typeAll.deploymentAreaTable = luaState.new_usertype<deploymentAreaS>("deploymentAreaS");
-	typeAll.deploymentAreaTable["coordsNum"] = &deploymentAreaS::coordsNum;
+	typeAll.deploymentAreaTable.set("coordsNum", &deploymentAreaS::coordsNum);
 	/***
 	Get pair of coords with number
 	@function deploymentAreaS:getCoordPair
@@ -155,5 +155,5 @@ void luaP::initP2()
 		print(xCoord,yCoord);
 	end
 	*/
-	typeAll.deploymentAreaTable["getCoordPair"] =[](deploymentAreaS& self, int pairNum) { return std::make_tuple(self.coordsPairs[0 + pairNum], self.coordsPairs[1 + pairNum]); };
+	typeAll.deploymentAreaTable.set("getCoordPair",[](deploymentAreaS& self, int pairNum) { return std::make_tuple(self.coordsPairs[0 + pairNum], self.coordsPairs[1 + pairNum]); });
 }

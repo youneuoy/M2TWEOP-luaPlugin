@@ -2,6 +2,7 @@
 #include "pluginM2TWEOP.h"
 
 
+extern "C" PLUGINM2TWEOP_API void onClickAtTile(int x,int y);
 extern "C" PLUGINM2TWEOP_API void onChangeTurnNum(int num);
 extern "C" PLUGINM2TWEOP_API void onNewGameStart();
 extern "C" PLUGINM2TWEOP_API void onCampaignMapLoaded();
