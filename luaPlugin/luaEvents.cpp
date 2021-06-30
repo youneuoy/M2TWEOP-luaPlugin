@@ -22,6 +22,7 @@ void luaP::onPluginLoadF()
 	@tfield onCreateSaveFile onCreateSaveFile
 	@tfield onLoadSaveFile onLoadSaveFile
 	@tfield onPluginLoad onPluginLoad
+	@tfield onSelectWorldpkgdesc onSelectWorldpkgdesc
 	@tfield onChangeTurnNum onChangeTurnNum
 	@tfield onCharacterSelected onCharacterSelected
 	@tfield onPreFactionTurnStart onPreFactionTurnStart
@@ -300,6 +301,24 @@ void luaP::onPluginLoadF()
 	*/
 	onChangeTurnNumFunc = new sol::function(luaState["onChangeTurnNum"]);
 	checkLuaFunc(&onChangeTurnNumFunc);
+
+	/***
+	Called on select worldpkgdesc for battlemap. See https://wiki.twcenter.net/index.php?title=.worldpkgdesc_-_M2TW. M2TWEOP will ignore the return value if its group does not match the required group!
+
+	@function onSelectWorldpkgdesc
+	@tparam string selectedRecordName
+	@tparam string selectedRecordGroup
+	@treturn string newSelectedRecordName
+
+	@usage
+	function onSelectWorldpkgdesc(selectedRecord,selectedRecordGroup)
+	--something here
+
+		return selectedRecord;
+	end
+	*/
+	onSelectWorldpkgdesc = new sol::function(luaState["onSelectWorldpkgdesc"]);
+	checkLuaFunc(&onSelectWorldpkgdesc);
 
 	/***
 	Called on character selection

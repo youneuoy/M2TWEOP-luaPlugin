@@ -35,6 +35,19 @@ if (!funcResult.valid())\
 }\
 
 
+#define tryLuaGetRes(luaFunc,result)  \
+auto funcResult = luaFunc;\
+if (!funcResult.valid())\
+{\
+	sol::error luaError = funcResult;\
+	MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);\
+}\
+else\
+{\
+result=funcResult;	\
+}\
+
+
 
 class luaP
 {
@@ -134,6 +147,7 @@ public:
 	
 	sol::function* onCampaignMapLoaded = nullptr;
 
+	sol::function* onSelectWorldpkgdesc = nullptr;
 	sol::function* onClickAtTile = nullptr;
 	sol::function* onNewGameStart = nullptr;
 	sol::function* onPluginLoad = nullptr;

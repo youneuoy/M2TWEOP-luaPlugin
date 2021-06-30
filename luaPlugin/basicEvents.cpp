@@ -8,6 +8,19 @@ void onClickAtTile(int x, int y)
 	}
 }
 
+std::string* onSelectWorldpkgdesc(const char* selectedRec, const char* selectedGroup)
+{
+	std::string tmpS;
+	if (plugData::data.luaAll.onSelectWorldpkgdesc != nullptr)
+	{
+		tryLuaGetRes((*plugData::data.luaAll.onSelectWorldpkgdesc)(selectedRec, selectedGroup), tmpS);
+	}
+
+	std::string* retS = new std::string(tmpS);
+
+	return retS;
+}
+
 void onChangeTurnNum(int num)
 {
 	plugData::data.luaAll.onChangeTurnNum(num);
