@@ -52,7 +52,7 @@ result=funcResult;	\
 class luaP
 {
 public:
-	static std::string logS;
+	static std::vector<std::string> logS;
 	std::string luaPath;
 	bool checkVar(const char* gName,int variable);
 	

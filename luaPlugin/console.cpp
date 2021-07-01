@@ -15,7 +15,7 @@ namespace console
 	{
 		if (consoleData.input.size() > 0)
 		{
-			plugData::data.luaAll.logS+="Command: "+consoleData.input+"\n";
+			plugData::data.luaAll.logS.push_back("Command: "+consoleData.input+'\n');
 		}
 		else
 		{
@@ -66,14 +66,36 @@ namespace console
 
 		ImGui::Begin("##consoleWindow", NULL, iwf);
 
-		ImGui::InputTextMultiline("##consoleLog", &plugData::data.luaAll.logS, ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 8), ImGuiInputTextFlags_AllowTabInput);
 
+		ImGui::BeginChild("##consoleLogW", ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 12), false, ImGuiWindowFlags_HorizontalScrollbar);
+		
+		ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(0, 0));
+		ImGuiListClipper clipper;
+		clipper.Begin(plugData::data.luaAll.logS.size());
+		while (clipper.Step())
+		{
+			for (int line_no = clipper.DisplayStart; line_no < clipper.DisplayEnd; line_no++)
+			{
+				std::string* currS = &plugData::data.luaAll.logS[line_no];
+
+				ImGui::PushID(currS);
+				ImGui::SetNextItemWidth(-1);
+				ImGui::InputTextMultiline("##consoleLog", currS, ImVec2(0, 0), ImGuiInputTextFlags_ReadOnly);
+				ImGui::PopID();
+			}
+		}
+		clipper.End();
+		ImGui::PopStyleVar();
+		if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
+			ImGui::SetScrollHereY(1.0f);
+		ImGui::EndChild();
 
 		ImGui::InputTextMultiline("##console", &consoleData.input, ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() *4), ImGuiInputTextFlags_AllowTabInput);
 		if (ImGui::Button("Run"))
 		{
 			applyCommand();
 		}
+
 		ImGui::End();
 	}
 

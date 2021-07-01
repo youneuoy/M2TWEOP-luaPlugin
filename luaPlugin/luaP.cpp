@@ -6,14 +6,14 @@
 //@license GPL-3.0
 #include "luaP.h"
 #include "plugData.h"
-std::string luaP::logS;
-
+std::vector<std::string> luaP::logS;
 
 static int ourP(lua_State* L) {
 	int n = lua_gettop(L);  /* number of arguments */
 	int i;
 	lua_getglobal(L, "tostring");
 	for (i = 1; i <= n; i++) {
+		std::string newS;
 		const char* s;
 		lua_pushvalue(L, -1);  /* function to be called */
 		lua_pushvalue(L, i);   /* value to print */
@@ -24,14 +24,15 @@ static int ourP(lua_State* L) {
 				LUA_QL("print"));
 		if (i > 1)
 		{
-			luaP::logS += "\t";
+			newS += '\t';
 			//fputs("\t", stdout);
 		}
-		luaP::logS += s;
+		newS += s;
+		luaP::logS.push_back(newS);
 		//fputs(s, stdout);
 		lua_pop(L, 1);  /* pop result */
 	}
-	luaP::logS += "\n";
+	//luaP::logS += "\n";
 	//fputs("\n", stdout);
 	return 0;
 }
@@ -56,8 +57,7 @@ void luaP::runScriptS(std::string* script)
 	if (!funcResult.valid())
 	{
 		sol::error luaError = funcResult;
-		luaP::logS += luaError.what();
-		luaP::logS += '\n';
+		luaP::logS.push_back(luaError.what());
 	}
 	return;
 }
