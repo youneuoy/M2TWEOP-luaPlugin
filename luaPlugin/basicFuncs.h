@@ -36,48 +36,52 @@ template <class T>
 class ProcLoader
 {
 public:
+	T			 m_pProc;
+	std::string			m_strNameProcedure;
+
+	//strings for compare
+	char* stringAdr = nullptr;
+	const char* strCmp;
+
 	ProcLoader() {};
 
-	BOOL Load(std::string* pczNameLibrary, std::string* pczNameProcedure)
+	BOOL Load(std::string* pczNameLibrary, std::string* pczNameProcedure, char* sCmp = nullptr)
 	{
-		m_strNameProcedure = pczNameProcedure->c_str();
+		m_strNameProcedure = *pczNameProcedure;
 		m_pProc = NULL;
-		std::string message;
+		strCmp = sCmp;
 		HANDLE hModule;
+
 		if (!(hModule = ::LoadLibraryA(pczNameLibrary->c_str())))
 		{
-			message = "Не могу загрузить ";
-			message = message + *pczNameLibrary;
-
-			::MessageBoxA(0, message.c_str(), "Ошибка", MB_OK | MB_ICONSTOP);
+			std::stringstream error;
+			error << "Could not load plugin located at:\n" << pczNameProcedure->c_str() << "\n" << "Error Code: " << GetLastError();
+			MessageBoxA(NULL, error.str().c_str(), "Error", NULL);
 			return FALSE;
 		}
 		if (!(m_pProc = (T)::GetProcAddress((HMODULE)hModule, m_strNameProcedure.c_str())))
 		{
-			message = "Не найдена функция ";
-			message = message + m_strNameProcedure;
-			message = message + "в модуле";
-			message = message + *pczNameLibrary;
-			::MessageBoxA(0, message.c_str(), "Ошибка", MB_OK | MB_ICONSTOP);
+			m_pProc = (T)emptyProc;
+			MessageBoxA(NULL, "Can`t load function", "Attention", NULL);
 			return FALSE;
 		}
 		return TRUE;
 	};
 
-	T proc;
 	T operator *() const
 	{
 		return m_pProc;
 	}
 
+	static void emptyProc()
+	{
+
+	}
 private:
 	ProcLoader& operator = (ProcLoader&)
 	{
 		return *this;
 	};
-private:
-	T			 m_pProc;
-	std::string			m_strNameProcedure;
 };
 
 class battleFuncs
