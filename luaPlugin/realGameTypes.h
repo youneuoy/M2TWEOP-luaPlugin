@@ -346,7 +346,7 @@ struct generalCharacterictics { /* many important info about character */
 	UINT32 anchNum; /* number of character  anchillaries */
 	struct general* gen; /* on stratmap */
 	undefined field_0x1fc[8];
-	int yearOfBirth; /* yearOfBirth */
+	float yearOfBirth; /* yearOfBirth */
 	undefined field_0x208[16];
 	struct factionStruct* faction;
 	int subFaction;
