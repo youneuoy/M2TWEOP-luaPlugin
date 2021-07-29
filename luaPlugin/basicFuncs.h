@@ -1,6 +1,7 @@
 #pragma once
 #include "framework.h"
 #include <d3d9.h>
+#include <sstream>
 class basicStructs
 {
 public:
@@ -61,8 +62,10 @@ public:
 		}
 		if (!(m_pProc = (T)::GetProcAddress((HMODULE)hModule, m_strNameProcedure.c_str())))
 		{
+			std::stringstream error2;
+			error2 << "Can't load function: " << m_strNameProcedure.c_str();
 			m_pProc = (T)emptyProc;
-			MessageBoxA(NULL, "Can`t load function", "Attention", NULL);
+			MessageBoxA(NULL, error2.str().c_str(), "Attention", NULL);
 			return FALSE;
 		}
 		return TRUE;
