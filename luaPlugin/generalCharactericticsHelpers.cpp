@@ -20,7 +20,7 @@ namespace generalCharactericticsHelpers
 	}
 	int getAge(generalCharacterictics* character)
 	{
-		return character->age >> 3 & 0xf7;
+		return (character->age >> 3) & 0xf7;
 	}
 	void setAge(generalCharacterictics* character, int age)
 	{
