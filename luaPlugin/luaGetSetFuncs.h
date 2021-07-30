@@ -137,7 +137,7 @@ namespace luaGetSetFuncs
 		}
 		else if (fieldIndex == generalCharactericticsStruct_portrait_custom)
 		{
-			retS = genChar->portrait2;
+			retS = genChar->portrait_custom;
 		}
 
 		if (retS != nullptr)
@@ -186,7 +186,7 @@ namespace luaGetSetFuncs
 		else if (fieldIndex == generalCharactericticsStruct_portrait_custom)
 		{
 
-			arg = reinterpret_cast<char*>(&genChar->portrait2);
+			arg = reinterpret_cast<char*>(&genChar->portrait_custom);
 		}
 
 		setGameString(arg, newS.c_str());
