@@ -631,6 +631,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield addAncillary addAncillary
 	@tfield removeAncillary removeAncillary
 	@tfield int age
+	@tField bool isMale
 	@tfield isAlive isAlive
 	@tfield setAsHeir setAsHeir
 	@tfield namedCharacter[4] childs check for nil!
@@ -703,6 +704,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("isMale", sol::property(
 		&generalCharactericticsHelpers::getIsMale, &generalCharactericticsHelpers::setIsMale
 		));
+
 	/***
 	Check if the character is alive
 	@function namedCharacter:isAlive
