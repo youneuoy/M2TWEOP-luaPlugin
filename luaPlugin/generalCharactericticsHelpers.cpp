@@ -30,6 +30,12 @@ namespace generalCharactericticsHelpers
 	{
 		return character->age&1;
 	}
+	bool getIsMale(generalCharacterictics* character) {
+		return character->age & 2;
+	}
+	void setIsMale(generalCharacterictics* character, bool isMale) {
+		character->age = character->age ^ ((int) isMale << 1 ^ character->age) & 2;
+	}
 	void setAsHeir(generalCharacterictics* character, bool isJustSet)
 	{
 		(*(*plugData::data.funcs.setHeir))(character, isJustSet);

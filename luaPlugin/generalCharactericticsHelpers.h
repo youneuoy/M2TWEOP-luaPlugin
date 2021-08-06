@@ -13,6 +13,9 @@ namespace generalCharactericticsHelpers
 	int getAge(generalCharacterictics* character);
 	void setAge(generalCharacterictics* character,int age);
 
+	bool getIsMale(generalCharacterictics* character);
+	void setIsMale(generalCharacterictics* character, bool isMale);
+
 	bool isAlive(generalCharacterictics* character);
 	void setAsHeir(generalCharacterictics* character,bool isJustSet);
 };

@@ -694,8 +694,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	ourNamedCharacter:removeAncillary(ourAnc);
 	*/
 	types.namedCharacter.set_function("removeAncillary", &generalCharactericticsHelpers::removeAnchillary);
+
 	types.namedCharacter.set("age", sol::property(
 		&generalCharactericticsHelpers::getAge, &generalCharactericticsHelpers::setAge
+		));
+
+
+	types.namedCharacter.set("isMale", sol::property(
+		&generalCharactericticsHelpers::getIsMale, &generalCharactericticsHelpers::setIsMale
 		));
 	/***
 	Check if the character is alive
