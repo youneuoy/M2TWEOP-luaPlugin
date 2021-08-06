@@ -618,6 +618,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int piety
 	@tfield int chivalryAndDread Dread if negative value
 	@tfield int authority
+	@tfield int level
 	@tfield getAncillary getAncillary
 	@tfield int ancNum
 	@tfield float yearOfBirth
@@ -652,6 +653,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("piety", &generalCharacterictics::piety);
 	types.namedCharacter.set("chivalryAndDread", &generalCharacterictics::nobility);
 	types.namedCharacter.set("authority", &generalCharacterictics::leaderAutority);
+	types.namedCharacter.set("level", &generalCharacterictics::level);
 	/***
 	Get pointer to ancillary with number
 	@function namedCharacter:getAncillary
