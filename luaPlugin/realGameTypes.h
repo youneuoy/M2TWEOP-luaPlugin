@@ -331,14 +331,68 @@ struct generalCharacterictics { /* many important info about character */
 	uchar status; /* 5-leader,2 - heir, 0 - ordinary man */
 	undefined field_0x3d[7];
 	int authority; /* authority of the general */
-	undefined field_0x48[8];
+	int influence;
+	int subterfuge;
 	int loyality; /* loyality of the general */
-	undefined field_0x54[8];
+	int charm;
+	int finance;
 	int piety; /* piety of the general */
-	undefined field_0x60[4];
+	int magic;
 	int nobility; /* nobility of the general */
 	int leaderAutority; /* autority of the leader */
-	undefined field_0x6c[376];
+	int level;
+	int32_t unorthodoxy; //0x0070
+	int32_t heresyImmunity; //0x0074
+	int32_t assassination; //0x0078
+	int32_t sabotage; //0x007C
+	int32_t eligibility; //0x0080
+	int32_t purity; //0x0084
+	int32_t violence; //0x0088
+	int32_t disposition; //0x008C
+	int32_t boldness; //0x0090
+	int32_t generosity; //0x0094
+	int32_t management; //0x0098
+	int32_t bodyguardSize; //0x009C
+	int32_t troopMorale; //0x00A0
+	int32_t movementPointsBonus; //0x00A4
+	int32_t attack; //0x00A8
+	int32_t defence; //0x00AC
+	int32_t siegeAttack; //0x00B0
+	int32_t siegeDefense; //0x00B4
+	int32_t ambush; //0x00B8
+	int32_t navalCommand; //0x00BC
+	int32_t siegeEngineering; //0x00C0
+	int32_t nightBattle; //0x00C4
+	int32_t personalSecurity; //0x00C8
+	int32_t publicSecurity; //0x00CC
+	int32_t bribery; //0x00D0
+	int32_t bribeResistance; //0x00D4
+	int32_t electability; //0x00D8
+	int32_t lineOfSight; //0x00DC
+	int32_t trainingUnits; //0x00E0
+	int32_t trainingAgents; //0x00E4
+	int32_t construction; //0x00E8
+	int32_t trading; //0x00EC
+	int32_t localPopularity; //0x00F0
+	int32_t footInTheDoor; //0x00F4
+	int32_t farming; //0x00F8
+	int32_t mining; //0x00FC
+	int32_t taxCollection; //0x0100
+	int32_t fertility; //0x0104
+	int32_t cavalryCommand; //0x0108
+	int32_t infantryCommand; //0x010C
+	int32_t gunpowerCommand; //0x0110
+	int32_t artilleryCommand; //0x0114
+	undefined pad_0118[168]; //0x0118
+	int32_t health; //0x01C0
+	int32_t squalor; //0x01C4
+	int32_t unrest; //0x01C8
+	int32_t law; //0x01CC
+	int32_t looting; //0x01D0
+	int32_t bodyguardValour; //0x01D4
+	int32_t hitpoints; //0x01D8
+	int32_t trainingAnimalUnits; //0x01DC
+	int32_t battleSurgery; //0x01E0
 	struct trait** traits; /* names at [item number] -0x4-here. Not have number, read it in while(traits != 0){this->m_memory->Read(traits + 0x08, 4).toINT32();} */
 	undefined field_0x1e8[4];
 	struct anchData** anchillaries; /* pointers to character anchillaries, names at  [item number] -0-0c-here) */
