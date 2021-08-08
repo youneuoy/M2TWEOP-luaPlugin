@@ -478,9 +478,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@tfield eduEntry eduEntry
 	@tfield float movePoints
-	@tfield int number
-	@tfield int numberTact
-	@tfield int numberMax
+	@tfield int soldierCountStratMap
+	@tfield int soldierCountStratMapMax
+	@tfield int soldierCountBattleMap
 	@tfield character character
 	@tfield kill kill
 	@tfield setParams setParams
@@ -492,9 +492,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit = luaState.new_usertype<unit>("unit");
 	types.unit.set("eduEntry", &unit::eduEntry);
 	types.unit.set("movePoints", sol::property(&unitHelpers::getMovepoints, &unitHelpers::setMovepoints));
-	types.unit.set("number", sol::property(&unit::number, &unitHelpers::setSoldiersCount));
-	types.unit.set("numberTact", &unit::numberTact);
-	types.unit.set("numberMax", &unit::numberMax);
+	types.unit.set("soldierCountStratMap", sol::property(&unit::number, &unitHelpers::setSoldiersCount));
+	types.unit.set("soldierCountStratMapMax", &unit::numberTact);
+	types.unit.set("soldierCountBattleMap", &unit::numberMax);
 	types.unit.set("character", &unit::general);
 	/***
 	Kill this unit
@@ -533,9 +533,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield unit bodyguards
 	@tfield stackStruct armyLeaded
 	@tfield stackStruct armyNotLeaded
-	@tfield float movepointsMax
-	@tfield float movepointsModifier
-	@tfield float movepoints
+	@tfield float movePointsMax
+	@tfield float movePointsModifier
+	@tfield float movePoints
 	@tfield string ability
 	@tfield moveToTile moveToTile
 	@tfield reposition reposition
@@ -552,12 +552,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.character.set("bodyguards", &general::bodyguards);
 	types.character.set("armyLeaded", &general::armyLeaded);
 	types.character.set("armyNotLeaded", &general::armyNotLeaded);
-	types.character.set("movepointsMax", &general::movepointsMax);
-	types.character.set("movepointsModifier", &general::movepointsModifier);
-	types.character.set("movepoints", sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints));
+	types.character.set("movePointsMax", &general::movepointsMax);
+	types.character.set("movePointsModifier", &general::movepointsModifier);
+	types.character.set("movePoints", sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints));
 	types.character.set("ability", sol::property(&luaGetSetFuncs::getStringPropertyGen<generalStruct_abilityID>, &luaGetSetFuncs::setStringPropertyGen<generalStruct_abilityID>));
 	/***
-	Start moving to tale. Need movepoints.
+	Start moving to tale. Need movePoints.
 	@function character:moveToTile
 	@tparam int xCoord
 	@tparam int yCoord
@@ -846,7 +846,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	ourFac = stratmap.game.getFaction(0);
 	ourCharacter = ourFac:getCharacter(0);
-	if(ourCharacter.xCoord > 150 and ourCharacter.movepoints<10)
+	if(ourCharacter.xCoord > 150 and ourCharacter.movePoints<10)
 	then
 		ourCharacter:kill();
 	end
@@ -1119,7 +1119,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.stackStruct.set_function("addUnit", &stackStructHelpers::addUnitToArmy);
 	/***
-	Attack another army. Need movepoints.
+	Attack another army. Need movePoints.
 
 	@function stackStruct:attackArmy
 	@tparam stackStruct defender
