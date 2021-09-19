@@ -449,7 +449,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stratmap.game.setScriptCounter("SomeCounter",25);
 */
-
+	tables.gameTable.set_function("setScriptCounter", &gameHelpers::setScriptCounter);
 	///Stratmap table section
 	//@section stratmapTable
 
