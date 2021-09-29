@@ -61,6 +61,7 @@ public:
 	sol::state* resetState();
 	//init part 2 of tables
 	void initP2();
+	void initCampaign();
 	void initTech();
 	void runScriptS(std::string*script);
 
@@ -121,6 +122,8 @@ public:
 		sol::usertype<battleSide> battleSideTable;
 		sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
 		sol::usertype<deploymentAreaS> deploymentAreaTable;
+
+		sol::usertype<campaign> campaignTable;
 	}typeAll;
 	struct
 	{

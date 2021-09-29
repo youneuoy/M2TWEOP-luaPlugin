@@ -177,6 +177,7 @@ void initLua()
     std::string luaFile = plugData::data.modFolder + "\\youneuoy_Data\\plugins\\lua\\luaPluginScript.lua";
 
     sol::state* luaState = plugData::data.luaAll.init(luaFile, plugData::data.modFolder);
+    plugData::data.luaAll.initCampaign();
     plugData::data.luaAll.initP2();
     plugData::data.luaAll.initTech();
     plugData::data.luaAll.onPluginLoadF();

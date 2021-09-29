@@ -5,6 +5,28 @@
 #include <d3dx9.h>
 
 #include "lua/sol.hpp"
+
+#include "realGameTypes.h"
+namespace campaignEnums
+{
+	enum dipRelEnum :int
+	{
+		war = 1,
+		peace = 2,
+		alliance = 3,
+		suzerain = 4,
+		trade = 6
+	};
+
+	enum dipStateInternalEnum :int
+	{
+		peaceState = 200,
+		warState =600,
+		allianceState =0
+	};
+	constexpr int protectorateState = 15;
+	constexpr int nonProtectorateeState =6;
+}
 namespace m2tweopHelpers
 {
 
@@ -12,6 +34,8 @@ namespace m2tweopHelpers
 	std::string getLuaPath();
 
 	bool isTileFree(int x, int y);
+	bool checkDipStance(campaign*campaignStruct,campaignEnums::dipRelEnum dipType,factionStruct* fac1, factionStruct* fac2);
+	void setDipStance(campaign*campaignStruct,campaignEnums::dipRelEnum dipType,factionStruct* fac1, factionStruct* fac2);
 
 	void setAncLimit(unsigned char limit);
 	void seReligionsLimit(unsigned char limit);

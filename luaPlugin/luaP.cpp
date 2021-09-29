@@ -1,4 +1,5 @@
 ///
+//#<a href="./../../index.html">Main page of M2TWEOP docs</a>
 //![Lua logo](../Lua.png)
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
 //@module LuaPlugin 
@@ -632,7 +633,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield addAncillary addAncillary
 	@tfield removeAncillary removeAncillary
 	@tfield int age
-	@tField bool isMale
+	@tfield bool isMale
 	@tfield isAlive isAlive
 	@tfield setAsHeir setAsHeir
 	@tfield namedCharacter[4] childs check for nil!

@@ -8,6 +8,132 @@
 #include "plugData.h"
 #include "gameDataAllHelper.h"
 #include "battleHandlerHelpers.h"
+
+
+
+void luaP::initCampaign()
+{
+	using namespace campaignEnums;
+
+	///campaign enums section
+	//@section campaignEnums
+
+	/***
+	Enum with a list of types of diplomatic relations.
+
+	@tfield int war
+	@tfield int peace
+	@tfield int alliance
+	@tfield int suzerain
+	@tfield int trade
+
+	@usage
+	local campaign=gameDataAll.get().campaignStruct;
+	local fac1=campaign.factionsSortedByDescrStrat[1];
+	local fac2=campaign.factionsSortedByDescrStrat[2];
+	local isInWar=campaign:checkDipStance(dipRelType.war,fac1,fac2);
+
+	@table dipRelType
+	*/
+	luaState.new_enum(
+		"dipRelType",
+		"war", dipRelEnum::war,
+		"peace", dipRelEnum::peace,
+		"alliance", dipRelEnum::alliance,
+		"suzerain", dipRelEnum::suzerain,
+		"trade", dipRelEnum::trade
+	);
+
+	///campaign table section
+	//@section campaignStruct
+
+	/***
+	Basic campaign table. Many values here can be changed.
+
+	@tfield factionStruct[31] factionsSortedByDescrStrat faction list, use lua indexing here(started from 1)
+	@tfield int numberOfFactions
+	@tfield factionStruct currentFaction faction whose turn is at the moment. You can change this value.
+	@tfield int passedTurnsNum
+	@tfield float timescale
+	@tfield SettlementStruct romeSettlement
+	@tfield SettlementStruct constantinopleSettlement
+	@tfield float BrigandSpawnValue
+	@tfield float PirateSpawnValue
+	@tfield int FreeUpkeepForts the number of units that are kept free of charge in the forts
+	@tfield float currentDate
+	@tfield int currentseason season(0-summer,1-winter)
+	@tfield float startDate
+	@tfield int startSeason season(0-summer,1-winter)
+	@tfield float endDate
+	@tfield int endSeason season(0-summer,1-winter)
+	@tfield int daysInBattle
+	@tfield float currentTimeInBattle 24 max, so calc as daysInBattle*24+currentTimeInBattle
+	@tfield checkDipStance checkDipStance
+	@tfield setDipStance setDipStance
+	
+	@table gameDataAll.campaignStruct
+	*/
+	typeAll.campaignTable = luaState.new_usertype<campaign>("campaignStruct");
+	typeAll.campaignTable.set("factionsSortedByDescrStrat", sol::property([](campaign& self) { return std::ref(self.factionsSortedByDescrStrat); }));
+	typeAll.campaignTable.set("numberOfFactions", &campaign::numberOfFactionsWithSlave);
+
+	typeAll.campaignTable.set("currentFaction", &campaign::currentFactionTurn);
+
+	typeAll.campaignTable.set("passedTurnsNum", &campaign::TurnNumber);
+
+	typeAll.campaignTable.set("timescale", &campaign::TimeScale);
+	typeAll.campaignTable.set("romeSettlement", &campaign::rome);
+	typeAll.campaignTable.set("constantinopleSettlement", &campaign::constantinople);
+
+
+	typeAll.campaignTable.set("BrigandSpawnValue", &campaign::BrigandSpawnValue);
+	typeAll.campaignTable.set("BrigandSpawnValue", &campaign::PirateSpawnValue);
+	typeAll.campaignTable.set("FreeUpkeepForts", &campaign::FreeUpkeepForts);
+
+	typeAll.campaignTable.set("currentDate", &campaign::currentDate);
+	typeAll.campaignTable.set("currentseason", &campaign::season);
+
+	typeAll.campaignTable.set("startDate", &campaign::startDate);
+	typeAll.campaignTable.set("startSeason", &campaign::startSeason);
+
+	typeAll.campaignTable.set("endDate", &campaign::endDate);
+	typeAll.campaignTable.set("endSeason", &campaign::endSeason);
+
+
+	typeAll.campaignTable.set("daysInBattle", &campaign::daysInBattle);
+	typeAll.campaignTable.set("currentTimeInBattle", &campaign::currentTimeInBattle);
+
+
+
+
+	/***
+	Check diplomatic relations between factions
+	@function campaignStruct:checkDipStance
+	@tparam dipRelType checkType
+	@tparam factionStruct fac1
+	@tparam factionStruct fac2
+	@treturn bool checkResult 
+	@usage
+	local campaign=gameDataAll.get().campaignStruct;
+	local fac1=campaign.factionsSortedByDescrStrat[1];
+	local fac2=campaign.factionsSortedByDescrStrat[2];
+	local isInWar=campaign:checkDipStance(dipRelType.war,fac1,fac2);
+	*/
+	typeAll.campaignTable.set_function("checkDipStance", &m2tweopHelpers::checkDipStance);
+	/***
+	Set diplomatic relations between factions
+	@function campaignStruct:setDipStance
+	@tparam dipRelType relType
+	@tparam factionStruct fac1
+	@tparam factionStruct fac2
+	@usage
+	local campaign=gameDataAll.get().campaignStruct;
+	local fac1=campaign.factionsSortedByDescrStrat[1];
+	local fac2=campaign.factionsSortedByDescrStrat[2];
+	campaign:setDipStance(dipRelType.war,fac1,fac2);
+	*/
+	typeAll.campaignTable.set_function("setDipStance", &m2tweopHelpers::setDipStance);
+}
 void luaP::initP2()
 {
 	///gameDataAll table section
@@ -18,6 +144,7 @@ void luaP::initP2()
 
 	@tfield get get call it on start of your script, this is static object and pointer to it dont changes
 	@tfield battleStruct battleStruct many battle data
+	@tfield campaignStruct campaignStruct many campaign data
 
 	@table gameDataAll
 	*/
@@ -32,6 +159,7 @@ void luaP::initP2()
 	*/
 	typeAll.gameDataAllTable.set_function("get", &gameDataAllHelper::get);
 	typeAll.gameDataAllTable.set("battleStruct", &gameDataAllStruct::battleHandler);
+	typeAll.gameDataAllTable.set("campaignStruct", &gameDataAllStruct::campaignData);
 
 
 

@@ -1,5 +1,5 @@
-# LuaPlugin ImGui bindings
-
+# LuaPlugin Gui docs
+# <a href="./../../../index.html">Main page of M2TWEOP docs</a>
 Welcome to the LuaPlugin ImGui bindings. This bindings is being developed to support [M2TWEOP-luaPlugin](https://github.com/youneuoy/M2TWEOP-luaPlugin)
 
 

@@ -1,3 +1,4 @@
+
 # Configuration file for the Sphinx documentation builder.
 #
 # This file only contains a selection of the most common options. For a full
@@ -35,7 +36,7 @@ copyright = '2021, youneuoy'
 author = 'youneuoy'
 
 # The full version, including alpha/beta/rc tags
-release = '2.0'
+release = '2.1'
 
 
 
