@@ -21,7 +21,23 @@ std::string* onSelectWorldpkgdesc(const char* selectedRec, const char* selectedG
 	std::string tmpS;
 	if (plugData::data.luaAll.onSelectWorldpkgdesc != nullptr)
 	{
-		tryLuaGetRes((*plugData::data.luaAll.onSelectWorldpkgdesc)(selectedRec, selectedGroup), tmpS);
+
+			auto funcResult = (*plugData::data.luaAll.onSelectWorldpkgdesc)(selectedRec, selectedGroup); 
+			if (!funcResult.valid())
+			{
+				
+				sol::error luaError = funcResult; 
+				MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL); 
+			}
+			else
+			{
+				sol::optional<std::string>s = funcResult;
+				if (s)
+				{
+					tmpS = s.value();
+				}
+			}
+
 	}
 
 	std::string* retS = new std::string(tmpS);
