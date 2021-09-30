@@ -1,5 +1,13 @@
 #include "basicEvents.h"
 
+void onReadGameDbsAtStart()
+{
+	if (plugData::data.luaAll.onReadGameDbsAtStart != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onReadGameDbsAtStart)());
+	}
+}
+
 void onClickAtTile(int x, int y)
 {
 	if (plugData::data.luaAll.onClickAtTile != nullptr)

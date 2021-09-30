@@ -157,6 +157,7 @@ public:
 	ProcLoader<stackStruct*(__cdecl*)(general*)> createArmy;
 	ProcLoader<unit*(__cdecl*)(const char*, int, int, int, int)> createUnitN;
 	ProcLoader<unit*(__cdecl*)(int, int, int, int, int)> createUnitIdx;
+	ProcLoader<unit*(__cdecl*)(int, int, int, int, int)> createUnitEDB;
 
 	ProcLoader<int(__cdecl*)(stackStruct*,unit*)> addUnitToArmy;
 	ProcLoader<void(__cdecl*)(general*,unit*)> setBodyguard;
@@ -171,4 +172,26 @@ public:
 	//graphics
 	ProcLoader<LPDIRECT3DTEXTURE9(__cdecl*)(const char*, int*, int*)> loadTexture;
 	ProcLoader<void(__cdecl*)(LPDIRECT3DTEXTURE9)> unloadTexture;
+
+
+
+};
+
+
+class eopEduFuncs
+{
+public:
+	//edu functions
+	ProcLoader<EduEntry* (__cdecl*)(int, int)> addEopEduEntry;
+	ProcLoader<EduEntry* (__cdecl*)(int)> getEopEduEntry;
+	ProcLoader<int (__cdecl*)(int)> getDataEopEdu;
+
+
+	ProcLoader<void (__cdecl*)(int, const char*)> setEntryUnitCardTga;
+	ProcLoader<void (__cdecl*)(int, const char*)> setEntryInfoCardTga;
+	ProcLoader<void (__cdecl*)(int, const char*)> setEntrySoldierModel;
+
+	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedName;
+	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedDescr;
+	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedShortDescr;
 };

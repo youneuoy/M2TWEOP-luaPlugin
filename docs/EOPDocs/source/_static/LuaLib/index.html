@@ -47,6 +47,7 @@ scripting</h1>
 <li><a href="#Building_table_section">Building table section </a></li>
 <li><a href="#BuildingData_table_section">BuildingData table section </a></li>
 <li><a href="#BuildingInfo_table_section">BuildingInfo table section </a></li>
+<li><a href="#M2TWEOPDU_table_section">M2TWEOPDU table section </a></li>
 <li><a href="#campaign_enums_section">campaign enums section </a></li>
 <li><a href="#campaign_table_section">campaign table section </a></li>
 <li><a href="#gameDataAll_table_section">gameDataAll table section </a></li>
@@ -428,6 +429,53 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">Basic buildingInfo table</td>
 	</tr>
 </table>
+<h2><a href="#M2TWEOPDU_table_section">M2TWEOPDU table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU">M2TWEOPDU</a></td>
+	<td class="summary">Basic M2TWEOPDU table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.addEopEduEntryFromEDUID">M2TWEOPDU.addEopEduEntryFromEDUID (baseEnryIndex, eopEnryIndex)</a></td>
+	<td class="summary">Create new M2TWEOPDU entry</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.getEopEduEntryByID">M2TWEOPDU.getEopEduEntryByID (eopEnryIndex)</a></td>
+	<td class="summary">Get eduEntry of M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.getDataEopDu">M2TWEOPDU.getDataEopDu (eopEnryIndex)</a></td>
+	<td class="summary">Get data of M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.setEntryUnitCardTga">M2TWEOPDU.setEntryUnitCardTga (eopEnryIndex, newCardTga)</a></td>
+	<td class="summary">Set unit card for M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.setEntryInfoCardTga">M2TWEOPDU.setEntryInfoCardTga (eopEnryIndex, newInfoCardTga)</a></td>
+	<td class="summary">Set unit info card for M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.setEntrySoldierModel">M2TWEOPDU.setEntrySoldierModel (eopEnryIndex, newSoldierModel)</a></td>
+	<td class="summary">Set soldier model for M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.setEntryLocalizedName">M2TWEOPDU.setEntryLocalizedName (eopEnryIndex, newLocalizedName)</a></td>
+	<td class="summary">Set localized name for M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.setEntryLocalizedDescr">M2TWEOPDU.setEntryLocalizedDescr (eopEnryIndex, newLocalizedDescr)</a></td>
+	<td class="summary">Set localized description for M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.setEntryLocalizedShortDescr">M2TWEOPDU.setEntryLocalizedShortDescr (eopEnryIndex, newLocalizedShortDescr)</a></td>
+	<td class="summary">Set localized short description for M2TWEOPDU entry.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPDU.createUnitByIndex">M2TWEOPDU.createUnitByIndex (eopEnryIndex, facNum, exp, armor, weapon)</a></td>
+	<td class="summary">Create new unit from DU entry.</td>
+	</tr>
+</table>
 <h2><a href="#campaign_enums_section">campaign enums section </a></h2>
 <table class="function_list">
 	<tr>
@@ -510,6 +558,10 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#onNewGameStart">onNewGameStart ()</a></td>
 	<td class="summary">Called on new campaign start</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onReadGameDbsAtStart">onReadGameDbsAtStart ()</a></td>
+	<td class="summary">Called after the game loads various db`s (edu, etc) at startup.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onClickAtTile">onClickAtTile (x, y)</a></td>
@@ -2913,12 +2965,6 @@ ourNamedCharacter:removeAncillary(ourAnc);</pre>
 
 
         </li>
-        <li><span class="parameter">Dictionary</span>
-            <span class="types"><span class="type">int</span></span>
-
-
-
-        </li>
         <li><span class="parameter">Index</span>
             <span class="types"><span class="type">int</span></span>
 
@@ -4075,6 +4121,431 @@ sucess=stackStruct:addUnit(newUnit);
 
 </dd>
 </dl>
+    <h2 class="section-header "><a name="M2TWEOPDU_table_section"></a>M2TWEOPDU table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "M2TWEOPDU"></a>
+    <strong>M2TWEOPDU</strong>
+    </dt>
+    <dd>
+    Basic M2TWEOPDU table.  Contains descriptions of m2tweop unit types.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">addEopEduEntryFromEDUID</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.addEopEduEntryFromEDUID">addEopEduEntryFromEDUID</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getEopEduEntryByID</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.getEopEduEntryByID">getEopEduEntryByID</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getDataEopDu</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.getDataEopDu">getDataEopDu</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEntryUnitCardTga</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.setEntryUnitCardTga">setEntryUnitCardTga</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEntryInfoCardTga</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.setEntryInfoCardTga">setEntryInfoCardTga</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEntrySoldierModel</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.setEntrySoldierModel">setEntrySoldierModel</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEntryLocalizedName</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.setEntryLocalizedName">setEntryLocalizedName</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEntryLocalizedDescr</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.setEntryLocalizedDescr">setEntryLocalizedDescr</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEntryLocalizedShortDescr</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.setEntryLocalizedShortDescr">setEntryLocalizedShortDescr</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">createUnitByIndex</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPDU.createUnitByIndex">createUnitByIndex</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.addEopEduEntryFromEDUID"></a>
+    <strong>M2TWEOPDU.addEopEduEntryFromEDUID (baseEnryIndex, eopEnryIndex)</strong>
+    </dt>
+    <dd>
+    Create new M2TWEOPDU entry
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">baseEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index number, which will be taken as the base for this DU record.
+        </li>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index, which will be assigned to a new record in DU (recommend starting from 1000, so that there is no confusion with records from EDU).
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#eduEntry">eduEntry</a></span>
+        retEntry Usually you shouldn't use this value.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.addEopEduEntryFromEDUID(<span class="number">1</span>,<span class="number">1000</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.getEopEduEntryByID"></a>
+    <strong>M2TWEOPDU.getEopEduEntryByID (eopEnryIndex)</strong>
+    </dt>
+    <dd>
+    Get eduEntry of M2TWEOPDU entry.  You usually won't need this.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#eduEntry">eduEntry</a></span>
+        retEntry Usually you shouldn't use this value.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> eduEntryOfEOPDU=M2TWEOPDU.getEOPEduEntryByID(<span class="number">1000</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.getDataEopDu"></a>
+    <strong>M2TWEOPDU.getDataEopDu (eopEnryIndex)</strong>
+    </dt>
+    <dd>
+    Get data of M2TWEOPDU entry.  You usually won't need this.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">eopDuEntry</span></span>
+        retEntry Usually you shouldn't use this value.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> eopDUEntry=M2TWEOPDU.getDataEopDu(<span class="number">1000</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.setEntryUnitCardTga"></a>
+    <strong>M2TWEOPDU.setEntryUnitCardTga (eopEnryIndex, newCardTga)</strong>
+    </dt>
+    <dd>
+    Set unit card for M2TWEOPDU entry.  Requirements for the location and parameters of the image are unchanged in relation to the game.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+        <li><span class="parameter">newCardTga</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.setEntryUnitCardTga(<span class="number">1000</span>,<span class="string">"#akavir_swordsmen.tga"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.setEntryInfoCardTga"></a>
+    <strong>M2TWEOPDU.setEntryInfoCardTga (eopEnryIndex, newInfoCardTga)</strong>
+    </dt>
+    <dd>
+    Set unit info card for M2TWEOPDU entry.  Requirements for the location and parameters of the image are unchanged in relation to the game.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+        <li><span class="parameter">newInfoCardTga</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.setEntryInfoCardTga(<span class="number">1000</span>,<span class="string">"akavir_swordsmen_info.tga"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.setEntrySoldierModel"></a>
+    <strong>M2TWEOPDU.setEntrySoldierModel (eopEnryIndex, newSoldierModel)</strong>
+    </dt>
+    <dd>
+    Set soldier model for M2TWEOPDU entry.  The required entry must be correctly recorded in game files.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+        <li><span class="parameter">newSoldierModel</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.setEntrySoldierModel(<span class="number">1000</span>,<span class="string">"Sword_and_Buckler_Men"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.setEntryLocalizedName"></a>
+    <strong>M2TWEOPDU.setEntryLocalizedName (eopEnryIndex, newLocalizedName)</strong>
+    </dt>
+    <dd>
+    Set localized name for M2TWEOPDU entry.  This does not require any entries in the text folder.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+        <li><span class="parameter">newLocalizedName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.setEntryLocalizedName(<span class="number">1000</span>,<span class="string">"Test unit"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.setEntryLocalizedDescr"></a>
+    <strong>M2TWEOPDU.setEntryLocalizedDescr (eopEnryIndex, newLocalizedDescr)</strong>
+    </dt>
+    <dd>
+    Set localized description for M2TWEOPDU entry.  This does not require any entries in the text folder.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+        <li><span class="parameter">newLocalizedDescr</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.setEntryLocalizedDescr(<span class="number">1000</span>,<span class="string">"This is test unit description\n123321\nCreated with m2tweop"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.setEntryLocalizedShortDescr"></a>
+    <strong>M2TWEOPDU.setEntryLocalizedShortDescr (eopEnryIndex, newLocalizedShortDescr)</strong>
+    </dt>
+    <dd>
+    Set localized short description for M2TWEOPDU entry.  This does not require any entries in the text folder.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+         Entry index
+        </li>
+        <li><span class="parameter">newLocalizedShortDescr</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.setEntryLocalizedShortDescr(<span class="number">1000</span>,<span class="string">"This is test unit short description\n123321\nCreated with m2tweop"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPDU.createUnitByIndex"></a>
+    <strong>M2TWEOPDU.createUnitByIndex (eopEnryIndex, facNum, exp, armor, weapon)</strong>
+    </dt>
+    <dd>
+    Create new unit from DU entry.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">eopEnryIndex</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">facNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">exp</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">armor</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">weapon</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#unit">unit</a></span>
+        newUnit
+    </ol>
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="index.html#stackStruct:addUnit">stackStruct:addUnit</a>
+    </ul>
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourUnit=M2TWEOPDU.createUnitByIndex(<span class="number">1000</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
     <h2 class="section-header "><a name="campaign_enums_section"></a>campaign enums section </h2>
 
     <dl class="function">
@@ -4700,6 +5171,12 @@ deployArea1=side1.armies[<span class="number">1</span>].deploymentArea;
 
 
         </li>
+        <li><span class="parameter">onReadGameDbsAtStart</span>
+            <span class="types"><a class="type" href="index.html#onReadGameDbsAtStart">onReadGameDbsAtStart</a></span>
+
+
+
+        </li>
         <li><span class="parameter">onClickAtTile</span>
             <span class="types"><a class="type" href="index.html#onClickAtTile">onClickAtTile</a></span>
 
@@ -5271,6 +5748,26 @@ deployArea1=side1.armies[<span class="number">1</span>].deploymentArea;
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onNewGameStart()
+<span class="comment">--something here
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onReadGameDbsAtStart"></a>
+    <strong>onReadGameDbsAtStart ()</strong>
+    </dt>
+    <dd>
+    Called after the game loads various db`s (edu, etc) at startup.
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onReadGameDbsAtStart()
 <span class="comment">--something here
 </span><span class="keyword">end</span></pre>
     </ul>
@@ -8056,7 +8553,7 @@ newCapital=fac.capital();
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-09-29 00:29:03 </i>
+<i style="float:right;">Last updated 2021-09-30 13:26:38 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

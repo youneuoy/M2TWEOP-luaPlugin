@@ -12,6 +12,7 @@ public:
 		basicFuncs funcs;
 		technicalFuncs funcsTech;
 		battleFuncs funcsBattle;
+		eopEduFuncs funcsEopEdu;
 
 		luaP luaAll;
 	}

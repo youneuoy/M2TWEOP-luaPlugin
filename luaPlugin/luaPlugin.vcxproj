@@ -179,6 +179,7 @@
     <ClInclude Include="buildingStructHelpers.h" />
     <ClInclude Include="cameraHelpers.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="eopEduHelpers.h" />
     <ClInclude Include="factionHelpers.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameDataAllHelper.h" />
@@ -221,6 +222,7 @@
     <ClCompile Include="cameraHelpers.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="eopEduHelpers.cpp" />
     <ClCompile Include="factionHelpers.cpp" />
     <ClCompile Include="gameDataAllHelper.cpp" />
     <ClCompile Include="gameHelpers.cpp" />
@@ -234,6 +236,7 @@
     <ClCompile Include="imgui\imgui_stdlib.cpp" />
     <ClCompile Include="imgui\imgui_tables.cpp" />
     <ClCompile Include="imgui\imgui_widgets.cpp" />
+    <ClCompile Include="luaEopEdu.cpp" />
     <ClCompile Include="luaEvents.cpp" />
     <ClCompile Include="luaGetSetFuncs.cpp" />
     <ClCompile Include="luaP.cpp" />

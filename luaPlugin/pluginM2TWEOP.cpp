@@ -120,6 +120,9 @@ int initPlugin(std::string* modPath)
     fName = "createUnitIdx";
     plugData::data.funcs.createUnitIdx.Load(&plPath, &fName);
 
+    fName = "createUnitEDB";
+    plugData::data.funcs.createUnitEDB.Load(&plPath, &fName);
+
     fName = "addUnitToArmy";
     plugData::data.funcs.addUnitToArmy.Load(&plPath, &fName);
 
@@ -166,7 +169,34 @@ int initPlugin(std::string* modPath)
     plugData::data.funcsBattle.swUnBMapHighlight.Load(&plPath, &fName);
 
 
+    //eop edu functions
+    fName = "addEopEduEntry";
+    plugData::data.funcsEopEdu.addEopEduEntry.Load(&plPath, &fName);  
+     
+    fName = "getEopEduEntry";
+    plugData::data.funcsEopEdu.getEopEduEntry.Load(&plPath, &fName);    
+    
+    fName = "getDataEopEdu";
+    plugData::data.funcsEopEdu.getDataEopEdu.Load(&plPath, &fName); 
 
+
+    fName = "setEntryUnitCardTga";
+    plugData::data.funcsEopEdu.setEntryUnitCardTga.Load(&plPath, &fName);
+
+    fName = "setEntryInfoCardTga";
+    plugData::data.funcsEopEdu.setEntryInfoCardTga.Load(&plPath, &fName);
+
+    fName = "setEntrySoldierModel";
+    plugData::data.funcsEopEdu.setEntrySoldierModel.Load(&plPath, &fName);
+
+    fName = "setEntryLocalizedName";
+    plugData::data.funcsEopEdu.setEntryLocalizedName.Load(&plPath, &fName);
+
+    fName = "setEntryLocalizedDescr";
+    plugData::data.funcsEopEdu.setEntryLocalizedDescr.Load(&plPath, &fName);
+
+    fName = "setEntryLocalizedShortDescr";
+    plugData::data.funcsEopEdu.setEntryLocalizedShortDescr.Load(&plPath, &fName);
 
     initLua();
     return 1;
@@ -179,6 +209,7 @@ void initLua()
     sol::state* luaState = plugData::data.luaAll.init(luaFile, plugData::data.modFolder);
     plugData::data.luaAll.initCampaign();
     plugData::data.luaAll.initP2();
+    plugData::data.luaAll.initEopEdu();
     plugData::data.luaAll.initTech();
     plugData::data.luaAll.onPluginLoadF();
     if (luaState==nullptr)

@@ -1,0 +1,151 @@
+///
+//![Lua logo](../Lua.png)
+//M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
+//@module LuaPlugin
+//@author youneuoy
+//@license GPL-3.0
+#include "luaP.h"
+#include "plugData.h"
+
+void luaP::initEopEdu()
+{
+	///M2TWEOPDU table section
+	//@section M2TWEOPDUTable
+
+	/***
+	Basic M2TWEOPDU table. Contains descriptions of m2tweop unit types.
+
+	@tfield addEopEduEntryFromEDUID addEopEduEntryFromEDUID
+	@tfield getEopEduEntryByID getEopEduEntryByID
+	@tfield getDataEopDu getDataEopDu
+	@tfield setEntryUnitCardTga setEntryUnitCardTga
+	@tfield setEntryInfoCardTga setEntryInfoCardTga
+	@tfield setEntrySoldierModel setEntrySoldierModel
+	@tfield setEntryLocalizedName setEntryLocalizedName
+	@tfield setEntryLocalizedDescr setEntryLocalizedDescr
+	@tfield setEntryLocalizedShortDescr setEntryLocalizedShortDescr
+	@tfield createUnitByIndex createUnitByIndex
+	@table M2TWEOPDU
+	*/
+
+
+
+	tables.M2TWEOPEDUTable = luaState.create_table("M2TWEOPDU");
+
+
+	/***
+	Create new M2TWEOPDU entry
+	@function M2TWEOPDU.addEopEduEntryFromEDUID
+	@tparam int baseEnryIndex Entry index number, which will be taken as the base for this DU record. 
+	@tparam int eopEnryIndex Entry index, which will be assigned to a new record in DU (recommend starting from 1000, so that there is no confusion with records from EDU).
+	@treturn eduEntry retEntry Usually you shouldn't use this value.
+	@usage
+	M2TWEOPDU.addEopEduEntryFromEDUID(1,1000);
+	*/
+	tables.M2TWEOPEDUTable.set_function("addEopEduEntryFromEDUID", &eopEduHelpers::addEopEduEntry);
+
+	/***
+	Get eduEntry of M2TWEOPDU entry. You usually won't need this.
+	@function M2TWEOPDU.getEopEduEntryByID
+	@tparam int eopEnryIndex Entry index
+	@treturn eduEntry retEntry Usually you shouldn't use this value.
+	@usage
+	local eduEntryOfEOPDU=M2TWEOPDU.getEOPEduEntryByID(1000);
+	*/
+	tables.M2TWEOPEDUTable.set_function("getEopEduEntryByID", &eopEduHelpers::getEopEduEntry);
+
+
+	/***
+	Get data of M2TWEOPDU entry. You usually won't need this.
+	@function M2TWEOPDU.getDataEopDu
+	@tparam int eopEnryIndex Entry index
+	@treturn eopDuEntry retEntry Usually you shouldn't use this value.
+	@usage
+	local eopDUEntry=M2TWEOPDU.getDataEopDu(1000);
+	*/
+	tables.M2TWEOPEDUTable.set_function("getDataEopDu", &eopEduHelpers::getDataEopDu);
+
+
+	/***
+	Set unit card for M2TWEOPDU entry. Requirements for the location and parameters of the image are unchanged in relation to the game.
+	@function M2TWEOPDU.setEntryUnitCardTga
+	@tparam int eopEnryIndex Entry index
+	@tparam string newCardTga
+	@usage
+	M2TWEOPDU.setEntryUnitCardTga(1000,"#akavir_swordsmen.tga");
+	*/
+	tables.M2TWEOPEDUTable.set_function("setEntryUnitCardTga", &eopEduHelpers::setEntryUnitCardTga);
+
+	/***
+	Set unit info card for M2TWEOPDU entry. Requirements for the location and parameters of the image are unchanged in relation to the game.
+	@function M2TWEOPDU.setEntryInfoCardTga
+	@tparam int eopEnryIndex Entry index
+	@tparam string newInfoCardTga 
+	@usage
+	M2TWEOPDU.setEntryInfoCardTga(1000,"akavir_swordsmen_info.tga");
+	*/
+	tables.M2TWEOPEDUTable.set_function("setEntryInfoCardTga", &eopEduHelpers::setEntryInfoCardTga);
+
+	
+	/***
+	Set soldier model for M2TWEOPDU entry. The required entry must be correctly recorded in game files.
+	@function M2TWEOPDU.setEntrySoldierModel
+	@tparam int eopEnryIndex Entry index
+	@tparam string newSoldierModel
+	@usage
+	M2TWEOPDU.setEntrySoldierModel(1000,"Sword_and_Buckler_Men");
+	*/
+	tables.M2TWEOPEDUTable.set_function("setEntrySoldierModel", &eopEduHelpers::setEntrySoldierModel);	
+
+
+	/***
+	Set localized name for M2TWEOPDU entry. This does not require any entries in the text folder.
+	@function M2TWEOPDU.setEntryLocalizedName
+	@tparam int eopEnryIndex Entry index
+	@tparam string newLocalizedName
+	@usage
+	M2TWEOPDU.setEntryLocalizedName(1000,"Test unit");
+	*/
+	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedName", &eopEduHelpers::setEntryLocalizedName);
+
+	
+	/***
+	Set localized description for M2TWEOPDU entry. This does not require any entries in the text folder.
+	@function M2TWEOPDU.setEntryLocalizedDescr
+	@tparam int eopEnryIndex Entry index
+	@tparam string newLocalizedDescr
+	@usage
+	M2TWEOPDU.setEntryLocalizedDescr(1000,"This is test unit description\n123321\nCreated with m2tweop");
+	*/
+	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedDescr", &eopEduHelpers::setEntryLocalizedDescr);
+	
+	/***
+	Set localized short description for M2TWEOPDU entry. This does not require any entries in the text folder.
+	@function M2TWEOPDU.setEntryLocalizedShortDescr
+	@tparam int eopEnryIndex Entry index
+	@tparam string newLocalizedShortDescr
+	@usage
+	M2TWEOPDU.setEntryLocalizedShortDescr(1000,"This is test unit short description\n123321\nCreated with m2tweop");
+	*/
+	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedShortDescr", &eopEduHelpers::setEntryLocalizedShortDescr);	
+
+
+	/***
+	Create new unit from DU entry.
+	@function M2TWEOPDU.createUnitByIndex
+	@tparam int eopEnryIndex
+	@tparam int facNum
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@treturn unit newUnit
+	@usage
+	local ourUnit=M2TWEOPDU.createUnitByIndex(1000,0,1,1,1);
+	@see stackStruct:addUnit
+	*/
+	tables.M2TWEOPEDUTable.set_function("createUnitByIndex", &eopEduHelpers::createUnitByIndex);
+
+
+
+
+}

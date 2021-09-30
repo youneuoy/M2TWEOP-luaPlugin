@@ -2,6 +2,9 @@
 #include "pluginM2TWEOP.h"
 
 
+extern "C" PLUGINM2TWEOP_API void onReadGameDbsAtStart();
+
+
 extern "C" PLUGINM2TWEOP_API void onClickAtTile(int x,int y);
 extern "C" PLUGINM2TWEOP_API std::string * onSelectWorldpkgdesc(const char* selectedRec, const char* selectedGroup);
 extern "C" PLUGINM2TWEOP_API void onChangeTurnNum(int num);

@@ -757,7 +757,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Basic eduEntry table
 
 	@tfield string Type
-	@tfield int Dictionary
 	@tfield int Index
 	@tfield int UnitCreatedCounter
 
@@ -767,7 +766,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.EduEntry.set("Type", sol::property(
 		&luaGetSetFuncs::getStringPropertyEDU<EduEntryStruct_Type>, &luaGetSetFuncs::setStringPropertyEDU<EduEntryStruct_Type>
 		));
-	types.EduEntry.set("Dictionary", &EduEntry::Dictionary);
 	types.EduEntry.set("Index", &EduEntry::Index);
 	types.EduEntry.set("UnitCreatedCounter", &EduEntry::UnitCreatedCounter);
 

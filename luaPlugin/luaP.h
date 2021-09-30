@@ -26,6 +26,7 @@
 #include "m2tweopHelpers.h"
 #include "generalCharactericticsHelpers.h"
 #include "technicalHelpers.h"
+#include "eopEduHelpers.h"
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\
 if (!funcResult.valid())\
@@ -63,6 +64,7 @@ public:
 	void initP2();
 	void initCampaign();
 	void initTech();
+	void initEopEdu();
 	void runScriptS(std::string*script);
 
 	//lua functions and events controllers
@@ -103,6 +105,7 @@ public:
 	struct
 	{
 		sol::table M2TWEOPTable;
+		sol::table M2TWEOPEDUTable;
 
 
 		sol::table stratmapTable;
@@ -150,6 +153,7 @@ public:
 	
 	sol::function* onCampaignMapLoaded = nullptr;
 
+	sol::function* onReadGameDbsAtStart = nullptr;
 	sol::function* onSelectWorldpkgdesc = nullptr;
 	sol::function* onClickAtTile = nullptr;
 	sol::function* onNewGameStart = nullptr;

@@ -1,7 +1,7 @@
 style='./ldocTheme'
 dir='./generatedLuaDocs'
 file = {'../mapleLib/scriptingDocsTesting.cpp'}
-file = {'../luaPlugin/luaP.cpp','../luaPlugin/luaP2.cpp','../luaPlugin/luaEvents.cpp'}
+file = {'../luaPlugin/luaP.cpp','../luaPlugin/luaEopEdu.cpp','../luaPlugin/luaP2.cpp','../luaPlugin/luaEvents.cpp'}
 merge=true
 format ='markdown'
 project = 'M2TWEOP\nscripting'

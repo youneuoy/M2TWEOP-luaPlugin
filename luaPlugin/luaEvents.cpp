@@ -16,6 +16,7 @@ void luaP::onPluginLoadF()
 	Just list, use it without EventsFunctionsList.!!!
 
 	@tfield draw draw
+	@tfield onReadGameDbsAtStart onReadGameDbsAtStart
 	@tfield onClickAtTile onClickAtTile
 	@tfield onNewGameStart onNewGameStart
 	@tfield onCampaignMapLoaded onCampaignMapLoaded
@@ -151,6 +152,22 @@ void luaP::onPluginLoadF()
 
 	onNewGameStart = new sol::function(luaState["onNewGameStart"]);
 	checkLuaFunc(&onNewGameStart);
+
+	/***
+	Called after the game loads various db`s (edu, etc) at startup.
+
+	@function onReadGameDbsAtStart
+
+	@usage
+	function onReadGameDbsAtStart()
+	--something here
+	end
+	*/
+
+
+
+	onReadGameDbsAtStart = new sol::function(luaState["onReadGameDbsAtStart"]);
+	checkLuaFunc(&onReadGameDbsAtStart);
 
 	/***
 	Called on clicked at stratmap. Use it ONLY in the way like in usage example!!

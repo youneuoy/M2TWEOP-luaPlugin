@@ -93,16 +93,13 @@
     <Filter Include="Исходные файлы\luaBind\luaHelpers\technicalHelpers">
       <UniqueIdentifier>{211cefee-cf6e-426a-a92a-1e3f9a57ab1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\eopEduHelpers">
+      <UniqueIdentifier>{cd5e397a-d386-4f06-b465-e7db7996ca73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="plugData.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="realGameTypes.h">
       <Filter>Файлы заголовков</Filter>
-    </ClInclude>
-    <ClInclude Include="basicFuncs.h">
-      <Filter>Исходные файлы\technical</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>Исходные файлы\technical</Filter>
@@ -212,15 +209,21 @@
     <ClInclude Include="seaBattle.h">
       <Filter>Исходные файлы\pluginFuncs\seaBattle</Filter>
     </ClInclude>
+    <ClInclude Include="basicFuncs.h">
+      <Filter>Исходные файлы\pluginFuncs</Filter>
+    </ClInclude>
+    <ClInclude Include="plugData.h">
+      <Filter>Исходные файлы\pluginFuncs</Filter>
+    </ClInclude>
+    <ClInclude Include="eopEduHelpers.h">
+      <Filter>Исходные файлы\luaBind\luaHelpers\eopEduHelpers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Исходные файлы\technical</Filter>
     </ClCompile>
     <ClCompile Include="plugData.cpp">
-      <Filter>Исходные файлы\technical</Filter>
-    </ClCompile>
-    <ClCompile Include="basicFuncs.cpp">
       <Filter>Исходные файлы\technical</Filter>
     </ClCompile>
     <ClCompile Include="basicEvents.cpp">
@@ -327,6 +330,15 @@
     </ClCompile>
     <ClCompile Include="seaBattle.cpp">
       <Filter>Исходные файлы\pluginFuncs\seaBattle</Filter>
+    </ClCompile>
+    <ClCompile Include="basicFuncs.cpp">
+      <Filter>Исходные файлы\pluginFuncs</Filter>
+    </ClCompile>
+    <ClCompile Include="luaEopEdu.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="eopEduHelpers.cpp">
+      <Filter>Исходные файлы\luaBind\luaHelpers\eopEduHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
