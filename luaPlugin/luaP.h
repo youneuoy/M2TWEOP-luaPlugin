@@ -155,6 +155,7 @@ public:
 
 	sol::function* onReadGameDbsAtStart = nullptr;
 	sol::function* onEndSiege = nullptr;
+	sol::function* onStartSiege = nullptr;
 	sol::function* onSelectWorldpkgdesc = nullptr;
 	sol::function* onClickAtTile = nullptr;
 	sol::function* onNewGameStart = nullptr;

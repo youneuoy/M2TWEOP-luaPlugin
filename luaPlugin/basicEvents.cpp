@@ -16,6 +16,14 @@ void onEndSiege(int x, int y)
 	}
 }
 
+void onStartSiege(int x, int y)
+{
+	if (plugData::data.luaAll.onStartSiege != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onStartSiege)(x, y));
+	}
+}
+
 void onClickAtTile(int x, int y)
 {
 	if (plugData::data.luaAll.onClickAtTile != nullptr)
