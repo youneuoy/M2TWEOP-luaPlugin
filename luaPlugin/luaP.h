@@ -154,6 +154,7 @@ public:
 	sol::function* onCampaignMapLoaded = nullptr;
 
 	sol::function* onReadGameDbsAtStart = nullptr;
+	sol::function* onEndSiege = nullptr;
 	sol::function* onSelectWorldpkgdesc = nullptr;
 	sol::function* onClickAtTile = nullptr;
 	sol::function* onNewGameStart = nullptr;

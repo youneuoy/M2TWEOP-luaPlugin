@@ -23,6 +23,7 @@ void luaP::onPluginLoadF()
 	@tfield onCreateSaveFile onCreateSaveFile
 	@tfield onLoadSaveFile onLoadSaveFile
 	@tfield onPluginLoad onPluginLoad
+	@tfield onEndSiege onEndSiege
 	@tfield onSelectWorldpkgdesc onSelectWorldpkgdesc
 	@tfield onChangeTurnNum onChangeTurnNum
 	@tfield onCharacterSelected onCharacterSelected
@@ -337,6 +338,20 @@ void luaP::onPluginLoadF()
 	onSelectWorldpkgdesc = new sol::function(luaState["onSelectWorldpkgdesc"]);
 	checkLuaFunc(&onSelectWorldpkgdesc);
 
+	/***
+	Called on the completion of the siege (in any way, with any outcome).
+
+	@function onEndSiege
+	@tparam int xCoord x coordinate of siege(settlement or fort)
+	@tparam int yCoord y coordinate of siege(settlement or fort)
+
+	@usage
+	function onEndSiege(x,y)
+	--something here
+	end
+	*/
+	onEndSiege = new sol::function(luaState["onEndSiege"]);
+	checkLuaFunc(&onEndSiege);
 	/***
 	Called on character selection
 

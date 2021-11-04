@@ -3,6 +3,7 @@
 
 
 extern "C" PLUGINM2TWEOP_API void onReadGameDbsAtStart();
+extern "C" PLUGINM2TWEOP_API void onEndSiege(int x, int y);
 
 
 extern "C" PLUGINM2TWEOP_API void onClickAtTile(int x,int y);

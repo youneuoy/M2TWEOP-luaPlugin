@@ -8,6 +8,14 @@ void onReadGameDbsAtStart()
 	}
 }
 
+void onEndSiege(int x, int y)
+{
+	if (plugData::data.luaAll.onEndSiege != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onEndSiege)(x,y));
+	}
+}
+
 void onClickAtTile(int x, int y)
 {
 	if (plugData::data.luaAll.onClickAtTile != nullptr)
