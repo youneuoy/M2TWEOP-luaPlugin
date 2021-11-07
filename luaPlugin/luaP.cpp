@@ -611,6 +611,11 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield character character
 	@tfield string shortName
 	@tfield string fullName
+	@tfield string localizedDisplayName full display name
+	@tfield string localizedSaveName the first part of the name is saved to a file
+	@tfield string localizedSaveName2 the second part of the name is saved to a file
+	@tfield string localizedSaveNickName name prefix, saved to file
+
 	@tfield string label
 	@tfield string modelName
 	@tfield int status 5-leader,2 - heir, 0 - ordinary character. Only read it, not set it!
@@ -655,6 +660,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("chivalryAndDread", &generalCharacterictics::nobility);
 	types.namedCharacter.set("authority", &generalCharacterictics::leaderAutority);
 	types.namedCharacter.set("level", &generalCharacterictics::level);
+	types.namedCharacter.set("localizedDisplayName", sol::property(&technicalHelpers::namedCharUniStringToStr<namedChar_localizedFullName>
+		, &technicalHelpers::namedCharSetLocalizedFullName));
+	types.namedCharacter.set("localizedSaveName", sol::property(&technicalHelpers::namedCharUniStringToStr<namedChar_localizedNameForSave>
+		, &technicalHelpers::namedCharSetLocalizedNameForSave));
+	types.namedCharacter.set("localizedSaveName2", sol::property(&technicalHelpers::namedCharUniStringToStr<namedChar_localizedNextNameForSave>
+		, &technicalHelpers::namedCharSetLocalizedNextNameForSave));
+	types.namedCharacter.set("localizedSaveNickName", sol::property(&technicalHelpers::namedCharUniStringToStr<namedChar_localizedNicknameForSave>
+		, &technicalHelpers::namedCharSetLocalizedNicknameForSave));
 	/***
 	Get pointer to ancillary with number
 	@function namedCharacter:getAncillary

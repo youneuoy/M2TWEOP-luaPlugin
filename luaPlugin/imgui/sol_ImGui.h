@@ -1912,12 +1912,12 @@ namespace sol_ImGui
 			"InputRGB"				, ImGuiColorEditFlags_InputRGB,
 			"InputHSV"				, ImGuiColorEditFlags_InputHSV,
 
-			"_OptionsDefault"		, ImGuiColorEditFlags__OptionsDefault,
+		//	"_OptionsDefault"		, ImGuiColorEditFlags__OptionsDefault,
 
-			"_DisplayMask"			, ImGuiColorEditFlags__DisplayMask,
-			"_DataTypeMask"			, ImGuiColorEditFlags__DataTypeMask,
-			"_PickerMask"			, ImGuiColorEditFlags__PickerMask,
-			"_InputMask"			, ImGuiColorEditFlags__InputMask,
+		//	"_DisplayMask"			, ImGuiColorEditFlags__DisplayMask,
+			//"_DataTypeMask"			, ImGuiColorEditFlags__DataTypeMask,
+			//"_PickerMask"			, ImGuiColorEditFlags__PickerMask,
+		//	"_InputMask"			, ImGuiColorEditFlags__InputMask,
 
 			"RGB"					, ImGuiColorEditFlags_RGB
 		);

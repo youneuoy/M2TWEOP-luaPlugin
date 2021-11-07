@@ -1,4 +1,6 @@
 #pragma once
+#ifndef plagDataH_DEF
+#define plagDataH_DEF
 #include "framework.h"
 #include "basicFuncs.h"
 #include "luaP.h"
@@ -19,3 +21,5 @@ public:
 	data;
 };
 
+
+#endif

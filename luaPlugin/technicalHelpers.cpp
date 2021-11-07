@@ -2,7 +2,6 @@
 
 #include "plugData.h"
 
-
 namespace technicalHelpers
 {
 	std::string unitUniStringToStr(unit* unit)
@@ -27,6 +26,26 @@ namespace technicalHelpers
 		delete[] szTo;
 
 		return strTo;
+	}
+
+	void namedCharSetLocalizedFullName(generalCharacterictics* genChar, const char* str)
+	{
+		(*(*plugData::data.funcsTech.createUniString))(genChar->localizedFullName, str);
+	}
+
+	void namedCharSetLocalizedNameForSave(generalCharacterictics* genChar, const char* str)
+	{
+		(*(*plugData::data.funcsTech.createUniString))(genChar->localizedNameForSave, str);
+	}
+
+	void namedCharSetLocalizedNextNameForSave(generalCharacterictics* genChar, const char* str)
+	{
+		(*(*plugData::data.funcsTech.createUniString))(genChar->localizedNextNameForSave, str);
+	}
+
+	void namedCharSetLocalizedNicknameForSave(generalCharacterictics* genChar, const char* str)
+	{
+		(*(*plugData::data.funcsTech.createUniString))(genChar->localizedNicknameForSave, str);
 	}
 
 };
