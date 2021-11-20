@@ -140,6 +140,7 @@ public:
 		sol::usertype<general>character;
 		sol::usertype<generalCharacterictics>namedCharacter;
 		sol::usertype<anchillary>ancillary;
+		sol::usertype<traitContainer>traitContainerT;
 		sol::usertype<EduEntry>EduEntry;
 		sol::usertype<factionStruct>factionStruct;
 		sol::usertype<settlementStruct>settlementStruct;

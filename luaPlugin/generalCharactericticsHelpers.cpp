@@ -2,6 +2,10 @@
 #include "plugData.h"
 namespace generalCharactericticsHelpers
 {
+	traitContainer* getTraits(generalCharacterictics* character)
+	{
+		return character->traits;
+	}
 	anchillary* getAnchillary(generalCharacterictics* character, int index)
 	{
 		return character->anchillaries[index]->dataAnch;

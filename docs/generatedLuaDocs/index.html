@@ -39,6 +39,7 @@ scripting</h1>
 <li><a href="#Character_table_section">Character table section </a></li>
 <li><a href="#NamedCharacter_table_section">NamedCharacter table section </a></li>
 <li><a href="#Ancillary_table_section">Ancillary table section </a></li>
+<li><a href="#traitContainer_table_section">traitContainer table section </a></li>
 <li><a href="#EduEntry_table_section">EduEntry table section </a></li>
 <li><a href="#FactionStruct_table_section">FactionStruct table section </a></li>
 <li><a href="#SettlementStruct_table_section">SettlementStruct table section </a></li>
@@ -182,6 +183,10 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">Basic stratmap.game table</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#game.callConsole">game.callConsole ()</a></td>
+	<td class="summary">Call m2tw console command</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#game.getFactionsCount">game.getFactionsCount ()</a></td>
 	<td class="summary">Get factions number</td>
 	</tr>
@@ -278,6 +283,10 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">Get pointer to ancillary with number</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#namedCharacter:getTraits">namedCharacter:getTraits ()</a></td>
+	<td class="summary">Get pointer to character traits container</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#namedCharacter:addAncillary">namedCharacter:addAncillary (ancillaryName)</a></td>
 	<td class="summary">Add new ancillary</td>
 	</tr>
@@ -299,6 +308,13 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#ancillary">ancillary</a></td>
 	<td class="summary">Basic ancillary table</td>
+	</tr>
+</table>
+<h2><a href="#traitContainer_table_section">traitContainer table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#traitContainer">traitContainer</a></td>
+	<td class="summary">Basic traits table</td>
 	</tr>
 </table>
 <h2><a href="#EduEntry_table_section">EduEntry table section </a></h2>
@@ -1786,11 +1802,44 @@ stratmap.objects.setModel(<span class="number">288</span>,<span class="number">2
 
 
         </li>
+        <li><span class="parameter">callConsole</span>
+            <span class="types"><a class="type" href="index.html#game.callConsole">callConsole</a></span>
+
+
+
+        </li>
     </ul>
 
 
 
 
+
+</dd>
+    <dt>
+    <a name = "game.callConsole"></a>
+    <strong>game.callConsole ()</strong>
+    </dt>
+    <dd>
+    Call m2tw console command
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        error error string(can be empty, can`t be nil)
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onCharacterSelected(selectedChar)
+	<span class="keyword">local</span> err=stratmap.game.callConsole(<span class="string">"add_money"</span>,<span class="string">"2321"</span>);
+	<span class="global">print</span>(err);
+<span class="keyword">end</span></pre>
+    </ul>
 
 </dd>
     <dt>
@@ -2689,6 +2738,12 @@ ourCharacter:setBodyguardUnit(newUnit);</pre>
 
 
         </li>
+        <li><span class="parameter">getTraits</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter:getTraits">getTraits</a></span>
+
+
+
+        </li>
         <li><span class="parameter">yearOfBirth</span>
             <span class="types"><span class="type">float</span></span>
 
@@ -2820,6 +2875,37 @@ ourCharacter:setBodyguardUnit(newUnit);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example">ancillary=ourNamedCharacter:getAncillary(<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "namedCharacter:getTraits"></a>
+    <strong>namedCharacter:getTraits ()</strong>
+    </dt>
+    <dd>
+    Get pointer to character traits container
+
+
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#traitContainer">traitContainer</a></span>
+        traits
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> traits=ourNamedCharacter:getTraits();
+<span class="keyword">local</span> traitsName=traits.name;
+<span class="keyword">local</span> traitsLevel=traits.level;
+<span class="keyword">local</span> =traits.level;
+<span class="keyword">repeat</span>
+	<span class="keyword">local</span> currTrait=traits.<span class="global">next</span>;
+	someThing();
+<span class="keyword">until</span> currTrait~=<span class="keyword">nil</span></pre>
     </ul>
 
 </dd>
@@ -2958,6 +3044,51 @@ ourNamedCharacter:removeAncillary(ourAnc);</pre>
         </li>
         <li><span class="parameter">imagePath</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="traitContainer_table_section"></a>traitContainer table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "traitContainer"></a>
+    <strong>traitContainer</strong>
+    </dt>
+    <dd>
+    Basic traits table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">level</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">nextTrait</span>
+            <span class="types"><a class="type" href="index.html#traitContainer">traitContainer</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">prevTrait</span>
+            <span class="types"><a class="type" href="index.html#traitContainer">traitContainer</a></span>
 
 
 
@@ -6140,7 +6271,7 @@ file2:close()
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example"><span class="keyword">function</span> onChangeTurnNum(onCharacterSelected)
+        <pre class="example"><span class="keyword">function</span> onCharacterSelected(selectedChar)
 <span class="comment">--something here
 </span><span class="keyword">end</span></pre>
     </ul>
@@ -8651,7 +8782,7 @@ newCapital=fac.capital();
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-11-07 22:30:21 </i>
+<i style="float:right;">Last updated 2021-11-20 18:09:58 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

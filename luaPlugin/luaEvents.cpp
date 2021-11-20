@@ -374,7 +374,7 @@ void luaP::onPluginLoadF()
 	@tparam namedCharacter selectedChar
 
 	@usage
-	function onChangeTurnNum(onCharacterSelected)
+	function onCharacterSelected(selectedChar)
 	--something here
 	end
 	*/

@@ -19,6 +19,15 @@
 #include "realGameTypes.h"
 namespace luaGetSetFuncs
 {
+	int getTraitLevel(const traitContainer*currTrait);
+
+	std::string getTraitName(const traitContainer* currTrait);
+	traitContainer* getNextTrait(const traitContainer* currTrait);
+	traitContainer* getPrevTrait(const traitContainer* currTrait);
+
+
+
+
 	void setGameString(char* targetP, const char* newS);
 
 

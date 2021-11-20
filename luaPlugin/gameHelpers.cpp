@@ -6,6 +6,27 @@ UINT32 gameHelpers::getFactionsCount()
 	return (*(*plugData::data.funcs.getFactionsCount))();
 }
 
+std::string gameHelpers::callConsole(std::string cmdName, sol::variadic_args va)
+{
+	char buffer[100]{};
+	buffer[0] = '\0';
+	bool isOk = false;
+	if (va.size() == 0)
+	{
+		isOk=(*(*plugData::data.funcs.callGameConsoleCommand))(cmdName.c_str(),"", buffer);
+	}
+	else
+	{
+		isOk = (*(*plugData::data.funcs.callGameConsoleCommand))(cmdName.c_str(), va.begin()->as<std::string>().c_str(), buffer);
+	}
+
+    if (isOk == false && buffer[0] == '\0')
+	{
+		sprintf_s(buffer, "error");
+	}
+	return buffer;;
+}
+
 factionStruct* gameHelpers::getFaction(int index)
 {
 	return (*(*plugData::data.funcs.getFactionsList))()[index];

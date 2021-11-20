@@ -101,6 +101,9 @@ public:
 class basicFuncs
 {
 public:
+	ProcLoader<bool(__cdecl*)(const char*, const char* ,char*)> callGameConsoleCommand;
+
+
 	ProcLoader<int(__cdecl*)(const char* counterName, bool&)> getScriptCounter;
 	ProcLoader<void(__cdecl*)(const char*, int)> setScriptCounter;
 
