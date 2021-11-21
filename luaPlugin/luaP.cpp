@@ -219,6 +219,26 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("setEDUUnitsSize",&m2tweopHelpers::setEDUUnitsSize);
 
+	/***
+	* Set which level of castle converts to which lvl of city
+	* @function M2TWEOP.setConversionLvlFromCastle
+	* @tparam int castleLvl 0-5
+	* @tparam int convertToLvl 0-6, 6 means conversion from that level is disabled
+	* @usage
+	* M2TWEOP.setConversionLvlFromCastle(3,3)
+	*/
+	tables.M2TWEOPTable.set_function("setConversionLvlFromCastle", &m2tweopHelpers::setConversionLvlFromCastle);
+
+	/***
+	* Set which level of city converts to which lvl of castle
+	* @function M2TWEOP.setConversionLvlFromCity
+	* @tparam int cityLvl 0-5
+	* @tparam int convertToLvl 0-6, 6 means conversion from that level is disabled
+	* @usage
+	* M2TWEOP.setConversionLvlFromCity(3,3)
+	*/
+	tables.M2TWEOPTable.set_function("setConversionLvlFromCity", &m2tweopHelpers::setConversionLvlFromCity);
+
 
 	/***
 	toggle the highlighting of units on the tactical map.

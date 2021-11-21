@@ -150,6 +150,11 @@ int initPlugin(std::string* modPath)
     fName = "setMaxBgSize";
     plugData::data.funcs.setMaxBgSize.Load(&plPath, &fName);
 
+    fName = "setConversionLvlFromCastle";
+    plugData::data.funcs.setConversionLvlFromCastle.Load(&plPath, &fName);
+
+    fName = "setConversionLvlFromCity";
+    plugData::data.funcs.setConversionLvlFromCity.Load(&plPath, &fName);
 
 
     fName = "destroyBuilding";

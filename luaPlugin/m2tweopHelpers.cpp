@@ -154,4 +154,15 @@ namespace m2tweopHelpers
 	{
 		(*(*plugData::data.funcsBattle.swUnBMapHighlight))();
 	}
+
+
+	void setConversionLvlFromCastle(int castleLvl, int convertToLvl)
+	{
+		(*(*plugData::data.funcs.setConversionLvlFromCastle))(castleLvl, convertToLvl);
+
+	}
+	void setConversionLvlFromCity(int cityLvl, int convertToLvl)
+	{
+		(*(*plugData::data.funcs.setConversionLvlFromCity))(cityLvl, convertToLvl);
+	}
 }

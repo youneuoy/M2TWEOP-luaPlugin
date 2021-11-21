@@ -117,6 +117,9 @@ public:
 	ProcLoader<void(__cdecl*)(unsigned char)> setReligionsLimit;
 	ProcLoader<void(__cdecl*)(unsigned char)> setMaxBgSize;
 	ProcLoader<void(__cdecl*)()> unlockConsoleCommands;
+	ProcLoader<void(__cdecl*)(int, int)> setConversionLvlFromCastle;
+	ProcLoader<void(__cdecl*)(int, int)> setConversionLvlFromCity;
+
 
 	//get current game year
 	ProcLoader<UINT32(__cdecl*)()> getYear;

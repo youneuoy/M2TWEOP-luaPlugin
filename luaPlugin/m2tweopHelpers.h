@@ -49,5 +49,8 @@ namespace m2tweopHelpers
 	void unloadTextureFromGame(void* texture);
 
 	void toggleUnitsBMapHighlight();
+
+	void setConversionLvlFromCastle(int castleLvl, int convertToLvl);
+	void setConversionLvlFromCity(int cityLvl, int convertToLvl);
 };
 
