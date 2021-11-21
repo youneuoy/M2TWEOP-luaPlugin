@@ -4,6 +4,7 @@
 #include "luaGetSetFuncs.h"
 namespace generalCharactericticsHelpers
 {
+	traitContainer* getTraits(generalCharacterictics* character);
 	anchillary* getAnchillary(generalCharacterictics* character, int index);
 	int addAnchillary(generalCharacterictics* character, std::string anchName);
 	void removeAnchillary(generalCharacterictics* character, anchillary* anch);

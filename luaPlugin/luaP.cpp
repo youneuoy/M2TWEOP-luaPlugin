@@ -378,10 +378,22 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield createUnitIdx createUnitIdx
 	@tfield getScriptCounter getScriptCounter
 	@tfield setScriptCounter setScriptCounter
+	@tfield callConsole callConsole
 
 	@table stratmap.game
 */
 	tables.gameTable = luaState.create_table();
+	/***
+	Call m2tw console command
+	@function game.callConsole
+	@treturn string error error string(can be empty, can`t be nil)
+	@usage
+	function onCharacterSelected(selectedChar)
+		local err=stratmap.game.callConsole("add_money","2321");
+		print(err);
+	end
+	*/
+	tables.gameTable.set_function("callConsole", &gameHelpers::callConsole);
 	/***
 	Get factions number
 	@function game.getFactionsCount
@@ -647,6 +659,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int level
 	@tfield getAncillary getAncillary
 	@tfield int ancNum
+	@tfield getTraits getTraits
 	@tfield float yearOfBirth
 	@tfield factionStruct faction
 	@tfield int subFaction
@@ -699,6 +712,21 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.namedCharacter.set_function("getAncillary", &generalCharactericticsHelpers::getAnchillary);
 	types.namedCharacter.set("ancNum", &generalCharacterictics::anchNum);
+	/***
+	Get pointer to character traits container
+	@function namedCharacter:getTraits
+	@treturn traitContainer traits
+	@usage
+	local traits=ourNamedCharacter:getTraits();
+	local traitsName=traits.name;
+	local traitsLevel=traits.level;
+	local =traits.level;
+	repeat
+		local currTrait=traits.next;
+		someThing();
+	until currTrait~=nil
+	*/
+	types.namedCharacter.set_function("getTraits", &generalCharactericticsHelpers::getTraits);
 	types.namedCharacter.set("yearOfBirth", &generalCharacterictics::yearOfBirth);
 	types.namedCharacter.set("faction", &generalCharacterictics::faction);
 	types.namedCharacter.set("subFaction", &generalCharacterictics::subFaction);
@@ -782,6 +810,27 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.ancillary.set("imagePath", sol::property(
 		&luaGetSetFuncs::getStringPropertyAnc<anchillaryStruct_imagePath>, &luaGetSetFuncs::setStringPropertyAnc<anchillaryStruct_imagePath>
 		));
+	
+
+	///traitContainer table section
+	//@section traitsTable
+
+	/***
+	Basic traits table
+
+	@tfield int level
+	@tfield string name
+	@tfield traitContainer nextTrait
+	@tfield traitContainer prevTrait
+
+	@table traitContainer
+	*/
+	types.traitContainerT = luaState.new_usertype<traitContainer>("traitContainer");
+	types.traitContainerT.set("level", sol::property(&luaGetSetFuncs::getTraitLevel));
+	types.traitContainerT.set("name", sol::property(&luaGetSetFuncs::getTraitName));
+	types.traitContainerT.set("nextTrait", sol::property(&luaGetSetFuncs::getNextTrait));
+	types.traitContainerT.set("prevTrait", sol::property(&luaGetSetFuncs::getPrevTrait));
+
 
 	///EduEntry table section
 	//@section eduEntryTable

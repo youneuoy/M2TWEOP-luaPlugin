@@ -34,6 +34,10 @@ int initPlugin(std::string* modPath)
     fName = "setHeir";
     plugData::data.funcs.setHeir.Load(&plPath, &fName);
 
+    fName = "callGameConsoleCommand";
+    plugData::data.funcs.callGameConsoleCommand.Load(&plPath, &fName);
+
+
     fName = "getScriptCounter";
     plugData::data.funcs.getScriptCounter.Load(&plPath, &fName);
 
