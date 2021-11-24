@@ -207,6 +207,9 @@ int initPlugin(std::string* modPath)
     fName = "setEntryLocalizedShortDescr";
     plugData::data.funcsEopEdu.setEntryLocalizedShortDescr.Load(&plPath, &fName);
 
+    fName = "setBuildingChainLimit";
+    plugData::data.funcs.setBuildingChainLimit.Load(&plPath, &fName);
+
     initLua();
     return 1;
 }

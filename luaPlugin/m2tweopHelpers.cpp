@@ -165,4 +165,9 @@ namespace m2tweopHelpers
 	{
 		(*(*plugData::data.funcs.setConversionLvlFromCity))(cityLvl, convertToLvl);
 	}
+
+	void setBuildingChainLimit(unsigned int limit)
+	{
+		(*(*plugData::data.funcs.setBuildingChainLimit))(limit);
+	}
 }

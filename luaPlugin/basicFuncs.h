@@ -180,6 +180,7 @@ public:
 	ProcLoader<void(__cdecl*)(LPDIRECT3DTEXTURE9)> unloadTexture;
 
 
+	ProcLoader<void(__cdecl*)(unsigned int)> setBuildingChainLimit;
 
 };
 

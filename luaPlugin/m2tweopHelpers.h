@@ -52,5 +52,7 @@ namespace m2tweopHelpers
 
 	void setConversionLvlFromCastle(int castleLvl, int convertToLvl);
 	void setConversionLvlFromCity(int cityLvl, int convertToLvl);
+
+	void setBuildingChainLimit(unsigned int limit);
 };
 

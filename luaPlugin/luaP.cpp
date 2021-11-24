@@ -220,6 +220,16 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setEDUUnitsSize",&m2tweopHelpers::setEDUUnitsSize);
 
 	/***
+	* Set the new limit of building levels in a building chain
+	* @function M2TWEOP.setBuildingChainLimit
+	* @tparam int limit
+	* @usage
+	* M2TWEOP.setBuildingChainLimit(12);
+	*/
+
+	tables.M2TWEOPTable.set_function("setBuildingChainLimit", &m2tweopHelpers::setBuildingChainLimit);
+
+	/***
 	* Set which level of castle converts to which lvl of city
 	* @function M2TWEOP.setConversionLvlFromCastle
 	* @tparam int castleLvl 0-5
