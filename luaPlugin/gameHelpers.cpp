@@ -32,6 +32,11 @@ factionStruct* gameHelpers::getFaction(int index)
 	return (*(*plugData::data.funcs.getFactionsList))()[index];
 }
 
+guild* gameHelpers::getGuild(unsigned char index)
+{
+	return (*(*plugData::data.funcs.getGuild))(index);
+}
+
 general* gameHelpers::createCharacter(const char* type, factionStruct* fac, int age, const char* name, const char* name2, int subFaction, const char* portrait, int x, int y)
 {
 	return (*(*plugData::data.funcs.createCharacter))(type, fac, age, name, name2, subFaction, portrait, x, y);

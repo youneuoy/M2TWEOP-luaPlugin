@@ -29,6 +29,8 @@
 #include "generalCharactericticsHelpers.h"
 #include "technicalHelpers.h"
 #include "eopEduHelpers.h"
+#include "guildHelpers.h"
+
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\
 if (!funcResult.valid())\
@@ -144,6 +146,7 @@ public:
 		sol::usertype<EduEntry>EduEntry;
 		sol::usertype<factionStruct>factionStruct;
 		sol::usertype<settlementStruct>settlementStruct;
+		sol::usertype<guild>guild;
 		sol::usertype<resStrat>resStrat;
 		sol::usertype<stackStruct>stackStruct;
 		sol::usertype<building>building;

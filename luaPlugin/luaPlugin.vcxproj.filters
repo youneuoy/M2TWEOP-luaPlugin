@@ -51,12 +51,6 @@
     <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\resources">
       <UniqueIdentifier>{9bddf84a-21c6-473e-99d0-a41d8045eb2e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\setlement">
-      <UniqueIdentifier>{8049f164-137d-4e4e-b8b1-62dc94e979e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\setlement\buildings">
-      <UniqueIdentifier>{16761283-b53f-4427-bca3-c3c888c35bbe}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\stackStruct">
       <UniqueIdentifier>{f1f249ef-3a0c-48eb-b4d1-8e1716d7c01d}</UniqueIdentifier>
     </Filter>
@@ -95,6 +89,15 @@
     </Filter>
     <Filter Include="Исходные файлы\luaBind\luaHelpers\eopEduHelpers">
       <UniqueIdentifier>{cd5e397a-d386-4f06-b465-e7db7996ca73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\settlement">
+      <UniqueIdentifier>{8049f164-137d-4e4e-b8b1-62dc94e979e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\settlement\buildings">
+      <UniqueIdentifier>{16761283-b53f-4427-bca3-c3c888c35bbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\guild">
+      <UniqueIdentifier>{c91fbb01-6a9e-4bef-9682-26eeb6f8f5fb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -156,13 +159,13 @@
       <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\resources</Filter>
     </ClInclude>
     <ClInclude Include="settlementHelpers.h">
-      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\settlement</Filter>
     </ClInclude>
     <ClInclude Include="stackStructHelpers.h">
       <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\stackStruct</Filter>
     </ClInclude>
     <ClInclude Include="buildingStructHelpers.h">
-      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement\buildings</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\settlement\buildings</Filter>
     </ClInclude>
     <ClInclude Include="objectsHelpers.h">
       <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\objects</Filter>
@@ -218,6 +221,9 @@
     <ClInclude Include="eopEduHelpers.h">
       <Filter>Исходные файлы\luaBind\luaHelpers\eopEduHelpers</Filter>
     </ClInclude>
+    <ClInclude Include="guildHelpers.h">
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\guild</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -266,13 +272,13 @@
       <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\resources</Filter>
     </ClCompile>
     <ClCompile Include="settlementHelpers.cpp">
-      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\settlement</Filter>
     </ClCompile>
     <ClCompile Include="stackStructHelpers.cpp">
       <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\stackStruct</Filter>
     </ClCompile>
     <ClCompile Include="buildingStructHelpers.cpp">
-      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\setlement\buildings</Filter>
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\settlement\buildings</Filter>
     </ClCompile>
     <ClCompile Include="objectsHelpers.cpp">
       <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\objects</Filter>
@@ -339,6 +345,9 @@
     </ClCompile>
     <ClCompile Include="eopEduHelpers.cpp">
       <Filter>Исходные файлы\luaBind\luaHelpers\eopEduHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="guildHelpers.cpp">
+      <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\guild</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

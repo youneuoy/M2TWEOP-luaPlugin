@@ -54,5 +54,7 @@ namespace m2tweopHelpers
 	void setConversionLvlFromCity(int cityLvl, int convertToLvl);
 
 	void setBuildingChainLimit(unsigned int limit);
+
+	void setGuildCooldown(unsigned char turns);
 };
 

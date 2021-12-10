@@ -9,6 +9,8 @@ namespace settlementHelpers
 	building* getBuilding(const settlementStruct* sett, int index);
 	void destroyBuilding(settlementStruct* sett, const char* typeName, bool isReturnMoney);
 	void createBuilding(settlementStruct* sett, const char* building_level_id);
+	int getGuildStanding(settlementStruct* sett, int index);
+	void setGuildStanding(settlementStruct* sett, int index, int amount);
 
 	//settlement
 	template <char fieldIndex>

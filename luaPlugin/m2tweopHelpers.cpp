@@ -170,4 +170,10 @@ namespace m2tweopHelpers
 	{
 		(*(*plugData::data.funcs.setBuildingChainLimit))(limit);
 	}
+
+	void setGuildCooldown(unsigned char turns)
+	{
+		(*(*plugData::data.funcs.setGuildCooldown))(turns);
+	}
+
 }

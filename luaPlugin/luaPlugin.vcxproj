@@ -187,6 +187,7 @@
     <ClInclude Include="generalCharactericticsHelpers.h" />
     <ClInclude Include="generalHelpers.h" />
     <ClInclude Include="graphicsEvents.h" />
+    <ClInclude Include="guildHelpers.h" />
     <ClInclude Include="imgui\imconfig.h" />
     <ClInclude Include="imgui\imgui.h" />
     <ClInclude Include="imgui\imgui_impl_dx9.h" />
@@ -229,6 +230,7 @@
     <ClCompile Include="generalCharactericticsHelpers.cpp" />
     <ClCompile Include="generalHelpers.cpp" />
     <ClCompile Include="graphicsEvents.cpp" />
+    <ClCompile Include="guildHelpers.cpp" />
     <ClCompile Include="imgui\imgui.cpp" />
     <ClCompile Include="imgui\imgui_draw.cpp" />
     <ClCompile Include="imgui\imgui_impl_dx9.cpp" />

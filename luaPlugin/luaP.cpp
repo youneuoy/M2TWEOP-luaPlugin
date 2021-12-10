@@ -249,6 +249,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("setConversionLvlFromCity", &m2tweopHelpers::setConversionLvlFromCity);
 
+	tables.M2TWEOPTable.set_function("setGuildCooldown", & m2tweopHelpers::setGuildCooldown);
+
 
 	/***
 	toggle the highlighting of units on the tactical map.
@@ -421,6 +423,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	faction=stratmap.game.getFaction(2);
 	*/
 	tables.gameTable.set_function("getFaction", &gameHelpers::getFaction);
+
+
+	tables.gameTable.set_function("getGuild", &gameHelpers::getGuild);
+
 	/***
 	Create character at coords
 	@function game.createCharacterByString
@@ -1082,7 +1088,18 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	types.settlementStruct.set("populationSize", &settlementStruct::populationSize);
 
+	types.settlementStruct.set_function("getGuildStanding", &settlementHelpers::getGuildStanding);
+	types.settlementStruct.set_function("setGuildStanding", &settlementHelpers::setGuildStanding);
 
+
+	types.guild = luaState.new_usertype<guild>("guild");
+	types.guild.set("name", sol::property(
+		&guildHelpers::getStringProperty<guild_name>, &guildHelpers::setStringProperty<guild_name>));
+	types.guild.set("id", &guild::id);
+	types.guild.set("level1", &guild::level1Threshold);
+	types.guild.set("level2", &guild::level2Threshold);
+	types.guild.set("level3", &guild::level3Threshold);
+		
 	///ResStrat table section
 	//@section resStratTable
 

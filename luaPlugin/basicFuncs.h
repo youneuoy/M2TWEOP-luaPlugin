@@ -122,6 +122,7 @@ public:
 	ProcLoader<void(__cdecl*)()> unlockConsoleCommands;
 	ProcLoader<void(__cdecl*)(int, int)> setConversionLvlFromCastle;
 	ProcLoader<void(__cdecl*)(int, int)> setConversionLvlFromCity;
+	ProcLoader<void(__cdecl*)(unsigned char)> setGuildCooldown;
 
 
 	//get current game year
@@ -181,6 +182,8 @@ public:
 
 
 	ProcLoader<void(__cdecl*)(unsigned int)> setBuildingChainLimit;
+
+	ProcLoader<guild* (_cdecl*)(unsigned char)> getGuild;
 
 };
 
