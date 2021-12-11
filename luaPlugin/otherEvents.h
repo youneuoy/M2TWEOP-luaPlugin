@@ -40,3 +40,6 @@ extern "C" PLUGINM2TWEOP_API void onTileSeen(factionStruct * fac, int x, int y);
 
 extern "C" PLUGINM2TWEOP_API void onGameReloaded(int something);
 extern "C" PLUGINM2TWEOP_API void onTransgression(factionStruct * fac, const char* str, factionStruct * fac2);
+
+extern "C" PLUGINM2TWEOP_API void onGuildUpgraded(settlementStruct * sett, const char* resourceDescription);
+extern "C" PLUGINM2TWEOP_API void onGuildDestroyed(settlementStruct * sett, unsigned char guildID);

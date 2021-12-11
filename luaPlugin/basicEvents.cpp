@@ -205,3 +205,4 @@ void onPostBattle(generalCharacterictics* gen)
 {
 	plugData::data.luaAll.onPostBattle(gen);
 }
+

@@ -272,6 +272,10 @@ public:
 	sol::function* onNavalPreBattleScrollAdviceRequestedFunc = nullptr;
 	sol::function* onCollegeOfCardinalsPanelOpenFunc = nullptr;
 
+	sol::function* onGuildUpgradedFunc = nullptr;
+	sol::function* onGuildDestroyedFunc = nullptr;
+
+
 
 private:
 	void checkLuaFunc(sol::function** lRef);

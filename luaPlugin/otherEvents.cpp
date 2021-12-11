@@ -195,3 +195,19 @@ void onTransgression(factionStruct* fac, const char* str, factionStruct* fac2)
 		tryLua((*plugData::data.luaAll.onTransgressionFunc)(fac,str,fac2));
 	}
 }
+
+void onGuildUpgraded(settlementStruct* sett, const char* resourceDescription)
+{
+	if (plugData::data.luaAll.onGuildUpgradedFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onGuildUpgradedFunc)(sett, resourceDescription))
+	}
+}
+
+void onGuildDestroyed(settlementStruct* sett, unsigned char guildID)
+{
+	if (plugData::data.luaAll.onGuildDestroyedFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onGuildDestroyedFunc)(sett, guildID))
+	}
+}

@@ -1350,6 +1350,14 @@ void luaP::onPluginLoadF()
 	onCollegeOfCardinalsPanelOpenFunc = new sol::function(luaState["onCollegeOfCardinalsPanelOpen"]);
 	checkLuaFunc(&onCollegeOfCardinalsPanelOpenFunc);
 
+	onGuildUpgradedFunc = new sol::function(luaState["onGuildUpgraded"]);
+	checkLuaFunc(&onGuildUpgradedFunc);
+
+
+	onGuildDestroyedFunc = new sol::function(luaState["onGuildDestroyed"]);
+	checkLuaFunc(&onGuildDestroyedFunc);
+	
+
 
 
 
