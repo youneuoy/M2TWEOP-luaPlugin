@@ -15,8 +15,21 @@ void luaP::initEopFbx()
 
 	/***
 	Basic M2TWEOPFBX table. Contains descriptions of m2tweop fbx feathures.
-	addFbxModel addFbxModel
-	deleteFbxModel deleteFbxModel
+
+	@tfield addFbxModel addFbxModel
+	@tfield deleteFbxModel deleteFbxModel
+	@tfield getFbxModel getFbxModel
+	@tfield addFbxObject addFbxObject
+	@tfield deleteFbxObject deleteFbxObject
+	@tfield getFbxObject getFbxObject
+	@tfield setFbxObjectCoords setFbxObjectCoords
+	@tfield getFbxObjectCoords getFbxObjectCoords
+	@tfield setFbxObjectSize setFbxObjectSize
+	@tfield getFbxObjectSize getFbxObjectSize
+	@tfield setFbxObjectDrawState setFbxObjectDrawState
+	@tfield getFbxObjectDrawState getFbxObjectDrawState
+	@tfield setFbxObjectAnimState setFbxObjectAnimState
+	@tfield getFbxObjectAnimState getFbxObjectAnimState
 
 	@table M2TWEOPFBX
 	*/
@@ -55,6 +68,7 @@ void luaP::initEopFbx()
 	Get fbx model
 	@function M2TWEOPFBX.getFbxModel
 	@tparam int modelID model id
+	@treturn fbxModel fbx model, not it`s ID!
 
 	@usage
 	--1 is id here
@@ -62,4 +76,241 @@ void luaP::initEopFbx()
 	local ourNewModel=M2TWEOPDU.getFbxModel(1);
 	*/
 	tables.M2TWEOPFBXTable.set_function("getFbxModel", &eopFbxHelpers::getFbxModel);
+
+	/***
+	Create new fbx object with model. We can place object on map, etc
+	@function M2TWEOPFBX.addFbxObject
+	@tparam int modelID model id
+	@tparam int objectID id what be used for this object
+	@treturn fbxObject fbx object, not it`s ID!
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	local ourNewObject=M2TWEOPDU.addFbxObject(1,2);
+	*/
+	tables.M2TWEOPFBXTable.set_function("addFbxObject", &eopFbxHelpers::addFbxObject);
+
+	/***
+	Delete fbx object
+	@function M2TWEOPFBX.deleteFbxObject
+	@tparam fbxObject object fbx object, not it`s ID!
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	local ourNewObject=M2TWEOPDU.addFbxObject(1,2);
+	M2TWEOPDU.deleteFbxObject(ourNewObject);
+	*/
+	tables.M2TWEOPFBXTable.set_function("deleteFbxObject", &eopFbxHelpers::deleteFbxObject);
+
+	/***
+	Get fbx object by id
+	@function M2TWEOPFBX.getFbxObject
+	@tparam fbxObject object fbx object, not it`s ID!
+	@treturn fbxObject fbx object, not it`s ID!
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+
+	*/
+	tables.M2TWEOPFBXTable.set_function("getFbxObject", &eopFbxHelpers::getFbxObject);
+
+
+	/***
+	Set fbx object coordinates
+	@function M2TWEOPFBX.setFbxObjectCoords
+	@tparam fbxObject fbx object
+	@tparam float x coord
+	@tparam float y coord
+	@tparam float z coord
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	*/
+	tables.M2TWEOPFBXTable.set_function("setFbxObjectCoords", &eopFbxHelpers::setFbxObjectCoords);
+
+	/***
+	Get fbx object coordinates
+	@function M2TWEOPFBX.getFbxObjectCoords
+	@tparam fbxObject fbx object
+	@treturn float x coord
+	@treturn float y coord
+	@treturn float z coord
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+	*/
+	tables.M2TWEOPFBXTable.set_function("getFbxObjectCoords", &eopFbxHelpers::getFbxObjectCoords);
+
+	/***
+	Set fbx object size modifier
+	@function M2TWEOPFBX.setFbxObjectSize
+	@tparam fbxObject fbx object
+	@tparam float sizeModifier object size modifier
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	*/
+	tables.M2TWEOPFBXTable.set_function("setFbxObjectSize", &eopFbxHelpers::setFbxObjectSize);
+
+	/***
+	Get fbx object size modifier
+	@function M2TWEOPFBX.getFbxObjectSize
+	@tparam fbxObject fbx object
+	@treturn float sizeModifier object size modifier
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+	*/
+	tables.M2TWEOPFBXTable.set_function("getFbxObjectSize", &eopFbxHelpers::getFbxObjectSize);
+
+	/***
+	Set fbx object draw state
+	@function M2TWEOPFBX.setFbxObjectDrawState
+	@tparam fbxObject fbx object
+	@tparam bool is draw needed
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,true);
+	*/
+	tables.M2TWEOPFBXTable.set_function("setFbxObjectDrawState", &eopFbxHelpers::setFbxObjectDrawState);
+
+	/***
+	Get fbx object draw state
+	@function M2TWEOPFBX.getFbxObjectDrawState
+	@tparam fbxObject fbx object
+	@treturn bool is draw needed
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,true);
+	local isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+	*/
+	tables.M2TWEOPFBXTable.set_function("getFbxObjectDrawState", &eopFbxHelpers::getFbxObjectDrawState);
+
+
+	/***
+	Set fbx object animation state
+	@function M2TWEOPFBX.setFbxObjectAnimState
+	@tparam fbxObject fbx object
+	@tparam bool is animation needed
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,true);
+	local isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+	M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,true);
+	*/
+	tables.M2TWEOPFBXTable.set_function("setFbxObjectAnimState", &eopFbxHelpers::setFbxObjectAnimState);
+
+	/***
+	Get fbx object animation state
+	@function M2TWEOPFBX.getFbxObjectAnimState
+	@tparam fbxObject fbx object
+	@treturn bool is animation needed
+
+	@usage
+	--1 is model id here
+	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,true);
+	local isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+	M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,true);
+	local isAnimationPlayed=M2TWEOPFBX.getFbxObjectAnimState(ourNewObject);
+	*/
+	tables.M2TWEOPFBXTable.set_function("getFbxObjectAnimState", &eopFbxHelpers::getFbxObjectAnimState);
 }

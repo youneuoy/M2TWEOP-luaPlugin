@@ -57,6 +57,7 @@ scripting</h1>
 <li><a href="#trackedPointerArmy_table_section">trackedPointerArmy table section </a></li>
 <li><a href="#deploymentAreaS_table_section">deploymentAreaS table section </a></li>
 <li><a href="#EVENTS_TABLE_SECTION">EVENTS TABLE SECTION </a></li>
+<li><a href="#M2TWEOPFBX_table_section">M2TWEOPFBX table section </a></li>
 </ul>
 
 
@@ -1062,6 +1063,69 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">
 
 </td>
+	</tr>
+</table>
+<h2><a href="#M2TWEOPFBX_table_section">M2TWEOPFBX table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX">M2TWEOPFBX</a></td>
+	<td class="summary">Basic M2TWEOPFBX table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.addFbxModel">M2TWEOPFBX.addFbxModel (modelPath, texturePath, modelID)</a></td>
+	<td class="summary">Load new fbx model</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.deleteFbxModel">M2TWEOPFBX.deleteFbxModel (modelID)</a></td>
+	<td class="summary">Delete fbx model</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxModel">M2TWEOPFBX.getFbxModel (modelID)</a></td>
+	<td class="summary">Get fbx model</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.addFbxObject">M2TWEOPFBX.addFbxObject (modelID, objectID)</a></td>
+	<td class="summary">Create new fbx object with model.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.deleteFbxObject">M2TWEOPFBX.deleteFbxObject (object)</a></td>
+	<td class="summary">Delete fbx object</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObject">M2TWEOPFBX.getFbxObject (object)</a></td>
+	<td class="summary">Get fbx object by id</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.setFbxObjectCoords">M2TWEOPFBX.setFbxObjectCoords (fbx, x, y, z)</a></td>
+	<td class="summary">Set fbx object coordinates</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectCoords">M2TWEOPFBX.getFbxObjectCoords (fbx)</a></td>
+	<td class="summary">Get fbx object coordinates</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.setFbxObjectSize">M2TWEOPFBX.setFbxObjectSize (fbx, sizeModifier)</a></td>
+	<td class="summary">Set fbx object size modifier</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectSize">M2TWEOPFBX.getFbxObjectSize (fbx)</a></td>
+	<td class="summary">Get fbx object size modifier</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.setFbxObjectDrawState">M2TWEOPFBX.setFbxObjectDrawState (fbx, is)</a></td>
+	<td class="summary">Set fbx object draw state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectDrawState">M2TWEOPFBX.getFbxObjectDrawState (fbx)</a></td>
+	<td class="summary">Get fbx object draw state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.setFbxObjectAnimState">M2TWEOPFBX.setFbxObjectAnimState (fbx, is)</a></td>
+	<td class="summary">Set fbx object animation state</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectAnimState">M2TWEOPFBX.getFbxObjectAnimState (fbx)</a></td>
+	<td class="summary">Get fbx object animation state</td>
 	</tr>
 </table>
 
@@ -8873,13 +8937,666 @@ newCapital=fac.capital();
 
 </dd>
 </dl>
+    <h2 class="section-header "><a name="M2TWEOPFBX_table_section"></a>M2TWEOPFBX table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "M2TWEOPFBX"></a>
+    <strong>M2TWEOPFBX</strong>
+    </dt>
+    <dd>
+    Basic M2TWEOPFBX table.  Contains descriptions of m2tweop fbx feathures.
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">addFbxModel</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.addFbxModel">addFbxModel</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">deleteFbxModel</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.deleteFbxModel">deleteFbxModel</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxModel</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxModel">getFbxModel</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">addFbxObject</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.addFbxObject">addFbxObject</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">deleteFbxObject</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.deleteFbxObject">deleteFbxObject</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxObject</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxObject">getFbxObject</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setFbxObjectCoords</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.setFbxObjectCoords">setFbxObjectCoords</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxObjectCoords</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxObjectCoords">getFbxObjectCoords</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setFbxObjectSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.setFbxObjectSize">setFbxObjectSize</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxObjectSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxObjectSize">getFbxObjectSize</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setFbxObjectDrawState</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.setFbxObjectDrawState">setFbxObjectDrawState</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxObjectDrawState</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxObjectDrawState">getFbxObjectDrawState</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setFbxObjectAnimState</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.setFbxObjectAnimState">setFbxObjectAnimState</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxObjectAnimState</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxObjectAnimState">getFbxObjectAnimState</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.addFbxModel"></a>
+    <strong>M2TWEOPFBX.addFbxModel (modelPath, texturePath, modelID)</strong>
+    </dt>
+    <dd>
+    Load new fbx model
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modelPath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         path to .fbx file
+        </li>
+        <li><span class="parameter">texturePath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         path to .dds file
+        </li>
+        <li><span class="parameter">modelID</span>
+            <span class="types"><span class="type">int</span></span>
+         id what be used for this model
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.deleteFbxModel"></a>
+    <strong>M2TWEOPFBX.deleteFbxModel (modelID)</strong>
+    </dt>
+    <dd>
+    Delete fbx model
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modelID</span>
+            <span class="types"><span class="type">int</span></span>
+         model id
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+M2TWEOPDU.deleteFbxModel(<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxModel"></a>
+    <strong>M2TWEOPFBX.getFbxModel (modelID)</strong>
+    </dt>
+    <dd>
+    Get fbx model
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modelID</span>
+            <span class="types"><span class="type">int</span></span>
+         model id
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">fbxModel</span></span>
+        fbx model, not it`s ID!
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.addFbxObject"></a>
+    <strong>M2TWEOPFBX.addFbxObject (modelID, objectID)</strong>
+    </dt>
+    <dd>
+    Create new fbx object with model.  We can place object on map, etc
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">modelID</span>
+            <span class="types"><span class="type">int</span></span>
+         model id
+        </li>
+        <li><span class="parameter">objectID</span>
+            <span class="types"><span class="type">int</span></span>
+         id what be used for this object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">fbxObject</span></span>
+        fbx object, not it`s ID!
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span><span class="keyword">local</span> ourNewObject=M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.deleteFbxObject"></a>
+    <strong>M2TWEOPFBX.deleteFbxObject (object)</strong>
+    </dt>
+    <dd>
+    Delete fbx object
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">object</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         fbx object, not it`s ID!
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span><span class="keyword">local</span> ourNewObject=M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+M2TWEOPDU.deleteFbxObject(ourNewObject);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxObject"></a>
+    <strong>M2TWEOPFBX.getFbxObject (object)</strong>
+    </dt>
+    <dd>
+    Get fbx object by id
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">object</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         fbx object, not it`s ID!
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">fbxObject</span></span>
+        fbx object, not it`s ID!
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.setFbxObjectCoords"></a>
+    <strong>M2TWEOPFBX.setFbxObjectCoords (fbx, x, y, z)</strong>
+    </dt>
+    <dd>
+    Set fbx object coordinates
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">float</span></span>
+         coord
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">float</span></span>
+         coord
+        </li>
+        <li><span class="parameter">z</span>
+            <span class="types"><span class="type">float</span></span>
+         coord
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxObjectCoords"></a>
+    <strong>M2TWEOPFBX.getFbxObjectCoords (fbx)</strong>
+    </dt>
+    <dd>
+    Get fbx object coordinates
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+        <li>
+           <span class="types"><span class="type">float</span></span>
+        x coord</li>
+        <li>
+           <span class="types"><span class="type">float</span></span>
+        y coord</li>
+        <li>
+           <span class="types"><span class="type">float</span></span>
+        z coord</li>
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.setFbxObjectSize"></a>
+    <strong>M2TWEOPFBX.setFbxObjectSize (fbx, sizeModifier)</strong>
+    </dt>
+    <dd>
+    Set fbx object size modifier
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+        <li><span class="parameter">sizeModifier</span>
+            <span class="types"><span class="type">float</span></span>
+         object size modifier
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxObjectSize"></a>
+    <strong>M2TWEOPFBX.getFbxObjectSize (fbx)</strong>
+    </dt>
+    <dd>
+    Get fbx object size modifier
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">float</span></span>
+        sizeModifier object size modifier
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.setFbxObjectDrawState"></a>
+    <strong>M2TWEOPFBX.setFbxObjectDrawState (fbx, is)</strong>
+    </dt>
+    <dd>
+    Set fbx object draw state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+        <li><span class="parameter">is</span>
+            <span class="types"><span class="type">bool</span></span>
+         draw needed
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxObjectDrawState"></a>
+    <strong>M2TWEOPFBX.getFbxObjectDrawState (fbx)</strong>
+    </dt>
+    <dd>
+    Get fbx object draw state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        is draw needed
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.setFbxObjectAnimState"></a>
+    <strong>M2TWEOPFBX.setFbxObjectAnimState (fbx, is)</strong>
+    </dt>
+    <dd>
+    Set fbx object animation state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+        <li><span class="parameter">is</span>
+            <span class="types"><span class="type">bool</span></span>
+         animation needed
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxObjectAnimState"></a>
+    <strong>M2TWEOPFBX.getFbxObjectAnimState (fbx)</strong>
+    </dt>
+    <dd>
+    Get fbx object animation state
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">bool</span></span>
+        is animation needed
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPDU.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPDU.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPDU.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPDU.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> isAnimationPlayed=M2TWEOPFBX.getFbxObjectAnimState(ourNewObject);</pre>
+    </ul>
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2021-12-20 20:03:49 </i>
+<i style="float:right;">Last updated 2021-12-21 01:08:05 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
