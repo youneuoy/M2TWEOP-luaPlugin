@@ -43,7 +43,7 @@ void eopFbxHelpers::setFbxObjectCoords(void* object, float x, float y, float z)
 std::tuple<float, float, float> eopFbxHelpers::getFbxObjectCoords(void* object)
 {
 	float*coords=(*(*plugData::data.functsEopFbx.getFbxObjectCoords))(object);
-	return std::make_tuple(coords[0], coords[1], coords[2]);
+	return std::make_tuple(coords[0], coords[2], coords[1]);
 }
 
 void eopFbxHelpers::setFbxObjectSize(void* object, float size)
