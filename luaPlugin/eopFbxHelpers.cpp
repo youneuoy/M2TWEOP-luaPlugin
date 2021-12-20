@@ -35,8 +35,8 @@ void eopFbxHelpers::setFbxObjectCoords(void* object, float x, float y, float z)
 {
 	float coords[3];
 	coords[0] = x;
-	coords[1] = y;
-	coords[2] = z;
+	coords[1] = z;
+	coords[2] = y;
 	(*(*plugData::data.functsEopFbx.setFbxObjectCoords))(object, coords);
 }
 

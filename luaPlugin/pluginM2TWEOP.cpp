@@ -270,6 +270,7 @@ void initLua()
     plugData::data.luaAll.initCampaign();
     plugData::data.luaAll.initP2();
     plugData::data.luaAll.initEopEdu();
+    plugData::data.luaAll.initEopFbx();
     plugData::data.luaAll.initTech();
     plugData::data.luaAll.onPluginLoadF();
     if (luaState==nullptr)

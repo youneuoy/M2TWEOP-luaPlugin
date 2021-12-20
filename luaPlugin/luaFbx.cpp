@@ -47,7 +47,7 @@ void luaP::initEopFbx()
 	@tparam int modelID id what be used for this model
 
 	@usage
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
 	*/
 	tables.M2TWEOPFBXTable.set_function("addFbxModel", &eopFbxHelpers::addFbxModel);
 
@@ -58,8 +58,8 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	M2TWEOPDU.deleteFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	M2TWEOPFBX.deleteFbxModel(1);
 	*/
 	tables.M2TWEOPFBXTable.set_function("deleteFbxModel", &eopFbxHelpers::deleteFbxModel);
 
@@ -72,8 +72,8 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	*/
 	tables.M2TWEOPFBXTable.set_function("getFbxModel", &eopFbxHelpers::getFbxModel);
 
@@ -86,10 +86,10 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	local ourNewObject=M2TWEOPDU.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.addFbxObject(1,2);
 	*/
 	tables.M2TWEOPFBXTable.set_function("addFbxObject", &eopFbxHelpers::addFbxObject);
 
@@ -100,11 +100,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	local ourNewObject=M2TWEOPDU.addFbxObject(1,2);
-	M2TWEOPDU.deleteFbxObject(ourNewObject);
+	local ourNewObject=M2TWEOPFBX.addFbxObject(1,2);
+	M2TWEOPFBX.deleteFbxObject(ourNewObject);
 	*/
 	tables.M2TWEOPFBXTable.set_function("deleteFbxObject", &eopFbxHelpers::deleteFbxObject);
 
@@ -116,11 +116,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 
 	*/
 	tables.M2TWEOPFBXTable.set_function("getFbxObject", &eopFbxHelpers::getFbxObject);
@@ -136,11 +136,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	*/
 	tables.M2TWEOPFBXTable.set_function("setFbxObjectCoords", &eopFbxHelpers::setFbxObjectCoords);
@@ -155,11 +155,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 	*/
@@ -173,11 +173,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 
@@ -193,11 +193,11 @@ void luaP::initEopFbx()
 	@treturn float sizeModifier object size modifier
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 
@@ -215,11 +215,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 
@@ -240,11 +240,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 
@@ -267,11 +267,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 
@@ -294,11 +294,11 @@ void luaP::initEopFbx()
 
 	@usage
 	--1 is model id here
-	M2TWEOPDU.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
-	local ourNewModel=M2TWEOPDU.getFbxModel(1);
+	M2TWEOPFBX.addFbxModel("eopData/testmodel.fbx","eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
 	--2 is object id here
-	M2TWEOPDU.addFbxObject(1,2);
-	local ourNewObject=M2TWEOPDU.getFbxObject(2);
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
 	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
 	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
 
