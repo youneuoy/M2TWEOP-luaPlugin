@@ -3,7 +3,7 @@
 #include "plugData.h"
 EduEntry* eopEduHelpers::addEopEduEntry(int baseIndex, int newIndex)
 {
-    return (*(*plugData::data.funcsEopEdu.addEopEduEntry))(baseIndex, newIndex);;
+    return (*(*plugData::data.funcsEopEdu.addEopEduEntry))(baseIndex, newIndex);
 }
 
 EduEntry* eopEduHelpers::getEopEduEntry(int index)

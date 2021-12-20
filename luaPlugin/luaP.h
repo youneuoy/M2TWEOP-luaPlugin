@@ -30,6 +30,8 @@
 #include "technicalHelpers.h"
 #include "eopEduHelpers.h"
 #include "guildHelpers.h"
+#include "eopFbxHelpers.h"
+
 
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\
@@ -69,6 +71,7 @@ public:
 	void initCampaign();
 	void initTech();
 	void initEopEdu();
+	void initEopFbx();
 	void runScriptS(std::string*script);
 
 	//lua functions and events controllers
@@ -110,6 +113,7 @@ public:
 	{
 		sol::table M2TWEOPTable;
 		sol::table M2TWEOPEDUTable;
+		sol::table M2TWEOPFBXTable;
 
 
 		sol::table stratmapTable;

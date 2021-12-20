@@ -99,6 +99,9 @@
     <Filter Include="Исходные файлы\luaBind\luaHelpers\structHelpers\guild">
       <UniqueIdentifier>{c91fbb01-6a9e-4bef-9682-26eeb6f8f5fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\fbx">
+      <UniqueIdentifier>{91ab4047-1add-4be5-8e69-4cfeb15c5af5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="realGameTypes.h">
@@ -224,6 +227,9 @@
     <ClInclude Include="guildHelpers.h">
       <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\guild</Filter>
     </ClInclude>
+    <ClInclude Include="eopFbxHelpers.h">
+      <Filter>Исходные файлы\luaBind\luaHelpers\fbx</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -348,6 +354,12 @@
     </ClCompile>
     <ClCompile Include="guildHelpers.cpp">
       <Filter>Исходные файлы\luaBind\luaHelpers\structHelpers\guild</Filter>
+    </ClCompile>
+    <ClCompile Include="luaFbx.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="eopFbxHelpers.cpp">
+      <Filter>Исходные файлы\luaBind\luaHelpers\fbx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

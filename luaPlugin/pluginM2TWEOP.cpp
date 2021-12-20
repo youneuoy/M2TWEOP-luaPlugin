@@ -213,6 +213,51 @@ int initPlugin(std::string* modPath)
     fName = "getGuild";
     plugData::data.funcs.getGuild.Load(&plPath, &fName);
 
+
+
+    //fbx
+    fName = "addFbxModel";
+    plugData::data.functsEopFbx.addFbxModel.Load(&plPath, &fName);
+
+    fName = "deleteFbxModel";
+    plugData::data.functsEopFbx.deleteFbxModel.Load(&plPath, &fName);
+
+    fName = "getFbxModel";
+    plugData::data.functsEopFbx.getFbxModel.Load(&plPath, &fName);
+
+    fName = "addFbxObject";
+    plugData::data.functsEopFbx.addFbxObject.Load(&plPath, &fName);
+
+    fName = "deleteFbxObject";
+    plugData::data.functsEopFbx.deleteFbxObject.Load(&plPath, &fName);
+
+    fName = "getFbxObject";
+    plugData::data.functsEopFbx.getFbxObject.Load(&plPath, &fName);
+
+    fName = "setFbxObjectCoords";
+    plugData::data.functsEopFbx.setFbxObjectCoords.Load(&plPath, &fName);
+
+    fName = "getFbxObjectCoords";
+    plugData::data.functsEopFbx.getFbxObjectCoords.Load(&plPath, &fName);
+
+    fName = "setFbxObjectSize";
+    plugData::data.functsEopFbx.setFbxObjectSize.Load(&plPath, &fName);
+
+    fName = "getFbxObjectSize";
+    plugData::data.functsEopFbx.getFbxObjectSize.Load(&plPath, &fName);
+
+    fName = "setFbxObjectDrawState";
+    plugData::data.functsEopFbx.setFbxObjectDrawState.Load(&plPath, &fName);
+
+    fName = "getFbxObjectDrawState";
+    plugData::data.functsEopFbx.getFbxObjectDrawState.Load(&plPath, &fName);
+
+    fName = "setFbxObjectAnimState";
+    plugData::data.functsEopFbx.setFbxObjectAnimState.Load(&plPath, &fName);
+
+    fName = "getFbxObjectAnimState";
+    plugData::data.functsEopFbx.getFbxObjectAnimState.Load(&plPath, &fName);
+
     initLua();
     return 1;
 }

@@ -205,3 +205,35 @@ public:
 	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedDescr;
 	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedShortDescr;
 };
+
+class eopFbxFuncs
+{
+public:
+	//fbx functions
+	ProcLoader<bool(__cdecl*)(const char*, const char*, int)> addFbxModel;
+	ProcLoader<bool(__cdecl*)(int)> deleteFbxModel;
+	ProcLoader<void* (__cdecl*)(int)> getFbxModel;
+
+	ProcLoader<void* (__cdecl*)(int, int)> addFbxObject;
+	ProcLoader<bool(__cdecl*)(void*)> deleteFbxObject;
+	ProcLoader< void* (__cdecl*)(int)> getFbxObject;
+
+
+	ProcLoader< void (__cdecl*)(void*, float*)> setFbxObjectCoords;
+	ProcLoader< float* (__cdecl*)(void*)> getFbxObjectCoords;
+
+
+	ProcLoader< void(__cdecl*)(void*, float)> setFbxObjectSize;
+	ProcLoader< float(__cdecl*)(void*)> getFbxObjectSize;
+
+	ProcLoader< void(__cdecl*)(void*, bool)> setFbxObjectDrawState;
+	ProcLoader< bool(__cdecl*)(void*)> getFbxObjectDrawState;
+
+
+	ProcLoader< void(__cdecl*)(void*, bool)> setFbxObjectAnimState;
+	ProcLoader< bool(__cdecl*)(void*)> getFbxObjectAnimState;
+
+
+
+
+};
