@@ -340,4 +340,4 @@ ASALocalRun/
 healthchecksdb
 
 
-!docs/*
+!docs/luarocks/rocks/doc/1.4.6-2/bin
