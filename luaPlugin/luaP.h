@@ -1,7 +1,7 @@
 #pragma once
 #ifndef luaH_DEF
 #define luaH_DEF
-#pragma comment(lib,"lua/lua51.lib")
+#pragma comment(lib,"lua/lua5.1.lib")
 #pragma comment(lib,"lua/luajit.lib")
 
 

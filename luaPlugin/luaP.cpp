@@ -76,11 +76,21 @@ bool luaP::checkVar(const char* gName, int variable)
 sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 {
 	luaPath = modPath + "\\youneuoy_Data\\plugins\\lua";
-	luaState.open_libraries(sol::lib::base, sol::lib::package, sol::lib::coroutine, sol::lib::string, sol::lib::os, sol::lib::math, sol::lib::table, sol::lib::bit32, sol::lib::io, sol::lib::ffi, sol::lib::jit);
+	luaState.open_libraries(sol::lib::base, sol::lib::package, sol::lib::coroutine, sol::lib::string, sol::lib::os, sol::lib::math, sol::lib::table, sol::lib::bit32, sol::lib::io, sol::lib::ffi, sol::lib::jit,sol::lib::debug);
 
 	std::string packagePS = "package.path = '";
 	packagePS += modPath;
-	packagePS += "\\youneuoy_Data\\plugins\\lua\\?.lua;'..package.path ";
+	packagePS += "\\youneuoy_Data\\plugins\\lua\\?.lua;'";
+
+	packagePS += "..'";
+	packagePS += modPath;
+	packagePS += "\\youneuoy_Data\\plugins\\lua\\redist\\?.lua;'..package.path ;";
+
+	packagePS+= "package.cpath = '";
+	packagePS += modPath;
+	packagePS += "\\youneuoy_Data\\plugins\\lua\\redist\\?.dll;'..package.cpath ;";
+
+
 	std::string f = "\\";
 	std::string r = "/";
 	replaceAll2(packagePS, f, r);
