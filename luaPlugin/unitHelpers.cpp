@@ -26,4 +26,8 @@ namespace unitHelpers
 	{
 		return un->movePoints;
 	}
+	int getsoldierCountStratMap(const unit* un)
+	{
+		return un->number;
+	}
 }

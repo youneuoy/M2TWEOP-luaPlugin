@@ -9,5 +9,7 @@ namespace unitHelpers
 	void killUnit(unit* un);
 	void setUnitParams(unit* un, int exp, int armor, int weap);
 	float getMovepoints(const unit* un);
+
+	int getsoldierCountStratMap(const unit* un);
 };
 

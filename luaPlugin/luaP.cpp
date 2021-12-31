@@ -551,7 +551,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit = luaState.new_usertype<unit>("unit");
 	types.unit.set("eduEntry", &unit::eduEntry);
 	types.unit.set("movePoints", sol::property(&unitHelpers::getMovepoints, &unitHelpers::setMovepoints));
-	types.unit.set("soldierCountStratMap", sol::property(&unit::number, &unitHelpers::setSoldiersCount));
+	types.unit.set("soldierCountStratMap", sol::property(&unitHelpers::getsoldierCountStratMap, &unitHelpers::setSoldiersCount));
 	types.unit.set("soldierCountStratMapMax", &unit::numberTact);
 	types.unit.set("soldierCountBattleMap", &unit::numberMax);
 	types.unit.set("character", &unit::general);
