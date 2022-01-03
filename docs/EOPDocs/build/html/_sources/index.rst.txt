@@ -26,7 +26,9 @@ Welcome to M2TWEOP's documentation!
 
 
 	M2TWEOP.md
-
+	BATTLE_RESULT_TUTORIAL.md
+	
+	
 `M2TWEOP LUA plugin <_static/LuaLib/index.html>`_
 ----------------------------------------------------------------------------------------------------------------------------
 

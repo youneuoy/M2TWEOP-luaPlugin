@@ -1,4 +1,4 @@
-# How To Play Hotseat Battles Online with Medieval II: Total War - Engine Overhaul Project
+# Play Hotseat Battles Online
 
 1. Download and install EOP
    * Download EOP from the **#m2tweop-testing** channel in the [M2TWEOP discord](https://discord.gg/VSX4359jNW)
