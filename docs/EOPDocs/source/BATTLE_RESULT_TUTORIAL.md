@@ -1,4 +1,10 @@
-# Play Hotseat Battles Online
+# How to play hotseat battles online
+
+
+## Video guide
+.. raw:: html
+
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/caOiB0NaGGI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 1. Download and install EOP
    * Download EOP from the **#m2tweop-testing** channel in the [M2TWEOP discord](https://discord.gg/VSX4359jNW)

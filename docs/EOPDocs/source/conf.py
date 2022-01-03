@@ -32,7 +32,7 @@ html_sidebars = {
 # -- Project information -----------------------------------------------------
 
 project = 'M2TWEOP'
-copyright = '2021, youneuoy'
+copyright = '2022, youneuoy'
 author = 'youneuoy'
 
 # The full version, including alpha/beta/rc tags
