@@ -22,6 +22,14 @@ namespace generalCharactericticsHelpers
 	{
 		(*(*plugData::data.funcs.removeAnchillary))(character, anch);
 	}
+	void addTrait(generalCharacterictics* character, const char* traitName, int traitLevel)
+	{
+		(*(*plugData::data.funcs.addTrait))(character, traitName, traitLevel);
+	}
+	void removeTrait(generalCharacterictics* character, const char* traitName)
+	{
+		(*(*plugData::data.funcs.removeTrait))(character, traitName);
+	}
 	int getAge(generalCharacterictics* character)
 	{
 		return (character->age >> 3) & 0x7f;

@@ -7,8 +7,12 @@ namespace generalCharactericticsHelpers
 	traitContainer* getTraits(generalCharacterictics* character);
 	anchillary* getAnchillary(generalCharacterictics* character, int index);
 	int addAnchillary(generalCharacterictics* character, std::string anchName);
+
 	void removeAnchillary(generalCharacterictics* character, anchillary* anch);
 
+
+	void addTrait(generalCharacterictics* character, const char* traitName,int traitLevel);
+	void removeTrait(generalCharacterictics* character, const char* traitName);
 
 
 	int getAge(generalCharacterictics* character);

@@ -143,6 +143,11 @@ public:
 	ProcLoader<void(__cdecl*)(generalCharacterictics*, anchillary*)> removeAnchillary;
 	ProcLoader<anchillary*(__cdecl*)(char*)> findAnchillary;
 
+	ProcLoader<void(__cdecl*)(generalCharacterictics*, const char*,int)> addTrait;
+	ProcLoader<void(__cdecl*)(generalCharacterictics*, const char*)> removeTrait;
+
+
+
 	ProcLoader<void(__cdecl*)(const char*, UINT32, UINT32, const char*, const char*, const char*)> replaceTile;
 	ProcLoader<void(__cdecl*)(int,int)> moveStratCameraSlow;
 	ProcLoader<void(__cdecl*)(int,int)> moveStratCameraFast;

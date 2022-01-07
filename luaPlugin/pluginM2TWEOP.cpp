@@ -82,6 +82,12 @@ int initPlugin(std::string* modPath)
 
     fName = "findAnchillary";
     plugData::data.funcs.findAnchillary.Load(&plPath, &fName);
+
+    fName = "addTrait";
+    plugData::data.funcs.addTrait.Load(&plPath, &fName);
+
+    fName = "removeTrait";
+    plugData::data.funcs.removeTrait.Load(&plPath, &fName);
     
     fName = "replaceTile";
     plugData::data.funcs.replaceTile.Load(&plPath, &fName);    

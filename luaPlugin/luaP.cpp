@@ -686,6 +686,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield getAncillary getAncillary
 	@tfield int ancNum
 	@tfield getTraits getTraits
+	@tfield addTrait addTrait
+	@tfield removeTrait removeTrait
 	@tfield float yearOfBirth
 	@tfield factionStruct faction
 	@tfield int subFaction
@@ -768,6 +770,23 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("portrait_custom", sol::property(
 		&luaGetSetFuncs::getStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>, &luaGetSetFuncs::setStringPropertyGenChar<generalCharactericticsStruct_portrait_custom>
 		));
+	/***
+	Add new trait
+	@function namedCharacter:addTrait
+	@tparam string traitName
+	@tparam int traitLevel
+	@usage
+	ourNamedCharacter:addTrait("GoodCommander",2);
+	*/
+	types.namedCharacter.set_function("addTrait", &generalCharactericticsHelpers::addTrait);
+	/***
+	Remove trait from character
+	@function namedCharacter:removeTrait
+	@tparam string traitName
+	@usage
+	ourNamedCharacter:removeTrait("GoodCommander");
+	*/
+	types.namedCharacter.set_function("removeTrait", &generalCharactericticsHelpers::removeTrait);
 	/***
 	Add new ancillary
 	@function namedCharacter:addAncillary
