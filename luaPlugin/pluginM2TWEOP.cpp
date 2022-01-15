@@ -216,6 +216,9 @@ int initPlugin(std::string* modPath)
     fName = "setBuildingChainLimit";
     plugData::data.funcs.setBuildingChainLimit.Load(&plPath, &fName);
 
+    fName = "setGuildCooldown";
+    plugData::data.funcs.setGuildCooldown.Load(&plPath, &fName);
+
     fName = "getGuild";
     plugData::data.funcs.getGuild.Load(&plPath, &fName);
 
