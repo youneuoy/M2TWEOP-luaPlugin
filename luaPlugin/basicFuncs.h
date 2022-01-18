@@ -165,6 +165,7 @@ public:
 
 	ProcLoader<void(__cdecl*)(unit*,int)> setSoldiersCount;
 	ProcLoader<void(__cdecl*)(unit*,int,int,int,int)> setUnitParams;
+	ProcLoader<void(__cdecl*)(unit*,float)> setUnitMovepoints;
 
 	ProcLoader<stackStruct*(__cdecl*)(general*)> createArmy;
 	ProcLoader<unit*(__cdecl*)(const char*, int, int, int, int)> createUnitN;

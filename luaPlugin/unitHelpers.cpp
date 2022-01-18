@@ -4,11 +4,8 @@ namespace unitHelpers
 {
 	void setMovepoints(unit* un, float movepoints)
 	{
-		un->movePoints = movepoints;
-		if (un->general == nullptr)return;
+		(*(*plugData::data.funcs.setUnitMovepoints))(un, movepoints);
 
-		un->general->movepoints1 = movepoints;
-		un->general->movepoints2 = movepoints;
 	}
 	void setSoldiersCount(unit* un, int number)
 	{

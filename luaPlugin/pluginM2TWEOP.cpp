@@ -112,6 +112,10 @@ int initPlugin(std::string* modPath)
 
     fName = "setUnitParams";
     plugData::data.funcs.setUnitParams.Load(&plPath, &fName);
+    
+
+    fName = "setUnitMovepoints";
+    plugData::data.funcs.setUnitMovepoints.Load(&plPath, &fName);
 
     fName = "killUnit";
     plugData::data.funcs.killUnit.Load(&plPath, &fName);

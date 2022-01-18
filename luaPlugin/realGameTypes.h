@@ -9,6 +9,27 @@ typedef unsigned short    ushort;
 #pragma pack(push,1) 
 typedef struct stackStruct stackStruct, * PstackStruct;
 typedef struct settlementStruct settlementStruct, * PsettlementStruct;
+
+struct tilesS {
+	undefined field_0x0[44];
+	int xBound;
+	int yBound;
+	undefined field_0x34[20];
+	struct oneTile* tilesArr;
+	undefined field_0x4c[4];
+};
+
+struct oneTile {
+	undefined field_0x0[20];
+	int regionId;
+	undefined field_0x18[28];
+};
+struct UNICODE_STRING {
+	USHORT something;//idk
+	USHORT Length;//idk
+	USHORT something2;//idk
+	PWSTR Buffer;//y
+};
 struct siegeS {
 	undefined field_0x0[12];
 	struct settlementStruct* goal; /* settlement or fort */
@@ -97,7 +118,8 @@ struct campaign {
 	undefined field_0x328[28];
 	struct factionStruct* currentFactionTurn;
 	int field_0x348; /* FactionTurn? */
-	undefined field_0x34c[32];
+	UNICODE_STRING** currentDescrFile; /* path to descr_battle.txt or to descr_strat.txt */
+	undefined field_0x350[28];
 	int field_0x36c; /* TickCount? */
 	int MillisecondCount;
 	float SecondCount;
@@ -133,7 +155,7 @@ struct campaign {
 	float timeAtStartBattle;
 	int daysInBattle;
 	float currentTimeInBattle; /* 24 max, so calc as daysInBattle*24+currentTimeInBattle */
-	undefined field_0x734[4124];
+	undefined field_0x734[4128];
 	struct factionDiplomacy dipArray[31][31];
 };
 struct gameDataAllStruct {
@@ -197,12 +219,7 @@ struct battleDataS {
 	int sidesNum;
 };
 
-struct UNICODE_STRING {
-	USHORT something;//idk
-	USHORT Length;//idk
-	USHORT something2;//idk
-	PWSTR Buffer;//y
-};
+
 struct stratPortModel {
 	struct model_Rigid* model_rigid;
 	undefined field_0x4[4];
@@ -428,6 +445,7 @@ struct guild
 	char pad_0024[40]; //0x0024
 }; //Size: 0x004C
 
+
 /* I_CompareCounter script command */
 struct CompareCounter { /* I_CompareCounter script command */
 	undefined field_0x0;
@@ -641,7 +659,9 @@ struct soldierInBattle {
 struct unit {
 	undefined field_0x0[4];
 	struct trackedPointerUnit** trackedUnitPointerP;
-	undefined field_0x8[652];
+	undefined field_0x8[636];
+	struct stackStruct* army;
+	undefined field_0x288[12];
 	struct EduEntry* eduEntry;
 	undefined field_0x298[616];
 	int expScreen; /* screen expierence */
@@ -714,8 +734,9 @@ struct factionStruct {
 	struct stackStruct** stacks;
 	undefined field_0x114[4];
 	int stackNum;
-	undefined field_0x11c[8];
-	int someNum;
+	int* regionsID;
+	undefined field_0x120[4];
+	int regionsNum;
 	struct settlementStruct** settlements;
 	undefined field_0x12c[4];
 	int settlementsNum;
@@ -766,26 +787,26 @@ public:
 //tupe of unit from edu
 struct EduEntry {
 	char* Type;
-	DWORD typeHash;
+	uint32_t typeHash;
 	DWORD Index;
 	DWORD UnitCreatedCounter;
 	char* UnitCardTga;
-	char pad_0014[4];
+	uint32_t unitcardHash;
 	char* InfoCardTga;
-	char pad_001C[4];
-	DWORD nothing;
-	DWORD nothing2;
+	uint32_t unitInfoCardHash;
+	char* cardPicDir;
+	uint32_t cardPicDirHash;
 	char* InfoPicDir;
-	DWORD DifferentForShip;
+	uint32_t infoPicDirHash;
 	UNICODE_STRING*** localizedName;
 	UNICODE_STRING*** localizedDescr;
 	UNICODE_STRING*** localizedDescrShort;
-	DWORD Category;
-	DWORD Class;
-	DWORD Unknown;
+	uint32_t Category;
+	uint32_t Class;
+	uint32_t categoryClassCombinationForAI;
 	DWORD VoiceType;
 	char* Accent;
-	char pad_0050[4];
+	char accentHash;
 	char* BannerFaction;
 	char pad_0058[4];
 	char* BannerUnit;
@@ -833,17 +854,18 @@ struct EduEntry {
 	ushort StatCost8;
 	DWORD CrusadingUpkeepModifier;
 	DWORD RecruitPriorityOffsetTimes4;
-	int8_t Formation;
-	int8_t Formation2;
-	int8_t Formation3;
-	int8_t Formation4;
-	int8_t Formation5;
-	int8_t Formation6;
-	char pad_00EA[2];
+	int8_t formationHorde;
+	int8_t formationColumn;
+	int8_t formationSquare;
+	int8_t formationSquareHollow;
+	int8_t formationWedge;
+	int8_t formationPhalanx;
+	int8_t formationSchiltrom;
+	int8_t formationShieldWall;
 	int8_t N000000AA;
-	int8_t N00000218;
+	int8_t hasSquareFormation;
 	char pad_00EE[2];
-	DWORD DefaultNubmerOfRanks;
+	uint32_t DefaultNubmerOfRanks;
 	float UnitSpacingFrontToBackClose;
 	float UnitSpacingSideToSideClose;
 	float UnitSpacingFrontToBackLoose;
@@ -1033,13 +1055,18 @@ struct tradingResources {
 
 
 struct console_command { /* structure of console command */
-	void** function;
+	bool(_stdcall** function)(const char*, char*);
 	char* name;
 	char* description;
 	int type;
 	int idk;
 };
 
+struct consoleCommands {
+	struct console_command** commands;
+	int reservedElements;
+	int size;
+};
 
 
 #pragma pack(pop)
