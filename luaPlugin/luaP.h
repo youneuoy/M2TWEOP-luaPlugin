@@ -65,7 +65,6 @@ public:
 	
 	//create lua instance, init some basic tables
 	sol::state* init(std::string& luaFilePath,std::string& modPath);
-	sol::state* resetState();
 	//init part 2 of tables
 	void initP2();
 	void initCampaign();
@@ -108,7 +107,7 @@ public:
 
 	sol::state luaState;
 
-
+	/*
 	struct
 	{
 		sol::table M2TWEOPTable;
@@ -160,7 +159,7 @@ public:
 		sol::usertype<buildingDrawInfo>buildingDrawInfo;
 
 	}types;
-
+	*/
 
 	
 	sol::function* onCampaignMapLoaded = nullptr;

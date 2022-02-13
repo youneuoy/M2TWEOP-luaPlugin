@@ -75,6 +75,39 @@ bool luaP::checkVar(const char* gName, int variable)
 }
 sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 {
+	struct
+	{
+		sol::table M2TWEOPTable;
+
+
+
+		sol::table stratmapTable;
+		//this inside stratmap table
+		sol::table objectsTable;
+		sol::table cameraTable;
+		sol::table gameTable;
+	}tables;
+
+	struct
+	{
+		sol::usertype<unit>unit;
+		sol::usertype<general>character;
+		sol::usertype<generalCharacterictics>namedCharacter;
+		sol::usertype<anchillary>ancillary;
+		sol::usertype<traitContainer>traitContainerT;
+		sol::usertype<EduEntry>EduEntry;
+		sol::usertype<factionStruct>factionStruct;
+		sol::usertype<fortStruct>fortStruct;
+		sol::usertype<settlementStruct>settlementStruct;
+		sol::usertype<guild>guild;
+		sol::usertype<resStrat>resStrat;
+		sol::usertype<stackStruct>stackStruct;
+		sol::usertype<building>building;
+		sol::usertype<siegeS>siege;
+		sol::usertype<building_data>building_data;
+		sol::usertype<buildingDrawInfo>buildingDrawInfo;
+	}types;
+	luaState = {};
 	luaPath = modPath + "\\youneuoy_Data\\plugins\\lua";
 	luaState.open_libraries(sol::lib::base, sol::lib::package, sol::lib::coroutine, sol::lib::string, sol::lib::os, sol::lib::math, sol::lib::table, sol::lib::bit32, sol::lib::io, sol::lib::ffi, sol::lib::jit,sol::lib::debug);
 
@@ -1407,27 +1440,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	return &luaState;
 }
 
-sol::state* luaP::resetState()
-{
-	std::string luaFile = plugData::data.modFolder + "\\youneuoy_Data\\plugins\\lua\\luaPluginScript.lua";
-
-	sol::load_result fileRes = luaState.load_file(luaFile);
-	if (!fileRes.valid()) { // This checks the syntax of your script, but does not execute it
-		sol::error luaError = fileRes;
-		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
-		return nullptr;
-	}
-	sol::protected_function_result result1 = fileRes(); // this causes the script to execute
-	if (!result1.valid()) {
-		sol::error luaError = result1;
-		MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
-		return nullptr;
-	}
-
-	plugData::data.luaAll.onPluginLoadF();
-
-	return &luaState;
-}
 
 
 

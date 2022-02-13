@@ -9,6 +9,10 @@
 
 void luaP::initEopEdu()
 {
+	struct
+	{
+		sol::table M2TWEOPEDUTable;
+	}tables;
 	///M2TWEOPDU table section
 	//@section M2TWEOPDUTable
 

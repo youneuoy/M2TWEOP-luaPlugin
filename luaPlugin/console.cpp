@@ -1,7 +1,7 @@
 #include "console.h"
 #include "imgui_stdlib.h"
 #include "plugData.h"
-
+#include "pluginM2TWEOP.h"
 namespace console
 {
 	struct
@@ -35,7 +35,7 @@ namespace console
 			&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f|| ImGui::GetIO().KeysDownDuration['9'] == 0.f)
 			)
 		{
-			plugData::data.luaAll.resetState();
+			initLua();
 			return;
 
 		}

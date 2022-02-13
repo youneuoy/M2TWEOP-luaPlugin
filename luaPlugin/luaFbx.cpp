@@ -10,6 +10,10 @@
 
 void luaP::initEopFbx()
 {
+	struct
+	{
+		sol::table M2TWEOPFBXTable;
+	}tables;
 	///M2TWEOPFBX table section
 	//@section M2TWEOPFBXTable
 

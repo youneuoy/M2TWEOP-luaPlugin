@@ -13,6 +13,10 @@
 
 void luaP::initCampaign()
 {
+	struct
+	{
+		sol::usertype<campaign> campaignTable;
+	}typeAll;
 	using namespace campaignEnums;
 
 	///campaign enums section
@@ -136,6 +140,17 @@ void luaP::initCampaign()
 }
 void luaP::initP2()
 {
+	struct
+	{
+		//global game table
+	sol::usertype<gameDataAllStruct> gameDataAllTable;
+	//this inside gameDataAll table
+	sol::usertype<battleDataS> battleTable;
+	sol::usertype<battleSide> battleSideTable;
+	sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
+	sol::usertype<deploymentAreaS> deploymentAreaTable;
+
+	}typeAll;
 	///gameDataAll table section
 	//@section gameDataAll
 
