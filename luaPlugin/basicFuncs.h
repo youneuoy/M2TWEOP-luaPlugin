@@ -109,6 +109,12 @@ public:
 
 
 	ProcLoader<bool(__cdecl*)(int*)> isTileFree;
+	ProcLoader<UINT32(__cdecl*)(int x, int y)> getTileRegionID;
+
+	ProcLoader<settlementStruct*(__cdecl*)(int x, int y)> findSettlement;
+	ProcLoader<fortStruct*(__cdecl*)(int x, int y)> findFort;
+
+	ProcLoader<factionStruct*(__cdecl*)(int regionID)> getRegionOwner;
 	ProcLoader<gameDataAllStruct*(__cdecl*)()> getGameDataAll;
 
 

@@ -34,6 +34,9 @@ namespace m2tweopHelpers
 	std::string getLuaPath();
 
 	bool isTileFree(int x, int y);
+	int getTileRegionID(int x, int y);
+	factionStruct* getRegionOwner(int regionID);
+
 	bool checkDipStance(campaign*campaignStruct,campaignEnums::dipRelEnum dipType,factionStruct* fac1, factionStruct* fac2);
 	void setDipStance(campaign*campaignStruct,campaignEnums::dipRelEnum dipType,factionStruct* fac1, factionStruct* fac2);
 

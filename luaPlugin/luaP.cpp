@@ -138,6 +138,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield toggleUnitsBMapHighlight toggleUnitsBMapHighlight
 	@tfield setReligionsLimit setReligionsLimit
 	@tfield isTileFree isTileFree
+	@tfield getTileRegionID getTileRegionID
+	@tfield getRegionOwner getRegionOwner
 	@tfield setEDUUnitsSize setEDUUnitsSize
 	@table M2TWEOP
 	*/
@@ -290,6 +292,26 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	M2TWEOP.isTileFree(55,25);
 	*/
 	tables.M2TWEOPTable.set_function("isTileFree", &m2tweopHelpers::isTileFree);
+	/***
+	Get tile region ID
+	@function M2TWEOP.getTileRegionID
+	@tparam int x
+	@tparam int y
+	@treturn int regionID
+	@usage
+	local regionID=M2TWEOP.getTileRegionID(55,25);
+	*/
+	tables.M2TWEOPTable.set_function("getTileRegionID", &m2tweopHelpers::getTileRegionID);
+	/***
+	Get faction owner region with ID
+	@function M2TWEOP.getRegionOwner
+	@tparam int regionID
+	@treturn factionStruct owner
+	@usage
+	local regionID=M2TWEOP.getTileRegionID(55,25);
+	local ownerFac=M2TWEOP.getRegionOwner(regionID);
+	*/
+	tables.M2TWEOPTable.set_function("getRegionOwner", &m2tweopHelpers::getRegionOwner);
 
 
 	///Objects table section
@@ -1032,6 +1054,35 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStruct.set("religion", &factionStruct::religion);
 	types.factionStruct.set("money", &factionStruct::money);
 
+
+
+
+
+	///FortStruct table section
+	//@section fortStructTable
+
+	/***
+	Basic fortStruct table
+
+	@tfield character governor
+	@tfield int xCoord
+	@tfield int yCoord
+	@tfield stackStruct army
+	@tfield factionStruct ownerFaction
+	@tfield siegeStruct siege
+
+	@table fortStruct
+	*/
+	types.fortStruct = luaState.new_usertype<fortStruct>("fortStruct");
+
+	types.fortStruct.set("governor", &fortStruct::gubernator);
+	types.fortStruct.set("xCoord", &fortStruct::xCoord);
+	types.fortStruct.set("yCoord", &fortStruct::yCoord);
+	types.fortStruct.set("army", &fortStruct::army);
+	types.fortStruct.set("ownerFaction", &fortStruct::faction);
+	types.fortStruct.set("siege", &fortStruct::siege);
+
+
 	///SettlementStruct table section
 	//@section settlementStructTable
 
@@ -1044,6 +1095,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield stackStruct army
 	@tfield string name
 	@tfield factionStruct ownerFaction
+	@tfield siegeStruct siege
 	@tfield int level
 	@tfield int fac_creatorNum
 	@tfield int isCastle
@@ -1078,6 +1130,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	settlementStruct:createBuilding("some_build1");
 	*/
 	types.settlementStruct.set_function("createBuilding", &settlementHelpers::createBuilding);
+	types.settlementStruct.set("governor", &settlementStruct::gubernator);
 	types.settlementStruct.set("xCoord", &settlementStruct::xCoord);
 	types.settlementStruct.set("yCoord", &settlementStruct::yCoord);
 	types.settlementStruct.set("army", &settlementStruct::army);
@@ -1085,6 +1138,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		&settlementHelpers::getStringProperty<settlementStruct_name>, &settlementHelpers::setStringProperty<settlementStruct_name>
 		));
 	types.settlementStruct.set("ownerFaction", &settlementStruct::ownerFac);
+	types.settlementStruct.set("siege", &settlementStruct::siege);
 	types.settlementStruct.set("level", &settlementStruct::level);
 	types.settlementStruct.set("fac_creatorNum", &settlementStruct::fac_creatorModNum);
 	types.settlementStruct.set("isCastle", &settlementStruct::isCastle);
@@ -1166,9 +1220,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int numOfUnits
 	@tfield getCharacter getCharacter
 	@tfield int numOfCharacters
-	@tfield stackStruct boardedArmy
+	@tfield stackStruct boardedArmy if we ship
+	@tfield stackStruct shipArmy if we on ship
 	@tfield portStruct blockedPort
-	@tfield character leader
+	@tfield character leader nil if we on ship or in settlement/fort
 	@tfield findInSettlement findInSettlement
 	@tfield findInFort findInFort
 	@tfield int totalStrength
@@ -1176,6 +1231,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield float reform_point_y reform point y coordinate in battle
 	@tfield addUnit addUnit
 	@tfield attackArmy attackArmy
+	@tfield siegeStruct siege
 
 
 	@table stackStruct
@@ -1205,6 +1261,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.stackStruct.set_function("getCharacter", &stackStructHelpers::getCharacter);
 	types.stackStruct.set("numOfCharacters", &stackStruct::charactersNum);
 	types.stackStruct.set("boardedArmy", &stackStruct::boardedArmy);
+	types.stackStruct.set("shipArmy", &stackStruct::shipArmy);
 	types.stackStruct.set("blockedPort", &stackStruct::blockedPort);
 	types.stackStruct.set("leader", &stackStruct::gen);
 	/***
@@ -1269,6 +1326,26 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	end
 	*/
 	types.stackStruct.set_function("attackArmy", &stackStructHelpers::attackArmy);
+
+	types.stackStruct.set("siege", &stackStruct::siege);
+	///siegeStruct table section
+	//@section siegeStruct
+
+	/***
+	Basic siegeStruct table
+
+	@tfield stackStruct besieger
+	@tfield settlementStruct siegedSettlement
+	@tfield fortStruct siegedFort
+
+	@table siegeStruct
+	*/
+	types.siege = luaState.new_usertype<siegeS>("siegeStruct");
+	types.siege.set("besieger", &siegeS::army);
+	types.siege.set("siegedSettlement", sol::property(
+		&siegeHelpers::getSiegedSettlement));
+	types.siege.set("siegedFort", sol::property(
+		&siegeHelpers::getSiegedFort));
 
 
 	///Building table section

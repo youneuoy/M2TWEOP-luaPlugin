@@ -15,6 +15,14 @@ namespace m2tweopHelpers
 		int xy[2]{x,y};
 		return (*(*plugData::data.funcs.isTileFree))(xy);
 	}
+	int getTileRegionID(int x, int y)
+	{
+		return (*(*plugData::data.funcs.getTileRegionID))(x,y);
+	}
+	factionStruct* getRegionOwner(int regionID)
+	{
+		return (*(*plugData::data.funcs.getRegionOwner))(regionID);
+	}
 	bool checkDipStance(campaign* campaignStruct, campaignEnums::dipRelEnum dipType, factionStruct* fac1, factionStruct* fac2)
 	{
 		using namespace campaignEnums;

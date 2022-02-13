@@ -185,7 +185,7 @@ namespace sol_ImGui
 	// ID stack / scopes
 	inline void PushID(const std::string& stringID)														{ ImGui::PushID(stringID.c_str()); }
 	inline void PushID(const std::string& stringIDBegin, const std::string& stringIDEnd)				{ ImGui::PushID(stringIDBegin.c_str(), stringIDEnd.c_str()); }
-	inline void PushID(const void*)																		{ /* TODO: PushID(void*) ==> UNSUPPORTED */ }
+//	inline void PushID(sol::table t) { ImGui::PushID(t.pointer()); }
 	inline void PushID(int intID)																		{ ImGui::PushID(intID); }
 	inline void PopID()																					{ ImGui::PopID(); }
 	inline int GetID(const std::string& stringID)														{ return ImGui::GetID(stringID.c_str()); }

@@ -211,6 +211,7 @@
     <ClInclude Include="resourcesHelpers.h" />
     <ClInclude Include="seaBattle.h" />
     <ClInclude Include="settlementHelpers.h" />
+    <ClInclude Include="siegeHelpers.h" />
     <ClInclude Include="stackStructHelpers.h" />
     <ClInclude Include="technicalHelpers.h" />
     <ClInclude Include="uiEvents.h" />
@@ -256,6 +257,7 @@
     <ClCompile Include="resourcesHelpers.cpp" />
     <ClCompile Include="seaBattle.cpp" />
     <ClCompile Include="settlementHelpers.cpp" />
+    <ClCompile Include="siegeHelpers.cpp" />
     <ClCompile Include="stackStructHelpers.cpp" />
     <ClCompile Include="technicalHelpers.cpp" />
     <ClCompile Include="uiEvents.cpp" />

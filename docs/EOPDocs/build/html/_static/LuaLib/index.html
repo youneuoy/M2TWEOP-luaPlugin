@@ -42,9 +42,11 @@ scripting</h1>
 <li><a href="#traitContainer_table_section">traitContainer table section </a></li>
 <li><a href="#EduEntry_table_section">EduEntry table section </a></li>
 <li><a href="#FactionStruct_table_section">FactionStruct table section </a></li>
+<li><a href="#FortStruct_table_section">FortStruct table section </a></li>
 <li><a href="#SettlementStruct_table_section">SettlementStruct table section </a></li>
 <li><a href="#ResStrat_table_section">ResStrat table section </a></li>
 <li><a href="#StackStruct_table_section">StackStruct table section </a></li>
+<li><a href="#siegeStruct_table_section">siegeStruct table section </a></li>
 <li><a href="#Building_table_section">Building table section </a></li>
 <li><a href="#BuildingData_table_section">BuildingData table section </a></li>
 <li><a href="#BuildingInfo_table_section">BuildingInfo table section </a></li>
@@ -149,6 +151,14 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#M2TWEOP.isTileFree">M2TWEOP.isTileFree (x, y)</a></td>
 	<td class="summary">Check tile</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.getTileRegionID">M2TWEOP.getTileRegionID (x, y)</a></td>
+	<td class="summary">Get tile region ID</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.getRegionOwner">M2TWEOP.getRegionOwner (regionID)</a></td>
+	<td class="summary">Get faction owner region with ID</td>
 	</tr>
 </table>
 <h2><a href="#Objects_table_section">Objects table section </a></h2>
@@ -380,6 +390,13 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">Get fort with number</td>
 	</tr>
 </table>
+<h2><a href="#FortStruct_table_section">FortStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#fortStruct">fortStruct</a></td>
+	<td class="summary">Basic fortStruct table</td>
+	</tr>
+</table>
 <h2><a href="#SettlementStruct_table_section">SettlementStruct table section </a></h2>
 <table class="function_list">
 	<tr>
@@ -443,6 +460,13 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#stackStruct:attackArmy">stackStruct:attackArmy (defender)</a></td>
 	<td class="summary">Attack another army.</td>
+	</tr>
+</table>
+<h2><a href="#siegeStruct_table_section">siegeStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#siegeStruct">siegeStruct</a></td>
+	<td class="summary">Basic siegeStruct table</td>
 	</tr>
 </table>
 <h2><a href="#Building_table_section">Building table section </a></h2>
@@ -1214,6 +1238,18 @@ M2TWEOP structures and functions.</p>
 
 
         </li>
+        <li><span class="parameter">getTileRegionID</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getTileRegionID">getTileRegionID</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getRegionOwner</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getRegionOwner">getRegionOwner</a></span>
+
+
+
+        </li>
         <li><span class="parameter">setEDUUnitsSize</span>
             <span class="types"><a class="type" href="index.html#M2TWEOP.setEDUUnitsSize">setEDUUnitsSize</a></span>
 
@@ -1603,6 +1639,79 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example">M2TWEOP.isTileFree(<span class="number">55</span>,<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.getTileRegionID"></a>
+    <strong>M2TWEOP.getTileRegionID (x, y)</strong>
+    </dt>
+    <dd>
+    Get tile region ID
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">x</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">y</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        regionID
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> regionID=M2TWEOP.getTileRegionID(<span class="number">55</span>,<span class="number">25</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOP.getRegionOwner"></a>
+    <strong>M2TWEOP.getRegionOwner (regionID)</strong>
+    </dt>
+    <dd>
+    Get faction owner region with ID
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">regionID</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+        owner
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> regionID=M2TWEOP.getTileRegionID(<span class="number">55</span>,<span class="number">25</span>);
+<span class="keyword">local</span> ownerFac=M2TWEOP.getRegionOwner(regionID);</pre>
     </ul>
 
 </dd>
@@ -3729,7 +3838,7 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><span class="type">fortStruct</span></span>
+           <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
         fort
     </ol>
 
@@ -3772,6 +3881,63 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
     <ul>
         <pre class="example">later</pre>
     </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="FortStruct_table_section"></a>FortStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "fortStruct"></a>
+    <strong>fortStruct</strong>
+    </dt>
+    <dd>
+    Basic fortStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">governor</span>
+            <span class="types"><a class="type" href="index.html#character">character</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">xCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yCoord</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">army</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">ownerFaction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">siege</span>
+            <span class="types"><a class="type" href="index.html#siegeStruct">siegeStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
 
 </dd>
 </dl>
@@ -3820,6 +3986,12 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
         </li>
         <li><span class="parameter">ownerFaction</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">siege</span>
+            <span class="types"><a class="type" href="index.html#siegeStruct">siegeStruct</a></span>
 
 
 
@@ -4151,9 +4323,11 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
         </li>
         <li><span class="parameter">boardedArmy</span>
             <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
-
-
-
+         if we ship
+        </li>
+        <li><span class="parameter">shipArmy</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+         if we on ship
         </li>
         <li><span class="parameter">blockedPort</span>
             <span class="types"><span class="type">portStruct</span></span>
@@ -4163,9 +4337,7 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
         </li>
         <li><span class="parameter">leader</span>
             <span class="types"><a class="type" href="index.html#character">character</a></span>
-
-
-
+         nil if we on ship or in settlement/fort
         </li>
         <li><span class="parameter">findInSettlement</span>
             <span class="types"><a class="type" href="index.html#stackStruct:findInSettlement">findInSettlement</a></span>
@@ -4201,6 +4373,12 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
         </li>
         <li><span class="parameter">attackArmy</span>
             <span class="types"><a class="type" href="index.html#stackStruct:attackArmy">attackArmy</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">siege</span>
+            <span class="types"><a class="type" href="index.html#siegeStruct">siegeStruct</a></span>
 
 
 
@@ -4320,7 +4498,7 @@ ourChar:kill();</pre>
     <h3>Returns:</h3>
     <ol>
 
-           <span class="types"><span class="type">fortStruct</span></span>
+           <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
         fort
     </ol>
 
@@ -4409,6 +4587,45 @@ sucess=stackStruct:addUnit(newUnit);
 	<span class="comment">--something
 </span><span class="keyword">end</span></pre>
     </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="siegeStruct_table_section"></a>siegeStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "siegeStruct"></a>
+    <strong>siegeStruct</strong>
+    </dt>
+    <dd>
+    Basic siegeStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">besieger</span>
+            <span class="types"><a class="type" href="index.html#stackStruct">stackStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">siegedSettlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">siegedFort</span>
+            <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
 
 </dd>
 </dl>
@@ -6947,7 +7164,7 @@ newCapital=fac.capital();
          nil if it is fort
         </li>
         <li><span class="parameter">fort</span>
-            <span class="types"><span class="type">fortStruct</span></span>
+            <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
          nil if it is settlement
         </li>
     </ul>
@@ -7050,7 +7267,7 @@ newCapital=fac.capital();
          nil if it is fort
         </li>
         <li><span class="parameter">fort</span>
-            <span class="types"><span class="type">fortStruct</span></span>
+            <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
          nil if it is settlement
         </li>
     </ul>
@@ -9676,7 +9893,7 @@ M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>)
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-01-07 14:54:01 </i>
+<i style="float:right;">Last updated 2022-02-13 20:33:52 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

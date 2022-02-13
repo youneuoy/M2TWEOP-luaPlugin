@@ -31,7 +31,7 @@
 #include "eopEduHelpers.h"
 #include "guildHelpers.h"
 #include "eopFbxHelpers.h"
-
+#include "siegeHelpers.h"
 
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\
@@ -149,11 +149,13 @@ public:
 		sol::usertype<traitContainer>traitContainerT;
 		sol::usertype<EduEntry>EduEntry;
 		sol::usertype<factionStruct>factionStruct;
+		sol::usertype<fortStruct>fortStruct;
 		sol::usertype<settlementStruct>settlementStruct;
 		sol::usertype<guild>guild;
 		sol::usertype<resStrat>resStrat;
 		sol::usertype<stackStruct>stackStruct;
 		sol::usertype<building>building;
+		sol::usertype<siegeS>siege;
 		sol::usertype<building_data>building_data;
 		sol::usertype<buildingDrawInfo>buildingDrawInfo;
 

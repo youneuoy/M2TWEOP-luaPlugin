@@ -102,6 +102,9 @@
     <Filter Include="Исходные файлы\luaBind\luaHelpers\fbx">
       <UniqueIdentifier>{91ab4047-1add-4be5-8e69-4cfeb15c5af5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\siege">
+      <UniqueIdentifier>{380a76b1-455b-42eb-a845-4595662cb77b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="realGameTypes.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="eopFbxHelpers.h">
       <Filter>Исходные файлы\luaBind\luaHelpers\fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="siegeHelpers.h">
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\siege</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -360,6 +366,9 @@
     </ClCompile>
     <ClCompile Include="eopFbxHelpers.cpp">
       <Filter>Исходные файлы\luaBind\luaHelpers\fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="siegeHelpers.cpp">
+      <Filter>Исходные файлы\luaBind\luaHelpers\namespaceHelpers\stratmap\siege</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

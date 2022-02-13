@@ -25,6 +25,19 @@ int initPlugin(std::string* modPath)
     std::string fName = "isTileFree";
     plugData::data.funcs.isTileFree.Load(&plPath, &fName);
 
+
+    fName = "getTileRegionID";
+    plugData::data.funcs.getTileRegionID.Load(&plPath, &fName);
+
+    fName = "findFort";
+    plugData::data.funcs.findFort.Load(&plPath, &fName);
+
+    fName = "findSettlement";
+    plugData::data.funcs.findSettlement.Load(&plPath, &fName);
+
+    fName = "getRegionOwner";
+    plugData::data.funcs.getRegionOwner.Load(&plPath, &fName);
+
     fName = "getGameDataAll";
     plugData::data.funcs.getGameDataAll.Load(&plPath, &fName);
 
