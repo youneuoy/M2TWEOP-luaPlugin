@@ -59,8 +59,8 @@ namespace console
 
 
 
-		ImGuiWindowFlags iwf = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoResize;
-		ImGui::SetNextWindowSize(ImVec2(800, 0));
+		ImGuiWindowFlags iwf = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollWithMouse;
+		ImGui::SetNextWindowSize(ImVec2(800, 0), ImGuiCond_Once);
 		ImGui::SetNextWindowPos(ImVec2(0.5f, 0.5f), ImGuiCond_Always, ImVec2(0.0f, 0.0f));
 
 
