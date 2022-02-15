@@ -416,7 +416,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
 	local subElement1 = financeScroll:getSubElement(5);
-	gameSTDUI.useUiElement(subElement1);
 	*/
 	types.uiElement.set("getSubElement", &gameSTDUIHelpers::getSubElement);
 	types.uiElement.set("subElementsNum", &uiElement::subElementsNum);
