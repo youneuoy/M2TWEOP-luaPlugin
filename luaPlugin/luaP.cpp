@@ -86,10 +86,16 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		sol::table objectsTable;
 		sol::table cameraTable;
 		sol::table gameTable;
+
+
+		sol::table gameUITable;
 	}tables;
 
 	struct
 	{
+		sol::usertype<uiElement>uiElement;
+
+
 		sol::usertype<unit>unit;
 		sol::usertype<general>character;
 		sol::usertype<generalCharacterictics>namedCharacter;
@@ -153,9 +159,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	}
 
 
-
-
-	///M2TWEOP table section
 	//@section m2tweopTable
 
 	/***
@@ -346,6 +349,89 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("getRegionOwner", &m2tweopHelpers::getRegionOwner);
 
+	///gameSTDUI table section
+	//@section gameSTDUITable
+
+	/***
+	Basic gameSTDUI table
+
+	@tfield getUiElement getUiElement
+	@table gameSTDUI
+	*/
+
+
+
+	tables.gameUITable = luaState.create_table("gameSTDUI");	///gameSTDUI table section
+	/***
+	Get standart game ui element
+	Element must be opened
+
+
+	@function gameSTDUI.getUiElement
+	@tparam string elementName
+	@treturn uiElementStruct ui element
+
+	@usage
+	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
+	*/
+
+	tables.gameUITable.set_function("getUiElement", &gameSTDUIHelpers::getUiElement);
+
+	///uiElementStruct table section
+	//@section uiElementStructTable
+
+	/***
+	Basic uiElementStruct table
+
+	@tfield int xSize
+	@tfield int ySize
+	@tfield int xPos
+	@tfield int yPos
+	@tfield execute execute the function assigned to the button. Use this for buttons. 
+	@tfield getSubElement getSubElement
+	@tfield int subElementsNum
+	@tfield string elementName
+
+	@table uiElementStruct
+	*/
+	types.uiElement = luaState.new_usertype<uiElement>("uiElementStruct");
+	types.uiElement.set("xSize", &uiElement::xSize);
+	types.uiElement.set("ySize", &uiElement::ySize);
+	types.uiElement.set("ySize", &uiElement::xPos);
+	types.uiElement.set("ySize", &uiElement::yPos);
+
+
+	/***
+	Execute standart game ui element. Use it for buttons only
+
+	@function uiElementStruct:execute
+
+	@usage
+	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
+
+	--at index 5 we have faction_listviews_button
+	local subElement1 = financeScroll:getSubElement(5);
+	subElement1:execute();
+	*/
+
+	types.uiElement.set("execute", &gameSTDUIHelpers::useUiElement);
+	/***
+	Get element of ui element with index
+
+
+	@function gameSTDUI.getSubElement
+	@tparam int index indexing starting from 0
+
+	@usage
+	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
+
+	local subElement1 = financeScroll:getSubElement(5);
+	gameSTDUI.useUiElement(subElement1);
+	*/
+	types.uiElement.set("getSubElement", &gameSTDUIHelpers::getSubElement);
+	types.uiElement.set("subElementsNum", &uiElement::subElementsNum);
+	types.uiElement.set("elementName", sol::property(
+		&gameSTDUIHelpers::getUIElementName));
 
 	///Objects table section
 	//@section objectsTable
@@ -1368,8 +1454,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Basic siegeStruct table
 
 	@tfield stackStruct besieger
-	@tfield settlementStruct siegedSettlement
-	@tfield fortStruct siegedFort
+	@tfield settlementStruct besiegedSettlement
+	@tfield fortStruct besiegedFort
 
 	@table siegeStruct
 	*/

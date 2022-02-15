@@ -18,6 +18,9 @@ public:
 		eopFbxFuncs functsEopFbx;
 
 
+		gameUIFuncs functsGameUI;
+
+
 		luaP luaAll;
 	}
 	data;

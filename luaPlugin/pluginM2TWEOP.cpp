@@ -284,6 +284,14 @@ int initPlugin(std::string* modPath)
     fName = "getFbxObjectAnimState";
     plugData::data.functsEopFbx.getFbxObjectAnimState.Load(&plPath, &fName);
 
+
+
+    fName = "getUiElement";
+    plugData::data.functsGameUI.getUiElement.Load(&plPath, &fName);
+
+    fName = "useUiElement";
+    plugData::data.functsGameUI.useUiElement.Load(&plPath, &fName);
+
     initLua();
     return 1;
 }

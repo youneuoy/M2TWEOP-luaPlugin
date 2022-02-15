@@ -249,3 +249,10 @@ public:
 
 
 };
+class gameUIFuncs
+{
+public:
+	//Game ui functions
+	ProcLoader<uiElement* (__cdecl*)(const char*)> getUiElement;
+	ProcLoader<void(__cdecl*)(uiElement*)> useUiElement;
+};

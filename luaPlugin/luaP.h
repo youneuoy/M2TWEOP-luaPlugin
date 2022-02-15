@@ -32,6 +32,7 @@
 #include "guildHelpers.h"
 #include "eopFbxHelpers.h"
 #include "siegeHelpers.h"
+#include "gameSTDUIHelpers.h"
 
 #define tryLua(luaFunc)  \
 auto funcResult = luaFunc;\

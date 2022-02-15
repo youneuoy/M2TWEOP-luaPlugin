@@ -185,6 +185,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameDataAllHelper.h" />
     <ClInclude Include="gameHelpers.h" />
+    <ClInclude Include="gameSTDUIHelpers.h" />
     <ClInclude Include="generalCharactericticsHelpers.h" />
     <ClInclude Include="generalHelpers.h" />
     <ClInclude Include="graphicsEvents.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="factionHelpers.cpp" />
     <ClCompile Include="gameDataAllHelper.cpp" />
     <ClCompile Include="gameHelpers.cpp" />
+    <ClCompile Include="gameSTDUIHelpers.cpp" />
     <ClCompile Include="generalCharactericticsHelpers.cpp" />
     <ClCompile Include="generalHelpers.cpp" />
     <ClCompile Include="graphicsEvents.cpp" />
