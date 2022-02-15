@@ -30,7 +30,10 @@ scripting</h1>
 
 <h2>Contents</h2>
 <ul>
-<li><a href="#M2TWEOP_table_section">M2TWEOP table section </a></li>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Tables">Tables</a></li>
+<li><a href="#gameSTDUI_table_section">gameSTDUI table section </a></li>
+<li><a href="#uiElementStruct_table_section">uiElementStruct table section </a></li>
 <li><a href="#Objects_table_section">Objects table section </a></li>
 <li><a href="#Camera_table_section">Camera table section </a></li>
 <li><a href="#Game_table_section">Game table section </a></li>
@@ -90,12 +93,8 @@ M2TWEOP structures and functions.</p>
     </ul>
 
 
-<h2><a href="#M2TWEOP_table_section">M2TWEOP table section </a></h2>
+<h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#M2TWEOP">M2TWEOP</a></td>
-	<td class="summary">Basic M2TWEOP table</td>
-	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#M2TWEOP.getModPath">M2TWEOP.getModPath ()</a></td>
 	<td class="summary">Get mod path</td>
@@ -159,6 +158,45 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#M2TWEOP.getRegionOwner">M2TWEOP.getRegionOwner (regionID)</a></td>
 	<td class="summary">Get faction owner region with ID</td>
+	</tr>
+</table>
+<h2><a href="#Tables">Tables</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP">M2TWEOP</a></td>
+	<td class="summary">Basic M2TWEOP table</td>
+	</tr>
+</table>
+<h2><a href="#gameSTDUI_table_section">gameSTDUI table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#gameSTDUI">gameSTDUI</a></td>
+	<td class="summary">Basic gameSTDUI table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gameSTDUI.getUiElement">gameSTDUI.getUiElement (elementName)</a></td>
+	<td class="summary">
+<p>gameSTDUI table section
+/<em>*</em></p>
+<pre><code>Get standart game ui element
+Element must be opened
+</code></pre>
+</td>
+	</tr>
+</table>
+<h2><a href="#uiElementStruct_table_section">uiElementStruct table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#uiElementStruct">uiElementStruct</a></td>
+	<td class="summary">Basic uiElementStruct table</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#uiElementStruct:execute">uiElementStruct:execute ()</a></td>
+	<td class="summary">Execute standart game ui element.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#gameSTDUI.getSubElement">gameSTDUI.getSubElement (index)</a></td>
+	<td class="summary">Get element of ui element with index</td>
 	</tr>
 </table>
 <h2><a href="#Objects_table_section">Objects table section </a></h2>
@@ -1165,104 +1203,9 @@ M2TWEOP structures and functions.</p>
 <br/>
 
 
-    <h2 class="section-header "><a name="M2TWEOP_table_section"></a>M2TWEOP table section </h2>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
     <dl class="function">
-    <dt>
-    <a name = "M2TWEOP"></a>
-    <strong>M2TWEOP</strong>
-    </dt>
-    <dd>
-    Basic M2TWEOP table
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">getModPath</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getModPath">getModPath</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">getPluginPath</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getPluginPath">getPluginPath</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">loadTexture</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.loadTexture">loadTexture</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">unloadTexture</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.unloadTexture">unloadTexture</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setAncillariesLimit</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setAncillariesLimit">setAncillariesLimit</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">unlockGameConsoleCommands</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.unlockGameConsoleCommands">unlockGameConsoleCommands</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setMaxBgSize</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setMaxBgSize">setMaxBgSize</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">toggleUnitsBMapHighlight</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.toggleUnitsBMapHighlight">toggleUnitsBMapHighlight</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setReligionsLimit</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setReligionsLimit">setReligionsLimit</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">isTileFree</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.isTileFree">isTileFree</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">getTileRegionID</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getTileRegionID">getTileRegionID</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">getRegionOwner</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getRegionOwner">getRegionOwner</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setEDUUnitsSize</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setEDUUnitsSize">setEDUUnitsSize</a></span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
     <dt>
     <a name = "M2TWEOP.getModPath"></a>
     <strong>M2TWEOP.getModPath ()</strong>
@@ -1712,6 +1655,289 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <ul>
         <pre class="example"><span class="keyword">local</span> regionID=M2TWEOP.getTileRegionID(<span class="number">55</span>,<span class="number">25</span>);
 <span class="keyword">local</span> ownerFac=M2TWEOP.getRegionOwner(regionID);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "M2TWEOP"></a>
+    <strong>M2TWEOP</strong>
+    </dt>
+    <dd>
+    Basic M2TWEOP table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">getModPath</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getModPath">getModPath</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getPluginPath</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getPluginPath">getPluginPath</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">loadTexture</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.loadTexture">loadTexture</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unloadTexture</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.unloadTexture">unloadTexture</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setAncillariesLimit</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setAncillariesLimit">setAncillariesLimit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unlockGameConsoleCommands</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.unlockGameConsoleCommands">unlockGameConsoleCommands</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setMaxBgSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setMaxBgSize">setMaxBgSize</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">toggleUnitsBMapHighlight</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.toggleUnitsBMapHighlight">toggleUnitsBMapHighlight</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setReligionsLimit</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setReligionsLimit">setReligionsLimit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">isTileFree</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.isTileFree">isTileFree</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getTileRegionID</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getTileRegionID">getTileRegionID</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getRegionOwner</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getRegionOwner">getRegionOwner</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEDUUnitsSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setEDUUnitsSize">setEDUUnitsSize</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="gameSTDUI_table_section"></a>gameSTDUI table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "gameSTDUI"></a>
+    <strong>gameSTDUI</strong>
+    </dt>
+    <dd>
+    Basic gameSTDUI table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">getUiElement</span>
+            <span class="types"><a class="type" href="index.html#gameSTDUI.getUiElement">getUiElement</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "gameSTDUI.getUiElement"></a>
+    <strong>gameSTDUI.getUiElement (elementName)</strong>
+    </dt>
+    <dd>
+
+<p>gameSTDUI table section
+/<em>*</em></p>
+<pre><code>Get standart game ui element
+Element must be opened
+</code></pre>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">elementName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#uiElementStruct">uiElementStruct</a></span>
+        ui element
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> financeScroll = gameSTDUI.getUiElement(<span class="string">"finance_scroll"</span>);
+*/</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="uiElementStruct_table_section"></a>uiElementStruct table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "uiElementStruct"></a>
+    <strong>uiElementStruct</strong>
+    </dt>
+    <dd>
+    Basic uiElementStruct table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">xSize</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">ySize</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">xPos</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">yPos</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">execute</span>
+            <span class="types"><a class="type" href="index.html#uiElementStruct:execute">execute</a></span>
+         the function assigned to the button. Use this for buttons.
+        </li>
+        <li><span class="parameter">getSubElement</span>
+            <span class="types"><a class="type" href="index.html#gameSTDUI.getSubElement">getSubElement</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">subElementsNum</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">elementName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "uiElementStruct:execute"></a>
+    <strong>uiElementStruct:execute ()</strong>
+    </dt>
+    <dd>
+    Execute standart game ui element.  Use it for buttons only
+
+
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> financeScroll = gameSTDUI.getUiElement(<span class="string">"finance_scroll"</span>);
+
+<span class="comment">--at index 5 we have faction_listviews_button
+</span><span class="keyword">local</span> subElement1 = financeScroll:getSubElement(<span class="number">5</span>);
+subElement1:execute();</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "gameSTDUI.getSubElement"></a>
+    <strong>gameSTDUI.getSubElement (index)</strong>
+    </dt>
+    <dd>
+    Get element of ui element with index
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+         indexing starting from 0
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> financeScroll = gameSTDUI.getUiElement(<span class="string">"finance_scroll"</span>);
+
+<span class="keyword">local</span> subElement1 = financeScroll:getSubElement(<span class="number">5</span>);
+gameSTDUI.useUiElement(subElement1);</pre>
     </ul>
 
 </dd>
@@ -4609,13 +4835,13 @@ sucess=stackStruct:addUnit(newUnit);
 
 
         </li>
-        <li><span class="parameter">siegedSettlement</span>
+        <li><span class="parameter">besiegedSettlement</span>
             <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
 
 
 
         </li>
-        <li><span class="parameter">siegedFort</span>
+        <li><span class="parameter">besiegedFort</span>
             <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
 
 
@@ -9893,7 +10119,7 @@ M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>)
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-02-13 20:33:52 </i>
+<i style="float:right;">Last updated 2022-02-15 15:06:20 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

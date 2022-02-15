@@ -356,6 +356,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Basic gameSTDUI table
 
 	@tfield getUiElement getUiElement
+
 	@table gameSTDUI
 	*/
 
@@ -363,14 +364,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.gameUITable = luaState.create_table("gameSTDUI");	///gameSTDUI table section
 	/***
-	Get standart game ui element
-	Element must be opened
-
-
+	Get standart game ui element. Element must be opened
 	@function gameSTDUI.getUiElement
 	@tparam string elementName
 	@treturn uiElementStruct ui element
-
 	@usage
 	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
 	*/
@@ -403,12 +400,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	/***
 	Execute standart game ui element. Use it for buttons only
-
 	@function uiElementStruct:execute
-
 	@usage
 	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
-
 	--at index 5 we have faction_listviews_button
 	local subElement1 = financeScroll:getSubElement(5);
 	subElement1:execute();
@@ -417,14 +411,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement.set("execute", &gameSTDUIHelpers::useUiElement);
 	/***
 	Get element of ui element with index
-
-
 	@function gameSTDUI.getSubElement
 	@tparam int index indexing starting from 0
-
 	@usage
 	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
-
 	local subElement1 = financeScroll:getSubElement(5);
 	gameSTDUI.useUiElement(subElement1);
 	*/
