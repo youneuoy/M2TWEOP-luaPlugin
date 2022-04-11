@@ -115,7 +115,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	}types;
 	luaState = {};
 	luaPath = modPath + "\\youneuoy_Data\\plugins\\lua";
-	luaState.open_libraries(sol::lib::base, sol::lib::package, sol::lib::coroutine, sol::lib::string, sol::lib::os, sol::lib::math, sol::lib::table, sol::lib::bit32, sol::lib::io, sol::lib::ffi, sol::lib::jit,sol::lib::debug);
+	luaState.open_libraries(sol::lib::base, sol::lib::package, sol::lib::coroutine, sol::lib::string, sol::lib::os, sol::lib::math, sol::lib::table, sol::lib::bit32, sol::lib::io, sol::lib::ffi, sol::lib::jit, sol::lib::debug);
 
 	std::string packagePS = "package.path = '";
 	packagePS += modPath;
@@ -125,7 +125,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	packagePS += modPath;
 	packagePS += "\\youneuoy_Data\\plugins\\lua\\redist\\?.lua;'..package.path ;";
 
-	packagePS+= "package.cpath = '";
+	packagePS += "package.cpath = '";
 	packagePS += modPath;
 	packagePS += "\\youneuoy_Data\\plugins\\lua\\redist\\?.dll;'..package.cpath ;";
 
@@ -197,7 +197,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	print(mPath);
 	*/
 
-	tables.M2TWEOPTable.set_function("getModPath", &m2tweopHelpers::getModPath); 
+	tables.M2TWEOPTable.set_function("getModPath", &m2tweopHelpers::getModPath);
 	/***
 	Get path of the plugin(your lua files here)
 	@function M2TWEOP.getPluginPath
@@ -222,7 +222,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	testImage.x, testImage.y, testImage.img=M2TWEOP.loadTexture(M2TWEOP.getModPath().."/youneuoy_textures/test.dds");
 	*/
 
-	tables.M2TWEOPTable.set_function("loadTexture",&m2tweopHelpers::loadTextureToGame);
+	tables.M2TWEOPTable.set_function("loadTexture", &m2tweopHelpers::loadTextureToGame);
 	/***
 	Unload d3d texture
 	@function M2TWEOP.unloadTexture
@@ -236,7 +236,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Set limit of ancillaries
 	@function M2TWEOP.setAncillariesLimit
-	@tparam int newLimit maximum - 127
+	@tparam int newLimit default: 8, maximum: 127
 	@usage
 	M2TWEOP.setAncillariesLimit(15);
 	*/
@@ -251,26 +251,26 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Set new max bodyguard size
 	@function M2TWEOP.setMaxBgSize
-	@tparam int newSize maximum bodyguard size - 255
+	@tparam int newSize maximum: 255
 	@usage
 	M2TWEOP.setMaxBgSize(222);
 	*/
 	tables.M2TWEOPTable.set_function("setMaxBgSize", &m2tweopHelpers::setMaxBgSize);
-	
+
 	/***
 	Set new edu units size
 	@function M2TWEOP.setEDUUnitsSize
-	@tparam int minSize maximum value - 300!
-	@tparam int maxSize maximum value - 300!
+	@tparam int minSize maximum: 300
+	@tparam int maxSize maximum: 300
 	@usage
 	M2TWEOP.setEDUUnitsSize(1,300);
 	*/
-	tables.M2TWEOPTable.set_function("setEDUUnitsSize",&m2tweopHelpers::setEDUUnitsSize);
+	tables.M2TWEOPTable.set_function("setEDUUnitsSize", &m2tweopHelpers::setEDUUnitsSize);
 
 	/***
 	* Set the new limit of building levels in a building chain
 	* @function M2TWEOP.setBuildingChainLimit
-	* @tparam int limit
+	* @tparam int limit default: 9
 	* @usage
 	* M2TWEOP.setBuildingChainLimit(12);
 	*/
@@ -297,7 +297,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("setConversionLvlFromCity", &m2tweopHelpers::setConversionLvlFromCity);
 
-	tables.M2TWEOPTable.set_function("setGuildCooldown", & m2tweopHelpers::setGuildCooldown);
+	/***
+	* Set min number turns until next guild offer after a rejection
+	* @function M2TWEOP.setGuildCooldown
+	* @tparam int turns default: 10
+	* @usage
+	* M2TWEOP.setGuildCooldown(5)
+	*/
+	tables.M2TWEOPTable.set_function("setGuildCooldown", &m2tweopHelpers::setGuildCooldown);
 
 
 	/***
@@ -312,7 +319,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Set limit of religions
 	@function M2TWEOP.setReligionsLimit
-	@tparam int newLimit maximum limit ~ 127
+	@tparam int newLimit maximum: 127
 	@usage
 	M2TWEOP.setReligionsLimit(25);
 	*/
@@ -384,7 +391,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int ySize
 	@tfield int xPos
 	@tfield int yPos
-	@tfield execute execute the function assigned to the button. Use this for buttons. 
+	@tfield execute execute the function assigned to the button. Use this for buttons.
 	@tfield getSubElement getSubElement
 	@tfield int subElementsNum
 	@tfield string elementName
@@ -563,8 +570,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	faction=stratmap.game.getFaction(2);
 	*/
 	tables.gameTable.set_function("getFaction", &gameHelpers::getFaction);
-
-
+	/***
+	Get guild with index
+	@function game.getGuild
+	@tparam int index
+	@treturn guild guild
+	@usage
+	ourGuild=stratmap.game.getGuild(1);
+	*/
 	tables.gameTable.set_function("getGuild", &gameHelpers::getGuild);
 
 	/***
@@ -576,12 +589,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tparam string name
 	@tparam string name2
 	@tparam int subFaction
-	@tparam string portrait
+	@tparam string portrait_custom cannot be nil
 	@tparam int xCoord
 	@tparam int yCoord
 	@treturn character newCharacter
 	@usage
-	newCharacter=stratmap.game.createCharacterByString("named character",stratmap.game.getFaction(0),18,"Name1","Name2",31,nil,character.character.xCoord+5,character.character.yCoord);
+	newCharacter=stratmap.game.createCharacterByString("named character",stratmap.game.getFaction(0),18,"Name1","Name2",31,"custom_portrait_name",character.character.xCoord+5,character.character.yCoord);
 	*/
 	tables.gameTable.set_function("createCharacterByString", &gameHelpers::createCharacter);
 	/***
@@ -985,7 +998,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.ancillary.set("imagePath", sol::property(
 		&luaGetSetFuncs::getStringPropertyAnc<anchillaryStruct_imagePath>, &luaGetSetFuncs::setStringPropertyAnc<anchillaryStruct_imagePath>
 		));
-	
+
 
 	///traitContainer table section
 	//@section traitsTable
@@ -1216,6 +1229,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield destroyBuilding destroyBuilding
 	@tfield createBuilding createBuilding
 	@tfield int populationSize
+	@tfield getGuildStanding getGuildStanding
+	@tfield setGuildStanding setGuildStanding
 
 	@table settlementStruct
 	*/
@@ -1278,11 +1293,38 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.settlementStruct.set("resourcesNum", &settlementStruct::resourcesNum);
 
 	types.settlementStruct.set("populationSize", &settlementStruct::populationSize);
-
+	/***
+	Get guild standing by guild_id
+	@function settlementStruct:getGuildStanding
+	@tparam int guild_id
+	@usage
+	ourGuildStanding=settlementStruct:getGuildStanding(0);
+	*/
 	types.settlementStruct.set_function("getGuildStanding", &settlementHelpers::getGuildStanding);
+	/***
+	Set settlement standing points with guild
+	@function settlementStruct:setGuildStanding
+	@tparam int guild_id
+	@tparam int standing
+	@usage
+	settlementStruct:setGuildStanding(0,300);
+	*/
 	types.settlementStruct.set_function("setGuildStanding", &settlementHelpers::setGuildStanding);
 
+	///Guild table section
+	//@section guildTable
 
+	/***
+	Basic guild table
+
+	@tfield string name
+	@tfield int id
+	@tfield int level1
+	@tfield int level2
+	@tfield int level3
+
+	@table guild
+	*/
 	types.guild = luaState.new_usertype<guild>("guild");
 	types.guild.set("name", sol::property(
 		&guildHelpers::getStringProperty<guild_name>, &guildHelpers::setStringProperty<guild_name>));
@@ -1290,7 +1332,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.guild.set("level1", &guild::level1Threshold);
 	types.guild.set("level2", &guild::level2Threshold);
 	types.guild.set("level3", &guild::level3Threshold);
-		
+
 	///ResStrat table section
 	//@section resStratTable
 

@@ -48,7 +48,7 @@ void onGiveSettlement(settlementStruct* sett, factionStruct* fac, factionStruct*
 {
 	if (plugData::data.luaAll.onGiveSettlementFunc != nullptr)
 	{
-		tryLua((*plugData::data.luaAll.onGiveSettlementFunc)(sett,fac,fac2));
+		tryLua((*plugData::data.luaAll.onGiveSettlementFunc)(sett, fac, fac2));
 	}
 }
 
@@ -56,7 +56,7 @@ void onOccupySettlement(generalCharacterictics* gen, factionStruct* fac)
 {
 	if (plugData::data.luaAll.onOccupySettlementFunc != nullptr)
 	{
-		tryLua((*plugData::data.luaAll.onOccupySettlementFunc)(fac));
+		tryLua((*plugData::data.luaAll.onOccupySettlementFunc)(gen, fac));
 	}
 }
 
@@ -64,7 +64,7 @@ void onExterminatePopulation(generalCharacterictics* gen, factionStruct* fac)
 {
 	if (plugData::data.luaAll.onExterminatePopulationFunc != nullptr)
 	{
-		tryLua((*plugData::data.luaAll.onExterminatePopulationFunc)(gen,fac));
+		tryLua((*plugData::data.luaAll.onExterminatePopulationFunc)(gen, fac));
 	}
 }
 
@@ -152,7 +152,7 @@ void onUnitTrained(factionStruct* fac, settlementStruct* sett, unit* un)
 {
 	if (plugData::data.luaAll.onUnitTrainedFunc != nullptr)
 	{
-		tryLua((*plugData::data.luaAll.onUnitTrainedFunc)(fac, sett,un));
+		tryLua((*plugData::data.luaAll.onUnitTrainedFunc)(fac, sett, un));
 	}
 }
 
@@ -192,7 +192,7 @@ void onTransgression(factionStruct* fac, const char* str, factionStruct* fac2)
 {
 	if (plugData::data.luaAll.onTransgressionFunc != nullptr)
 	{
-		tryLua((*plugData::data.luaAll.onTransgressionFunc)(fac,str,fac2));
+		tryLua((*plugData::data.luaAll.onTransgressionFunc)(fac, str, fac2));
 	}
 }
 

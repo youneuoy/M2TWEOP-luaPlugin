@@ -712,7 +712,7 @@ void luaP::onPluginLoadF()
 
 	/***
 	@function onUngarrisonedFort
-	@tparam forttruct settlement
+	@tparam fortStruct fort
 
 	@usage
 	--something
@@ -735,8 +735,8 @@ void luaP::onPluginLoadF()
 
 	/***
 	@function onOccupySettlement
-	@tparam namedharacter char1
-	@tparam settlementStruct settlement
+	@tparam namedCharacter character
+	@tparam factionStruct faction
 
 
 	@usage
@@ -747,8 +747,8 @@ void luaP::onPluginLoadF()
 
 	/***
 	@function onExterminatePopulation
-	@tparam namedharacter char1
-	@tparam settlementStruct settlement
+	@tparam namedCharacter character
+	@tparam factionStruct faction
 
 
 	@usage
@@ -759,8 +759,8 @@ void luaP::onPluginLoadF()
 
 	/***
 	@function onSackSettlement
-	@tparam namedharacter char1
-	@tparam settlementStruct settlement
+	@tparam namedCharacter character
+	@tparam factionStruct faction
 
 
 	@usage
@@ -886,7 +886,7 @@ void luaP::onPluginLoadF()
 
 	/***
 	@function onAgentCreated
-	@tparam factionStruct fac
+	@tparam namedCharacter character
 	@tparam int agentType
 	@tparam settlementStruct sett
 
@@ -1356,7 +1356,7 @@ void luaP::onPluginLoadF()
 
 	onGuildDestroyedFunc = new sol::function(luaState["onGuildDestroyed"]);
 	checkLuaFunc(&onGuildDestroyedFunc);
-	
+
 
 
 

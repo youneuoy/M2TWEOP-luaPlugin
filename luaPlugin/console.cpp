@@ -2,6 +2,8 @@
 #include "imgui_stdlib.h"
 #include "plugData.h"
 #include "pluginM2TWEOP.h"
+
+#include "gameDataAllHelper.h"
 namespace console
 {
 	struct
@@ -30,28 +32,36 @@ namespace console
 
 	void draw()
 	{
-
-		if ((ImGui::GetIO().KeysDownDuration[VK_CONTROL] > 0.f && ImGui::GetIO().KeysDownDuration['1'] > 0.f&& ImGui::GetIO().KeysDownDuration['9']>0.f)
-			&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f|| ImGui::GetIO().KeysDownDuration['9'] == 0.f)
-			)
-		{
-			initLua();
-			return;
-
-		}
-
-		if ((ImGui::GetIO().KeysDownDuration[VK_CONTROL] > 0.f && ImGui::GetIO().KeysDownDuration['1'] > 0.f)
-			&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f)
-			)
-		{
-
-			consoleData.isDraw = !consoleData.isDraw;
-
-			if (plugData::data.luaAll.checkVar("enableConsole", 1) == false)
+			if ((ImGui::GetIO().KeysDownDuration[VK_CONTROL] > 0.f && ImGui::GetIO().KeysDownDuration['1'] > 0.f && ImGui::GetIO().KeysDownDuration['9'] > 0.f)
+				&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f || ImGui::GetIO().KeysDownDuration['9'] == 0.f)
+				)
 			{
-				consoleData.isDraw = false;
+				gameDataAllStruct* gameDataAll = gameDataAllHelper::get();
+				campaign* campaign = gameDataAll->campaignData;
+				//if (campaign->isAdminPasswordExist == false || (campaign->isAdminPasswordExist == true && campaign->isHotseatLogon == true))
+				//{
+					initLua();
+					return;
+				//}
 			}
-		}
+
+			if ((ImGui::GetIO().KeysDownDuration[VK_CONTROL] > 0.f && ImGui::GetIO().KeysDownDuration['1'] > 0.f)
+				&& (ImGui::GetIO().KeysDownDurationPrev[VK_CONTROL] == 0.f || ImGui::GetIO().KeysDownDurationPrev['1'] == 0.f)
+				)
+			{
+				gameDataAllStruct* gameDataAll = gameDataAllHelper::get();
+				campaign* campaign = gameDataAll->campaignData;
+			//	if (campaign->isAdminPasswordExist == false || (campaign->isAdminPasswordExist == true && campaign->isHotseatLogon == true))
+			//	{
+					consoleData.isDraw = !consoleData.isDraw;
+
+					if (plugData::data.luaAll.checkVar("enableConsole", 1) == false)
+					{
+						consoleData.isDraw = false;
+					}
+				//}
+			}
+
 		if (consoleData.isDraw == false)
 		{
 			return;
