@@ -488,12 +488,21 @@ Note: This binding does not give functions that can obtain an ImFont* from insid
 
 ## Widgets: Main
 ```lua
+  -- ImGui.Image(...)
+  -- Parameters: texture (image), float (sizeX), float (sizeY)
+  ImGui.Image(ourTexture,100,50)
+
   -- ImGui.Button(...)
   -- Parameters: text (label), float (size_x) [O], float (size_y) [O]
   -- Returns: bool (clicked)
   -- Overloads
   clicked = ImGui.Button("Label")
   clicked = ImGui.Button("Label", 100, 50)
+  
+  -- ImGui.ImageButton(...)
+  -- Parameters: texture (image), float (sizeX), float (sizeY)
+  -- Returns: bool (clicked)
+  clicked = ImGui.ImageButton(ourTexture,100,50)
   
   -- ImGui.SmallButton(...)
   -- Parameters: text (label)

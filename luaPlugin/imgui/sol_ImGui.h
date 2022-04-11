@@ -203,7 +203,8 @@ namespace sol_ImGui
 	inline void BulletText(const std::string& text)														{ ImGui::BulletText(text.c_str()); }
 
 	// Widgets: Main
-	inline bool Button(const std::string& label)														{ return ImGui::Button(label.c_str()); }
+	inline bool Button(const std::string& label)														
+	{ return ImGui::Button(label.c_str()); }
 	inline bool Button(const std::string& label, float sizeX, float sizeY)								{ return ImGui::Button(label.c_str(), { sizeX, sizeY }); }
 	inline bool SmallButton(const std::string& label)													{ return ImGui::SmallButton(label.c_str()); }
 	inline bool InvisibleButton(const std::string& stringID, float sizeX, float sizeY)					{ return ImGui::InvisibleButton(stringID.c_str(), { sizeX, sizeY }); }
@@ -212,7 +213,13 @@ namespace sol_ImGui
 	{ 
 		ImGui::Image(texture,ImVec2(x,y));
 	}
-	inline void ImageButton()																			{ /* TODO: ImageButton(...) ==> UNSUPPORTED */ }
+	inline bool ImageButton(void* texture, float sizeX, float sizeY)
+	{ 
+		ImVec2 buttonSize;
+		buttonSize.x = sizeX;
+		buttonSize.y = sizeY;
+		return ImGui::ImageButton(texture, buttonSize);
+	}
 	inline std::tuple<bool, bool> Checkbox(const std::string& label, bool v)
 	{
 		bool value{ v };
@@ -2317,6 +2324,7 @@ namespace sol_ImGui
 		ImGui.set_function("Bullet"							, Bullet);
 
 
+		ImGui.set_function("ImageButton"							, ImageButton);
 		ImGui.set_function("Image"							, Image);
 #pragma endregion Widgets: Main
 		
