@@ -284,6 +284,12 @@ int initPlugin(std::string* modPath)
     fName = "getFbxObjectAnimState";
     plugData::data.functsEopFbx.getFbxObjectAnimState.Load(&plPath, &fName);
 
+    fName = "getFbxObjectDrawType";
+    plugData::data.functsEopFbx.getFbxObjectDrawType.Load(&plPath, &fName);
+
+    fName = "setFbxObjectDrawType";
+    plugData::data.functsEopFbx.setFbxObjectDrawType.Load(&plPath, &fName);
+
 
 
     fName = "getUiElement";

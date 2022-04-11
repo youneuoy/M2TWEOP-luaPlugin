@@ -30,8 +30,7 @@ scripting</h1>
 
 <h2>Contents</h2>
 <ul>
-<li><a href="#Functions">Functions</a></li>
-<li><a href="#Tables">Tables</a></li>
+<li><a href="#M2TWEOP_table_section">M2TWEOP table section </a></li>
 <li><a href="#gameSTDUI_table_section">gameSTDUI table section </a></li>
 <li><a href="#uiElementStruct_table_section">uiElementStruct table section </a></li>
 <li><a href="#Objects_table_section">Objects table section </a></li>
@@ -47,6 +46,7 @@ scripting</h1>
 <li><a href="#FactionStruct_table_section">FactionStruct table section </a></li>
 <li><a href="#FortStruct_table_section">FortStruct table section </a></li>
 <li><a href="#SettlementStruct_table_section">SettlementStruct table section </a></li>
+<li><a href="#Guild_table_section">Guild table section </a></li>
 <li><a href="#ResStrat_table_section">ResStrat table section </a></li>
 <li><a href="#StackStruct_table_section">StackStruct table section </a></li>
 <li><a href="#siegeStruct_table_section">siegeStruct table section </a></li>
@@ -93,8 +93,12 @@ M2TWEOP structures and functions.</p>
     </ul>
 
 
-<h2><a href="#Functions">Functions</a></h2>
+<h2><a href="#M2TWEOP_table_section">M2TWEOP table section </a></h2>
 <table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP">M2TWEOP</a></td>
+	<td class="summary">Basic M2TWEOP table</td>
+	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#M2TWEOP.getModPath">M2TWEOP.getModPath ()</a></td>
 	<td class="summary">Get mod path</td>
@@ -140,6 +144,10 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">Set which level of city converts to which lvl of castle</td>
 	</tr>
 	<tr>
+	<td class="name" nowrap><a href="#M2TWEOP.setGuildCooldown">M2TWEOP.setGuildCooldown (turns)</a></td>
+	<td class="summary">Set min number turns until next guild offer after a rejection</td>
+	</tr>
+	<tr>
 	<td class="name" nowrap><a href="#M2TWEOP.toggleUnitsBMapHighlight">M2TWEOP.toggleUnitsBMapHighlight ()</a></td>
 	<td class="summary">toggle the highlighting of units on the tactical map.</td>
 	</tr>
@@ -160,13 +168,6 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">Get faction owner region with ID</td>
 	</tr>
 </table>
-<h2><a href="#Tables">Tables</a></h2>
-<table class="function_list">
-	<tr>
-	<td class="name" nowrap><a href="#M2TWEOP">M2TWEOP</a></td>
-	<td class="summary">Basic M2TWEOP table</td>
-	</tr>
-</table>
 <h2><a href="#gameSTDUI_table_section">gameSTDUI table section </a></h2>
 <table class="function_list">
 	<tr>
@@ -178,8 +179,7 @@ M2TWEOP structures and functions.</p>
 	<td class="summary">
 <p>gameSTDUI table section
 /<em>*</em></p>
-<pre><code>Get standart game ui element
-Element must be opened
+<pre><code>Get standart game ui element.
 </code></pre>
 </td>
 	</tr>
@@ -256,7 +256,11 @@ Element must be opened
 	<td class="summary">Get faction with index</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#game.createCharacterByString">game.createCharacterByString (type, faction, age, name, name2, subFaction, portrait, xCoord, yCoord)</a></td>
+	<td class="name" nowrap><a href="#game.getGuild">game.getGuild (index)</a></td>
+	<td class="summary">Get guild with index</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#game.createCharacterByString">game.createCharacterByString (type, faction, age, name, name2, subFaction, portrait_custom, xCoord, yCoord)</a></td>
 	<td class="summary">Create character at coords</td>
 	</tr>
 	<tr>
@@ -456,6 +460,21 @@ Element must be opened
 	<tr>
 	<td class="name" nowrap><a href="#settlementStruct:getResource">settlementStruct:getResource (number)</a></td>
 	<td class="summary">Get resource with number</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct:getGuildStanding">settlementStruct:getGuildStanding (guild_id)</a></td>
+	<td class="summary">Get guild standing by guild_id</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#settlementStruct:setGuildStanding">settlementStruct:setGuildStanding (guild_id, standing)</a></td>
+	<td class="summary">Set settlement standing points with guild</td>
+	</tr>
+</table>
+<h2><a href="#Guild_table_section">Guild table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#guild">guild</a></td>
+	<td class="summary">Basic guild table</td>
 	</tr>
 </table>
 <h2><a href="#ResStrat_table_section">ResStrat table section </a></h2>
@@ -811,7 +830,7 @@ Element must be opened
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onUngarrisonedFort">onUngarrisonedFort (settlement)</a></td>
+	<td class="name" nowrap><a href="#onUngarrisonedFort">onUngarrisonedFort (fort)</a></td>
 	<td class="summary">
 
 </td>
@@ -823,19 +842,19 @@ Element must be opened
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onOccupySettlement">onOccupySettlement (char1, settlement)</a></td>
+	<td class="name" nowrap><a href="#onOccupySettlement">onOccupySettlement (character, faction)</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onExterminatePopulation">onExterminatePopulation (char1, settlement)</a></td>
+	<td class="name" nowrap><a href="#onExterminatePopulation">onExterminatePopulation (character, faction)</a></td>
 	<td class="summary">
 
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onSackSettlement">onSackSettlement (char1, settlement)</a></td>
+	<td class="name" nowrap><a href="#onSackSettlement">onSackSettlement (character, faction)</a></td>
 	<td class="summary">
 
 </td>
@@ -901,7 +920,7 @@ Element must be opened
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onAgentCreated">onAgentCreated (fac, agentType, sett)</a></td>
+	<td class="name" nowrap><a href="#onAgentCreated">onAgentCreated (character, agentType, sett)</a></td>
 	<td class="summary">
 
 </td>
@@ -1197,15 +1216,118 @@ Element must be opened
 	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectAnimState">M2TWEOPFBX.getFbxObjectAnimState (fbx)</a></td>
 	<td class="summary">Get fbx object animation state</td>
 	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.setFbxObjectDrawType">M2TWEOPFBX.setFbxObjectDrawType (fbx, current)</a></td>
+	<td class="summary">Set fbx object draw type.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectDrawType">M2TWEOPFBX.getFbxObjectDrawType (fbx)</a></td>
+	<td class="summary">Get fbx object draw type.</td>
+	</tr>
 </table>
 
 <br/>
 <br/>
 
 
-    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+    <h2 class="section-header "><a name="M2TWEOP_table_section"></a>M2TWEOP table section </h2>
 
     <dl class="function">
+    <dt>
+    <a name = "M2TWEOP"></a>
+    <strong>M2TWEOP</strong>
+    </dt>
+    <dd>
+    Basic M2TWEOP table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">getModPath</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getModPath">getModPath</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getPluginPath</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getPluginPath">getPluginPath</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">loadTexture</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.loadTexture">loadTexture</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unloadTexture</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.unloadTexture">unloadTexture</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setAncillariesLimit</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setAncillariesLimit">setAncillariesLimit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">unlockGameConsoleCommands</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.unlockGameConsoleCommands">unlockGameConsoleCommands</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setMaxBgSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setMaxBgSize">setMaxBgSize</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">toggleUnitsBMapHighlight</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.toggleUnitsBMapHighlight">toggleUnitsBMapHighlight</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setReligionsLimit</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setReligionsLimit">setReligionsLimit</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">isTileFree</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.isTileFree">isTileFree</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getTileRegionID</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getTileRegionID">getTileRegionID</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getRegionOwner</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.getRegionOwner">getRegionOwner</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEDUUnitsSize</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOP.setEDUUnitsSize">setEDUUnitsSize</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
     <dt>
     <a name = "M2TWEOP.getModPath"></a>
     <strong>M2TWEOP.getModPath ()</strong>
@@ -1333,7 +1455,7 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <ul>
         <li><span class="parameter">newLimit</span>
             <span class="types"><span class="type">int</span></span>
-         maximum - 127
+         default: 8, maximum: 127
         </li>
     </ul>
 
@@ -1376,7 +1498,7 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <ul>
         <li><span class="parameter">newSize</span>
             <span class="types"><span class="type">int</span></span>
-         maximum bodyguard size - 255
+         maximum: 255
         </li>
     </ul>
 
@@ -1401,11 +1523,11 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <ul>
         <li><span class="parameter">minSize</span>
             <span class="types"><span class="type">int</span></span>
-         maximum value - 300!
+         maximum: 300
         </li>
         <li><span class="parameter">maxSize</span>
             <span class="types"><span class="type">int</span></span>
-         maximum value - 300!
+         maximum: 300
         </li>
     </ul>
 
@@ -1430,9 +1552,7 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <ul>
         <li><span class="parameter">limit</span>
             <span class="types"><span class="type">int</span></span>
-
-
-
+         default: 9
         </li>
     </ul>
 
@@ -1504,6 +1624,31 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
 
 </dd>
     <dt>
+    <a name = "M2TWEOP.setGuildCooldown"></a>
+    <strong>M2TWEOP.setGuildCooldown (turns)</strong>
+    </dt>
+    <dd>
+    Set min number turns until next guild offer after a rejection
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">turns</span>
+            <span class="types"><span class="type">int</span></span>
+         default: 10
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">M2TWEOP.setGuildCooldown(<span class="number">5</span>)</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "M2TWEOP.toggleUnitsBMapHighlight"></a>
     <strong>M2TWEOP.toggleUnitsBMapHighlight ()</strong>
     </dt>
@@ -1533,7 +1678,7 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
     <ul>
         <li><span class="parameter">newLimit</span>
             <span class="types"><span class="type">int</span></span>
-         maximum limit ~ 127
+         maximum: 127
         </li>
     </ul>
 
@@ -1659,105 +1804,6 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
 
 </dd>
 </dl>
-    <h2 class="section-header "><a name="Tables"></a>Tables</h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "M2TWEOP"></a>
-    <strong>M2TWEOP</strong>
-    </dt>
-    <dd>
-    Basic M2TWEOP table
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">getModPath</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getModPath">getModPath</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">getPluginPath</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getPluginPath">getPluginPath</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">loadTexture</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.loadTexture">loadTexture</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">unloadTexture</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.unloadTexture">unloadTexture</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setAncillariesLimit</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setAncillariesLimit">setAncillariesLimit</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">unlockGameConsoleCommands</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.unlockGameConsoleCommands">unlockGameConsoleCommands</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setMaxBgSize</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setMaxBgSize">setMaxBgSize</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">toggleUnitsBMapHighlight</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.toggleUnitsBMapHighlight">toggleUnitsBMapHighlight</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setReligionsLimit</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setReligionsLimit">setReligionsLimit</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">isTileFree</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.isTileFree">isTileFree</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">getTileRegionID</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getTileRegionID">getTileRegionID</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">getRegionOwner</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.getRegionOwner">getRegionOwner</a></span>
-
-
-
-        </li>
-        <li><span class="parameter">setEDUUnitsSize</span>
-            <span class="types"><a class="type" href="index.html#M2TWEOP.setEDUUnitsSize">setEDUUnitsSize</a></span>
-
-
-
-        </li>
-    </ul>
-
-
-
-
-
-</dd>
-</dl>
     <h2 class="section-header "><a name="gameSTDUI_table_section"></a>gameSTDUI table section </h2>
 
     <dl class="function">
@@ -1792,8 +1838,7 @@ M2TWEOP.unloadTexture(testImage.img);</pre>
 
 <p>gameSTDUI table section
 /<em>*</em></p>
-<pre><code>Get standart game ui element
-Element must be opened
+<pre><code>Get standart game ui element.  Element must be opened
 </code></pre>
 
 
@@ -1906,7 +1951,6 @@ Element must be opened
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">local</span> financeScroll = gameSTDUI.getUiElement(<span class="string">"finance_scroll"</span>);
-
 <span class="comment">--at index 5 we have faction_listviews_button
 </span><span class="keyword">local</span> subElement1 = financeScroll:getSubElement(<span class="number">5</span>);
 subElement1:execute();</pre>
@@ -1935,9 +1979,7 @@ subElement1:execute();</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">local</span> financeScroll = gameSTDUI.getUiElement(<span class="string">"finance_scroll"</span>);
-
-<span class="keyword">local</span> subElement1 = financeScroll:getSubElement(<span class="number">5</span>);
-gameSTDUI.useUiElement(subElement1);</pre>
+<span class="keyword">local</span> subElement1 = financeScroll:getSubElement(<span class="number">5</span>);</pre>
     </ul>
 
 </dd>
@@ -2404,8 +2446,41 @@ stratmap.objects.setModel(<span class="number">288</span>,<span class="number">2
 
 </dd>
     <dt>
+    <a name = "game.getGuild"></a>
+    <strong>game.getGuild (index)</strong>
+    </dt>
+    <dd>
+    Get guild with index
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">index</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="index.html#guild">guild</a></span>
+        guild
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourGuild=stratmap.game.getGuild(<span class="number">1</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "game.createCharacterByString"></a>
-    <strong>game.createCharacterByString (type, faction, age, name, name2, subFaction, portrait, xCoord, yCoord)</strong>
+    <strong>game.createCharacterByString (type, faction, age, name, name2, subFaction, portrait_custom, xCoord, yCoord)</strong>
     </dt>
     <dd>
     Create character at coords
@@ -2449,11 +2524,9 @@ stratmap.objects.setModel(<span class="number">288</span>,<span class="number">2
 
 
         </li>
-        <li><span class="parameter">portrait</span>
+        <li><span class="parameter">portrait_custom</span>
             <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-
-
-
+         cannot be nil
         </li>
         <li><span class="parameter">xCoord</span>
             <span class="types"><span class="type">int</span></span>
@@ -2480,7 +2553,7 @@ stratmap.objects.setModel(<span class="number">288</span>,<span class="number">2
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">newCharacter=stratmap.game.createCharacterByString(<span class="string">"named character"</span>,stratmap.game.getFaction(<span class="number">0</span>),<span class="number">18</span>,<span class="string">"Name1"</span>,<span class="string">"Name2"</span>,<span class="number">31</span>,<span class="keyword">nil</span>,character.character.xCoord+<span class="number">5</span>,character.character.yCoord);</pre>
+        <pre class="example">newCharacter=stratmap.game.createCharacterByString(<span class="string">"named character"</span>,stratmap.game.getFaction(<span class="number">0</span>),<span class="number">18</span>,<span class="string">"Name1"</span>,<span class="string">"Name2"</span>,<span class="number">31</span>,<span class="string">"custom_portrait_name"</span>,character.character.xCoord+<span class="number">5</span>,character.character.yCoord);</pre>
     </ul>
 
 </dd>
@@ -4294,6 +4367,18 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
 
 
         </li>
+        <li><span class="parameter">getGuildStanding</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct:getGuildStanding">getGuildStanding</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setGuildStanding</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct:setGuildStanding">setGuildStanding</a></span>
+
+
+
+        </li>
     </ul>
 
 
@@ -4429,6 +4514,117 @@ ourSett = ourFac:getSettlement(<span class="number">0</span>);
     <ul>
         <pre class="example">ourResStrat=settlementStruct:getResource(<span class="number">0</span>);</pre>
     </ul>
+
+</dd>
+    <dt>
+    <a name = "settlementStruct:getGuildStanding"></a>
+    <strong>settlementStruct:getGuildStanding (guild_id)</strong>
+    </dt>
+    <dd>
+    Get guild standing by guild_id
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">guild_id</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">ourGuildStanding=settlementStruct:getGuildStanding(<span class="number">0</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "settlementStruct:setGuildStanding"></a>
+    <strong>settlementStruct:setGuildStanding (guild_id, standing)</strong>
+    </dt>
+    <dd>
+    Set settlement standing points with guild
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">guild_id</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">standing</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example">settlementStruct:setGuildStanding(<span class="number">0</span>,<span class="number">300</span>);</pre>
+    </ul>
+
+</dd>
+</dl>
+    <h2 class="section-header "><a name="Guild_table_section"></a>Guild table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "guild"></a>
+    <strong>guild</strong>
+    </dt>
+    <dd>
+    Basic guild table
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">name</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">id</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">level1</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">level2</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+        <li><span class="parameter">level3</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
 
 </dd>
 </dl>
@@ -7712,7 +7908,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onUngarrisonedFort"></a>
-    <strong>onUngarrisonedFort (settlement)</strong>
+    <strong>onUngarrisonedFort (fort)</strong>
     </dt>
     <dd>
 
@@ -7722,8 +7918,8 @@ newCapital=fac.capital();
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">settlement</span>
-            <span class="types"><span class="type">forttruct</span></span>
+        <li><span class="parameter">fort</span>
+            <span class="types"><a class="type" href="index.html#fortStruct">fortStruct</a></span>
 
 
 
@@ -7782,7 +7978,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onOccupySettlement"></a>
-    <strong>onOccupySettlement (char1, settlement)</strong>
+    <strong>onOccupySettlement (character, faction)</strong>
     </dt>
     <dd>
 
@@ -7792,14 +7988,14 @@ newCapital=fac.capital();
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">char1</span>
-            <span class="types"><span class="type">namedharacter</span></span>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
 
 
 
         </li>
-        <li><span class="parameter">settlement</span>
-            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
 
@@ -7817,7 +8013,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onExterminatePopulation"></a>
-    <strong>onExterminatePopulation (char1, settlement)</strong>
+    <strong>onExterminatePopulation (character, faction)</strong>
     </dt>
     <dd>
 
@@ -7827,14 +8023,14 @@ newCapital=fac.capital();
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">char1</span>
-            <span class="types"><span class="type">namedharacter</span></span>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
 
 
 
         </li>
-        <li><span class="parameter">settlement</span>
-            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
 
@@ -7852,7 +8048,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onSackSettlement"></a>
-    <strong>onSackSettlement (char1, settlement)</strong>
+    <strong>onSackSettlement (character, faction)</strong>
     </dt>
     <dd>
 
@@ -7862,14 +8058,14 @@ newCapital=fac.capital();
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">char1</span>
-            <span class="types"><span class="type">namedharacter</span></span>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
 
 
 
         </li>
-        <li><span class="parameter">settlement</span>
-            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+        <li><span class="parameter">faction</span>
+            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
 
@@ -8219,7 +8415,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onAgentCreated"></a>
-    <strong>onAgentCreated (fac, agentType, sett)</strong>
+    <strong>onAgentCreated (character, agentType, sett)</strong>
     </dt>
     <dd>
 
@@ -8229,8 +8425,8 @@ newCapital=fac.capital();
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">fac</span>
-            <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
 
 
 
@@ -9557,6 +9753,18 @@ newCapital=fac.capital();
 
 
         </li>
+        <li><span class="parameter">setFbxObjectDrawType</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.setFbxObjectDrawType">setFbxObjectDrawType</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getFbxObjectDrawType</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPFBX.getFbxObjectDrawType">getFbxObjectDrawType</a></span>
+
+
+
+        </li>
     </ul>
 
 
@@ -9593,7 +9801,7 @@ newCapital=fac.capital();
 
     <h3>Usage:</h3>
     <ul>
-        <pre class="example">M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);</pre>
+        <pre class="example">M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);</pre>
     </ul>
 
 </dd>
@@ -9619,7 +9827,7 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 M2TWEOPFBX.deleteFbxModel(<span class="number">1</span>);</pre>
     </ul>
 
@@ -9652,7 +9860,7 @@ M2TWEOPFBX.deleteFbxModel(<span class="number">1</span>);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);</pre>
     </ul>
 
@@ -9689,7 +9897,7 @@ M2TWEOPFBX.deleteFbxModel(<span class="number">1</span>);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span><span class="keyword">local</span> ourNewObject=M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);</pre>
@@ -9718,7 +9926,7 @@ M2TWEOPFBX.deleteFbxModel(<span class="number">1</span>);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span><span class="keyword">local</span> ourNewObject=M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -9754,7 +9962,7 @@ M2TWEOPFBX.deleteFbxObject(ourNewObject);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -9796,7 +10004,7 @@ M2TWEOPFBX.deleteFbxObject(ourNewObject);</pre>
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -9839,7 +10047,7 @@ M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -9875,7 +10083,7 @@ M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -9916,7 +10124,7 @@ M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);</pre
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -9956,7 +10164,7 @@ M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -10001,7 +10209,7 @@ M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>)
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -10045,7 +10253,7 @@ M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>)
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -10092,7 +10300,7 @@ M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>)
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--1 is model id here
-</span>M2TWEOPFBX.addFbxModel(<span class="string">"eopData/testmodel.fbx"</span>,<span class="string">"eopData/testtexture.dds"</span>,<span class="number">1</span>);
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
 <span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
 <span class="comment">--2 is object id here
 </span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
@@ -10112,6 +10320,126 @@ M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>)
     </ul>
 
 </dd>
+    <dt>
+    <a name = "M2TWEOPFBX.setFbxObjectDrawType"></a>
+    <strong>M2TWEOPFBX.setFbxObjectDrawType (fbx, current)</strong>
+    </dt>
+    <dd>
+
+<p>Set fbx object draw type.  I.e. on what part of game it drawed</p>
+<pre><code>Can be:
+1 - stratmap
+2 - tactmap
+0 - both maps
+
+Default value - 1
+</code></pre>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+        <li><span class="parameter">current</span>
+            <span class="types"><span class="type">int</span></span>
+         draw type
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPFBX.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>);
+
+<span class="comment">--get current type
+</span><span class="keyword">local</span> whereWeDrawObject=M2TWEOPFBX.getFbxObjectDrawType(ourNewObject);
+<span class="comment">--if we draw object on stratmap
+</span><span class="keyword">if</span> (whereWeDrawObject==<span class="number">1</span>)
+<span class="keyword">then</span>
+	<span class="comment">--change drawing type to battle map
+</span>	M2TWEOPFBX.setFbxObjectDrawType(ourNewObject,<span class="number">2</span>);
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPFBX.getFbxObjectDrawType"></a>
+    <strong>M2TWEOPFBX.getFbxObjectDrawType (fbx)</strong>
+    </dt>
+    <dd>
+
+<p>Get fbx object draw type.  I.e. on what part of game it drawed</p>
+<pre><code>Can be:
+1 - stratmap
+2 - tactmap
+0 - both maps
+
+Default value - 1
+</code></pre>
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">fbx</span>
+            <span class="types"><span class="type">fbxObject</span></span>
+         object
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        current draw type
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--1 is model id here
+</span>M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath()..<span class="string">"/eopData/testmodel.fbx"</span>,M2TWEOP.getModPath()..<span class="string">"/eopData/testtexture.dds"</span>,<span class="number">1</span>);
+<span class="keyword">local</span> ourNewModel=M2TWEOPFBX.getFbxModel(<span class="number">1</span>);
+<span class="comment">--2 is object id here
+</span>M2TWEOPFBX.addFbxObject(<span class="number">1</span>,<span class="number">2</span>);
+<span class="keyword">local</span> ourNewObject=M2TWEOPFBX.getFbxObject(<span class="number">2</span>);
+M2TWEOPFBX.setFbxObjectCoords(ourNewObject,<span class="number">1.2</span>,<span class="number">123.95</span>,<span class="number">1</span>);
+<span class="keyword">local</span> x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectSize(ourNewObject,<span class="number">25.2</span>);
+<span class="keyword">local</span> size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>);
+<span class="keyword">local</span> whereWeDrawObject=M2TWEOPFBX.getFbxObjectDrawType(ourNewObject);</pre>
+    </ul>
+
+</dd>
 </dl>
 
 
@@ -10119,7 +10447,7 @@ M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>)
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-02-15 15:06:20 </i>
+<i style="float:right;">Last updated 2022-04-11 10:55:35 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

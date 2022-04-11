@@ -158,7 +158,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		return nullptr;
 	}
 
-
+	///M2TWEOP table section
 	//@section m2tweopTable
 
 	/***

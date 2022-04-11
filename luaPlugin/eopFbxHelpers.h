@@ -26,5 +26,8 @@ namespace eopFbxHelpers
 
 	void setFbxObjectAnimState(void* object,bool animState);
 	bool getFbxObjectAnimState(void* object);
+
+	void setFbxObjectDrawType(void* object, int drawType);
+	int getFbxObjectDrawType(void* object);
 };
 

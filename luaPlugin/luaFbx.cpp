@@ -34,6 +34,8 @@ void luaP::initEopFbx()
 	@tfield getFbxObjectDrawState getFbxObjectDrawState
 	@tfield setFbxObjectAnimState setFbxObjectAnimState
 	@tfield getFbxObjectAnimState getFbxObjectAnimState
+	@tfield setFbxObjectDrawType setFbxObjectDrawType
+	@tfield getFbxObjectDrawType getFbxObjectDrawType
 
 	@table M2TWEOPFBX
 	*/
@@ -317,4 +319,80 @@ void luaP::initEopFbx()
 	local isAnimationPlayed=M2TWEOPFBX.getFbxObjectAnimState(ourNewObject);
 	*/
 	tables.M2TWEOPFBXTable.set_function("getFbxObjectAnimState", &eopFbxHelpers::getFbxObjectAnimState);
+
+
+	/***
+	Set fbx object draw type. I.e. on what part of game it drawed
+	Can be:
+	1 - stratmap
+	2 - tactmap
+	0 - both maps
+
+	Default value - 1
+	@function M2TWEOPFBX.setFbxObjectDrawType
+	@tparam fbxObject fbx object
+	@tparam int current draw type
+
+	@usage
+	--1 is model id here
+	M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath().."/eopData/testmodel.fbx",M2TWEOP.getModPath().."/eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,true);
+	local isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+	M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,true);
+
+	--get current type
+	local whereWeDrawObject=M2TWEOPFBX.getFbxObjectDrawType(ourNewObject);
+	--if we draw object on stratmap
+	if (whereWeDrawObject==1)
+	then
+		--change drawing type to battle map
+		M2TWEOPFBX.setFbxObjectDrawType(ourNewObject,2);
+	end
+	*/
+	tables.M2TWEOPFBXTable.set_function("setFbxObjectDrawType", &eopFbxHelpers::setFbxObjectDrawType);
+	/***
+	Get fbx object draw type. I.e. on what part of game it drawed
+	Can be:
+	1 - stratmap
+	2 - tactmap
+	0 - both maps
+
+	Default value - 1
+	@function M2TWEOPFBX.getFbxObjectDrawType
+	@tparam fbxObject fbx object
+	@treturn int current draw type
+
+	@usage
+	--1 is model id here
+	M2TWEOPFBX.addFbxModel(M2TWEOP.getModPath().."/eopData/testmodel.fbx",M2TWEOP.getModPath().."/eopData/testtexture.dds",1);
+	local ourNewModel=M2TWEOPFBX.getFbxModel(1);
+	--2 is object id here
+	M2TWEOPFBX.addFbxObject(1,2);
+	local ourNewObject=M2TWEOPFBX.getFbxObject(2);
+	M2TWEOPFBX.setFbxObjectCoords(ourNewObject,1.2,123.95,1);
+	local x,y,z=M2TWEOPFBX.getFbxObjectCoords(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectSize(ourNewObject,25.2);
+	local size=M2TWEOPFBX.getFbxObjectSize(ourNewObject);
+
+
+	M2TWEOPFBX.setFbxObjectDrawState(ourNewObject,true);
+	local isDrawed=M2TWEOPFBX.getFbxObjectDrawState(ourNewObject);
+	M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,true);
+	local whereWeDrawObject=M2TWEOPFBX.getFbxObjectDrawType(ourNewObject);
+*/
+	tables.M2TWEOPFBXTable.set_function("getFbxObjectDrawType", &eopFbxHelpers::getFbxObjectDrawType);
 }

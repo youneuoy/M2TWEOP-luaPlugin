@@ -75,3 +75,13 @@ bool eopFbxHelpers::getFbxObjectAnimState(void* object)
 {
 	return (*(*plugData::data.functsEopFbx.getFbxObjectAnimState))(object);
 }
+
+void eopFbxHelpers::setFbxObjectDrawType(void* object, int drawType)
+{
+	(*(plugData::data.functsEopFbx.setFbxObjectDrawType))(object, drawType);
+}
+
+int eopFbxHelpers::getFbxObjectDrawType(void* object)
+{
+	return (*(plugData::data.functsEopFbx.getFbxObjectDrawType))(object);
+}

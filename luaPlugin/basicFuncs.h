@@ -246,6 +246,10 @@ public:
 	ProcLoader< bool(__cdecl*)(void*)> getFbxObjectAnimState;
 
 
+	ProcLoader< void(__cdecl*)(void*, int)> setFbxObjectDrawType;
+	ProcLoader< int(__cdecl*)(void*)> getFbxObjectDrawType;
+
+
 
 
 };
