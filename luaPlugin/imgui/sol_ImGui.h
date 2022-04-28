@@ -2860,8 +2860,7 @@ namespace sol_ImGui
 #pragma endregion Clipboard Utilities
 
 
-		/*ImGuiIO& I = ImGui::GetIO();
-		I.KeysDownDuration[];*/
+
 		ImGui.set_function("GetIO", GetIO);
 
 		sol::usertype<ImGuiIO>IO = lua.new_usertype<ImGuiIO>("ImGuiIO");

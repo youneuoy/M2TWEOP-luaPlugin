@@ -9,6 +9,7 @@ typedef unsigned short    ushort;
 #pragma pack(push,1) 
 typedef struct stackStruct stackStruct, * PstackStruct;
 typedef struct settlementStruct settlementStruct, * PsettlementStruct;
+
 struct uiElement {
 	undefined field_0x0[16];
 	int xSize;
@@ -825,7 +826,7 @@ struct EduEntry {
 	uint32_t categoryClassCombinationForAI;
 	DWORD VoiceType;
 	char* Accent;
-	char accentHash;
+	uint32_t accentHash;
 	char* BannerFaction;
 	char pad_0058[4];
 	char* BannerUnit;
