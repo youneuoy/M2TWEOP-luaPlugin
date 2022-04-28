@@ -189,6 +189,9 @@ int initPlugin(std::string* modPath)
 
     fName = "createBuilding";
     plugData::data.funcs.createBuilding.Load(&plPath, &fName);
+
+    fName = "setCharacterType";
+    plugData::data.funcs.setCharacterType.Load(&plPath, &fName);
     
 
 

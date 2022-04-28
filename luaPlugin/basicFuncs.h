@@ -186,6 +186,9 @@ public:
 	ProcLoader<void(__cdecl*)(settlementStruct*, const char*)> createBuilding;
 
 
+	ProcLoader<void(__cdecl*)(general*, int,int,int)> setCharacterType;
+
+
 
 
 	//graphics
