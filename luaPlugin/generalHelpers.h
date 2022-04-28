@@ -12,5 +12,7 @@ namespace generalHelpers
 	void setBodyguard(general* gen,unit*un);
 	void setMovepoints(general* gen, float movepoints);
 	float getMovepoints(const general* gen);
+	int getTypeID(const general* gen);
+	void setTypeID(general* gen,int newType);
 };
 

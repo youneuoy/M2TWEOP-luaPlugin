@@ -741,6 +741,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield float movePointsModifier
 	@tfield float movePoints
 	@tfield string ability
+	@tfield getTypeID getTypeID
+	@tfield setTypeID setTypeID
 	@tfield moveToTile moveToTile
 	@tfield reposition reposition
 	@tfield siegeSettlement siegeSettlement
@@ -761,6 +763,47 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.character.set("movePoints", sol::property(&generalHelpers::getMovepoints, &generalHelpers::setMovepoints));
 	types.character.set("ability", sol::property(&luaGetSetFuncs::getStringPropertyGen<generalStruct_abilityID>, &luaGetSetFuncs::setStringPropertyGen<generalStruct_abilityID>));
 	/***
+	Get character type.
+	0-spy
+	1-assassin
+	2-diplomat
+	3-admiral
+	4-merchant
+	5-priest
+	6-general
+	7-named character
+	8-princess
+	9-heretic
+	10-witch
+	11-inquisitor
+	13-pope
+	@function character:getTypeID
+	@treturn int typeId
+	@usage
+	local ourType=ourCharacter:getTypeID();
+	*/
+	types.character.set_function("getTypeID", &generalHelpers::getTypeID);	
+	/***
+	Set character type.
+	0-spy
+	1-assassin
+	2-diplomat
+	3-admiral
+	4-merchant
+	5-priest
+	6-general
+	7-named character
+	8-princess
+	9-heretic
+	10-witch
+	11-inquisitor
+	13-pope
+	@function character:setTypeID
+	@tparam int typeId
+	@usage
+	ourCharacter:setTypeID(2);
+	*/
+	types.character.set_function("setTypeID", &generalHelpers::setTypeID);	/***
 	Start moving to tale. Need movePoints.
 	@function character:moveToTile
 	@tparam int xCoord

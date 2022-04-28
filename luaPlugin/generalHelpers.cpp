@@ -57,4 +57,14 @@ namespace generalHelpers
 		return gen->movepoints2;
 	}
 
+	int getTypeID(const general* gen)
+	{
+		return gen->genType->type;
+	}
+
+	void setTypeID(general* gen, int newType)
+	{
+		gen->genType->type = newType;
+	}
+
 }
