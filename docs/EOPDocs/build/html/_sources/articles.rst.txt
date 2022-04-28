@@ -7,5 +7,6 @@ M2TWEOP's Tutorials!
 	:maxdepth: 2
 	
 	BATTLE_RESULT_TUTORIAL.md
-	
+	Gui scripting basics by Erken, PDF <_static/Introduction_to_ImGui_v2.pdf#http://>
+	Gui scripting basics by Erken, ODT <_static/Introduction_to_ImGui_v2.odt#http://>
 	

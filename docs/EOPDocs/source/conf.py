@@ -17,7 +17,6 @@
 import alabaster
 
 html_theme_path = [alabaster.get_path()]
-extensions = ['alabaster']
 html_theme = 'alabaster'
 html_sidebars = {
     '**': [
@@ -47,7 +46,9 @@ release = '2.1'
 # ones.
 extensions = [
     # ...
-    'm2r2'
+    'alabaster',
+    'm2r2',
+    'sphinxcontrib.pdfembed'  
 ]
 # ...
 
