@@ -108,6 +108,9 @@
     <Filter Include="Исходные файлы\luaBind\luaHelpers\gameSTDUIHelpers">
       <UniqueIdentifier>{f788bd34-a808-4519-b676-12be637bc460}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\luaBind\luaHelpers\soundsHelpers">
+      <UniqueIdentifier>{aafd9dd4-cfc9-4f4a-a989-3b47c32be937}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="realGameTypes.h">
@@ -241,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="gameSTDUIHelpers.h">
       <Filter>Исходные файлы\luaBind\luaHelpers\gameSTDUIHelpers</Filter>
+    </ClInclude>
+    <ClInclude Include="eopSoundHelpers.h">
+      <Filter>Исходные файлы\luaBind\luaHelpers\soundsHelpers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -378,6 +384,12 @@
     </ClCompile>
     <ClCompile Include="gameSTDUIHelpers.cpp">
       <Filter>Исходные файлы\luaBind\luaHelpers\gameSTDUIHelpers</Filter>
+    </ClCompile>
+    <ClCompile Include="luaSounds.cpp">
+      <Filter>Исходные файлы\luaBind</Filter>
+    </ClCompile>
+    <ClCompile Include="eopSoundHelpers.cpp">
+      <Filter>Исходные файлы\luaBind\luaHelpers\soundsHelpers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

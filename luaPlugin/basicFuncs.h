@@ -256,6 +256,20 @@ public:
 
 
 };
+class eopSoundsFuncs
+{
+public:
+	//Sounds functions
+	ProcLoader<void*(__cdecl*)(const char*)> createEOPSound;
+	ProcLoader<void(__cdecl*)(void*)> deleteEOPSound;
+
+	ProcLoader<void(__cdecl*)(void*)> playEOPSound;
+	ProcLoader<void(__cdecl*)(void*, unsigned int)> setEOPSoundOffset;
+	ProcLoader<unsigned int(__cdecl*)(void*)> getEOPSoundOffset;
+	ProcLoader<void(__cdecl*)(void*)> pauseEOPSound;
+	ProcLoader<void(__cdecl*)(void*)> stopEOPSound;
+
+};
 class gameUIFuncs
 {
 public:

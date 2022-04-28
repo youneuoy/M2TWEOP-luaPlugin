@@ -72,6 +72,7 @@ public:
 	void initTech();
 	void initEopEdu();
 	void initEopFbx();
+	void initEopSounds();
 	void runScriptS(std::string*script);
 
 	//lua functions and events controllers

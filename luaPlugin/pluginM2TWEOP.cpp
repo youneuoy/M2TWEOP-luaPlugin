@@ -295,6 +295,29 @@ int initPlugin(std::string* modPath)
 
 
 
+    fName = "createEOPSound";
+    plugData::data.functsEopSounds.createEOPSound.Load(&plPath, &fName);
+
+    fName = "deleteEOPSound";
+    plugData::data.functsEopSounds.deleteEOPSound.Load(&plPath, &fName);
+
+    fName = "playEOPSound";
+    plugData::data.functsEopSounds.playEOPSound.Load(&plPath, &fName);
+
+    fName = "setEOPSoundOffset";
+    plugData::data.functsEopSounds.setEOPSoundOffset.Load(&plPath, &fName);
+
+    fName = "getEOPSoundOffset";
+    plugData::data.functsEopSounds.getEOPSoundOffset.Load(&plPath, &fName);
+
+    fName = "pauseEOPSound";
+    plugData::data.functsEopSounds.pauseEOPSound.Load(&plPath, &fName);
+
+    fName = "stopEOPSound";
+    plugData::data.functsEopSounds.stopEOPSound.Load(&plPath, &fName);
+
+
+
     fName = "getUiElement";
     plugData::data.functsGameUI.getUiElement.Load(&plPath, &fName);
 
@@ -314,6 +337,7 @@ void initLua()
     plugData::data.luaAll.initP2();
     plugData::data.luaAll.initEopEdu();
     plugData::data.luaAll.initEopFbx();
+    plugData::data.luaAll.initEopSounds();
     plugData::data.luaAll.initTech();
     plugData::data.luaAll.onPluginLoadF();
     if (luaState==nullptr)

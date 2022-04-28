@@ -181,6 +181,7 @@
     <ClInclude Include="console.h" />
     <ClInclude Include="eopEduHelpers.h" />
     <ClInclude Include="eopFbxHelpers.h" />
+    <ClInclude Include="eopSoundHelpers.h" />
     <ClInclude Include="factionHelpers.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="gameDataAllHelper.h" />
@@ -228,6 +229,7 @@
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="eopEduHelpers.cpp" />
     <ClCompile Include="eopFbxHelpers.cpp" />
+    <ClCompile Include="eopSoundHelpers.cpp" />
     <ClCompile Include="factionHelpers.cpp" />
     <ClCompile Include="gameDataAllHelper.cpp" />
     <ClCompile Include="gameHelpers.cpp" />
@@ -249,6 +251,7 @@
     <ClCompile Include="luaGetSetFuncs.cpp" />
     <ClCompile Include="luaP.cpp" />
     <ClCompile Include="luaP2.cpp" />
+    <ClCompile Include="luaSounds.cpp" />
     <ClCompile Include="luaTech.cpp" />
     <ClCompile Include="m2tweopHelpers.cpp" />
     <ClCompile Include="objectsHelpers.cpp" />

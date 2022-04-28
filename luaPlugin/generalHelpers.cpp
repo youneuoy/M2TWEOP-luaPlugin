@@ -64,7 +64,6 @@ namespace generalHelpers
 
 	void setTypeID(general* gen, int newType)
 	{
-		gen->genType->type = newType;
 		(*(*plugData::data.funcs.setCharacterType))(gen, newType,gen->genChar->subFaction,gen->genChar->faction->dipNum);
 	}
 

@@ -71,6 +71,7 @@ Please do not include the program in your modifications without my permission (a
 * To all users participating in the discussion and improvement of the project.
 * Users and administration of the forum https://gamehacklab.ru/. Without them, I would not have learned to do this kind of thing.
 * d3d9.dll wrapper based on this repository: https://github.com/elishacloud/DirectX-Wrappers
+* Used multimedia library: https://www.sfml-dev.org/
 * Used GUI library: https://github.com/ocornut/imgui
 * Used LUA binding: https://github.com/ThePhD/sol2
 * ImGui lua binding is based on this repository:

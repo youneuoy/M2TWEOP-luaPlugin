@@ -16,6 +16,7 @@ public:
 		battleFuncs funcsBattle;
 		eopEduFuncs funcsEopEdu;
 		eopFbxFuncs functsEopFbx;
+		eopSoundsFuncs functsEopSounds;
 
 
 		gameUIFuncs functsGameUI;

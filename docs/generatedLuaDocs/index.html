@@ -63,6 +63,7 @@ scripting</h1>
 <li><a href="#deploymentAreaS_table_section">deploymentAreaS table section </a></li>
 <li><a href="#EVENTS_TABLE_SECTION">EVENTS TABLE SECTION </a></li>
 <li><a href="#M2TWEOPFBX_table_section">M2TWEOPFBX table section </a></li>
+<li><a href="#M2TWEOPSounds_table_section">M2TWEOPSounds table section </a></li>
 </ul>
 
 
@@ -1233,6 +1234,41 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#M2TWEOPFBX.getFbxObjectDrawType">M2TWEOPFBX.getFbxObjectDrawType (fbx)</a></td>
 	<td class="summary">Get fbx object draw type.</td>
+	</tr>
+</table>
+<h2><a href="#M2TWEOPSounds_table_section">M2TWEOPSounds table section </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds">M2TWEOPSounds</a></td>
+	<td class="summary">Basic M2TWEOPSounds table.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.createEOPSound">M2TWEOPSounds.createEOPSound (soundPath)</a></td>
+	<td class="summary">Create(and load) new sound</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.deleteEOPSound">M2TWEOPSounds.deleteEOPSound (soundID)</a></td>
+	<td class="summary">Delete sound</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.playEOPSound">M2TWEOPSounds.playEOPSound (soundID)</a></td>
+	<td class="summary">Play sound</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.setEOPSoundOffset">M2TWEOPSounds.setEOPSoundOffset (soundID, millisecondsOffset)</a></td>
+	<td class="summary">Set sound playing offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.getEOPSoundOffset">M2TWEOPSounds.getEOPSoundOffset (soundID)</a></td>
+	<td class="summary">Get sound playing offset</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.pauseEOPSound">M2TWEOPSounds.pauseEOPSound (soundID)</a></td>
+	<td class="summary">Pause sound</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#M2TWEOPSounds.stopEOPSound">M2TWEOPSounds.stopEOPSound (soundID)</a></td>
+	<td class="summary">Stop sound playing</td>
 	</tr>
 </table>
 
@@ -10546,13 +10582,285 @@ M2TWEOPFBX.setFbxObjectAnimState(ourNewObject,<span class="keyword">true</span>)
 
 </dd>
 </dl>
+    <h2 class="section-header "><a name="M2TWEOPSounds_table_section"></a>M2TWEOPSounds table section </h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "M2TWEOPSounds"></a>
+    <strong>M2TWEOPSounds</strong>
+    </dt>
+    <dd>
+
+<p>Basic M2TWEOPSounds table.  Contains descriptions of m2tweop sounds feathures.</p>
+<pre><code>Attention! You can use 256 sounds max.
+Support the audio file formats WAV, OGG/Vorbis and FLAC.
+You can play many sounds at the same time.
+It should be used for small sounds that can fit in memory and should suffer no lag when they are played(i.e.not music).
+</code></pre>
+
+
+
+
+    <h3>Fields:</h3>
+    <ul>
+        <li><span class="parameter">createEOPSound</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.createEOPSound">createEOPSound</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">deleteEOPSound</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.deleteEOPSound">deleteEOPSound</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">playEOPSound</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.playEOPSound">playEOPSound</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">setEOPSoundOffset</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.setEOPSoundOffset">setEOPSoundOffset</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">getEOPSoundOffset</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.getEOPSoundOffset">getEOPSoundOffset</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">pauseEOPSound</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.pauseEOPSound">pauseEOPSound</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">stopEOPSound</span>
+            <span class="types"><a class="type" href="index.html#M2TWEOPSounds.stopEOPSound">stopEOPSound</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.createEOPSound"></a>
+    <strong>M2TWEOPSounds.createEOPSound (soundPath)</strong>
+    </dt>
+    <dd>
+    Create(and load) new sound
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundPath</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+         path to sound file
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        soundID id what be used for this model. Return nil if can`t load.
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.deleteEOPSound"></a>
+    <strong>M2TWEOPSounds.deleteEOPSound (soundID)</strong>
+    </dt>
+    <dd>
+    Delete sound
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundID</span>
+            <span class="types"><span class="type">int</span></span>
+         id of sound what you want delete
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);
+M2TWEOPSounds.deleteEOPSound(ourNewSound);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.playEOPSound"></a>
+    <strong>M2TWEOPSounds.playEOPSound (soundID)</strong>
+    </dt>
+    <dd>
+    Play sound
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundID</span>
+            <span class="types"><span class="type">int</span></span>
+         id of sound
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);
+M2TWEOPSounds.playEOPSound(ourNewSound);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.setEOPSoundOffset"></a>
+    <strong>M2TWEOPSounds.setEOPSoundOffset (soundID, millisecondsOffset)</strong>
+    </dt>
+    <dd>
+    Set sound playing offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundID</span>
+            <span class="types"><span class="type">int</span></span>
+         id of sound
+        </li>
+        <li><span class="parameter">millisecondsOffset</span>
+            <span class="types"><span class="type">int</span></span>
+         new playing position, from the beginning of the sound
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);
+M2TWEOPSounds.setEOPSoundOffset(ourNewSound,<span class="number">1000</span>);
+M2TWEOPSounds.playSound(ourNewSound);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.getEOPSoundOffset"></a>
+    <strong>M2TWEOPSounds.getEOPSoundOffset (soundID)</strong>
+    </dt>
+    <dd>
+    Get sound playing offset
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundID</span>
+            <span class="types"><span class="type">int</span></span>
+         id of sound
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        millisecondsOffset new playing position, from the beginning of the sound
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);
+M2TWEOPSounds.playSound(ourNewSound);
+<span class="keyword">local</span> currentPlayPosition=M2TWEOPSounds.getEOPSoundOffset(ourNewSound);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.pauseEOPSound"></a>
+    <strong>M2TWEOPSounds.pauseEOPSound (soundID)</strong>
+    </dt>
+    <dd>
+    Pause sound
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundID</span>
+            <span class="types"><span class="type">int</span></span>
+         id of sound
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);
+M2TWEOPSounds.playSound(ourNewSound);
+M2TWEOPSounds.pauseEOPSound(ourNewSound);</pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "M2TWEOPSounds.stopEOPSound"></a>
+    <strong>M2TWEOPSounds.stopEOPSound (soundID)</strong>
+    </dt>
+    <dd>
+    Stop sound playing
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">soundID</span>
+            <span class="types"><span class="type">int</span></span>
+         id of sound
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> ourNewSound=M2TWEOPSounds.createEOPSound(M2TWEOP.getModPath()..<span class="string">"/eopData/testsound.wav"</span>);
+M2TWEOPSounds.playSound(ourNewSound);
+M2TWEOPSounds.stopEOPSound(ourNewSound);</pre>
+    </ul>
+
+</dd>
+</dl>
 
 
 </div> <!-- id="content" -->
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-04-29 00:20:23 </i>
+<i style="float:right;">Last updated 2022-04-29 02:29:24 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
