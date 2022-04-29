@@ -14,10 +14,6 @@ namespace generalHelpers
 		(*(*plugData::data.funcs.teleportCharacter))(gen, x, y);
 	}
 
-	void siegeSettlement(general* gen, settlementStruct* sett)
-	{
-		(*(*plugData::data.funcs.siegeSettlement))(gen, sett);
-	}
 
 	void killGeneral(general* gen)
 	{

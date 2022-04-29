@@ -1,2 +1,0 @@
-
-start make.bat html

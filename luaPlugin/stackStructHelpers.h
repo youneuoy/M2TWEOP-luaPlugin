@@ -7,6 +7,7 @@ namespace stackStructHelpers
 	unit* getUnit(const stackStruct* army, int index);
 	general* getCharacter(const stackStruct* army, int index);
 	int attackArmy(stackStruct* army, stackStruct* defender);
+	void siegeSettlement(stackStruct* army, settlementStruct* sett);
 	settlementStruct* findInSettlement(const stackStruct* army);
 	fortStruct* findInFort(const stackStruct* army);
 	int addUnitToArmy(stackStruct* army, unit*un);

@@ -745,7 +745,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield setTypeID setTypeID
 	@tfield moveToTile moveToTile
 	@tfield reposition reposition
-	@tfield siegeSettlement siegeSettlement
 	@tfield kill kill
 	@tfield setBodyguardUnit setBodyguardUnit
 
@@ -821,14 +820,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	ourCharacter:moveToTile(11,25);
 	*/
 	types.character.set_function("reposition", &generalHelpers::reposition);
-	/***
-	Siege settlement, or attack it if in siege
-	@function character:siegeSettlement
-	@tparam settlementStruct settlement
-	@usage
-	ourCharacter:siegeSettlement(settlement);
-	*/
-	types.character.set_function("siegeSettlement", &generalHelpers::siegeSettlement);
 	/***
 	Delete this character
 	@function character:kill
@@ -1425,8 +1416,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield float reform_point_x reform point x coordinate in battle
 	@tfield float reform_point_y reform point y coordinate in battle
 	@tfield addUnit addUnit
+	@tfield siegeSettlement siegeSettlement call twice if you want go to assault
 	@tfield attackArmy attackArmy
-	@tfield siegeStruct siege
+	@tfield siegeStruct siege data of current siege
 
 
 	@table stackStruct
@@ -1507,6 +1499,14 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	end
 	*/
 	types.stackStruct.set_function("addUnit", &stackStructHelpers::addUnitToArmy);
+	/***
+	Siege settlement, or attack it if in siege. Need movePoints.
+	@function stackStruct:siegeSettlement
+	@tparam settlementStruct settlement
+	@usage
+	stackStruct:siegeSettlement(settlement);
+	*/
+	types.character.set_function("siegeSettlement", &stackStructHelpers::siegeSettlement);
 	/***
 	Attack another army. Need movePoints.
 
