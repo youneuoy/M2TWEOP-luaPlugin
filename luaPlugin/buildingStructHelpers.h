@@ -7,7 +7,8 @@
 #define buildingDrawInfoStruct_name 1
 namespace buildingStructHelpers
 {
-
+	std::string getType(building* build);
+	std::string getName(building* build);
 
 #pragma region buildingDrawInfo
 

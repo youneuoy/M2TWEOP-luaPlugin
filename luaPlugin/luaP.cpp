@@ -1549,10 +1549,11 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Basic building table
 
-	@tfield buildingData buildingData
 	@tfield int level
 	@tfield int hp
 	@tfield settlementStruct settlement
+	@tfield getType getType
+	@tfield getName getName
 
 	@table building
 	*/
@@ -1561,39 +1562,32 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.building.set("level", &building::level);
 	types.building.set("hp", &building::hp);
 	types.building.set("settlement", &building::settlement);
-
-	///BuildingData table section
-	//@section buildingDataTable
-
 	/***
-	Basic buildingData table
+	Get type of building
 
-	@tfield string type
-	@tfield buildingInfo buildingInfo
-
-	@table buildingData
+	@function building:getType
+	@treturn  string  buildingType
+	@usage
+	local typeBuilding=building:getType();
+	if(typeBuilding=="core_building")
+	then
+		--something
+	end
 	*/
-	types.building_data = luaState.new_usertype<building_data>("buildingData");
-	types.building_data.set("type", sol::property(
-		&buildingStructHelpers::getStringPropertyBD<building_dataStruct_type>, &buildingStructHelpers::setStringPropertyBD<building_dataStruct_type>
-		));
-	types.building_data.set("buildingInfo", &building_data::drawInfo);
-
-
-	///BuildingInfo table section
-	//@section buildingInfoTable
-
+	types.building.set_function("getType", &buildingStructHelpers::getType);
 	/***
-	Basic buildingInfo table
+	Get name of building
 
-	@tfield string name
-
-	@table buildingInfo
+	@function building:getName
+	@treturn  string  buildingName
+	@usage
+	local nameBuilding=building:getName();
+	if(nameBuilding=="large_stone_wall")
+	then
+		--something
+	end
 	*/
-	types.buildingDrawInfo = luaState.new_usertype<buildingDrawInfo>("buildingInfo");
-	types.buildingDrawInfo.set("name", sol::property(
-		&buildingStructHelpers::getStringPropertyBDI<buildingDrawInfoStruct_name>, &buildingStructHelpers::setStringPropertyBDI<buildingDrawInfoStruct_name>
-		));
+	types.building.set_function("getName", &buildingStructHelpers::getName);
 
 
 

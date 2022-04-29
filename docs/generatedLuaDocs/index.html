@@ -51,8 +51,6 @@ scripting</h1>
 <li><a href="#StackStruct_table_section">StackStruct table section </a></li>
 <li><a href="#siegeStruct_table_section">siegeStruct table section </a></li>
 <li><a href="#Building_table_section">Building table section </a></li>
-<li><a href="#BuildingData_table_section">BuildingData table section </a></li>
-<li><a href="#BuildingInfo_table_section">BuildingInfo table section </a></li>
 <li><a href="#M2TWEOPDU_table_section">M2TWEOPDU table section </a></li>
 <li><a href="#campaign_enums_section">campaign enums section </a></li>
 <li><a href="#campaign_table_section">campaign table section </a></li>
@@ -543,19 +541,13 @@ M2TWEOP structures and functions.</p>
 	<td class="name" nowrap><a href="#building">building</a></td>
 	<td class="summary">Basic building table</td>
 	</tr>
-</table>
-<h2><a href="#BuildingData_table_section">BuildingData table section </a></h2>
-<table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#buildingData">buildingData</a></td>
-	<td class="summary">Basic buildingData table</td>
+	<td class="name" nowrap><a href="#building:getType">building:getType ()</a></td>
+	<td class="summary">Get type of building</td>
 	</tr>
-</table>
-<h2><a href="#BuildingInfo_table_section">BuildingInfo table section </a></h2>
-<table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#buildingInfo">buildingInfo</a></td>
-	<td class="summary">Basic buildingInfo table</td>
+	<td class="name" nowrap><a href="#building:getName">building:getName ()</a></td>
+	<td class="summary">Get name of building</td>
 	</tr>
 </table>
 <h2><a href="#M2TWEOPDU_table_section">M2TWEOPDU table section </a></h2>
@@ -5237,12 +5229,6 @@ sucess=stackStruct:addUnit(newUnit);
 
     <h3>Fields:</h3>
     <ul>
-        <li><span class="parameter">buildingData</span>
-            <span class="types"><a class="type" href="index.html#buildingData">buildingData</a></span>
-
-
-
-        </li>
         <li><span class="parameter">level</span>
             <span class="types"><span class="type">int</span></span>
 
@@ -5261,35 +5247,14 @@ sucess=stackStruct:addUnit(newUnit);
 
 
         </li>
-    </ul>
-
-
-
-
-
-</dd>
-</dl>
-    <h2 class="section-header "><a name="BuildingData_table_section"></a>BuildingData table section </h2>
-
-    <dl class="function">
-    <dt>
-    <a name = "buildingData"></a>
-    <strong>buildingData</strong>
-    </dt>
-    <dd>
-    Basic buildingData table
-
-
-    <h3>Fields:</h3>
-    <ul>
-        <li><span class="parameter">type</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        <li><span class="parameter">getType</span>
+            <span class="types"><a class="type" href="index.html#building:getType">getType</a></span>
 
 
 
         </li>
-        <li><span class="parameter">buildingInfo</span>
-            <span class="types"><a class="type" href="index.html#buildingInfo">buildingInfo</a></span>
+        <li><span class="parameter">getName</span>
+            <span class="types"><a class="type" href="index.html#building:getName">getName</a></span>
 
 
 
@@ -5301,31 +5266,60 @@ sucess=stackStruct:addUnit(newUnit);
 
 
 </dd>
-</dl>
-    <h2 class="section-header "><a name="BuildingInfo_table_section"></a>BuildingInfo table section </h2>
-
-    <dl class="function">
     <dt>
-    <a name = "buildingInfo"></a>
-    <strong>buildingInfo</strong>
+    <a name = "building:getType"></a>
+    <strong>building:getType ()</strong>
     </dt>
     <dd>
-    Basic buildingInfo table
+    Get type of building
 
 
-    <h3>Fields:</h3>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        buildingType
+    </ol>
+
+
+
+    <h3>Usage:</h3>
     <ul>
-        <li><span class="parameter">name</span>
-            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
-
-
-
-        </li>
+        <pre class="example"><span class="keyword">local</span> typeBuilding=building:getType();
+<span class="keyword">if</span>(typeBuilding==<span class="string">"core_building"</span>)
+<span class="keyword">then</span>
+	<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
+</dd>
+    <dt>
+    <a name = "building:getName"></a>
+    <strong>building:getName ()</strong>
+    </dt>
+    <dd>
+    Get name of building
 
 
 
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+        buildingName
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">local</span> nameBuilding=building:getName();
+<span class="keyword">if</span>(nameBuilding==<span class="string">"large_stone_wall"</span>)
+<span class="keyword">then</span>
+	<span class="comment">--something
+</span><span class="keyword">end</span></pre>
+    </ul>
 
 </dd>
 </dl>
@@ -11210,7 +11204,7 @@ M2TWEOPSounds.stopEOPSound(ourNewSound);</pre>
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-04-29 14:24:00 </i>
+<i style="float:right;">Last updated 2022-04-29 15:57:54 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
