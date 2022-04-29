@@ -9,6 +9,7 @@ extern "C" PLUGINM2TWEOP_API void onUngarrisonedSettlement(settlementStruct * se
 extern "C" PLUGINM2TWEOP_API void onUngarrisonedFort(fortStruct * frt);
 
 extern "C" PLUGINM2TWEOP_API void onGiveSettlement(settlementStruct * sett, factionStruct * fac, factionStruct * fac2);
+
 extern "C" PLUGINM2TWEOP_API void onOccupySettlement(generalCharacterictics * gen, factionStruct * fac);
 extern "C" PLUGINM2TWEOP_API void onExterminatePopulation(generalCharacterictics * gen, factionStruct * fac);
 extern "C" PLUGINM2TWEOP_API void onSackSettlement(generalCharacterictics * gen, factionStruct * fac);
@@ -43,3 +44,11 @@ extern "C" PLUGINM2TWEOP_API void onTransgression(factionStruct * fac, const cha
 
 extern "C" PLUGINM2TWEOP_API void onGuildUpgraded(settlementStruct * sett, const char* resourceDescription);
 extern "C" PLUGINM2TWEOP_API void onGuildDestroyed(settlementStruct * sett, unsigned char guildID);
+
+extern "C" PLUGINM2TWEOP_API void onBrotherAdopted(generalCharacterictics * gen);
+extern "C" PLUGINM2TWEOP_API void onBirth(generalCharacterictics * gen);
+extern "C" PLUGINM2TWEOP_API void onCharacterComesOfAge(generalCharacterictics * gen);
+extern "C" PLUGINM2TWEOP_API void onCharacterMarries(generalCharacterictics * gen);
+extern "C" PLUGINM2TWEOP_API void onCharacterBecomesAFather(generalCharacterictics * gen);
+
+extern "C" PLUGINM2TWEOP_API void onNewAdmiralCreated(generalCharacterictics * pers, settlementStruct * sett);

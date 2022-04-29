@@ -61,6 +61,33 @@ std::string* onSelectWorldpkgdesc(const char* selectedRec, const char* selectedG
 	return retS;
 }
 
+int onfortificationlevelS(settlementStruct* settlement, bool* isChanged)
+{
+	if (plugData::data.luaAll.onfortificationlevelS != nullptr)
+	{
+
+		auto funcResult = (*plugData::data.luaAll.onfortificationlevelS)(settlement);
+		if (!funcResult.valid())
+		{
+
+			sol::error luaError = funcResult;
+			MessageBoxA(NULL, luaError.what(), "Lua exception!", NULL);
+		}
+		else
+		{
+			sol::optional<int>retVal = funcResult;
+			if (retVal)
+			{
+				*isChanged = true;
+				return retVal.value();
+			}
+		}
+
+	}
+
+	return 0;
+}
+
 void onChangeTurnNum(int num)
 {
 	plugData::data.luaAll.onChangeTurnNum(num);

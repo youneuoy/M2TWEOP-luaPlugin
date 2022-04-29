@@ -686,7 +686,7 @@ M2TWEOP structures and functions.</p>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onNewGameStart">onNewGameStart ()</a></td>
-	<td class="summary">Called on new campaign start</td>
+	<td class="summary">Called when a new campaign is started from the menu</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onReadGameDbsAtStart">onReadGameDbsAtStart ()</a></td>
@@ -719,6 +719,10 @@ M2TWEOP structures and functions.</p>
 	<tr>
 	<td class="name" nowrap><a href="#onSelectWorldpkgdesc">onSelectWorldpkgdesc (selectedRecordName, selectedRecordGroup)</a></td>
 	<td class="summary">Called on select worldpkgdesc for battlemap.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onfortificationlevelS">onfortificationlevelS (siegedSettlement)</a></td>
+	<td class="summary">Called on select fortificationlevel in siege of settlement.</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onEndSiege">onEndSiege (xCoord, yCoord)</a></td>
@@ -836,15 +840,11 @@ M2TWEOP structures and functions.</p>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onUngarrisonedSettlement">onUngarrisonedSettlement (settlement)</a></td>
-	<td class="summary">
-
-</td>
+	<td class="summary">the last unit has been removed from a settlement, agents do not count</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onUngarrisonedFort">onUngarrisonedFort (fort)</a></td>
-	<td class="summary">
-
-</td>
+	<td class="summary">the last unit has been removed from a fort, agents do not count</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onGiveSettlement">onGiveSettlement (settlement, fac1, fac2)</a></td>
@@ -853,22 +853,16 @@ M2TWEOP structures and functions.</p>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onOccupySettlement">onOccupySettlement (character, faction)</a></td>
-	<td class="summary">
-
-</td>
+	<td class="name" nowrap><a href="#onOccupySettlement">onOccupySettlement (character, targetFaction)</a></td>
+	<td class="summary">general has captured a settlement and the occupy option has been accepted</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onExterminatePopulation">onExterminatePopulation (character, faction)</a></td>
-	<td class="summary">
-
-</td>
+	<td class="name" nowrap><a href="#onExterminatePopulation">onExterminatePopulation (character, targetFaction)</a></td>
+	<td class="summary">general has captured a settlement and the exterminate option has been accepted</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onSackSettlement">onSackSettlement (character, faction)</a></td>
-	<td class="summary">
-
-</td>
+	<td class="name" nowrap><a href="#onSackSettlement">onSackSettlement (character, targetFaction)</a></td>
+	<td class="summary">general has captured a settlement and the sack option has been accepted</td>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onAddedToBuildingQueue">onAddedToBuildingQueue (settlement, buildNme)</a></td>
@@ -937,7 +931,7 @@ M2TWEOP structures and functions.</p>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onObjSeen">onObjSeen (fac, fac2, xCoord, yCoord)</a></td>
+	<td class="name" nowrap><a href="#onObjSeen">onObjSeen (fac, targetFac, xCoord, yCoord)</a></td>
 	<td class="summary">
 
 </td>
@@ -955,7 +949,7 @@ M2TWEOP structures and functions.</p>
 </td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#onTransgression">onTransgression (fac1, description, fac2)</a></td>
+	<td class="name" nowrap><a href="#onTransgression">onTransgression (fac, description, targetFac)</a></td>
 	<td class="summary">
 
 </td>
@@ -1160,6 +1154,44 @@ M2TWEOP structures and functions.</p>
 	</tr>
 	<tr>
 	<td class="name" nowrap><a href="#onCollegeOfCardinalsPanelOpen">onCollegeOfCardinalsPanelOpen (college)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGuildUpgraded">onGuildUpgraded (sett, guildName)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onGuildDestroyed">onGuildDestroyed (sett, guildID)</a></td>
+	<td class="summary">
+
+</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBrotherAdopted">onBrotherAdopted (character)</a></td>
+	<td class="summary">a character in the family tree has received a brother by adoption</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onBirth">onBirth (child)</a></td>
+	<td class="summary">a child has been born</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCharacterComesOfAge">onCharacterComesOfAge (character)</a></td>
+	<td class="summary">a character has come of age</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCharacterMarries">onCharacterMarries (husband)</a></td>
+	<td class="summary">a character has married</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onCharacterBecomesAFather">onCharacterBecomesAFather (father)</a></td>
+	<td class="summary">a child has been born</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#onNewAdmiralCreated">onNewAdmiralCreated (admiral, sett)</a></td>
 	<td class="summary">
 
 </td>
@@ -6881,6 +6913,54 @@ deployArea1=side1.armies[<span class="number">1</span>].deploymentArea;
 
 
         </li>
+        <li><span class="parameter">onGuildUpgraded</span>
+            <span class="types"><a class="type" href="index.html#onGuildUpgraded">onGuildUpgraded</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onGuildDestroyed</span>
+            <span class="types"><a class="type" href="index.html#onGuildDestroyed">onGuildDestroyed</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onBrotherAdopted</span>
+            <span class="types"><a class="type" href="index.html#onBrotherAdopted">onBrotherAdopted</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onBirth</span>
+            <span class="types"><a class="type" href="index.html#onBirth">onBirth</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCharacterComesOfAge</span>
+            <span class="types"><a class="type" href="index.html#onCharacterComesOfAge">onCharacterComesOfAge</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCharacterMarries</span>
+            <span class="types"><a class="type" href="index.html#onCharacterMarries">onCharacterMarries</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onCharacterBecomesAFather</span>
+            <span class="types"><a class="type" href="index.html#onCharacterBecomesAFather">onCharacterBecomesAFather</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">onNewAdmiralCreated</span>
+            <span class="types"><a class="type" href="index.html#onNewAdmiralCreated">onNewAdmiralCreated</a></span>
+
+
+
+        </li>
     </ul>
 
 
@@ -6926,7 +7006,7 @@ deployArea1=side1.armies[<span class="number">1</span>].deploymentArea;
     <strong>onNewGameStart ()</strong>
     </dt>
     <dd>
-    Called on new campaign start
+    Called when a new campaign is started from the menu
 
 
 
@@ -7208,6 +7288,46 @@ file2:close()
 
 </dd>
     <dt>
+    <a name = "onfortificationlevelS"></a>
+    <strong>onfortificationlevelS (siegedSettlement)</strong>
+    </dt>
+    <dd>
+    Called on select fortificationlevel in siege of settlement.
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">siegedSettlement</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+    <h3>Returns:</h3>
+    <ol>
+
+           <span class="types"><span class="type">int</span></span>
+        overridedFortificationlevel
+    </ol>
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onfortificationlevelS(settlement)
+	<span class="keyword">if</span>(settlement.xCoord==<span class="number">10</span> <span class="keyword">and</span> settlement.yCoord==<span class="number">25</span>)
+	<span class="keyword">then</span>
+		<span class="keyword">return</span> <span class="number">3</span>;<span class="comment">--our overrided level for setlement in coords 10, 25
+</span>	<span class="keyword">end</span>
+
+	<span class="keyword">return</span> <span class="keyword">nil</span>;<span class="comment">--by default not override.
+</span><span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
     <a name = "onEndSiege"></a>
     <strong>onEndSiege (xCoord, yCoord)</strong>
     </dt>
@@ -7444,8 +7564,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onFactionWarDeclared(faction,targetFaction)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7479,8 +7599,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onFactionAllianceDeclared(faction,targetFaction)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7514,8 +7634,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onFactionTradeAgreementMade(faction,targetFaction)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7549,8 +7669,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onFactionBreakAlliance(faction,targetFaction)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7590,8 +7710,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onGiveMoney(faction,targetFaction,amount)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7625,8 +7745,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onUpdateAttitude(faction,targetFaction)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7666,8 +7786,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onDemeanour(faction,targetFaction,amount)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -7701,8 +7821,8 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="keyword">function</span> onGeneralAssaultsGeneral(attacker,defender)
--something
-<span class="keyword">end</span></pre>
+<span class="comment">--something
+</span><span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -8023,9 +8143,7 @@ newCapital=fac.capital();
     <strong>onUngarrisonedSettlement (settlement)</strong>
     </dt>
     <dd>
-
-
-
+    the last unit has been removed from a settlement, agents do not count
 
 
     <h3>Parameters:</h3>
@@ -8052,9 +8170,7 @@ newCapital=fac.capital();
     <strong>onUngarrisonedFort (fort)</strong>
     </dt>
     <dd>
-
-
-
+    the last unit has been removed from a fort, agents do not count
 
 
     <h3>Parameters:</h3>
@@ -8119,23 +8235,19 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onOccupySettlement"></a>
-    <strong>onOccupySettlement (character, faction)</strong>
+    <strong>onOccupySettlement (character, targetFaction)</strong>
     </dt>
     <dd>
-
-
-
+    general has captured a settlement and the occupy option has been accepted
 
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">character</span>
             <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
-
-
-
+         only generals, event does not fire for captains
         </li>
-        <li><span class="parameter">faction</span>
+        <li><span class="parameter">targetFaction</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
@@ -8154,23 +8266,19 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onExterminatePopulation"></a>
-    <strong>onExterminatePopulation (character, faction)</strong>
+    <strong>onExterminatePopulation (character, targetFaction)</strong>
     </dt>
     <dd>
-
-
-
+    general has captured a settlement and the exterminate option has been accepted
 
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">character</span>
             <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
-
-
-
+         only generals, event does not fire for captains
         </li>
-        <li><span class="parameter">faction</span>
+        <li><span class="parameter">targetFaction</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
@@ -8189,23 +8297,19 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onSackSettlement"></a>
-    <strong>onSackSettlement (character, faction)</strong>
+    <strong>onSackSettlement (character, targetFaction)</strong>
     </dt>
     <dd>
-
-
-
+    general has captured a settlement and the sack option has been accepted
 
 
     <h3>Parameters:</h3>
     <ul>
         <li><span class="parameter">character</span>
             <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
-
-
-
+         only generals, event does not fire for captains
         </li>
-        <li><span class="parameter">faction</span>
+        <li><span class="parameter">targetFaction</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
@@ -8574,9 +8678,7 @@ newCapital=fac.capital();
         </li>
         <li><span class="parameter">agentType</span>
             <span class="types"><span class="type">int</span></span>
-
-
-
+         0 = spy, 1 = assassin, 2 = diplomat, 4 = merchant, 5 = priest
         </li>
         <li><span class="parameter">sett</span>
             <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
@@ -8597,7 +8699,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onObjSeen"></a>
-    <strong>onObjSeen (fac, fac2, xCoord, yCoord)</strong>
+    <strong>onObjSeen (fac, targetFac, xCoord, yCoord)</strong>
     </dt>
     <dd>
 
@@ -8609,15 +8711,11 @@ newCapital=fac.capital();
     <ul>
         <li><span class="parameter">fac</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
-
-
-
+         faction that saw the object
         </li>
-        <li><span class="parameter">fac2</span>
+        <li><span class="parameter">targetFac</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
-
-
-
+         faction that owns the object
         </li>
         <li><span class="parameter">xCoord</span>
             <span class="types"><span class="type">int</span></span>
@@ -8714,7 +8812,7 @@ newCapital=fac.capital();
 </dd>
     <dt>
     <a name = "onTransgression"></a>
-    <strong>onTransgression (fac1, description, fac2)</strong>
+    <strong>onTransgression (fac, description, targetFac)</strong>
     </dt>
     <dd>
 
@@ -8724,7 +8822,7 @@ newCapital=fac.capital();
 
     <h3>Parameters:</h3>
     <ul>
-        <li><span class="parameter">fac1</span>
+        <li><span class="parameter">fac</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
@@ -8736,7 +8834,7 @@ newCapital=fac.capital();
 
 
         </li>
-        <li><span class="parameter">fac2</span>
+        <li><span class="parameter">targetFac</span>
             <span class="types"><a class="type" href="index.html#factionStruct">factionStruct</a></span>
 
 
@@ -9793,6 +9891,258 @@ newCapital=fac.capital();
     <h3>Usage:</h3>
     <ul>
         <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGuildUpgraded"></a>
+    <strong>onGuildUpgraded (sett, guildName)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">guildName</span>
+            <span class="types"><a class="type" href="https://www.lua.org/manual/5.1/manual.html#5.4">string</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onGuildDestroyed"></a>
+    <strong>onGuildDestroyed (sett, guildID)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">guildID</span>
+            <span class="types"><span class="type">int</span></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="comment">--something</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onBrotherAdopted"></a>
+    <strong>onBrotherAdopted (character)</strong>
+    </dt>
+    <dd>
+    a character in the family tree has received a brother by adoption
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+         this is the original child, not the newly adopted character
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onBrotherAdopted(character)
+	<span class="global">print</span>(<span class="string">"Function: onBrotherAdopted()\n\tName: "</span>..character.fullName..<span class="string">"\n\tParent: "</span>..character.parent.fullName..<span class="string">"\n\tFaction: "</span>..character.faction:getFactionName())
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onBirth"></a>
+    <strong>onBirth (child)</strong>
+    </dt>
+    <dd>
+    a child has been born
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">child</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onBirth(child)
+	<span class="global">print</span>(<span class="string">"Function: onBirth()\n\tChild Name: "</span>..child.fullName..<span class="string">"\n\tParent: "</span>..child.parent.fullName..<span class="string">"\n\tFaction: "</span>..child.faction:getFactionName())
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCharacterComesOfAge"></a>
+    <strong>onCharacterComesOfAge (character)</strong>
+    </dt>
+    <dd>
+    a character has come of age
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">character</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+         character's age is equal to age_of_manhood in descr_campaign_db.xml
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onCharacterComesOfAge(character)
+	<span class="global">print</span>(<span class="string">"Function: onCharacterComesOfAge()\n\tName: "</span>..character.fullName..<span class="string">"\n\tParent: "</span>..character.parent.fullName..<span class="string">"\n\tFaction: "</span>..character.faction:getFactionName())
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCharacterMarries"></a>
+    <strong>onCharacterMarries (husband)</strong>
+    </dt>
+    <dd>
+    a character has married
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">husband</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onCharacterMarries(husband)
+	<span class="global">print</span>(<span class="string">"Function: onCharacterMarries()\n\tName: "</span>..husband.fullName..<span class="string">"\n\tSpouse: "</span>..husband.spouse.fullName..<span class="string">"\n\tFaction: "</span>..husband.faction:getFactionName())
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onCharacterBecomesAFather"></a>
+    <strong>onCharacterBecomesAFather (father)</strong>
+    </dt>
+    <dd>
+    a child has been born
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">father</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+         note: this event fires for all child births for this father, not just the first one
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onCharacterBecomesAFather(father)
+	<span class="keyword">local</span> i, children = <span class="number">1</span>, <span class="string">""</span>
+	<span class="keyword">while</span> father.childs[i] ~= <span class="keyword">nil</span> <span class="keyword">do</span>
+		children = children..<span class="string">" "</span>..father.childs[i].fullName..<span class="string">","</span>
+		i = i + <span class="number">1</span>
+	<span class="keyword">end</span>
+	children = children:gsub(<span class="string">",$"</span>, <span class="string">""</span>)
+	<span class="global">print</span>(<span class="string">"Function: onCharacterBecomesAFather()\n\tName: "</span>..father.fullName..<span class="string">"\n\tChildren:"</span>..children..<span class="string">"\n\tFaction: "</span>..father.faction:getFactionName())
+<span class="keyword">end</span></pre>
+    </ul>
+
+</dd>
+    <dt>
+    <a name = "onNewAdmiralCreated"></a>
+    <strong>onNewAdmiralCreated (admiral, sett)</strong>
+    </dt>
+    <dd>
+
+
+
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">admiral</span>
+            <span class="types"><a class="type" href="index.html#namedCharacter">namedCharacter</a></span>
+
+
+
+        </li>
+        <li><span class="parameter">sett</span>
+            <span class="types"><a class="type" href="index.html#settlementStruct">settlementStruct</a></span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+    <h3>Usage:</h3>
+    <ul>
+        <pre class="example"><span class="keyword">function</span> onNewAdmiralCreated(admiral, sett)
+	<span class="global">print</span>(<span class="string">"Function: onNewAdmiralCreated()\n\tAdmiral: "</span>..admiral.fullName..<span class="string">"\n\tSettlement: "</span>..sett.name)
+<span class="keyword">end</span></pre>
     </ul>
 
 </dd>
@@ -10860,7 +11210,7 @@ M2TWEOPSounds.stopEOPSound(ourNewSound);</pre>
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.6</a></i>
-<i style="float:right;">Last updated 2022-04-29 02:29:24 </i>
+<i style="float:right;">Last updated 2022-04-29 14:24:00 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>

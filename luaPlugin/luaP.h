@@ -62,10 +62,10 @@ class luaP
 public:
 	static std::vector<std::string> logS;
 	std::string luaPath;
-	bool checkVar(const char* gName,int variable);
-	
+	bool checkVar(const char* gName, int variable);
+
 	//create lua instance, init some basic tables
-	sol::state* init(std::string& luaFilePath,std::string& modPath);
+	sol::state* init(std::string& luaFilePath, std::string& modPath);
 	//init part 2 of tables
 	void initP2();
 	void initCampaign();
@@ -73,7 +73,7 @@ public:
 	void initEopEdu();
 	void initEopFbx();
 	void initEopSounds();
-	void runScriptS(std::string*script);
+	void runScriptS(std::string* script);
 
 	//lua functions and events controllers
 	void onPluginLoadF();
@@ -99,7 +99,7 @@ public:
 	void onGeneralCaptureResidence(generalCharacterictics* gen);
 	void onSiegeEquipmentCompleted(settlementStruct* sett, fortStruct* frt);
 	void onPostBattle(generalCharacterictics* gen);
-	
+
 
 
 	void onMultiTurnMove(generalCharacterictics* gen);
@@ -163,13 +163,14 @@ public:
 	}types;
 	*/
 
-	
+
 	sol::function* onCampaignMapLoaded = nullptr;
 
 	sol::function* onReadGameDbsAtStart = nullptr;
 	sol::function* onEndSiege = nullptr;
 	sol::function* onStartSiege = nullptr;
 	sol::function* onSelectWorldpkgdesc = nullptr;
+	sol::function* onfortificationlevelS = nullptr;
 	sol::function* onClickAtTile = nullptr;
 	sol::function* onNewGameStart = nullptr;
 	sol::function* onPluginLoad = nullptr;
@@ -281,6 +282,14 @@ public:
 
 	sol::function* onGuildUpgradedFunc = nullptr;
 	sol::function* onGuildDestroyedFunc = nullptr;
+
+	sol::function* onBrotherAdoptedFunc = nullptr;
+	sol::function* onBirthFunc = nullptr;
+	sol::function* onCharacterComesOfAgeFunc = nullptr;
+	sol::function* onCharacterMarriesFunc = nullptr;
+	sol::function* onCharacterBecomesAFatherFunc = nullptr;
+
+	sol::function* onNewAdmiralCreatedFunc = nullptr;
 
 
 

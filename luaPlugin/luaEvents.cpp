@@ -105,6 +105,14 @@ void luaP::onPluginLoadF()
 	@tfield onPreBattleScrollAdviceRequested onPreBattleScrollAdviceRequested
 	@tfield onNavalPreBattleScrollAdviceRequested onNavalPreBattleScrollAdviceRequested
 	@tfield onCollegeOfCardinalsPanelOpen onCollegeOfCardinalsPanelOpen
+	@tfield onGuildUpgraded onGuildUpgraded
+	@tfield onGuildDestroyed onGuildDestroyed
+	@tfield onBrotherAdopted onBrotherAdopted
+	@tfield onBirth onBirth
+	@tfield onCharacterComesOfAge onCharacterComesOfAge
+	@tfield onCharacterMarries onCharacterMarries
+	@tfield onCharacterBecomesAFather onCharacterBecomesAFather
+	@tfield onNewAdmiralCreated onNewAdmiralCreated
 
 
 
@@ -140,7 +148,7 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&initDXFunc);
 
 	/***
-	Called on new campaign start
+	Called when a new campaign is started from the menu
 
 	@function onNewGameStart
 
@@ -338,6 +346,25 @@ void luaP::onPluginLoadF()
 	*/
 	onSelectWorldpkgdesc = new sol::function(luaState["onSelectWorldpkgdesc"]);
 	checkLuaFunc(&onSelectWorldpkgdesc);
+	/***
+	Called on select fortificationlevel in siege of settlement. 
+
+	@function onfortificationlevelS
+	@tparam settlementStruct siegedSettlement
+	@treturn int overridedFortificationlevel
+
+	@usage
+	function onfortificationlevelS(settlement)
+		if(settlement.xCoord==10 and settlement.yCoord==25)
+		then
+			return 3;--our overrided level for setlement in coords 10, 25
+		end
+
+		return nil;--by default not override. 
+	end
+	*/
+	onfortificationlevelS = new sol::function(luaState["onfortificationlevelS"]);
+	checkLuaFunc(&onfortificationlevelS);
 
 	/***
 	Called on the completion of the siege (in any way, with any outcome).
@@ -446,7 +473,7 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onFactionWarDeclared(faction,targetFaction)
-	-something
+	--something
 	end
 	*/
 	onFactionWarDeclaredFunc = new sol::function(luaState["onFactionWarDeclared"]);
@@ -461,7 +488,7 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onFactionAllianceDeclared(faction,targetFaction)
-	-something
+	--something
 	end
 	*/
 
@@ -477,7 +504,7 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onFactionTradeAgreementMade(faction,targetFaction)
-	-something
+	--something
 	end
 	*/
 
@@ -493,7 +520,7 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onFactionBreakAlliance(faction,targetFaction)
-	-something
+	--something
 	end
 	*/
 
@@ -512,7 +539,7 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onGiveMoney(faction,targetFaction,amount)
-	-something
+	--something
 	end
 	*/
 
@@ -530,14 +557,12 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onUpdateAttitude(faction,targetFaction)
-	-something
+	--something
 	end
 	*/
 
-
 	onUpdateAttitudeFunc = new sol::function(luaState["onUpdateAttitude"]);
 	checkLuaFunc(&onUpdateAttitudeFunc);
-
 
 	/***
 	A demeanour response has occured in diplomacy talks
@@ -549,7 +574,7 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onDemeanour(faction,targetFaction,amount)
-	-something
+	--something
 	end
 	*/
 
@@ -565,9 +590,10 @@ void luaP::onPluginLoadF()
 
 	@usage
 	function onGeneralAssaultsGeneral(attacker,defender)
-	-something
+	--something
 	end
 	*/
+
 	onGeneralAssaultsGeneralFunc = new sol::function(luaState["onGeneralAssaultsGeneral"]);
 	checkLuaFunc(&onGeneralAssaultsGeneralFunc);
 
@@ -590,6 +616,7 @@ void luaP::onPluginLoadF()
 
 	end
 	*/
+
 	onGeneralAssaultsResidenceFunc = new sol::function(luaState["onGeneralAssaultsResidence"]);
 	checkLuaFunc(&onGeneralAssaultsResidenceFunc);
 
@@ -605,9 +632,9 @@ void luaP::onPluginLoadF()
 	--something
 	end
 	*/
+
 	onGeneralCaptureSettlementFunc = new sol::function(luaState["onGeneralCaptureSettlement"]);
 	checkLuaFunc(&onGeneralCaptureSettlementFunc);
-
 
 	/***
 	A General has captured a residence(fort, watchtower, check it yourself)
@@ -620,9 +647,9 @@ void luaP::onPluginLoadF()
 	--something
 	end
 	*/
+
 	onGeneralCaptureResidenceFunc = new sol::function(luaState["onGeneralCaptureResidence"]);
 	checkLuaFunc(&onGeneralCaptureResidenceFunc);
-
 
 	/***
 	@function onSiegeEquipmentCompleted
@@ -654,6 +681,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onMultiTurnMoveFunc = new sol::function(luaState["onMultiTurnMove"]);
 	checkLuaFunc(&onMultiTurnMoveFunc);
 
@@ -664,6 +692,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onSettlementSelectedFunc = new sol::function(luaState["onSettlementSelected"]);
 	checkLuaFunc(&onSettlementSelectedFunc);
 
@@ -685,6 +714,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onSettlementConvertedFunc = new sol::function(luaState["onSettlementConverted"]);
 	checkLuaFunc(&onSettlementConvertedFunc);
 
@@ -700,6 +730,8 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onCityRiotsFunc);
 
 	/***
+	the last unit has been removed from a settlement, agents do not count
+
 	@function onUngarrisonedSettlement
 	@tparam settlementStruct settlement
 
@@ -711,12 +743,15 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onUngarrisonedSettlementFunc);
 
 	/***
+	the last unit has been removed from a fort, agents do not count
+
 	@function onUngarrisonedFort
 	@tparam fortStruct fort
 
 	@usage
 	--something
 	*/
+
 	onUngarrisonedFortFunc = new sol::function(luaState["onUngarrisonedFort"]);
 	checkLuaFunc(&onUngarrisonedFortFunc);
 
@@ -730,37 +765,45 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onGiveSettlementFunc = new sol::function(luaState["onGiveSettlement"]);
 	checkLuaFunc(&onGiveSettlementFunc);
 
 	/***
-	@function onOccupySettlement
-	@tparam namedCharacter character
-	@tparam factionStruct faction
+	general has captured a settlement and the occupy option has been accepted
 
+	@function onOccupySettlement
+	@tparam namedCharacter character only generals, event does not fire for captains
+	@tparam factionStruct targetFaction
 
 	@usage
 	--something
 	*/
+
 	onOccupySettlementFunc = new sol::function(luaState["onOccupySettlement"]);
 	checkLuaFunc(&onOccupySettlementFunc);
 
 	/***
+	general has captured a settlement and the exterminate option has been accepted
+
 	@function onExterminatePopulation
-	@tparam namedCharacter character
-	@tparam factionStruct faction
+	@tparam namedCharacter character only generals, event does not fire for captains
+	@tparam factionStruct targetFaction
 
 
 	@usage
 	--something
 	*/
+
 	onExterminatePopulationFunc = new sol::function(luaState["onExterminatePopulation"]);
 	checkLuaFunc(&onExterminatePopulationFunc);
 
 	/***
+	general has captured a settlement and the sack option has been accepted
+
 	@function onSackSettlement
-	@tparam namedCharacter character
-	@tparam factionStruct faction
+	@tparam namedCharacter character only generals, event does not fire for captains
+	@tparam factionStruct targetFaction
 
 
 	@usage
@@ -769,7 +812,6 @@ void luaP::onPluginLoadF()
 
 	onSackSettlementFunc = new sol::function(luaState["onSackSettlement"]);
 	checkLuaFunc(&onSackSettlementFunc);
-
 
 	/***
 	@function onAddedToBuildingQueue
@@ -780,6 +822,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onAddedToBuildingQueueFunc = new sol::function(luaState["onAddedToBuildingQueue"]);
 	checkLuaFunc(&onAddedToBuildingQueueFunc);
 
@@ -792,6 +835,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onBuildingDestroyedFunc = new sol::function(luaState["onBuildingDestroyed"]);
 	checkLuaFunc(&onBuildingDestroyedFunc);
 
@@ -799,7 +843,6 @@ void luaP::onPluginLoadF()
 	@function onBuildingCompleted
 	@tparam factionStruct fac
 	@tparam settlementStruct settlement
-
 
 	@usage
 	--something
@@ -815,6 +858,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onEventCounterFunc = new sol::function(luaState["onEventCounter"]);
 	checkLuaFunc(&onEventCounterFunc);
 
@@ -825,6 +869,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onFactionExcommunicatedFunc = new sol::function(luaState["onFactionExcommunicated"]);
 	checkLuaFunc(&onFactionExcommunicatedFunc);
 
@@ -835,6 +880,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onDisasterFunc = new sol::function(luaState["onDisaster"]);
 	checkLuaFunc(&onDisasterFunc);
 
@@ -857,9 +903,9 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onAddedToTrainingQueueFunc = new sol::function(luaState["onAddedToTrainingQueue"]);
 	checkLuaFunc(&onAddedToTrainingQueueFunc);
-
 
 	/***
 	@function onUnitDisbanded
@@ -869,6 +915,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onUnitDisbandedFunc = new sol::function(luaState["onUnitDisbanded"]);
 	checkLuaFunc(&onUnitDisbandedFunc);
 
@@ -881,31 +928,34 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onUnitTrainedFunc = new sol::function(luaState["onUnitTrained"]);
 	checkLuaFunc(&onUnitTrainedFunc);
 
 	/***
 	@function onAgentCreated
 	@tparam namedCharacter character
-	@tparam int agentType
+	@tparam int agentType 0 = spy, 1 = assassin, 2 = diplomat, 4 = merchant, 5 = priest
 	@tparam settlementStruct sett
 
 	@usage
 	--something
 	*/
+
 	onAgentCreatedFunc = new sol::function(luaState["onAgentCreated"]);
 	checkLuaFunc(&onAgentCreatedFunc);
 
 	/***
 	@function onObjSeen
-	@tparam factionStruct fac
-	@tparam factionStruct fac2
+	@tparam factionStruct fac faction that saw the object
+	@tparam factionStruct targetFac faction that owns the object
 	@tparam int xCoord
 	@tparam int yCoord
 
 	@usage
 	--something
 	*/
+
 	onObjSeenFunc = new sol::function(luaState["onObjSeen"]);
 	checkLuaFunc(&onObjSeenFunc);
 
@@ -922,7 +972,6 @@ void luaP::onPluginLoadF()
 	onTileSeenFunc = new sol::function(luaState["onTileSeen"]);
 	checkLuaFunc(&onTileSeenFunc);
 
-
 	/***
 	@function onGameReloaded
 	@tparam int something
@@ -930,22 +979,22 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onGameReloadedFunc = new sol::function(luaState["onGameReloaded"]);
 	checkLuaFunc(&onGameReloadedFunc);
 
 	/***
 	@function onTransgression
-	@tparam factionStruct fac1
+	@tparam factionStruct fac
 	@tparam string description
-	@tparam factionStruct fac2
+	@tparam factionStruct targetFac
 
 	@usage
 	--something
 	*/
+
 	onTransgressionFunc = new sol::function(luaState["onTransgression"]);
 	checkLuaFunc(&onTransgressionFunc);
-
-
 
 	/***
 	@function onPopeAcceptsCrusadeTarget
@@ -955,6 +1004,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onPopeAcceptsCrusadeTargetFunc = new sol::function(luaState["onPopeAcceptsCrusadeTarget"]);
 	checkLuaFunc(&onPopeAcceptsCrusadeTargetFunc);
 
@@ -966,6 +1016,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onCrusadeCalledFunc = new sol::function(luaState["onCrusadeCalled"]);
 	checkLuaFunc(&onCrusadeCalledFunc);
 
@@ -977,9 +1028,9 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onCrusadeEndsFunc = new sol::function(luaState["onCrusadeEnds"]);
 	checkLuaFunc(&onCrusadeEndsFunc);
-
 
 	/***
 	@function onPopeRejectsCrusadeTarget
@@ -989,6 +1040,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onPopeRejectsCrusadeTargetFunc = new sol::function(luaState["onPopeRejectsCrusadeTarget"]);
 	checkLuaFunc(&onPopeRejectsCrusadeTargetFunc);
 
@@ -1001,6 +1053,7 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
+
 	onArmyTakesCrusadeTargetFunc = new sol::function(luaState["onArmyTakesCrusadeTarget"]);
 	checkLuaFunc(&onArmyTakesCrusadeTargetFunc);
 
@@ -1016,7 +1069,6 @@ void luaP::onPluginLoadF()
 
 	onUnitsDesertCrusadeFunc = new sol::function(luaState["onUnitsDesertCrusade"]);
 	checkLuaFunc(&onUnitsDesertCrusadeFunc);
-
 
 	/***
 	@function onPopeElected
@@ -1038,7 +1090,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onVotedForPopeFunc = new sol::function(luaState["onVotedForPope"]);
 	checkLuaFunc(&onVotedForPopeFunc);
 
@@ -1049,7 +1100,6 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
-
 
 	onAssassinCaughtAttackingPopeFunc = new sol::function(luaState["onAssassinCaughtAttackingPope"]);
 	checkLuaFunc(&onAssassinCaughtAttackingPopeFunc);
@@ -1066,8 +1116,6 @@ void luaP::onPluginLoadF()
 	onInquisitorAppointedFunc = new sol::function(luaState["onInquisitorAppointed"]);
 	checkLuaFunc(&onInquisitorAppointedFunc);
 
-
-
 	/***
 	@function onSettlementPanelOpen
 	@tparam settlementStruct sett
@@ -1078,7 +1126,6 @@ void luaP::onPluginLoadF()
 
 	onSettlementPanelOpenFunc = new sol::function(luaState["onSettlementPanelOpen"]);
 	checkLuaFunc(&onSettlementPanelOpenFunc);
-
 
 	/***
 	@function onFinancesPanelOpen
@@ -1110,7 +1157,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onFamilyTreePanelOpenFunc = new sol::function(luaState["onFamilyTreePanelOpenFunc"]);
 	checkLuaFunc(&onFamilyTreePanelOpenFunc);
 
@@ -1121,7 +1167,6 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
-
 
 	onDiplomaticStandingPanelOpenFunc = new sol::function(luaState["onDiplomaticStandingPanelOpen"]);
 	checkLuaFunc(&onDiplomaticStandingPanelOpenFunc);
@@ -1166,10 +1211,8 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onCharacterPanelOpenFunc = new sol::function(luaState["onCharacterPanelOpen"]);
 	checkLuaFunc(&onCharacterPanelOpenFunc);
-
 
 	/***
 	@function onTradePanelOpen
@@ -1178,7 +1221,6 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
-
 
 	onTradePanelOpenFunc = new sol::function(luaState["onTradePanelOpen"]);
 	checkLuaFunc(&onTradePanelOpenFunc);
@@ -1190,8 +1232,6 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
-
-
 
 	onRequestBuildingAdviceFunc = new sol::function(luaState["onRequestBuildingAdvice"]);
 	checkLuaFunc(&onRequestBuildingAdviceFunc);
@@ -1205,7 +1245,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onRequestTrainingAdviceFunc = new sol::function(luaState["onRequestTrainingAdvice"]);
 	checkLuaFunc(&onRequestTrainingAdviceFunc);
 
@@ -1218,7 +1257,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onMessageOpenFunc = new sol::function(luaState["onMessageOpen"]);
 	checkLuaFunc(&onMessageOpenFunc);
 
@@ -1230,7 +1268,6 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
-
 
 	onIncomingMessageFunc = new sol::function(luaState["onIncomingMessage"]);
 	checkLuaFunc(&onIncomingMessageFunc);
@@ -1254,7 +1291,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onButtonPressedFunc = new sol::function(luaState["onButtonPressed"]);
 	checkLuaFunc(&onButtonPressedFunc);
 
@@ -1277,7 +1313,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onScrollOpenedFunc = new sol::function(luaState["onScrollOpened"]);
 	checkLuaFunc(&onScrollOpenedFunc);
 
@@ -1289,7 +1324,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onUIElementVisibleFunc = new sol::function(luaState["onUIElementVisible"]);
 	checkLuaFunc(&onUIElementVisibleFunc);
 
@@ -1300,7 +1334,6 @@ void luaP::onPluginLoadF()
 	@usage
 	--something
 	*/
-
 
 	onScrollAdviceRequestedFunc = new sol::function(luaState["onScrollAdviceRequested"]);
 	checkLuaFunc(&onScrollAdviceRequestedFunc);
@@ -1324,7 +1357,6 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onPreBattleScrollAdviceRequestedFunc = new sol::function(luaState["onPreBattleScrollAdviceRequested"]);
 	checkLuaFunc(&onPreBattleScrollAdviceRequestedFunc);
 
@@ -1346,17 +1378,127 @@ void luaP::onPluginLoadF()
 	--something
 	*/
 
-
 	onCollegeOfCardinalsPanelOpenFunc = new sol::function(luaState["onCollegeOfCardinalsPanelOpen"]);
 	checkLuaFunc(&onCollegeOfCardinalsPanelOpenFunc);
+
+	/***
+	@function onGuildUpgraded
+	@tparam settlementStruct sett
+	@tparam string guildName
+
+	@usage
+	--something
+	*/
 
 	onGuildUpgradedFunc = new sol::function(luaState["onGuildUpgraded"]);
 	checkLuaFunc(&onGuildUpgradedFunc);
 
+	/***
+	@function onGuildDestroyed
+	@tparam settlementStruct sett
+	@tparam int guildID
+
+	@usage
+	--something
+	*/
 
 	onGuildDestroyedFunc = new sol::function(luaState["onGuildDestroyed"]);
 	checkLuaFunc(&onGuildDestroyedFunc);
 
+	/***
+	a character in the family tree has received a brother by adoption
+
+	@function onBrotherAdopted
+	@tparam namedCharacter character this is the original child, not the newly adopted character
+
+	@usage
+	function onBrotherAdopted(character)
+		print("Function: onBrotherAdopted()\n\tName: "..character.fullName.."\n\tParent: "..character.parent.fullName.."\n\tFaction: "..character.faction:getFactionName())
+	end
+	*/
+
+	onBrotherAdoptedFunc = new sol::function(luaState["onBrotherAdopted"]);
+	checkLuaFunc(&onBrotherAdoptedFunc);
+
+	/***
+	a child has been born
+
+	@function onBirth
+	@tparam namedCharacter child
+
+	@usage
+	function onBirth(child)
+		print("Function: onBirth()\n\tChild Name: "..child.fullName.."\n\tParent: "..child.parent.fullName.."\n\tFaction: "..child.faction:getFactionName())
+	end
+	*/
+
+	onBirthFunc = new sol::function(luaState["onBirth"]);
+	checkLuaFunc(&onBirthFunc);
+
+	/***
+	a character has come of age
+
+	@function onCharacterComesOfAge
+	@tparam namedCharacter character character's age is equal to age\_of\_manhood in descr\_campaign\_db.xml
+
+	@usage
+	function onCharacterComesOfAge(character)
+		print("Function: onCharacterComesOfAge()\n\tName: "..character.fullName.."\n\tParent: "..character.parent.fullName.."\n\tFaction: "..character.faction:getFactionName())
+	end
+	*/
+
+	onCharacterComesOfAgeFunc = new sol::function(luaState["onCharacterComesOfAge"]);
+	checkLuaFunc(&onCharacterComesOfAgeFunc);
+
+	/***
+	a character has married
+
+	@function onCharacterMarries
+	@tparam namedCharacter husband
+
+	@usage
+	function onCharacterMarries(husband)
+		print("Function: onCharacterMarries()\n\tName: "..husband.fullName.."\n\tSpouse: "..husband.spouse.fullName.."\n\tFaction: "..husband.faction:getFactionName())
+	end
+	*/
+
+	onCharacterMarriesFunc = new sol::function(luaState["onCharacterMarries"]);
+	checkLuaFunc(&onCharacterMarriesFunc);
+
+	/***
+	a child has been born
+
+	@function onCharacterBecomesAFather
+	@tparam namedCharacter father note: this event fires for all child births for this father, not just the first one
+
+	@usage
+	function onCharacterBecomesAFather(father)
+		local i, children = 1, ""
+		while father.childs[i] ~= nil do
+			children = children.." "..father.childs[i].fullName..","
+			i = i + 1
+		end
+		children = children:gsub(",$", "")
+		print("Function: onCharacterBecomesAFather()\n\tName: "..father.fullName.."\n\tChildren:"..children.."\n\tFaction: "..father.faction:getFactionName())
+	end
+	*/
+
+	onCharacterBecomesAFatherFunc = new sol::function(luaState["onCharacterBecomesAFather"]);
+	checkLuaFunc(&onCharacterBecomesAFatherFunc);
+
+	/***
+	@function onNewAdmiralCreated
+	@tparam namedCharacter admiral
+	@tparam settlementStruct sett
+
+	@usage
+	function onNewAdmiralCreated(admiral, sett)
+		print("Function: onNewAdmiralCreated()\n\tAdmiral: "..admiral.fullName.."\n\tSettlement: "..sett.name)
+	end
+	*/
+
+	onNewAdmiralCreatedFunc = new sol::function(luaState["onNewAdmiralCreated"]);
+	checkLuaFunc(&onNewAdmiralCreatedFunc);
 
 
 

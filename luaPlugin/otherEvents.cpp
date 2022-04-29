@@ -211,3 +211,51 @@ void onGuildDestroyed(settlementStruct* sett, unsigned char guildID)
 		tryLua((*plugData::data.luaAll.onGuildDestroyedFunc)(sett, guildID))
 	}
 }
+
+void onBrotherAdopted(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onBrotherAdoptedFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onBrotherAdoptedFunc)(gen))
+	}
+}
+
+void onBirth(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onBirthFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onBirthFunc)(gen))
+	}
+}
+
+void onCharacterComesOfAge(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onCharacterComesOfAgeFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onCharacterComesOfAgeFunc)(gen))
+	}
+}
+
+void onCharacterMarries(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onCharacterMarriesFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onCharacterMarriesFunc)(gen))
+	}
+}
+
+void onCharacterBecomesAFather(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onCharacterBecomesAFatherFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onCharacterBecomesAFatherFunc)(gen))
+	}
+}
+
+void onNewAdmiralCreated(generalCharacterictics* pers, settlementStruct* sett)
+{
+	if (plugData::data.luaAll.onNewAdmiralCreatedFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onNewAdmiralCreatedFunc)(pers, sett))
+	}
+}
