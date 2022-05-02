@@ -1506,7 +1506,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	stackStruct:siegeSettlement(settlement);
 	*/
-	types.character.set_function("siegeSettlement", &stackStructHelpers::siegeSettlement);
+	types.stackStruct.set_function("siegeSettlement", &stackStructHelpers::siegeSettlement);
 	/***
 	Attack another army. Need movePoints.
 
