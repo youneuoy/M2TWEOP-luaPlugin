@@ -14,6 +14,7 @@ namespace gameHelpers
 
 	general* createCharacter(const char* type, factionStruct* fac, int age, const char* name, const char* name2, int subFaction, const char* portrait, int x, int y);
 	stackStruct* createArmy(general* character);
+	stackStruct* createArmyInSettlement(settlementStruct* sett);
 
 	std::tuple<bool, int> getScriptCounter(const char* type);
 	void setScriptCounter(const char* type,int value);

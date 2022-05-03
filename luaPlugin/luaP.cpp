@@ -535,6 +535,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield getFaction getFaction
 	@tfield createCharacterByString createCharacterByString
 	@tfield createArmy createArmy
+	@tfield createArmyInSettlement createArmyInSettlement
 	@tfield getScriptCounter getScriptCounter
 	@tfield setScriptCounter setScriptCounter
 	@tfield callConsole callConsole
@@ -606,6 +607,15 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	army=stratmap.game.createArmy(gen);
 	*/
 	tables.gameTable.set_function("createArmy", &gameHelpers::createArmy);
+	/***
+	Create army in settlement(not need character).
+	@function game.createArmyInSettlement
+	@tparam settlementStruct settlement
+	@treturn stackStruct army
+	@usage
+	army=stratmap.game.createArmyInSettlement(sett);
+	*/
+	tables.gameTable.set_function("createArmyInSettlement", &gameHelpers::createArmyInSettlement);
 
 
 

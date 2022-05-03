@@ -140,6 +140,9 @@ int initPlugin(std::string* modPath)
     fName = "createArmy";
     plugData::data.funcs.createArmy.Load(&plPath, &fName);
 
+    fName = "createArmyInSettlement";
+    plugData::data.funcs.createArmyInSettlement.Load(&plPath, &fName);
+
 
     fName = "createUnitN";
     plugData::data.funcs.createUnitN.Load(&plPath, &fName);

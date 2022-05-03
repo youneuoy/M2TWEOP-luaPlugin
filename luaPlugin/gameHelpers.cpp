@@ -47,6 +47,11 @@ stackStruct* gameHelpers::createArmy(general* character)
 	return (*(*plugData::data.funcs.createArmy))(character);
 }
 
+stackStruct* gameHelpers::createArmyInSettlement(settlementStruct* sett)
+{
+	return (*(*plugData::data.funcs.createArmyInSettlement))(sett);
+}
+
 
 std::tuple<bool, int> gameHelpers::getScriptCounter(const char* type)
 {
