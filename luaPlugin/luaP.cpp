@@ -1253,7 +1253,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.settlementStruct = luaState.new_usertype<settlementStruct>("settlementStruct");
 	/***
 	Destroy building of type.
-	Does nothing for indestructible buildings!
 	@function settlementStruct:destroyBuilding
 	@tparam string typeName type of building
 	@tparam boolean isReturnMoney return money or not
