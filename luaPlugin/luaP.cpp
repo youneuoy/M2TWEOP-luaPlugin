@@ -1224,7 +1224,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Basic settlementStruct table
 
-	@tfield character governor
 	@tfield int xCoord
 	@tfield int yCoord
 	@tfield stackStruct army
@@ -1266,7 +1265,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	settlementStruct:createBuilding("some_build1");
 	*/
 	types.settlementStruct.set_function("createBuilding", &settlementHelpers::createBuilding);
-	types.settlementStruct.set("governor", &settlementStruct::gubernator);
 	types.settlementStruct.set("xCoord", &settlementStruct::xCoord);
 	types.settlementStruct.set("yCoord", &settlementStruct::yCoord);
 	types.settlementStruct.set("army", &settlementStruct::army);
