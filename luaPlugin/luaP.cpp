@@ -1469,7 +1469,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	/***
 	Create unit in army by type from M2TWEOP units DB(M2TWEOPDU, no have 500 types limit).
-	@function stackStruct:createUnit
+	@function stackStruct:createEOPUnit
 	@tparam int index
 	@tparam int exp
 	@tparam int armor
