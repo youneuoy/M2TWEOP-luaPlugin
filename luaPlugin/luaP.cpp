@@ -1201,7 +1201,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Basic fortStruct table
 
-	@tfield character governor
 	@tfield int xCoord
 	@tfield int yCoord
 	@tfield stackStruct army
@@ -1212,7 +1211,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.fortStruct = luaState.new_usertype<fortStruct>("fortStruct");
 
-	types.fortStruct.set("governor", &fortStruct::gubernator);
 	types.fortStruct.set("xCoord", &fortStruct::xCoord);
 	types.fortStruct.set("yCoord", &fortStruct::yCoord);
 	types.fortStruct.set("army", &fortStruct::army);
