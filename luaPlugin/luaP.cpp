@@ -535,8 +535,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield getFaction getFaction
 	@tfield createCharacterByString createCharacterByString
 	@tfield createArmy createArmy
-	@tfield createUnitN createUnitN
-	@tfield createUnitIdx createUnitIdx
 	@tfield getScriptCounter getScriptCounter
 	@tfield setScriptCounter setScriptCounter
 	@tfield callConsole callConsole
@@ -608,32 +606,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	army=stratmap.game.createArmy(gen);
 	*/
 	tables.gameTable.set_function("createArmy", &gameHelpers::createArmy);
-	/***
-	create unit by name.
-	@function game.createUnitN
-	@tparam string type
-	@tparam int facNum
-	@tparam int exp
-	@tparam int armor
-	@tparam int weapon
-	@treturn unit newUnit
-	@usage
-	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
-	*/
-	tables.gameTable.set_function("createUnitN", &gameHelpers::createUnitN);
-	/***
-	create unit by index in EDU.
-	@function game.createUnitIdx
-	@tparam int type
-	@tparam int facNum
-	@tparam int exp
-	@tparam int armor
-	@tparam int weapon
-	@treturn unit newUnit
-	@usage
-	newUnit=stratmap.game.createUnitIdx(52,2,1,1,1);
-*/
-	tables.gameTable.set_function("createUnitIdx", &gameHelpers::createUnitIdx);
+
 
 
 	/***
@@ -704,8 +677,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Kill this unit
 	@function unit:kill
 	@usage
-	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
-	newUnit:kill();
+	unit:kill();
 	*/
 	types.unit.set_function("kill", &unitHelpers::killUnit);
 	/***
@@ -715,8 +687,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tparam int armor
 	@tparam int weapon
 	@usage
-	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
-	newUnit:setParams(0,0,0);
+	unit:setParams(0,0,0);
 	*/
 	types.unit.set_function("setParams", &unitHelpers::setUnitParams);
 	types.unit.set("alias", sol::property(&technicalHelpers::unitUniStringToStr, &technicalHelpers::setUnitUniStr));
@@ -832,8 +803,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@function character:setBodyguardUnit
 	@tparam unit unit
 	@usage
-	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
-	ourCharacter:setBodyguardUnit(newUnit);
+	ourCharacter:setBodyguardUnit(unit);
 	*/
 	types.character.set_function("setBodyguardUnit", &generalHelpers::setBodyguard);
 
@@ -1415,7 +1385,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int totalStrength
 	@tfield float reform_point_x reform point x coordinate in battle
 	@tfield float reform_point_y reform point y coordinate in battle
-	@tfield addUnit addUnit
+	@tfield createEOPUnit createEOPUnit
+	@tfield createUnit createUnit
+	@tfield createUnitByIDX createUnitByIDX
 	@tfield siegeSettlement siegeSettlement call twice if you want go to assault
 	@tfield attackArmy attackArmy
 	@tfield siegeStruct siege data of current siege
@@ -1484,21 +1456,45 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.stackStruct.set("totalStrength", &stackStruct::totalStrength);
 	types.stackStruct.set("reform_point_x", &stackStruct::reform_point_x);
 	types.stackStruct.set("reform_point_y", &stackStruct::reform_point_y);
-	/***
-	Add unit to this army.
 
-	@function stackStruct:addUnit
-	@tparam unit unit
-	@treturn  int  ifSucess
+	/***
+	Create unit in army by type from M2TWEOP units DB(M2TWEOPDU, no have 500 types limit).
+	@function stackStruct:createUnit
+	@tparam int index
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@treturn unit newUnit
 	@usage
-	newUnit=stratmap.game.createUnitN("Axemen of Lossarnach",2,1,1,1);
-	sucess=stackStruct:addUnit(newUnit);
-	if(sucess~=0)
-	then
-		--something
-	end
+	local newUnit=stackStruct:createEOPUnit(1000,1,1,1);
 	*/
-	types.stackStruct.set_function("addUnit", &stackStructHelpers::addUnitToArmy);
+	types.stackStruct.set_function("createEOPUnit", &stackStructHelpers::createEOPUnit);
+	/***
+	Create unit in army by type from EDB.
+	@function stackStruct:createUnit
+	@tparam string type
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@treturn unit newUnit
+	@usage
+	local newUnit=stackStruct:createUnit("Axemen of Lossarnach",1,1,1);
+	*/
+	types.stackStruct.set_function("createUnit", &stackStructHelpers::createUnit);
+	
+	/***
+	Create unit in army by index from EDB.
+	@function stackStruct:createUnitByIDX
+	@tparam int index
+	@tparam int exp
+	@tparam int armor
+	@tparam int weapon
+	@treturn unit newUnit
+	@usage
+	local newUnit=stackStruct:createUnitByIDX(255,1,1,1);
+	*/
+	types.stackStruct.set_function("createUnitByIDX", &stackStructHelpers::createUnitByIDX);
+
 	/***
 	Siege settlement, or attack it if in siege. Need movePoints.
 	@function stackStruct:siegeSettlement

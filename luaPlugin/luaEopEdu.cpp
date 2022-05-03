@@ -28,7 +28,6 @@ void luaP::initEopEdu()
 	@tfield setEntryLocalizedName setEntryLocalizedName
 	@tfield setEntryLocalizedDescr setEntryLocalizedDescr
 	@tfield setEntryLocalizedShortDescr setEntryLocalizedShortDescr
-	@tfield createUnitByIndex createUnitByIndex
 	@table M2TWEOPDU
 	*/
 
@@ -132,22 +131,6 @@ void luaP::initEopEdu()
 	M2TWEOPDU.setEntryLocalizedShortDescr(1000,"This is test unit short description\n123321\nCreated with m2tweop");
 	*/
 	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedShortDescr", &eopEduHelpers::setEntryLocalizedShortDescr);	
-
-
-	/***
-	Create new unit from DU entry.
-	@function M2TWEOPDU.createUnitByIndex
-	@tparam int eopEnryIndex
-	@tparam int facNum
-	@tparam int exp
-	@tparam int armor
-	@tparam int weapon
-	@treturn unit newUnit
-	@usage
-	local ourUnit=M2TWEOPDU.createUnitByIndex(1000,0,1,1,1);
-	@see stackStruct:addUnit
-	*/
-	tables.M2TWEOPEDUTable.set_function("createUnitByIndex", &eopEduHelpers::createUnitByIndex);
 
 
 

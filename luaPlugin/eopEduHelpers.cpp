@@ -47,9 +47,3 @@ void eopEduHelpers::setEntryLocalizedShortDescr(int index, const char* newLocSho
     (*(*plugData::data.funcsEopEdu.setEntryLocalizedShortDescr))(index, newLocShortDescr);
 }
 
-unit* eopEduHelpers::createUnitByIndex(int index, int facNum, int exp, int arm, int weap)
-{
-    int unit=getDataEopDu(index);
-
-    return (*(*plugData::data.funcs.createUnitEDB))(unit, facNum, exp, arm, weap);
-}

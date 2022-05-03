@@ -65,9 +65,40 @@ namespace stackStructHelpers
 		return nullptr;
 	}
 
-
-	int addUnitToArmy(stackStruct* army, unit* un)
+	unit* createUnit(stackStruct* army, const char* type, int exp, int arm, int weap)
 	{
-		return (*(*plugData::data.funcs.addUnitToArmy))(army, un);
+		unit*newUnit= (*(*plugData::data.funcs.createUnitN))(type, army->regionID, army->faction->dipNum, exp, arm, weap);
+		if (newUnit == nullptr)
+		{
+			return newUnit;
+		}
+		(*(*plugData::data.funcs.addUnitToArmy))(army, newUnit);
+		return newUnit;
+	}
+	unit* createUnitByIDX(stackStruct* army, int typeIDX, int exp, int arm, int weap)
+	{
+		unit* newUnit = (*(*plugData::data.funcs.createUnitIdx))(typeIDX, army->regionID, army->faction->dipNum, exp, arm, weap);
+		if (newUnit == nullptr)
+		{
+			return newUnit;
+		}
+		(*(*plugData::data.funcs.addUnitToArmy))(army, newUnit);
+		return newUnit;
+	}
+	unit* createEOPUnit(stackStruct* army, int typeIDX, int exp, int arm, int weap)
+	{
+		int eopIDX=(*(*plugData::data.funcsEopEdu.getDataEopEdu))(typeIDX);
+		if (eopIDX == 0)
+		{
+			return nullptr;
+		}
+
+		unit* newUnit = (*(*plugData::data.funcs.createUnitEDB))(eopIDX, army->regionID, army->faction->dipNum, exp, arm, weap);
+		if (newUnit == nullptr)
+		{
+			return newUnit;
+		}
+		(*(*plugData::data.funcs.addUnitToArmy))(army, newUnit);
+		return newUnit;
 	}
 }

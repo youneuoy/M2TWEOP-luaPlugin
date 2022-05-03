@@ -10,6 +10,9 @@ namespace stackStructHelpers
 	void siegeSettlement(stackStruct* army, settlementStruct* sett);
 	settlementStruct* findInSettlement(const stackStruct* army);
 	fortStruct* findInFort(const stackStruct* army);
-	int addUnitToArmy(stackStruct* army, unit*un);
+
+	unit* createUnit(stackStruct* army, const char* type, int exp, int arm, int weap);
+	unit* createUnitByIDX(stackStruct* army,int typeIDX, int exp, int arm, int weap);
+	unit* createEOPUnit(stackStruct* army,int typeIDX, int exp, int arm, int weap);
 };
 

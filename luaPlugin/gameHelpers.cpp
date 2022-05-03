@@ -47,15 +47,6 @@ stackStruct* gameHelpers::createArmy(general* character)
 	return (*(*plugData::data.funcs.createArmy))(character);
 }
 
-unit* gameHelpers::createUnitN(const char* type, int facNum, int exp, int arm, int weap)
-{
-	return (*(*plugData::data.funcs.createUnitN))(type, facNum, exp, arm, weap);
-}
-
-unit* gameHelpers::createUnitIdx(int eduIdx, int facNum, int exp, int arm, int weap)
-{
-	return (*(*plugData::data.funcs.createUnitIdx))(eduIdx, facNum, exp, arm, weap);
-}
 
 std::tuple<bool, int> gameHelpers::getScriptCounter(const char* type)
 {

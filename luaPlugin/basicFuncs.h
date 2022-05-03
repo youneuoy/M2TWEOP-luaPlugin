@@ -174,9 +174,9 @@ public:
 	ProcLoader<void(__cdecl*)(unit*,float)> setUnitMovepoints;
 
 	ProcLoader<stackStruct*(__cdecl*)(general*)> createArmy;
-	ProcLoader<unit*(__cdecl*)(const char*, int, int, int, int)> createUnitN;
-	ProcLoader<unit*(__cdecl*)(int, int, int, int, int)> createUnitIdx;
-	ProcLoader<unit*(__cdecl*)(int, int, int, int, int)> createUnitEDB;
+	ProcLoader<unit*(__cdecl*)(const char*,int, int, int, int, int)> createUnitN;
+	ProcLoader<unit*(__cdecl*)(int, int, int, int, int, int)> createUnitIdx;
+	ProcLoader<unit*(__cdecl*)(int, int, int, int, int, int)> createUnitEDB;
 
 	ProcLoader<int(__cdecl*)(stackStruct*,unit*)> addUnitToArmy;
 	ProcLoader<void(__cdecl*)(general*,unit*)> setBodyguard;

@@ -17,6 +17,5 @@ namespace eopEduHelpers
 	void setEntryLocalizedName(int index, const char* newLocName);
 	void setEntryLocalizedDescr(int index, const char* newLocDescr);
 	void setEntryLocalizedShortDescr(int index, const char* newLocShortDescr);
-	unit* createUnitByIndex(int index, int facNum, int exp, int arm, int weap);
 };
 
