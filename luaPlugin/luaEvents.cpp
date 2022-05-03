@@ -347,7 +347,7 @@ void luaP::onPluginLoadF()
 	onSelectWorldpkgdesc = new sol::function(luaState["onSelectWorldpkgdesc"]);
 	checkLuaFunc(&onSelectWorldpkgdesc);
 	/***
-	Called on select fortificationlevel in siege of settlement. 
+	Called on select fortificationlevel in siege of settlement.
 
 	@function onfortificationlevelS
 	@tparam settlementStruct siegedSettlement
@@ -360,7 +360,7 @@ void luaP::onPluginLoadF()
 			return 3;--our overrided level for setlement in coords 10, 25
 		end
 
-		return nil;--by default not override. 
+		return nil;--by default not override.
 	end
 	*/
 	onfortificationlevelS = new sol::function(luaState["onfortificationlevelS"]);
@@ -935,7 +935,7 @@ void luaP::onPluginLoadF()
 	/***
 	@function onAgentCreated
 	@tparam namedCharacter character
-	@tparam int agentType 0 = spy, 1 = assassin, 2 = diplomat, 4 = merchant, 5 = priest
+	@tparam int agentType see character:setTypeID() for list of type integers
 	@tparam settlementStruct sett
 
 	@usage

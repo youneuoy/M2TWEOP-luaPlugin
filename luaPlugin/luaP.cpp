@@ -762,7 +762,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@usage
 	local ourType=ourCharacter:getTypeID();
 	*/
-	types.character.set_function("getTypeID", &generalHelpers::getTypeID);	
+	types.character.set_function("getTypeID", &generalHelpers::getTypeID);
 	/***
 	Set character type.
 	0-spy
@@ -1236,7 +1236,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int regionNumber
 	@tfield int isProvokedRebellion
 	@tfield getBuilding getBuilding
-	@tfield int buldingsNum
+	@tfield int buildingsNum
 	@tfield getResource getResource
 	@tfield int resourcesNum
 	@tfield destroyBuilding destroyBuilding
@@ -1291,7 +1291,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	end
 	*/
 	types.settlementStruct.set_function("getBuilding", &settlementHelpers::getBuilding);
-	types.settlementStruct.set("buldingsNum", &settlementStruct::buldingsNum);
+	types.settlementStruct.set("buildingsNum", &settlementStruct::buildingsNum);
 	/***
 	Get resource with number
 	@function settlementStruct:getResource
@@ -1486,7 +1486,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	local newUnit=stackStruct:createUnit("Axemen of Lossarnach",1,1,1);
 	*/
 	types.stackStruct.set_function("createUnit", &stackStructHelpers::createUnit);
-	
+
 	/***
 	Create unit in army by index from EDB.
 	@function stackStruct:createUnitByIDX
@@ -1567,7 +1567,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Get type of building
 
 	@function building:getType
-	@treturn  string  buildingType
+	@treturn  string  buildingType (building chain name)
 	@usage
 	local typeBuilding=building:getType();
 	if(typeBuilding=="core_building")
@@ -1580,7 +1580,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Get name of building
 
 	@function building:getName
-	@treturn  string  buildingName
+	@treturn  string  buildingName (building level name)
 	@usage
 	local nameBuilding=building:getName();
 	if(nameBuilding=="large_stone_wall")
