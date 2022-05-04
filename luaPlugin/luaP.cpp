@@ -1042,9 +1042,34 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Basic eduEntry table
 
-	@tfield string Type
-	@tfield int Index
-	@tfield int UnitCreatedCounter
+	@tfield string Type better not change!
+	@tfield int Index better not change!
+	@tfield int UnitCreatedCounter better not change!
+	@tfield int SoldierCount
+	@tfield float Mass
+	@tfield float Width
+	@tfield float Height
+	@tfield bool haveAttributeLegio
+	@tfield float MoveSpeedMod
+	@tfield float UnitSpacingFrontToBackClose
+	@tfield float UnitSpacingSideToSideClose
+	@tfield float UnitSpacingFrontToBackLoose
+	@tfield float UnitSpacingSideToSideLoose
+	@tfield int StatHealth
+	@tfield int StatHealthAnimal
+	@tfield int StatHeat
+	@tfield int StatGround1
+	@tfield int StatGround2
+	@tfield int StatGround3
+	@tfield int StatGround4
+	@tfield int StatCost1
+	@tfield int StatCost2
+	@tfield int StatCost3
+	@tfield int StatCost4
+	@tfield int StatCost5
+	@tfield int StatCost6
+	@tfield int StatCost7
+	@tfield int StatCost8
 
 	@table eduEntry
 	*/
@@ -1054,6 +1079,31 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		));
 	types.EduEntry.set("Index", &EduEntry::Index);
 	types.EduEntry.set("UnitCreatedCounter", &EduEntry::UnitCreatedCounter);
+	types.EduEntry.set("SoldierCount", &EduEntry::SoldierCount);
+	types.EduEntry.set("Mass", &EduEntry::Mass);
+	types.EduEntry.set("Width", &EduEntry::Width);
+	types.EduEntry.set("Height", &EduEntry::Height);
+	types.EduEntry.set("haveAttributeLegio", sol::property(&eopEduHelpers::haveAttributeLegioGet, &eopEduHelpers::haveAttributeLegioSet));
+	types.EduEntry.set("MoveSpeedMod", &EduEntry::MoveSpeedMod);
+	types.EduEntry.set("UnitSpacingFrontToBackClose", &EduEntry::UnitSpacingFrontToBackClose);
+	types.EduEntry.set("UnitSpacingSideToSideClose", &EduEntry::UnitSpacingSideToSideClose);
+	types.EduEntry.set("UnitSpacingFrontToBackLoose", &EduEntry::UnitSpacingFrontToBackLoose);
+	types.EduEntry.set("UnitSpacingSideToSideLoose", &EduEntry::UnitSpacingSideToSideLoose);
+	types.EduEntry.set("StatHealth", &EduEntry::StatHealth);
+	types.EduEntry.set("StatHealthAnimal", &EduEntry::StatHealthAnimal);
+	types.EduEntry.set("StatHeat", &EduEntry::StatHeat);
+	types.EduEntry.set("StatGround1", &EduEntry::StatGround1);
+	types.EduEntry.set("StatGround2", &EduEntry::StatGround2);
+	types.EduEntry.set("StatGround3", &EduEntry::StatGround3);
+	types.EduEntry.set("StatGround4", &EduEntry::StatGround4);
+	types.EduEntry.set("StatCost1", &EduEntry::StatCost1);
+	types.EduEntry.set("StatCost2", &EduEntry::StatCost2);
+	types.EduEntry.set("StatCost3", &EduEntry::StatCost3);
+	types.EduEntry.set("StatCost4", &EduEntry::StatCost4);
+	types.EduEntry.set("StatCost5", &EduEntry::StatCost5);
+	types.EduEntry.set("StatCost6", &EduEntry::StatCost6);
+	types.EduEntry.set("StatCost7", &EduEntry::StatCost7);
+	types.EduEntry.set("StatCost8", &EduEntry::StatCost8);
 
 
 	///FactionStruct table section

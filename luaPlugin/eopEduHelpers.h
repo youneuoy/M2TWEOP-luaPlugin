@@ -7,6 +7,8 @@ namespace eopEduHelpers
 	EduEntry* addEopEduEntry(int baseIndex, int newIndex);
 	EduEntry* getEopEduEntry(int index);
 
+
+
 	int getDataEopDu(int index);
 
 
@@ -17,5 +19,10 @@ namespace eopEduHelpers
 	void setEntryLocalizedName(int index, const char* newLocName);
 	void setEntryLocalizedDescr(int index, const char* newLocDescr);
 	void setEntryLocalizedShortDescr(int index, const char* newLocShortDescr);
+
+
+	//edu things
+	bool haveAttributeLegioGet(EduEntry* eduEn);
+	void haveAttributeLegioSet(EduEntry* eduEn, bool isHaveLegio);
 };
 

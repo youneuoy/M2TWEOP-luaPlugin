@@ -51,7 +51,7 @@ void luaP::initEopEdu()
 	Get eduEntry of M2TWEOPDU entry. You usually won't need this.
 	@function M2TWEOPDU.getEopEduEntryByID
 	@tparam int eopEnryIndex Entry index
-	@treturn eduEntry retEntry Usually you shouldn't use this value.
+	@treturn eduEntry retEntry 
 	@usage
 	local eduEntryOfEOPDU=M2TWEOPDU.getEOPEduEntryByID(1000);
 	*/

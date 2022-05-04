@@ -47,3 +47,20 @@ void eopEduHelpers::setEntryLocalizedShortDescr(int index, const char* newLocSho
     (*(*plugData::data.funcsEopEdu.setEntryLocalizedShortDescr))(index, newLocShortDescr);
 }
 
+bool eopEduHelpers::haveAttributeLegioGet(EduEntry* eduEn)
+{
+    return ((eduEn->Attributes6&10) != 0);
+}
+
+void eopEduHelpers::haveAttributeLegioSet(EduEntry* eduEn, bool isHaveLegio)
+{
+    if (isHaveLegio)
+    {
+        eduEn->Attributes6 = eduEn->Attributes6 | 0x10;
+    }
+    else
+    {
+        eduEn->Attributes6 = eduEn->Attributes6 & 0x10;
+    }
+}
+
