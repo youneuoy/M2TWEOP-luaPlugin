@@ -936,7 +936,7 @@ void luaP::onPluginLoadF()
 	/***
 	@function onAgentCreated
 	@tparam namedCharacter character
-	@tparam int agentType see character:setTypeID() for list of type integers
+	@tparam int agentType see @{character:setTypeID} for list of type integers
 	@tparam settlementStruct sett
 
 	@usage
