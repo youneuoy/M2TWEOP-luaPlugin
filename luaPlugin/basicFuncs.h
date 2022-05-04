@@ -110,6 +110,7 @@ public:
 
 	ProcLoader<bool(__cdecl*)(int*)> isTileFree;
 	ProcLoader<UINT32(__cdecl*)(int x, int y)> getTileRegionID;
+	ProcLoader<regionStruct* (__cdecl*)(UINT32)> getRegionByID;
 
 	ProcLoader<settlementStruct*(__cdecl*)(int x, int y)> findSettlement;
 	ProcLoader<fortStruct*(__cdecl*)(int x, int y)> findFort;

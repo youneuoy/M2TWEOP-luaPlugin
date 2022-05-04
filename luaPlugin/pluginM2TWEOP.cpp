@@ -29,6 +29,9 @@ int initPlugin(std::string* modPath)
     fName = "getTileRegionID";
     plugData::data.funcs.getTileRegionID.Load(&plPath, &fName);
 
+    fName = "getRegionByID";
+    plugData::data.funcs.getRegionByID.Load(&plPath, &fName);
+
     fName = "findFort";
     plugData::data.funcs.findFort.Load(&plPath, &fName);
 

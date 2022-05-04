@@ -1,6 +1,20 @@
 #include "settlementHelpers.h"
 
 #include "plugData.h"
+float settlementHelpers::getReligion(const settlementStruct* sett, int index)
+{
+	regionStruct*currRegion= (*(*plugData::data.funcs.getRegionByID))(sett->regionNumber);
+	if (currRegion == nullptr)
+	{
+		return 0.0f;
+	}
+	return currRegion->religionsARR[index];
+}
+void settlementHelpers::setReligion(const settlementStruct* sett, int index, float value)
+{
+	regionStruct* currRegion = (*(*plugData::data.funcs.getRegionByID))(sett->regionNumber);
+	currRegion->religionsARR[index] = value;
+}
 resStrat* settlementHelpers::getResource(const settlementStruct* sett, int index)
 {
 	return sett->resources[index];

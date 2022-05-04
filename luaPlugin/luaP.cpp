@@ -1294,6 +1294,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int populationSize
 	@tfield getGuildStanding getGuildStanding
 	@tfield setGuildStanding setGuildStanding
+	@tfield getReligion getReligion
+	@tfield setReligion setReligion
 
 	@table settlementStruct
 	*/
@@ -1371,6 +1373,26 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	settlementStruct:setGuildStanding(0,300);
 	*/
 	types.settlementStruct.set_function("setGuildStanding", &settlementHelpers::setGuildStanding);
+	/***
+	Get settlement religion value. 
+	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
+	@function settlementStruct:getReligion
+	@tparam int religionID in order of descr_religions.txt, started from 0
+	@treturn float religionValue from 0 to 1
+	@usage
+	local firstRelVal=settlementStruct:getReligion(0);//get value of religion with ID 0
+	*/
+	types.settlementStruct.set_function("getReligion", &settlementHelpers::getReligion);
+	/***
+	Set settlement religion value. 
+	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
+	@function settlementStruct:setReligion
+	@tparam int religionID in order of descr_religions.txt, started from 0
+	@tparam float religionValue from 0 to 1
+	@usage
+	settlementStruct:setReligion(0,0.5);//set religion with ID 0 as 50%
+	*/
+	types.settlementStruct.set_function("setReligion", &settlementHelpers::setReligion);
 
 	///Guild table section
 	//@section guildTable

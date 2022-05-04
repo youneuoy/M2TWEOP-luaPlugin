@@ -20,8 +20,8 @@ void luaP::initEopEdu()
 	Basic M2TWEOPDU table. Contains descriptions of m2tweop unit types.
 
 	@tfield addEopEduEntryFromEDUID addEopEduEntryFromEDUID
-	@tfield getEopEduEntryByID getEopEduEntryByID
-	@tfield getDataEopDu getDataEopDu
+	@tfield getEopEduEntryByID getEopEduEntryByID Needed for change many parameters of entry.
+	@tfield getDataEopDu getDataEopDu 
 	@tfield setEntryUnitCardTga setEntryUnitCardTga
 	@tfield setEntryInfoCardTga setEntryInfoCardTga
 	@tfield setEntrySoldierModel setEntrySoldierModel
@@ -48,12 +48,14 @@ void luaP::initEopEdu()
 	tables.M2TWEOPEDUTable.set_function("addEopEduEntryFromEDUID", &eopEduHelpers::addEopEduEntry);
 
 	/***
-	Get eduEntry of M2TWEOPDU entry. You usually won't need this.
+	Get eduEntry of M2TWEOPDU entry. Needed for change many parameters of entry.
 	@function M2TWEOPDU.getEopEduEntryByID
 	@tparam int eopEnryIndex Entry index
 	@treturn eduEntry retEntry 
 	@usage
 	local eduEntryOfEOPDU=M2TWEOPDU.getEOPEduEntryByID(1000);
+	eduEntryOfEOPDU.SoldierCount=20;
+	eduEntryOfEOPDU.Width=1.5;
 	*/
 	tables.M2TWEOPEDUTable.set_function("getEopEduEntryByID", &eopEduHelpers::getEopEduEntry);
 

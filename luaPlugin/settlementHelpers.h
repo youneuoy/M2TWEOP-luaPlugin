@@ -5,6 +5,9 @@
 #include "luaGetSetFuncs.h"
 namespace settlementHelpers
 {
+	float getReligion(const settlementStruct* sett, int index);
+	void setReligion(const settlementStruct* sett, int index,float value);
+
 	resStrat* getResource(const settlementStruct* sett, int index);
 	building* getBuilding(const settlementStruct* sett, int index);
 	void destroyBuilding(settlementStruct* sett, const char* typeName, bool isReturnMoney);
