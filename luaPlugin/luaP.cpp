@@ -892,7 +892,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Get pointer to ancillary with number
 	@function namedCharacter:getAncillary
 	@tparam int index
-	@tparam int yCoord
 	@treturn ancillary ancillary
 	@usage
 	ancillary=ourNamedCharacter:getAncillary(2);
