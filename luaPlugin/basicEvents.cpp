@@ -61,7 +61,7 @@ std::string* onSelectWorldpkgdesc(const char* selectedRec, const char* selectedG
 	return retS;
 }
 
-int onfortificationlevelS(settlementStruct* settlement, bool* isChanged)
+int onfortificationlevelS(settlementStruct* settlement, bool* isCastle, bool* isChanged)
 {
 	if (plugData::data.luaAll.onfortificationlevelS != nullptr)
 	{
@@ -75,11 +75,15 @@ int onfortificationlevelS(settlementStruct* settlement, bool* isChanged)
 		}
 		else
 		{
-			sol::optional<int>retVal = funcResult;
+			sol::optional<std::tuple<int, bool>>retVal = funcResult;
 			if (retVal)
 			{
 				*isChanged = true;
-				return retVal.value();
+
+				std::tuple<int, bool>retValN = retVal.value();
+
+				*isCastle=std::get<1>(retValN);
+				return std::get<0>(retValN);
 			}
 		}
 

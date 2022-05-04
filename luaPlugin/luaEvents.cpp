@@ -352,12 +352,13 @@ void luaP::onPluginLoadF()
 	@function onfortificationlevelS
 	@tparam settlementStruct siegedSettlement
 	@treturn int overridedFortificationlevel
+	@treturn bool isCastle  overrided settlement type(determine which siege equipment used etc)
 
 	@usage
 	function onfortificationlevelS(settlement)
 		if(settlement.xCoord==10 and settlement.yCoord==25)
 		then
-			return 3;--our overrided level for setlement in coords 10, 25
+			return 3,false;--our overrided level for setlement in coords 10, 25
 		end
 
 		return nil;--by default not override.
