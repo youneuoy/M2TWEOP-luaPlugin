@@ -53,7 +53,7 @@ void luaP::initEopEdu()
 	@tparam int eopEnryIndex Entry index
 	@treturn eduEntry retEntry 
 	@usage
-	local eduEntryOfEOPDU=M2TWEOPDU.getEOPEduEntryByID(1000);
+	local eduEntryOfEOPDU=M2TWEOPDU.getEopEduEntryByID(1000);
 	eduEntryOfEOPDU.SoldierCount=20;
 	eduEntryOfEOPDU.Width=1.5;
 	*/
