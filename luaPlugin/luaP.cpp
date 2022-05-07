@@ -1254,6 +1254,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@tfield int xCoord
 	@tfield int yCoord
+	@tfield character governor
 	@tfield stackStruct army
 	@tfield factionStruct ownerFaction
 	@tfield siegeStruct siege
@@ -1264,6 +1265,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	types.fortStruct.set("xCoord", &fortStruct::xCoord);
 	types.fortStruct.set("yCoord", &fortStruct::yCoord);
+	types.fortStruct.set("governor", &fortStruct::gubernator);
 	types.fortStruct.set("army", &fortStruct::army);
 	types.fortStruct.set("ownerFaction", &fortStruct::faction);
 	types.fortStruct.set("siege", &fortStruct::siege);
@@ -1277,6 +1279,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@tfield int xCoord
 	@tfield int yCoord
+	@tfield character governor
 	@tfield stackStruct army
 	@tfield string name
 	@tfield factionStruct ownerFaction
@@ -1301,6 +1304,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table settlementStruct
 	*/
 	types.settlementStruct = luaState.new_usertype<settlementStruct>("settlementStruct");
+
+
+	types.siege.set("governor", &settlementStruct::governor);
 	/***
 	Destroy building of type.
 	@function settlementStruct:destroyBuilding

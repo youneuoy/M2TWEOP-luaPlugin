@@ -5,6 +5,7 @@
 #include "luaGetSetFuncs.h"
 namespace settlementHelpers
 {
+
 	float getReligion(const settlementStruct* sett, int index);
 	void setReligion(const settlementStruct* sett, int index,float value);
 

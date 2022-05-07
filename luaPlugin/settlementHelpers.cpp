@@ -1,6 +1,7 @@
 #include "settlementHelpers.h"
 
 #include "plugData.h"
+
 float settlementHelpers::getReligion(const settlementStruct* sett, int index)
 {
 	regionStruct*currRegion= (*(*plugData::data.funcs.getRegionByID))(sett->regionNumber);
