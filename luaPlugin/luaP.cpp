@@ -669,6 +669,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int soldierCountStratMapMax
 	@tfield int soldierCountBattleMap
 	@tfield character character
+	@tfield stackStruct army
 	@tfield kill kill
 	@tfield setParams setParams
 	@tfield string alias
@@ -683,6 +684,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit.set("soldierCountStratMapMax", &unit::numberTact);
 	types.unit.set("soldierCountBattleMap", &unit::numberMax);
 	types.unit.set("character", &unit::general);
+	types.unit.set("army", &unit::army);
 	/***
 	Kill this unit
 	@function unit:kill
