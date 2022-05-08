@@ -1306,7 +1306,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.settlementStruct = luaState.new_usertype<settlementStruct>("settlementStruct");
 
 
-	types.siege.set("governor", &settlementStruct::governor);
+	types.settlementStruct.set("governor", &settlementStruct::governor);
 	/***
 	Destroy building of type.
 	@function settlementStruct:destroyBuilding
