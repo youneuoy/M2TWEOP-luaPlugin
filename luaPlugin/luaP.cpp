@@ -1467,8 +1467,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield findInSettlement findInSettlement
 	@tfield findInFort findInFort
 	@tfield int totalStrength
-	@tfield float reform_point_x reform point x coordinate in battle
-	@tfield float reform_point_y reform point y coordinate in battle
+	@tfield float reform_point_x x coordinate to which the retreating units will go
+	@tfield float reform_point_y y coordinate to which the retreating units will go
 	@tfield createEOPUnit createEOPUnit
 	@tfield createUnit createUnit
 	@tfield createUnitByIDX createUnitByIDX
