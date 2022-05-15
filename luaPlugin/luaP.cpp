@@ -1283,7 +1283,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield stackStruct army
 	@tfield string name
 	@tfield factionStruct ownerFaction
-	@tfield siegeStruct siege
+	@tfield getSiege getSiege
+	@tfield int siegesNum
 	@tfield int level
 	@tfield int fac_creatorNum
 	@tfield int isCastle
@@ -1331,7 +1332,20 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		&settlementHelpers::getStringProperty<settlementStruct_name>, &settlementHelpers::setStringProperty<settlementStruct_name>
 		));
 	types.settlementStruct.set("ownerFaction", &settlementStruct::ownerFac);
-	types.settlementStruct.set("siege", &settlementStruct::siege);
+
+	/***
+	Get siege with index
+	@function settlementStruct:getSiege
+	@tparam int siegeIdx
+	@treturn siegeStruct siege
+	@usage
+	for i = 0, currSet.siegesNum-1 do 
+	   local siege=currSet:getSiege(i);
+	   --etc
+	end
+	*/
+	types.settlementStruct.set_function("getSiege", &settlementHelpers::getSiege);
+	types.settlementStruct.set("siegesNum", &settlementStruct::siegesNumber);
 	types.settlementStruct.set("level", &settlementStruct::level);
 	types.settlementStruct.set("fac_creatorNum", &settlementStruct::fac_creatorModNum);
 	types.settlementStruct.set("isCastle", &settlementStruct::isCastle);
