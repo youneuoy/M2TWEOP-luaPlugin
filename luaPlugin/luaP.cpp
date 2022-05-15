@@ -371,7 +371,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 
-	tables.gameUITable = luaState.create_table("gameSTDUI");	///gameSTDUI table section
+	tables.gameUITable = luaState.create_table("gameSTDUI");
 	/***
 	Get standart game ui element. Element must be opened
 	@function gameSTDUI.getUiElement
