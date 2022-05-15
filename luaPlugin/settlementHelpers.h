@@ -6,6 +6,7 @@
 namespace settlementHelpers
 {
 	siegeS* getSiege(const settlementStruct* sett, int index);
+	void changeOwner(settlementStruct* sett, factionStruct*newOwner);
 
 	float getReligion(const settlementStruct* sett, int index);
 	void setReligion(const settlementStruct* sett, int index,float value);

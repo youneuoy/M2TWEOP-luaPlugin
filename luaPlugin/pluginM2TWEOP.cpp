@@ -190,6 +190,9 @@ int initPlugin(std::string* modPath)
     plugData::data.funcs.setConversionLvlFromCity.Load(&plPath, &fName);
 
 
+    fName = "setSettlementOwner";
+    plugData::data.funcs.setSettlementOwner.Load(&plPath, &fName);
+
     fName = "destroyBuilding";
     plugData::data.funcs.destroyBuilding.Load(&plPath, &fName);
 

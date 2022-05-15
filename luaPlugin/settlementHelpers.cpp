@@ -7,6 +7,11 @@ siegeS* settlementHelpers::getSiege(const settlementStruct* sett, int index)
 	return sett->sieges[index].siege;
 }
 
+void settlementHelpers::changeOwner(settlementStruct* sett, factionStruct* newOwner)
+{
+	(*(*plugData::data.funcs.setSettlementOwner))(sett, newOwner);
+}
+
 float settlementHelpers::getReligion(const settlementStruct* sett, int index)
 {
 	regionStruct*currRegion= (*(*plugData::data.funcs.getRegionByID))(sett->regionNumber);

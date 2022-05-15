@@ -665,13 +665,16 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	@tfield eduEntry eduEntry
 	@tfield float movePoints
-	@tfield int soldierCountStratMap
-	@tfield int soldierCountStratMapMax
-	@tfield int soldierCountBattleMap
+	@tfield int soldierCountStratMap soldiers count. You can change it on stratmap and soldiers updated. Use @{setParams} if you need change several parameters at once.
+	@tfield int exp soldiers expierence. You can change it on stratmap and soldiers updated. Use @{setParams} if you need change several parameters at once.
+	@tfield int armourLVL soldiers armour. You can change it on stratmap and soldiers updated. Use @{setParams} if you need change several parameters at once.
+	@tfield int weaponLVL soldiers weapon. You can change it on stratmap and soldiers updated. Use @{setParams} if you need change several parameters at once.
+	@tfield int soldierCountStratMapMax better read only
+	@tfield int soldierCountBattleMap better read only
 	@tfield character character
 	@tfield stackStruct army
 	@tfield kill kill
-	@tfield setParams setParams
+	@tfield setParams setParams change soldierCountStratMap, exp, armourLVL, weaponLVL at one time.
 	@tfield string alias
 
 
@@ -681,6 +684,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit.set("eduEntry", &unit::eduEntry);
 	types.unit.set("movePoints", sol::property(&unitHelpers::getMovepoints, &unitHelpers::setMovepoints));
 	types.unit.set("soldierCountStratMap", sol::property(&unitHelpers::getsoldierCountStratMap, &unitHelpers::setSoldiersCount));
+	types.unit.set("exp", sol::property(&unitHelpers::getExp, &unitHelpers::setExp));
+	types.unit.set("armourLVL", sol::property(&unitHelpers::getarmourLVL, &unitHelpers::setarmourLVL));
+	types.unit.set("weaponLVL", sol::property(&unitHelpers::getweaponLVL, &unitHelpers::setweaponLVL));
 	types.unit.set("soldierCountStratMapMax", &unit::numberTact);
 	types.unit.set("soldierCountBattleMap", &unit::numberMax);
 	types.unit.set("character", &unit::general);
@@ -1283,6 +1289,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield stackStruct army
 	@tfield string name
 	@tfield factionStruct ownerFaction
+	@tfield changeOwner changeOwner
 	@tfield getSiege getSiege
 	@tfield int siegesNum
 	@tfield int level
@@ -1332,6 +1339,19 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		&settlementHelpers::getStringProperty<settlementStruct_name>, &settlementHelpers::setStringProperty<settlementStruct_name>
 		));
 	types.settlementStruct.set("ownerFaction", &settlementStruct::ownerFac);
+
+	/***
+	Change owner faction of settlement.
+	All agents, armies, etc. leave settlement
+	@function settlementStruct:changeOwner
+	@tparam factionStruct newOwner
+	@usage
+	local campaign=gameDataAll.get().campaignStruct;
+	local fac1=campaign.factionsSortedByDescrStrat[1];
+	currSet:changeOwner(fac1);
+	end
+	*/
+	types.settlementStruct.set_function("changeOwner", &settlementHelpers::changeOwner);
 
 	/***
 	Get siege with index
