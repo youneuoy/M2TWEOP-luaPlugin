@@ -690,7 +690,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit.set("soldierCountStratMapMax", &unit::numberTact);
 	types.unit.set("soldierCountBattleMap", &unit::numberMax);
 	types.unit.set("character", &unit::general);
-	types.unit.set("army", &unit::army);
+	types.unit.set("army", &unit::army);//
 	/***
 	Kill this unit
 	@function unit:kill
