@@ -11,6 +11,7 @@
 #define generalCharactericticsStruct_portrait_custom 7
 
 #define EduEntryStruct_Type 1
+#define EduEntryStruct_Soldier 2
 
 
 #define anchillaryStruct_name 1
@@ -215,6 +216,10 @@ namespace luaGetSetFuncs
 		{
 			retS = eduEn->Type;
 		}
+		else if (fieldIndex == EduEntryStruct_Soldier)
+		{
+			retS = eduEn->Soldier;
+		}
 
 		if (retS != nullptr)
 		{
@@ -234,6 +239,11 @@ namespace luaGetSetFuncs
 		{
 
 			arg = reinterpret_cast<char*>(&eduEn->Type);
+		}
+		else if (fieldIndex == EduEntryStruct_Soldier)
+		{
+
+			arg = reinterpret_cast<char*>(&eduEn->Soldier);
 		}
 		setGameString(arg, newS.c_str());
 	}

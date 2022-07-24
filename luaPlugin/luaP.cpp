@@ -1050,6 +1050,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	Basic eduEntry table
 
 	@tfield string Type better not change!
+	@tfield string Soldier better not change!
 	@tfield int Index better not change!
 	@tfield int UnitCreatedCounter better not change!
 	@tfield int SoldierCount
@@ -1083,6 +1084,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.EduEntry = luaState.new_usertype<EduEntry>("eduEntry");
 	types.EduEntry.set("Type", sol::property(
 		&luaGetSetFuncs::getStringPropertyEDU<EduEntryStruct_Type>, &luaGetSetFuncs::setStringPropertyEDU<EduEntryStruct_Type>
+		));
+	types.EduEntry.set("Soldier", sol::property(
+		&luaGetSetFuncs::getStringPropertyEDU<EduEntryStruct_Soldier>, &luaGetSetFuncs::setStringPropertyEDU<EduEntryStruct_Soldier>
 		));
 	types.EduEntry.set("Index", &EduEntry::Index);
 	types.EduEntry.set("UnitCreatedCounter", &EduEntry::UnitCreatedCounter);
