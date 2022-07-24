@@ -5,6 +5,10 @@ EduEntry* eopEduHelpers::addEopEduEntry(int baseIndex, int newIndex)
 {
     return (*(*plugData::data.funcsEopEdu.addEopEduEntry))(baseIndex, newIndex);
 }
+EduEntry* eopEduHelpers::addEopEduEntryFromFile(const char* fileName, int newIndex)
+{
+    return (*(*plugData::data.funcsEopEdu.addEopEduEntryFromFile))(fileName, newIndex);
+}
 
 EduEntry* eopEduHelpers::getEopEduEntry(int index)
 {

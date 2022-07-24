@@ -19,7 +19,8 @@ void luaP::initEopEdu()
 	/***
 	Basic M2TWEOPDU table. Contains descriptions of m2tweop unit types.
 
-	@tfield addEopEduEntryFromEDUID addEopEduEntryFromEDUID
+	@tfield addEopEduEntryFromFile addEopEduEntryFromFile
+	@tfield addEopEduEntryFromEDUID addEopEduEntryFromEDUID 
 	@tfield getEopEduEntryByID getEopEduEntryByID Needed for change many parameters of entry.
 	@tfield getDataEopDu getDataEopDu 
 	@tfield setEntryUnitCardTga setEntryUnitCardTga
@@ -35,6 +36,17 @@ void luaP::initEopEdu()
 
 	tables.M2TWEOPEDUTable = luaState.create_table("M2TWEOPDU");
 
+
+	/***
+	Create new M2TWEOPDU entry from type description
+	@function M2TWEOPDU.addEopEduEntryFromFile
+	@tparam string filepath path to file with unit type description(like in export_descr_unit.txt, but only with one record and without comments)
+	@tparam int eopEnryIndex Entry index, which will be assigned to a new record in DU (recommend starting from 1000, so that there is no confusion with records from EDU).
+	@treturn eduEntry retEntry Usually you shouldn't use this value.
+	@usage
+	M2TWEOPDU.addEopEduEntryFromFile(M2TWEOP.getModPath().."/youneuoy_Data/unitTypes/myTestType.txt",1000);
+	*/
+	tables.M2TWEOPEDUTable.set_function("addEopEduEntryFromFile", &eopEduHelpers::addEopEduEntryFromFile);
 
 	/***
 	Create new M2TWEOPDU entry

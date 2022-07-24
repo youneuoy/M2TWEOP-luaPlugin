@@ -211,6 +211,7 @@ class eopEduFuncs
 public:
 	//edu functions
 	ProcLoader<EduEntry* (__cdecl*)(int, int)> addEopEduEntry;
+	ProcLoader<EduEntry* (__cdecl*)(const char*, int)> addEopEduEntryFromFile;
 	ProcLoader<EduEntry* (__cdecl*)(int)> getEopEduEntry;
 	ProcLoader<int (__cdecl*)(int)> getDataEopEdu;
 

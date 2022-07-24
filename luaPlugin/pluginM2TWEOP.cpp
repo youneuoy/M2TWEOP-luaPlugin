@@ -216,6 +216,9 @@ int initPlugin(std::string* modPath)
     //eop edu functions
     fName = "addEopEduEntry";
     plugData::data.funcsEopEdu.addEopEduEntry.Load(&plPath, &fName);  
+
+    fName = "addEopEduEntryFromFile";
+    plugData::data.funcsEopEdu.addEopEduEntryFromFile.Load(&plPath, &fName);
      
     fName = "getEopEduEntry";
     plugData::data.funcsEopEdu.getEopEduEntry.Load(&plPath, &fName);    

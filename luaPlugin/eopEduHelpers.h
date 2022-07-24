@@ -5,6 +5,7 @@
 namespace eopEduHelpers
 {
 	EduEntry* addEopEduEntry(int baseIndex, int newIndex);
+	EduEntry* addEopEduEntryFromFile(const char* fileName, int newIndex);
 	EduEntry* getEopEduEntry(int index);
 
 
