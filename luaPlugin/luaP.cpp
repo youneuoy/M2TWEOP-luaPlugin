@@ -403,8 +403,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement = luaState.new_usertype<uiElement>("uiElementStruct");
 	types.uiElement.set("xSize", &uiElement::xSize);
 	types.uiElement.set("ySize", &uiElement::ySize);
-	types.uiElement.set("ySize", &uiElement::xPos);
-	types.uiElement.set("ySize", &uiElement::yPos);
+	types.uiElement.set("xPos", &uiElement::xPos);
+	types.uiElement.set("yPos", &uiElement::yPos);
 
 
 	/***
