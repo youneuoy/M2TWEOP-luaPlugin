@@ -716,8 +716,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	//@section characterTable
 
 	/***
-	Basic character table
-	This had all characters(princess, diplomat, etc), if character in stratmap (not died,not to young, etc) has this fields.
+	Characters as they exist on the strategy map - dead characters, wives, children, and off-map characters do not have these fields.
 
 
 	@tfield int xCoord
@@ -830,7 +829,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	//@section namedCharacterTable
 
 	/***
-	Basic namedCharacter table
+	All named characters have these fields including dead characters, wives, children, and off-map characters
 
 	@tfield int index
 	@tfield character character
@@ -841,12 +840,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield string label
 	@tfield string modelName
 	@tfield int status 5-leader,2 - heir, 0 - ordinary character. Only read it, not set it!
-	@tfield int command
-	@tfield int loyalty
-	@tfield int piety
-	@tfield int chivalryAndDread Dread if negative value
-	@tfield int authority
-	@tfield int level
 	@tfield getAncillary getAncillary
 	@tfield int ancNum
 	@tfield getTraits getTraits
@@ -857,16 +850,78 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int subFaction
 	@tfield namedCharacter parent
 	@tfield namedCharacter spouse
-	@tfield string portrait
-	@tfield string portrait2
-	@tfield string portrait_custom
+	@tfield string portrait note: wives (who were never princesses) and children do not have anything for this field
+	@tfield string portrait2 note: wives (who were never princesses) and children do not have anything for this field
+	@tfield string portrait_custom note: wives (who were never princesses) and children do not have anything for this field
 	@tfield addAncillary addAncillary
 	@tfield removeAncillary removeAncillary
 	@tfield int age
 	@tfield bool isMale
 	@tfield isAlive isAlive
 	@tfield setAsHeir setAsHeir
-	@tfield namedCharacter[4] childs check for nil!
+	@tfield namedCharacter[4] childs example: ourChar.childs[2].fullName
+	@tfield int level
+	@tfield int authority
+	@tfield int command
+	@tfield int chivalryAndDread positive = Chivalry, negative = Dread
+	@tfield int loyalty
+	@tfield int piety
+	@tfield int ambush
+	@tfield int artilleryCommand
+	@tfield int assassination
+	@tfield int attack
+	@tfield int battleSurgery
+	@tfield int bodyguardSize
+	@tfield int bodyguardValour
+	@tfield int boldness
+	@tfield int bribeResistance
+	@tfield int bribery
+	@tfield int cavalryCommand
+	@tfield int charm
+	@tfield int construction
+	@tfield int defence
+	@tfield int disposition
+	@tfield int electability
+	@tfield int eligibility
+	@tfield int farming
+	@tfield int fertility
+	@tfield int finance
+	@tfield int footInTheDoor
+	@tfield int generosity
+	@tfield int gunpowerCommand
+	@tfield int health
+	@tfield int heresyImmunity
+	@tfield int hitpoints
+	@tfield int infantryCommand
+	@tfield int influence
+	@tfield int law
+	@tfield int lineOfSight
+	@tfield int localPopularity
+	@tfield int looting
+	@tfield int magic
+	@tfield int management
+	@tfield int mining
+	@tfield int movementPointsBonus
+	@tfield int navalCommand
+	@tfield int nightBattle
+	@tfield int personalSecurity
+	@tfield int publicSecurity
+	@tfield int purity
+	@tfield int sabotage
+	@tfield int siegeAttack
+	@tfield int siegeDefense
+	@tfield int siegeEngineering
+	@tfield int squalor
+	@tfield int subterfuge
+	@tfield int taxCollection
+	@tfield int trading
+	@tfield int trainingAgents
+	@tfield int trainingAnimalUnits
+	@tfield int trainingUnits
+	@tfield int troopMorale
+	@tfield int unorthodoxy
+	@tfield int unrest
+	@tfield int violence
 
 	@table namedCharacter
 	*/
@@ -885,6 +940,62 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("chivalryAndDread", &generalCharacterictics::nobility);
 	types.namedCharacter.set("authority", &generalCharacterictics::leaderAutority);
 	types.namedCharacter.set("level", &generalCharacterictics::level);
+	types.namedCharacter.set("influence", &generalCharacterictics::influence);
+	types.namedCharacter.set("subterfuge", &generalCharacterictics::subterfuge);
+	types.namedCharacter.set("charm", &generalCharacterictics::charm);
+	types.namedCharacter.set("finance", &generalCharacterictics::finance);
+	types.namedCharacter.set("magic", &generalCharacterictics::magic);
+	types.namedCharacter.set("unorthodoxy", &generalCharacterictics::unorthodoxy);
+	types.namedCharacter.set("heresyImmunity", &generalCharacterictics::heresyImmunity);
+	types.namedCharacter.set("assassination", &generalCharacterictics::assassination);
+	types.namedCharacter.set("sabotage", &generalCharacterictics::sabotage);
+	types.namedCharacter.set("eligibility", &generalCharacterictics::eligibility);
+	types.namedCharacter.set("purity", &generalCharacterictics::purity);
+	types.namedCharacter.set("violence", &generalCharacterictics::violence);
+	types.namedCharacter.set("disposition", &generalCharacterictics::disposition);
+	types.namedCharacter.set("boldness", &generalCharacterictics::boldness);
+	types.namedCharacter.set("generosity", &generalCharacterictics::generosity);
+	types.namedCharacter.set("management", &generalCharacterictics::management);
+	types.namedCharacter.set("bodyguardSize", &generalCharacterictics::bodyguardSize);
+	types.namedCharacter.set("troopMorale", &generalCharacterictics::troopMorale);
+	types.namedCharacter.set("movementPointsBonus", &generalCharacterictics::movementPointsBonus);
+	types.namedCharacter.set("attack", &generalCharacterictics::attack);
+	types.namedCharacter.set("defence", &generalCharacterictics::defence);
+	types.namedCharacter.set("siegeAttack", &generalCharacterictics::siegeAttack);
+	types.namedCharacter.set("siegeDefense", &generalCharacterictics::siegeDefense);
+	types.namedCharacter.set("ambush", &generalCharacterictics::ambush);
+	types.namedCharacter.set("navalCommand", &generalCharacterictics::navalCommand);
+	types.namedCharacter.set("siegeEngineering", &generalCharacterictics::siegeEngineering);
+	types.namedCharacter.set("nightBattle", &generalCharacterictics::nightBattle);
+	types.namedCharacter.set("personalSecurity", &generalCharacterictics::personalSecurity);
+	types.namedCharacter.set("publicSecurity", &generalCharacterictics::publicSecurity);
+	types.namedCharacter.set("bribery", &generalCharacterictics::bribery);
+	types.namedCharacter.set("bribeResistance", &generalCharacterictics::bribeResistance);
+	types.namedCharacter.set("electability", &generalCharacterictics::electability);
+	types.namedCharacter.set("lineOfSight", &generalCharacterictics::lineOfSight);
+	types.namedCharacter.set("trainingUnits", &generalCharacterictics::trainingUnits);
+	types.namedCharacter.set("trainingAgents", &generalCharacterictics::trainingAgents);
+	types.namedCharacter.set("construction", &generalCharacterictics::construction);
+	types.namedCharacter.set("trading", &generalCharacterictics::trading);
+	types.namedCharacter.set("localPopularity", &generalCharacterictics::localPopularity);
+	types.namedCharacter.set("footInTheDoor", &generalCharacterictics::footInTheDoor);
+	types.namedCharacter.set("farming", &generalCharacterictics::farming);
+	types.namedCharacter.set("mining", &generalCharacterictics::mining);
+	types.namedCharacter.set("taxCollection", &generalCharacterictics::taxCollection);
+	types.namedCharacter.set("fertility", &generalCharacterictics::fertility);
+	types.namedCharacter.set("cavalryCommand", &generalCharacterictics::cavalryCommand);
+	types.namedCharacter.set("infantryCommand", &generalCharacterictics::infantryCommand);
+	types.namedCharacter.set("gunpowerCommand", &generalCharacterictics::gunpowerCommand);
+	types.namedCharacter.set("artilleryCommand", &generalCharacterictics::artilleryCommand);
+	types.namedCharacter.set("health", &generalCharacterictics::health);
+	types.namedCharacter.set("squalor", &generalCharacterictics::squalor);
+	types.namedCharacter.set("unrest", &generalCharacterictics::unrest);
+	types.namedCharacter.set("law", &generalCharacterictics::law);
+	types.namedCharacter.set("looting", &generalCharacterictics::looting);
+	types.namedCharacter.set("bodyguardValour", &generalCharacterictics::bodyguardValour);
+	types.namedCharacter.set("hitpoints", &generalCharacterictics::hitpoints);
+	types.namedCharacter.set("trainingAnimalUnits", &generalCharacterictics::trainingAnimalUnits);
+	types.namedCharacter.set("battleSurgery", &generalCharacterictics::battleSurgery);
 	types.namedCharacter.set("localizedDisplayName", sol::property(&technicalHelpers::namedCharUniStringToStr<namedChar_localizedFullName>
 		, &technicalHelpers::namedCharSetLocalizedFullName));
 	/***
@@ -972,13 +1083,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		));
 
 	/***
-	Check if the character is alive
+	Check if a character is alive, read only, do not set!
 	@function namedCharacter:isAlive
-	@treturn int liveStatus 1 - live, 0 - dead
+	@treturn int liveStatus, true == alive, false == dead
 	@usage
-	if(ourcharacter:isAlive()==1)
-	then
-		ourcharacter:kill();
+	if ourcharacter:isAlive() == true then
+		ourcharacter.character:kill();
 	end
 	*/
 	types.namedCharacter.set_function("isAlive", &generalCharactericticsHelpers::isAlive);
@@ -1354,7 +1464,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tparam int siegeIdx
 	@treturn siegeStruct siege
 	@usage
-	for i = 0, currSet.siegesNum-1 do 
+	for i = 0, currSet.siegesNum-1 do
 	   local siege=currSet:getSiege(i);
 	   --etc
 	end
@@ -1410,7 +1520,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.settlementStruct.set_function("setGuildStanding", &settlementHelpers::setGuildStanding);
 	/***
-	Get settlement religion value. 
+	Get settlement religion value.
 	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
 	@function settlementStruct:getReligion
 	@tparam int religionID in order of descr_religions.txt, started from 0
@@ -1420,7 +1530,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.settlementStruct.set_function("getReligion", &settlementHelpers::getReligion);
 	/***
-	Set settlement religion value. 
+	Set settlement religion value.
 	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
 	@function settlementStruct:setReligion
 	@tparam int religionID in order of descr_religions.txt, started from 0

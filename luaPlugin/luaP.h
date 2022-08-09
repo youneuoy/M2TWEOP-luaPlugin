@@ -291,7 +291,12 @@ public:
 
 	sol::function* onNewAdmiralCreatedFunc = nullptr;
 
+	sol::function* onBecomesFactionLeaderFunc = nullptr;
+	sol::function* onBecomesFactionHeirFunc = nullptr;
 
+	sol::function* onShortcutTriggeredFunc = nullptr;
+
+	sol::function* onCharacterMarriesPrincessFunc = nullptr;
 
 private:
 	void checkLuaFunc(sol::function** lRef);

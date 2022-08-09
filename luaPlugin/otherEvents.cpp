@@ -259,3 +259,35 @@ void onNewAdmiralCreated(generalCharacterictics* pers, settlementStruct* sett)
 		tryLua((*plugData::data.luaAll.onNewAdmiralCreatedFunc)(pers, sett))
 	}
 }
+
+void onBecomesFactionLeader(generalCharacterictics* pers)
+{
+	if (plugData::data.luaAll.onBecomesFactionLeaderFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onBecomesFactionLeaderFunc)(pers))
+	}
+}
+
+void onBecomesFactionHeir(generalCharacterictics* pers)
+{
+	if (plugData::data.luaAll.onBecomesFactionHeirFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onBecomesFactionHeirFunc)(pers))
+	}
+}
+
+void onShortcutTriggered(const char* str)
+{
+	if (plugData::data.luaAll.onShortcutTriggeredFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onShortcutTriggeredFunc)(str))
+	}
+}
+
+void onCharacterMarriesPrincess(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onCharacterMarriesPrincessFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onCharacterMarriesPrincessFunc)(gen))
+	}
+}
