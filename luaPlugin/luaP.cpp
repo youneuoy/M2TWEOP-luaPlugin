@@ -1,10 +1,10 @@
 ///
 //#<a href="./../../index.html">Main page of M2TWEOP docs</a>
-//#<a href="./../Introduction_to_ImGui_v2.pdf">Gui scripting basics by Erken, PDF file </a>
-//#<a href="./../Introduction_to_ImGui_v2.odt">Gui scripting basics by Erken, ODT file </a>
+//#<a href="./../Introduction_to_ImGui_v3.pdf">Gui scripting basics by Erken, PDF file </a>
+//#<a href="./../Introduction_to_ImGui_v3.odt">Gui scripting basics by Erken, ODT file </a>
 //![Lua logo](../Lua.png)
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
-//@module LuaPlugin 
+//@module LuaPlugin
 //@author youneuoy
 //@license GPL-3.0
 #include "luaP.h"
@@ -1354,7 +1354,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tparam int siegeIdx
 	@treturn siegeStruct siege
 	@usage
-	for i = 0, currSet.siegesNum-1 do 
+	for i = 0, currSet.siegesNum-1 do
 	   local siege=currSet:getSiege(i);
 	   --etc
 	end
@@ -1410,7 +1410,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.settlementStruct.set_function("setGuildStanding", &settlementHelpers::setGuildStanding);
 	/***
-	Get settlement religion value. 
+	Get settlement religion value.
 	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
 	@function settlementStruct:getReligion
 	@tparam int religionID in order of descr_religions.txt, started from 0
@@ -1420,7 +1420,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.settlementStruct.set_function("getReligion", &settlementHelpers::getReligion);
 	/***
-	Set settlement religion value. 
+	Set settlement religion value.
 	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
 	@function settlementStruct:setReligion
 	@tparam int religionID in order of descr_religions.txt, started from 0
