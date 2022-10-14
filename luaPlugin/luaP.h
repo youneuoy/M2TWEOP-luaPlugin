@@ -151,6 +151,7 @@ public:
 		sol::usertype<EduEntry>EduEntry;
 		sol::usertype<factionStruct>factionStruct;
 		sol::usertype<fortStruct>fortStruct;
+		sol::usertype<portBuildingStruct>portBuildingStruct;
 		sol::usertype<settlementStruct>settlementStruct;
 		sol::usertype<guild>guild;
 		sol::usertype<resStrat>resStrat;
@@ -287,9 +288,15 @@ public:
 	sol::function* onBirthFunc = nullptr;
 	sol::function* onCharacterComesOfAgeFunc = nullptr;
 	sol::function* onCharacterMarriesFunc = nullptr;
+	sol::function* onCharacterMarriesPrincessFunc = nullptr;
 	sol::function* onCharacterBecomesAFatherFunc = nullptr;
 
 	sol::function* onNewAdmiralCreatedFunc = nullptr;
+
+	sol::function* onShortcutTriggeredFunc = nullptr;
+
+	sol::function* onBecomesFactionLeaderFunc = nullptr;
+	sol::function* onBecomesFactionHeirFunc = nullptr;
 
 
 

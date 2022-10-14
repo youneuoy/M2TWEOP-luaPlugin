@@ -23,7 +23,7 @@ std::string gameSTDUIHelpers::getUIElementName(const uiElement* element)
 
 uiElement* gameSTDUIHelpers::getSubElement(const uiElement* element, int index)
 {
-	if (element->subElementsNum > index + 1)
+	if (element->subElementsNum > index)
 	{
 		return element->subElements[index];
 	}

@@ -9,4 +9,12 @@ namespace buildingStructHelpers
 	{
 		return (build->bData->drawInfo+ build->level)->name;
 	}
+	std::string getQueueType(buildingInQueue* build)
+	{
+		return build->buildingData->type;
+	}
+	std::string getQueueName(buildingInQueue* build)
+	{
+		return (build->buildingData->drawInfo+ build->currentLevel)->name;
+	}
 }

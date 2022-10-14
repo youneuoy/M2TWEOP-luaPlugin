@@ -244,6 +244,14 @@ void onCharacterMarries(generalCharacterictics* gen)
 	}
 }
 
+void onCharacterMarriesPrincess(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onCharacterMarriesPrincessFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onCharacterMarriesPrincessFunc)(gen))
+	}
+}
+
 void onCharacterBecomesAFather(generalCharacterictics* gen)
 {
 	if (plugData::data.luaAll.onCharacterBecomesAFatherFunc != nullptr)
@@ -257,5 +265,29 @@ void onNewAdmiralCreated(generalCharacterictics* pers, settlementStruct* sett)
 	if (plugData::data.luaAll.onNewAdmiralCreatedFunc != nullptr)
 	{
 		tryLua((*plugData::data.luaAll.onNewAdmiralCreatedFunc)(pers, sett))
+	}
+}
+
+void onShortcutTriggered(const char* str)
+{
+	if (plugData::data.luaAll.onShortcutTriggeredFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onShortcutTriggeredFunc)(str))
+	}
+}
+
+void onBecomesFactionLeader(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onBecomesFactionLeaderFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onBecomesFactionLeaderFunc)(gen))
+	}
+}
+
+void onBecomesFactionHeir(generalCharacterictics* gen)
+{
+	if (plugData::data.luaAll.onBecomesFactionHeirFunc != nullptr)
+	{
+		tryLua((*plugData::data.luaAll.onBecomesFactionHeirFunc)(gen))
 	}
 }

@@ -9,6 +9,8 @@ namespace buildingStructHelpers
 {
 	std::string getType(building* build);
 	std::string getName(building* build);
+	std::string getQueueType(buildingInQueue* build);
+	std::string getQueueName(buildingInQueue* build);
 
 #pragma region buildingDrawInfo
 

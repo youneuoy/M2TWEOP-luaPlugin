@@ -140,7 +140,6 @@ public:
 	ProcLoader<UINT32(__cdecl*)()> getFactionsCount;
 	ProcLoader<factionStruct** (__cdecl*)()> getFactionsList;
 
-
 	ProcLoader<void (__cdecl*)(general*, int, int)> moveNormal;
 	ProcLoader<void (__cdecl*)(general*, settlementStruct*)> siegeSettlement;
 	ProcLoader<void(__cdecl*)(general*, general*)> attackCharacter;
