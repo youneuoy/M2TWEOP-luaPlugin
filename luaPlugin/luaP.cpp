@@ -687,8 +687,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit.set("exp", sol::property(&unitHelpers::getExp, &unitHelpers::setExp));
 	types.unit.set("armourLVL", sol::property(&unitHelpers::getarmourLVL, &unitHelpers::setarmourLVL));
 	types.unit.set("weaponLVL", sol::property(&unitHelpers::getweaponLVL, &unitHelpers::setweaponLVL));
-	types.unit.set("soldierCountStratMapMax", &unit::numberTact);
-	types.unit.set("soldierCountBattleMap", &unit::numberMax);
+	types.unit.set("soldierCountStratMapMax", &unit::numberMax);
+	types.unit.set("soldierCountBattleMap", &unit::numberTact);
 	types.unit.set("character", &unit::general);
 	types.unit.set("army", &unit::army);//
 	/***
