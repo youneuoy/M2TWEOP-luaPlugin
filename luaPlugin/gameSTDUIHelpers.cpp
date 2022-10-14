@@ -29,3 +29,4 @@ uiElement* gameSTDUIHelpers::getSubElement(const uiElement* element, int index)
 	}
 	return nullptr;
 }
+

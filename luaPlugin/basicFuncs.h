@@ -101,7 +101,7 @@ public:
 class basicFuncs
 {
 public:
-	ProcLoader<bool(__cdecl*)(const char*, const char* ,char*)> callGameConsoleCommand;
+	ProcLoader<bool(__cdecl*)(const char*, const char*, char*)> callGameConsoleCommand;
 
 
 	ProcLoader<int(__cdecl*)(const char* counterName, bool&)> getScriptCounter;
@@ -112,11 +112,11 @@ public:
 	ProcLoader<UINT32(__cdecl*)(int x, int y)> getTileRegionID;
 	ProcLoader<regionStruct* (__cdecl*)(UINT32)> getRegionByID;
 
-	ProcLoader<settlementStruct*(__cdecl*)(int x, int y)> findSettlement;
-	ProcLoader<fortStruct*(__cdecl*)(int x, int y)> findFort;
+	ProcLoader<settlementStruct* (__cdecl*)(int x, int y)> findSettlement;
+	ProcLoader<fortStruct* (__cdecl*)(int x, int y)> findFort;
 
-	ProcLoader<factionStruct*(__cdecl*)(int regionID)> getRegionOwner;
-	ProcLoader<gameDataAllStruct*(__cdecl*)()> getGameDataAll;
+	ProcLoader<factionStruct* (__cdecl*)(int regionID)> getRegionOwner;
+	ProcLoader<gameDataAllStruct* (__cdecl*)()> getGameDataAll;
 
 
 	ProcLoader<void(__cdecl*)(signed short, signed short)> setEDUUnitsSize;
@@ -134,29 +134,29 @@ public:
 
 	//get current game year
 	ProcLoader<UINT32(__cdecl*)()> getYear;
-	ProcLoader<void(__cdecl*)(char*,const char*)> setCryptedString;
-	ProcLoader<void(__cdecl*)(int,int,UINT32,UINT32)> setModel;
-	ProcLoader<void(__cdecl*)(const char*,UINT32)> addModelToGame;
+	ProcLoader<void(__cdecl*)(char*, const char*)> setCryptedString;
+	ProcLoader<void(__cdecl*)(int, int, UINT32, UINT32)> setModel;
+	ProcLoader<void(__cdecl*)(const char*, UINT32)> addModelToGame;
 	ProcLoader<UINT32(__cdecl*)()> getFactionsCount;
 	ProcLoader<factionStruct** (__cdecl*)()> getFactionsList;
 
-	ProcLoader<void (__cdecl*)(general*, int, int)> moveNormal;
-	ProcLoader<void (__cdecl*)(general*, settlementStruct*)> siegeSettlement;
+	ProcLoader<void(__cdecl*)(general*, int, int)> moveNormal;
+	ProcLoader<void(__cdecl*)(general*, settlementStruct*)> siegeSettlement;
 	ProcLoader<void(__cdecl*)(general*, general*)> attackCharacter;
 
 
-	ProcLoader<int (__cdecl*)(generalCharacterictics*, anchillary*)> addAnchillary;
+	ProcLoader<int(__cdecl*)(generalCharacterictics*, anchillary*)> addAnchillary;
 	ProcLoader<void(__cdecl*)(generalCharacterictics*, anchillary*)> removeAnchillary;
-	ProcLoader<anchillary*(__cdecl*)(char*)> findAnchillary;
+	ProcLoader<anchillary* (__cdecl*)(char*)> findAnchillary;
 
-	ProcLoader<void(__cdecl*)(generalCharacterictics*, const char*,int)> addTrait;
+	ProcLoader<void(__cdecl*)(generalCharacterictics*, const char*, int)> addTrait;
 	ProcLoader<void(__cdecl*)(generalCharacterictics*, const char*)> removeTrait;
 
 
 
 	ProcLoader<void(__cdecl*)(const char*, UINT32, UINT32, const char*, const char*, const char*)> replaceTile;
-	ProcLoader<void(__cdecl*)(int,int)> moveStratCameraSlow;
-	ProcLoader<void(__cdecl*)(int,int)> moveStratCameraFast;
+	ProcLoader<void(__cdecl*)(int, int)> moveStratCameraSlow;
+	ProcLoader<void(__cdecl*)(int, int)> moveStratCameraFast;
 	ProcLoader<void(__cdecl*)(float)> zoomStratCamera;
 	ProcLoader<void(__cdecl*)(general*, int, int)> teleportCharacter;
 
@@ -164,23 +164,23 @@ public:
 	ProcLoader<std::vector<basicStructs::arm*>* (__cdecl*)()> getBattleArmies;
 
 
-	ProcLoader< general*(__cdecl*)(const char*, factionStruct*, int, const char*, const char*, int, const char*, int, int)> createCharacter;
+	ProcLoader< general* (__cdecl*)(const char*, factionStruct*, int, const char*, const char*, int, const char*, int, int)> createCharacter;
 
 	ProcLoader<void(__cdecl*)(unit*)> killUnit;
 	ProcLoader<void(__cdecl*)(general*)> killCharacter;
 
-	ProcLoader<void(__cdecl*)(unit*,int)> setSoldiersCount;
-	ProcLoader<void(__cdecl*)(unit*,int,int,int,int)> setUnitParams;
-	ProcLoader<void(__cdecl*)(unit*,float)> setUnitMovepoints;
+	ProcLoader<void(__cdecl*)(unit*, int)> setSoldiersCount;
+	ProcLoader<void(__cdecl*)(unit*, int, int, int, int)> setUnitParams;
+	ProcLoader<void(__cdecl*)(unit*, float)> setUnitMovepoints;
 
-	ProcLoader<stackStruct*(__cdecl*)(general*)> createArmy;
-	ProcLoader<stackStruct*(__cdecl*)(settlementStruct*)> createArmyInSettlement;
-	ProcLoader<unit*(__cdecl*)(const char*,int, int, int, int, int)> createUnitN;
-	ProcLoader<unit*(__cdecl*)(int, int, int, int, int, int)> createUnitIdx;
-	ProcLoader<unit*(__cdecl*)(int, int, int, int, int, int)> createUnitEDB;
+	ProcLoader<stackStruct* (__cdecl*)(general*)> createArmy;
+	ProcLoader<stackStruct* (__cdecl*)(settlementStruct*)> createArmyInSettlement;
+	ProcLoader<unit* (__cdecl*)(const char*, int, int, int, int, int)> createUnitN;
+	ProcLoader<unit* (__cdecl*)(int, int, int, int, int, int)> createUnitIdx;
+	ProcLoader<unit* (__cdecl*)(int, int, int, int, int, int)> createUnitEDB;
 
-	ProcLoader<int(__cdecl*)(stackStruct*,unit*)> addUnitToArmy;
-	ProcLoader<void(__cdecl*)(general*,unit*)> setBodyguard;
+	ProcLoader<int(__cdecl*)(stackStruct*, unit*)> addUnitToArmy;
+	ProcLoader<void(__cdecl*)(general*, unit*)> setBodyguard;
 
 
 	ProcLoader<void(__cdecl*)(settlementStruct*, factionStruct*)> setSettlementOwner;
@@ -188,7 +188,7 @@ public:
 	ProcLoader<void(__cdecl*)(settlementStruct*, const char*)> createBuilding;
 
 
-	ProcLoader<void(__cdecl*)(general*, int,int,int)> setCharacterType;
+	ProcLoader<void(__cdecl*)(general*, int, int, int)> setCharacterType;
 
 
 
@@ -212,16 +212,16 @@ public:
 	ProcLoader<EduEntry* (__cdecl*)(int, int)> addEopEduEntry;
 	ProcLoader<EduEntry* (__cdecl*)(const char*, int)> addEopEduEntryFromFile;
 	ProcLoader<EduEntry* (__cdecl*)(int)> getEopEduEntry;
-	ProcLoader<int (__cdecl*)(int)> getDataEopEdu;
+	ProcLoader<int(__cdecl*)(int)> getDataEopEdu;
 
 
-	ProcLoader<void (__cdecl*)(int, const char*)> setEntryUnitCardTga;
-	ProcLoader<void (__cdecl*)(int, const char*)> setEntryInfoCardTga;
-	ProcLoader<void (__cdecl*)(int, const char*)> setEntrySoldierModel;
+	ProcLoader<void(__cdecl*)(int, const char*)> setEntryUnitCardTga;
+	ProcLoader<void(__cdecl*)(int, const char*)> setEntryInfoCardTga;
+	ProcLoader<void(__cdecl*)(int, const char*)> setEntrySoldierModel;
 
-	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedName;
-	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedDescr;
-	ProcLoader<void (__cdecl*)(int, const char*)> setEntryLocalizedShortDescr;
+	ProcLoader<void(__cdecl*)(int, const char*)> setEntryLocalizedName;
+	ProcLoader<void(__cdecl*)(int, const char*)> setEntryLocalizedDescr;
+	ProcLoader<void(__cdecl*)(int, const char*)> setEntryLocalizedShortDescr;
 };
 
 class eopFbxFuncs
@@ -237,7 +237,7 @@ public:
 	ProcLoader< void* (__cdecl*)(int)> getFbxObject;
 
 
-	ProcLoader< void (__cdecl*)(void*, float*)> setFbxObjectCoords;
+	ProcLoader< void(__cdecl*)(void*, float*)> setFbxObjectCoords;
 	ProcLoader< float* (__cdecl*)(void*)> getFbxObjectCoords;
 
 
@@ -263,7 +263,7 @@ class eopSoundsFuncs
 {
 public:
 	//Sounds functions
-	ProcLoader<void*(__cdecl*)(const char*)> createEOPSound;
+	ProcLoader<void* (__cdecl*)(const char*)> createEOPSound;
 	ProcLoader<void(__cdecl*)(void*)> deleteEOPSound;
 
 	ProcLoader<void(__cdecl*)(void*)> playEOPSound;

@@ -75,7 +75,7 @@ void luaP::initCampaign()
 	@tfield float currentTimeInBattle 24 max, so calc as daysInBattle*24+currentTimeInBattle
 	@tfield checkDipStance checkDipStance
 	@tfield setDipStance setDipStance
-	
+
 	@table gameDataAll.campaignStruct
 	*/
 	typeAll.campaignTable = luaState.new_usertype<campaign>("campaignStruct");
@@ -111,7 +111,7 @@ void luaP::initCampaign()
 	@tparam dipRelType checkType
 	@tparam factionStruct fac1
 	@tparam factionStruct fac2
-	@treturn bool checkResult 
+	@treturn bool checkResult
 	@usage
 	local campaign=gameDataAll.get().campaignStruct;
 	local fac1=campaign.factionsSortedByDescrStrat[1];
@@ -138,12 +138,12 @@ void luaP::initP2()
 	struct
 	{
 		//global game table
-	sol::usertype<gameDataAllStruct> gameDataAllTable;
-	//this inside gameDataAll table
-	sol::usertype<battleDataS> battleTable;
-	sol::usertype<battleSide> battleSideTable;
-	sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
-	sol::usertype<deploymentAreaS> deploymentAreaTable;
+		sol::usertype<gameDataAllStruct> gameDataAllTable;
+		//this inside gameDataAll table
+		sol::usertype<battleDataS> battleTable;
+		sol::usertype<battleSide> battleSideTable;
+		sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
+		sol::usertype<deploymentAreaS> deploymentAreaTable;
 
 	}typeAll;
 	///gameDataAll table section
@@ -218,7 +218,7 @@ void luaP::initP2()
 
 	@table battleStruct.battleSide
 	*/
-	typeAll.battleSideTable= luaState.new_usertype<battleSide>("battleSide");
+	typeAll.battleSideTable = luaState.new_usertype<battleSide>("battleSide");
 	typeAll.battleSideTable.set("isDefender", &battleSide::isDefender);
 	typeAll.battleSideTable.set("isCanDeploy", &battleSide::isCanDeploy);
 	typeAll.battleSideTable.set("winConditions", sol::property([](battleSide& self) { return std::ref(self.winConditions); }));
@@ -281,7 +281,7 @@ void luaP::initP2()
 	typeAll.trackedPointerArmyTable = luaState.new_usertype<trackedPointerArmy>("trackedPointerArmy");
 	typeAll.trackedPointerArmyTable.set("army", &trackedPointerArmy::stack);
 	typeAll.trackedPointerArmyTable.set("deploymentArea", &trackedPointerArmy::deploymentArea);
-	
+
 	///deploymentAreaS table section
 	//@section deploymentAreaS
 
@@ -313,5 +313,5 @@ void luaP::initP2()
 		print(xCoord,yCoord);
 	end
 	*/
-	typeAll.deploymentAreaTable.set("getCoordPair",[](deploymentAreaS& self, int pairNum) { return std::make_tuple(self.coordsPairs[0 + pairNum], self.coordsPairs[1 + pairNum]); });
+	typeAll.deploymentAreaTable.set("getCoordPair", [](deploymentAreaS& self, int pairNum) { return std::make_tuple(self.coordsPairs[0 + pairNum], self.coordsPairs[1 + pairNum]); });
 }

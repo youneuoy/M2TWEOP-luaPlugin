@@ -7,7 +7,7 @@ namespace buildingStructHelpers
 	}
 	std::string getName(building* build)
 	{
-		return (build->bData->drawInfo+ build->level)->name;
+		return (build->bData->drawInfo + build->level)->name;
 	}
 	std::string getQueueType(buildingInQueue* build)
 	{
@@ -15,6 +15,6 @@ namespace buildingStructHelpers
 	}
 	std::string getQueueName(buildingInQueue* build)
 	{
-		return (build->buildingData->drawInfo+ build->currentLevel)->name;
+		return (build->buildingData->drawInfo + build->currentLevel)->name;
 	}
 }

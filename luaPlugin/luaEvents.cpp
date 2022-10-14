@@ -685,7 +685,7 @@ void luaP::onPluginLoadF()
 
 	/***
 	a settlement has been selected by any means (including through the UI)
-	
+
 	@function onSettlementSelected
 	@tparam settlementStruct settlement
 
@@ -700,7 +700,7 @@ void luaP::onPluginLoadF()
 
 	/***
 	settlement level increased
-	
+
 	@function onSettlementUpgraded
 	@tparam settlementStruct settlement
 
@@ -998,7 +998,7 @@ void luaP::onPluginLoadF()
 	/***
 	@function onTransgression
 	@tparam factionStruct fac
-	@tparam string description 
+	@tparam string description
 	@tparam factionStruct targetFac
 
 	@usage

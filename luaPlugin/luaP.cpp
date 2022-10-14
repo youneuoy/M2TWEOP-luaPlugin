@@ -1508,7 +1508,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield getResource getResource
 	@tfield int siegesNum
 	@tfield getSiege getSiege
-	
+
 	@table settlementStruct
 	*/
 	types.settlementStruct = luaState.new_usertype<settlementStruct>("settlementStruct");
@@ -1622,13 +1622,13 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tparam int siegeIdx
 	@treturn siegeStruct siege
 	@usage
-	for i = 0, currSet.siegesNum-1 do 
+	for i = 0, currSet.siegesNum-1 do
 	   local siege=currSet:getSiege(i);
 	   --etc
 	end
 	*/
 	types.settlementStruct.set_function("getSiege", &settlementHelpers::getSiege);
-	
+
 
 	///Building table section
 	//@section buildingTable
