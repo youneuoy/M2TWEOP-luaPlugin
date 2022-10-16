@@ -1468,9 +1468,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@treturn int xCoord -1 if there is no dock
 	@treturn int yCoord -1 if there is no dock
 	@usage
-	local ourDock, x, y = ourPort:getDockCoords()
+	local ourDock = ourPort:getDockCoords()
 	if ourDock then
-		print(x..", "..y)
+		print(ourDock.x..", "..ourDock.y)
 	end
 	*/
 	types.portStruct.set_function("getDockCoords", &factionHelpers::getDockCoords);
