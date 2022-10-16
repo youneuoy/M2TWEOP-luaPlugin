@@ -1,10 +1,10 @@
 ///
 //#<a href="./../../index.html">Main page of M2TWEOP docs</a>
-//#<a href="./../Introduction_to_ImGui_v2.pdf">Gui scripting basics by Erken, PDF file </a>
-//#<a href="./../Introduction_to_ImGui_v2.odt">Gui scripting basics by Erken, ODT file </a>
+//#<a href="./../Introduction_to_ImGui_v3.pdf">Gui scripting basics by Erken, PDF file </a>
+//#<a href="./../Introduction_to_ImGui_v3.odt">Gui scripting basics by Erken, ODT file </a>
 //![Lua logo](../Lua.png)
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
-//@module LuaPlugin 
+//@module LuaPlugin
 //@author youneuoy
 //@license GPL-3.0
 #include "luaP.h"
@@ -1570,7 +1570,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tparam int guild_id
 	@tparam int standing
 	@usage
-	settlementStruct:setGuildStanding(0, 300)
+	for i = 0, currSet.siegesNum-1 do
+	   local siege=currSet:getSiege(i);
+	   --etc
+	end
 	*/
 	types.settlementStruct.set_function("setGuildStanding", &settlementHelpers::setGuildStanding);
 	types.settlementStruct.set("buildingsNum", &settlementStruct::buildingsNum);
@@ -1725,19 +1728,21 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.buildingInQueue.set("buildTurnsRemaining", &buildingInQueue::turnsToBuild);
 	types.buildingInQueue.set("percentBuilt", &buildingInQueue::petcentBuilded);
 	/***
-	Get name of building in queue type (chain)
-
-	@function building:getQueueType
-	@treturn string buildingType (building chain name)
+	Get settlement religion value.
+	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
+	@function settlementStruct:getReligion
+	@tparam int religionID in order of descr_religions.txt, started from 0
+	@treturn float religionValue from 0 to 1
 	@usage
 	--see usage for getQueueName()
 	*/
 	types.buildingInQueue.set_function("getQueueType", &buildingStructHelpers::getQueueType);
 	/***
-	Get name of building in queue level
-
-	@function building:getQueueName
-	@treturn string buildingName
+	Set settlement religion value.
+	It is desirable that after your intervention, the sum of the influence of all religions does not exceed 1.
+	@function settlementStruct:setReligion
+	@tparam int religionID in order of descr_religions.txt, started from 0
+	@tparam float religionValue from 0 to 1
 	@usage
 	function printBuildQueueInfo(i, j, sett, resultList)
 		local thisBuilding = sett.buildingsQueue.buildingInQueue[i]
