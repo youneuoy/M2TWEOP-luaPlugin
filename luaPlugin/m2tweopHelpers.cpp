@@ -120,6 +120,10 @@ namespace m2tweopHelpers
 		}
 
 	}
+	int GetUnitSize()
+	{
+		return (*(*plugData::data.funcs.GetUnitSize))();
+	}
 	void setAncLimit(unsigned char limit)
 	{
 		(*(*plugData::data.funcs.setAncLimit))(limit);

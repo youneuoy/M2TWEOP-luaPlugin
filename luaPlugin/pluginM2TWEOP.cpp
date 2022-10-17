@@ -254,6 +254,9 @@ int initPlugin(std::string* modPath)
     fName = "getGuild";
     plugData::data.funcs.getGuild.Load(&plPath, &fName);
 
+    fName = "GetUnitSize";
+    plugData::data.funcs.GetUnitSize.Load(&plPath, &fName);
+
 
 
     //fbx

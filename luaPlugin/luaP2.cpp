@@ -75,6 +75,7 @@ void luaP::initCampaign()
 	@tfield float currentTimeInBattle 24 max, so calc as daysInBattle*24+currentTimeInBattle
 	@tfield checkDipStance checkDipStance
 	@tfield setDipStance setDipStance
+	@tfield GetUnitSize GetUnitSize
 
 	@table gameDataAll.campaignStruct
 	*/
@@ -132,6 +133,15 @@ void luaP::initCampaign()
 	campaign:setDipStance(dipRelType.war,fac1,fac2);
 	*/
 	typeAll.campaignTable.set_function("setDipStance", &m2tweopHelpers::setDipStance);
+	/***
+	Get size of unit(i.e. small or medium, etc). Numbers from 0 to 3
+	@function campaignStruct:GetUnitSize
+	@treturn int unitSize
+	@usage
+	local campaign=gameDataAll.get().campaignStruct;
+	local unitSize=campaign:GetUnitSize();
+	*/
+	typeAll.campaignTable.set_function("GetUnitSize", &m2tweopHelpers::GetUnitSize);
 }
 void luaP::initP2()
 {
