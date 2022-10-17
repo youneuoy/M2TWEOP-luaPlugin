@@ -3,16 +3,18 @@
 #include <string>
 #include "realGameTypes.h"
 #include "luaGetSetFuncs.h"
+#include "lua/sol.hpp"
 namespace factionHelpers
 {
 	std::string getFactionName(const factionStruct* fac);
-
 	generalCharacterictics* getCharacterFromFullList(const factionStruct* fac, int index);
 	general* getCharacterFromGeneralsList(const factionStruct* fac, int index);
 	stackStruct* getStack(const factionStruct* fac, int index);
 	settlementStruct* getSettlement(const factionStruct* fac, int index);
 	fortStruct* getFort(const factionStruct* fac, int index);
 	portBuildingStruct* getPort(const factionStruct* fac, int index);
+	watchTowerStruct* getWatchtower(const factionStruct* fac, int index);
+	sol::table getDockCoords(const portBuildingStruct* port, sol::this_state s);
 
 	//faction
 	template <char fieldIndex>
@@ -46,4 +48,5 @@ namespace factionHelpers
 		luaGetSetFuncs::setGameString(arg, newS.c_str());
 	}
 };
+
 

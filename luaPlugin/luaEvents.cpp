@@ -111,8 +111,12 @@ void luaP::onPluginLoadF()
 	@tfield onBirth onBirth
 	@tfield onCharacterComesOfAge onCharacterComesOfAge
 	@tfield onCharacterMarries onCharacterMarries
+	@tfield onCharacterMarriesPrincess onCharacterMarriesPrincess
 	@tfield onCharacterBecomesAFather onCharacterBecomesAFather
 	@tfield onNewAdmiralCreated onNewAdmiralCreated
+	@tfield onShortcutTriggered onShortcutTriggered
+	@tfield onBecomesFactionLeader onBecomesFactionLeader
+	@tfield onBecomesFactionHeir onBecomesFactionHeir
 
 
 
@@ -180,7 +184,7 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onReadGameDbsAtStart);
 
 	/***
-	Called on clicked at stratmap. Use it ONLY in the way like in usage example!!
+	Called on clicking the stratmap, use ONLY in the same way as the usage example!!
 
 	@function onClickAtTile
 	@tparam int x
@@ -211,7 +215,7 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onClickAtTile);
 
 	/***
-	Called after loading of campaign map
+	Called after loading the campaign map
 
 	@function onCampaignMapLoaded
 
@@ -227,7 +231,7 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onCampaignMapLoaded);
 
 	/***
-	Called on plugin load(at game start)
+	Called on plugin load (at game start)
 
 	@function onPluginLoad
 
@@ -263,21 +267,16 @@ void luaP::onPluginLoadF()
 	@function onCreateSaveFile
 
 	@usage
-		savefiles = {};
-		currentPath=M2TWEOP.getPluginPath();
+		function onCreateSaveFile()
+			local savefiles, currentPath = {}, M2TWEOP.getPluginPath()
+			savefiles[1] = currentPath.."\\testSaveFile1.ourSave"
+			savefiles[2] = currentPath.."\\testSaveFile2.ourSave"
 
-		savefiles[1]=currentPath.."\\testSaveFile1.ourSave";
-		savefiles[2]=currentPath.."\\testSaveFile2.ourSave";
+			file1 = io.open(savefiles[1], "w"); file1:write("This is save file 1!!!"); file1:close()
+			file2 = io.open(savefiles[2], "w"); file2:write("This is save file 2!!!"); file2:close()
 
-		file1 = io.open(savefiles[1], "w")
-		file1:write("This is save file 1!!!")
-		file1:close()
-
-		file2 = io.open(savefiles[2], "w")
-		file2:write("This is save file 2!!!")
-		file2:close()
-
-		return savefiles;
+			return savefiles
+		end
 	*/
 	onCreateSaveFile = new sol::function(luaState["onCreateSaveFile"]);
 	checkLuaFunc(&onCreateSaveFile);
@@ -316,7 +315,7 @@ void luaP::onPluginLoadF()
 
 
 	/***
-	Called on every turn
+	Called at start of new turn
 
 	@function onChangeTurnNum
 	@tparam int turnNumber
@@ -347,21 +346,19 @@ void luaP::onPluginLoadF()
 	onSelectWorldpkgdesc = new sol::function(luaState["onSelectWorldpkgdesc"]);
 	checkLuaFunc(&onSelectWorldpkgdesc);
 	/***
-	Called on select fortificationlevel in siege of settlement.
+	Called on select fortificationlevel in siege of settlement
 
 	@function onfortificationlevelS
 	@tparam settlementStruct siegedSettlement
 	@treturn int overridedFortificationlevel
-	@treturn bool isCastle  overrided settlement type(determine which siege equipment used etc)
+	@treturn bool isCastle override settlement type (siege equipment is slightly different between cities and castles of the same level)
 
 	@usage
 	function onfortificationlevelS(settlement)
-		if(settlement.xCoord==10 and settlement.yCoord==25)
-		then
-			return 3,false;--our overrided level for setlement in coords 10, 25
+		if settlement.xCoord == 10 and settlement.yCoord == 25 then
+			return 3, false --override settlement under siege at these coordinates to level 3 city
 		end
-
-		return nil;--by default not override.
+		return nil --else, do not override
 	end
 	*/
 	onfortificationlevelS = new sol::function(luaState["onfortificationlevelS"]);
@@ -396,7 +393,7 @@ void luaP::onPluginLoadF()
 	onStartSiege = new sol::function(luaState["onStartSiege"]);
 	checkLuaFunc(&onStartSiege);
 	/***
-	Called on character selection
+	a character has been selected by any means (including through the UI)
 
 	@function onCharacterSelected
 	@tparam namedCharacter selectedChar
@@ -687,33 +684,47 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onMultiTurnMoveFunc);
 
 	/***
+	a settlement has been selected by any means (including through the UI)
+
 	@function onSettlementSelected
 	@tparam settlementStruct settlement
 
 	@usage
-	--something
+	function onSettlementSelected(settlement)
+		print("Function: onSettlementSelected()\n\tSettlement: "..settlement.name)
+	end
 	*/
 
 	onSettlementSelectedFunc = new sol::function(luaState["onSettlementSelected"]);
 	checkLuaFunc(&onSettlementSelectedFunc);
 
 	/***
+	settlement level increased
+
 	@function onSettlementUpgraded
 	@tparam settlementStruct settlement
 
 	@usage
-	--something
+	function onSettlementUpgraded(settlement)
+		print("Function: onSettlementUpgraded()\n\tSettlement Level: "..settlement.level)
+	end
 	*/
 
 	onSettlementUpgradedFunc = new sol::function(luaState["onSettlementUpgraded"]);
 	checkLuaFunc(&onSettlementUpgradedFunc);
 
 	/***
+	settlement converted between city and castle
+
 	@function onSettlementConverted
 	@tparam settlementStruct settlement
 
 	@usage
-	--something
+	function onSettlementConverted(settlement)
+		if settlement.isCastle == 1 then
+			--do stuff
+		end
+	end
 	*/
 
 	onSettlementConvertedFunc = new sol::function(luaState["onSettlementConverted"]);
@@ -817,7 +828,7 @@ void luaP::onPluginLoadF()
 	/***
 	@function onAddedToBuildingQueue
 	@tparam settlementStruct settlement
-	@tparam string buildNme
+	@tparam string buildNme level name
 
 
 	@usage
@@ -830,7 +841,7 @@ void luaP::onPluginLoadF()
 	/***
 	@function onBuildingDestroyed
 	@tparam settlementStruct settlement
-	@tparam string buildNme
+	@tparam string buildNme level name
 
 
 	@usage
@@ -1388,7 +1399,9 @@ void luaP::onPluginLoadF()
 	@tparam string guildName
 
 	@usage
-	--something
+	function onGuildUpgraded(sett, guildName)
+		print("Function: onGuildUpgraded()\n\tSettlement: "..sett.name.."\n\tGuild: "..guildName)
+	end
 	*/
 
 	onGuildUpgradedFunc = new sol::function(luaState["onGuildUpgraded"]);
@@ -1400,7 +1413,9 @@ void luaP::onPluginLoadF()
 	@tparam int guildID
 
 	@usage
-	--something
+	function onGuildDestroyed(sett, guildID)
+		print("Function: onGuildDestroyed()\n\tSettlement: "..sett.name.."\n\tID: "..guildID)
+	end
 	*/
 
 	onGuildDestroyedFunc = new sol::function(luaState["onGuildDestroyed"]);
@@ -1452,7 +1467,7 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onCharacterComesOfAgeFunc);
 
 	/***
-	a character has married
+	a character has married (someone who isn't a princess)
 
 	@function onCharacterMarries
 	@tparam namedCharacter husband
@@ -1467,6 +1482,21 @@ void luaP::onPluginLoadF()
 	checkLuaFunc(&onCharacterMarriesFunc);
 
 	/***
+	a character has married a princess agent
+
+	@function onCharacterMarriesPrincess
+	@tparam namedCharacter husband
+
+	@usage
+	function onCharacterMarriesPrincess(husband)
+		print("Function: onCharacterMarriesPrincess()\n\tName: "..husband.fullName.."\n\tSpouse: "..husband.spouse.fullName.."\n\tFaction: "..husband.faction:getFactionName())
+	end
+	*/
+
+	onCharacterMarriesPrincessFunc = new sol::function(luaState["onCharacterMarriesPrincess"]);
+	checkLuaFunc(&onCharacterMarriesPrincessFunc);
+
+	/***
 	a child has been born
 
 	@function onCharacterBecomesAFather
@@ -1476,8 +1506,7 @@ void luaP::onPluginLoadF()
 	function onCharacterBecomesAFather(father)
 		local i, children = 1, ""
 		while father.childs[i] ~= nil do
-			children = children.." "..father.childs[i].fullName..","
-			i = i + 1
+			children, i = children.." "..father.childs[i].fullName..",", i + 1
 		end
 		children = children:gsub(",$", "")
 		print("Function: onCharacterBecomesAFather()\n\tName: "..father.fullName.."\n\tChildren:"..children.."\n\tFaction: "..father.faction:getFactionName())
@@ -1501,8 +1530,48 @@ void luaP::onPluginLoadF()
 	onNewAdmiralCreatedFunc = new sol::function(luaState["onNewAdmiralCreated"]);
 	checkLuaFunc(&onNewAdmiralCreatedFunc);
 
+	/***
+	a shortcut has been used
 
+	@function onShortcutTriggered
+	@tparam string shortcut
 
+	@usage
+	function onShortcutTriggered(shortcut)
+		if shortcut == "strat_ui::mission_button" then
+			--do stuff
+		end
+	end
+	*/
+
+	onShortcutTriggeredFunc = new sol::function(luaState["onShortcutTriggered"]);
+	checkLuaFunc(&onShortcutTriggeredFunc);
+
+	/***
+	@function onBecomesFactionLeader
+	@tparam namedCharacter leader
+
+	@usage
+	function onBecomesFactionLeader(leader)
+		print("Function: onBecomesFactionLeader()\n\tLeader: "..leader.fullName)
+	end
+	*/
+
+	onBecomesFactionLeaderFunc = new sol::function(luaState["onBecomesFactionLeader"]);
+	checkLuaFunc(&onBecomesFactionLeaderFunc);
+
+	/***
+	@function onBecomesFactionHeir
+	@tparam namedCharacter heir
+
+	@usage
+	function onBecomesFactionHeir(heir)
+		print("Function: onBecomesFactionHeir()\n\tHeir: "..heir.fullName)
+	end
+	*/
+
+	onBecomesFactionHeirFunc = new sol::function(luaState["onBecomesFactionHeir"]);
+	checkLuaFunc(&onBecomesFactionHeirFunc);
 
 
 	if (onPluginLoad != nullptr)

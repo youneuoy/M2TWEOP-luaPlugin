@@ -52,35 +52,36 @@ void luaP::initCampaign()
 	//@section campaignStruct
 
 	/***
-	Basic campaign table. Many values here can be changed.
+	Basic campaign table.
 
-	@tfield factionStruct[31] factionsSortedByDescrStrat faction list, use lua indexing here(started from 1)
+	@tfield factionStruct[31] factionsSortedByDescrStrat indexing starts at 1
 	@tfield int numberOfFactions
-	@tfield factionStruct currentFaction faction whose turn is at the moment. You can change this value.
+	@tfield int numberHumanFactions number of player-controlled factions
+	@tfield factionStruct currentFaction faction whose turn is at the moment, can be set
 	@tfield int passedTurnsNum
-	@tfield float timescale
-	@tfield SettlementStruct romeSettlement
-	@tfield SettlementStruct constantinopleSettlement
-	@tfield float BrigandSpawnValue
-	@tfield float PirateSpawnValue
-	@tfield int FreeUpkeepForts the number of units that are kept free of charge in the forts
+	@tfield float timescale factor for number turns per year, see descr_strat.txt
+	@tfield settlementStruct romeSettlement
+	@tfield settlementStruct constantinopleSettlement
+	@tfield float BrigandSpawnValue lower values increase spawn rate
+	@tfield float PirateSpawnValue lower values increase spawn rate
+	@tfield int FreeUpkeepForts number units with free_upkeep_unit EDU attribute who can get free upkeep in forts
 	@tfield float currentDate
-	@tfield int currentseason season(0-summer,1-winter)
+	@tfield int currentseason season (0=summer, 1=winter)
 	@tfield float startDate
-	@tfield int startSeason season(0-summer,1-winter)
+	@tfield int startSeason season (0=summer, 1=winter)
 	@tfield float endDate
-	@tfield int endSeason season(0-summer,1-winter)
+	@tfield int endSeason season (0=summer, 1=winter)
 	@tfield int daysInBattle
 	@tfield float currentTimeInBattle 24 max, so calc as daysInBattle*24+currentTimeInBattle
 	@tfield checkDipStance checkDipStance
 	@tfield setDipStance setDipStance
-	
+
 	@table gameDataAll.campaignStruct
 	*/
 	typeAll.campaignTable = luaState.new_usertype<campaign>("campaignStruct");
 	typeAll.campaignTable.set("factionsSortedByDescrStrat", sol::property([](campaign& self) { return std::ref(self.factionsSortedByDescrStrat); }));
 	typeAll.campaignTable.set("numberOfFactions", &campaign::numberOfFactionsWithSlave);
-
+	typeAll.campaignTable.set("numberHumanFactions", &campaign::humanPlayers);
 	typeAll.campaignTable.set("currentFaction", &campaign::currentFactionTurn);
 
 	typeAll.campaignTable.set("passedTurnsNum", &campaign::TurnNumber);
@@ -88,7 +89,6 @@ void luaP::initCampaign()
 	typeAll.campaignTable.set("timescale", &campaign::TimeScale);
 	typeAll.campaignTable.set("romeSettlement", &campaign::rome);
 	typeAll.campaignTable.set("constantinopleSettlement", &campaign::constantinople);
-
 
 	typeAll.campaignTable.set("BrigandSpawnValue", &campaign::BrigandSpawnValue);
 	typeAll.campaignTable.set("BrigandSpawnValue", &campaign::PirateSpawnValue);
@@ -103,20 +103,15 @@ void luaP::initCampaign()
 	typeAll.campaignTable.set("endDate", &campaign::endDate);
 	typeAll.campaignTable.set("endSeason", &campaign::endSeason);
 
-
 	typeAll.campaignTable.set("daysInBattle", &campaign::daysInBattle);
 	typeAll.campaignTable.set("currentTimeInBattle", &campaign::currentTimeInBattle);
-
-
-
-
 	/***
 	Check diplomatic relations between factions
 	@function campaignStruct:checkDipStance
 	@tparam dipRelType checkType
 	@tparam factionStruct fac1
 	@tparam factionStruct fac2
-	@treturn bool checkResult 
+	@treturn bool checkResult
 	@usage
 	local campaign=gameDataAll.get().campaignStruct;
 	local fac1=campaign.factionsSortedByDescrStrat[1];
@@ -143,12 +138,12 @@ void luaP::initP2()
 	struct
 	{
 		//global game table
-	sol::usertype<gameDataAllStruct> gameDataAllTable;
-	//this inside gameDataAll table
-	sol::usertype<battleDataS> battleTable;
-	sol::usertype<battleSide> battleSideTable;
-	sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
-	sol::usertype<deploymentAreaS> deploymentAreaTable;
+		sol::usertype<gameDataAllStruct> gameDataAllTable;
+		//this inside gameDataAll table
+		sol::usertype<battleDataS> battleTable;
+		sol::usertype<battleSide> battleSideTable;
+		sol::usertype<trackedPointerArmy> trackedPointerArmyTable;
+		sol::usertype<deploymentAreaS> deploymentAreaTable;
 
 	}typeAll;
 	///gameDataAll table section
@@ -157,15 +152,15 @@ void luaP::initP2()
 	/***
 	Basic gameDataAll table
 
-	@tfield get get call it on start of your script, this is static object and pointer to it dont changes
-	@tfield battleStruct battleStruct many battle data
-	@tfield campaignStruct campaignStruct many campaign data
+	@tfield get get
+	@tfield battleStruct battleStruct battle data
+	@tfield campaignStruct campaignStruct campaign data
 
 	@table gameDataAll
 	*/
 	typeAll.gameDataAllTable = luaState.new_usertype<gameDataAllStruct>("gameDataAll");
 	/***
-	Call it on start of your script, this is static object and pointer to it dont changed
+	Call at start of script, this is a static object and pointer to it doesn't change
 	@function gameDataAll.get
 	@treturn gameDataAllStruct gameDataAll
 	@usage
@@ -181,7 +176,6 @@ void luaP::initP2()
 	///battleStruct table section
 	//@section battleStruct
 
-
 	/***
 	basic battleStruct table
 
@@ -191,9 +185,8 @@ void luaP::initP2()
 	@tfield int attackerYCoord
 	@tfield int defenderXCoord
 	@tfield int defenderYCoord
-	@tfield battleSide[8] sides
 	@tfield int sidesNum
-
+	@tfield battleSide[8] sides
 
 	@table gameDataAll.battleStruct
 	*/
@@ -204,18 +197,18 @@ void luaP::initP2()
 	typeAll.battleTable.set("attackerYCoord", &battleDataS::attackerYCoord);
 	typeAll.battleTable.set("defenderXCoord", &battleDataS::defenderXCoord);
 	typeAll.battleTable.set("defenderYCoord", &battleDataS::defenderYCoord);
-	typeAll.battleTable.set("sides", sol::property([](battleDataS& self) { return std::ref(self.sides); }));
 	typeAll.battleTable.set("sidesNum", &battleDataS::sidesNum);
+	typeAll.battleTable.set("sides", sol::property([](battleDataS& self) { return std::ref(self.sides); }));
 
 
 	///battleSide table section
 	//@section battleSide
 
 	/***
-	basic battleStruct table
+	basic battleSide table
 
-	@tfield boolean isDefender
-	@tfield boolean isCanDeploy
+	@tfield bool isDefender
+	@tfield bool isCanDeploy
 	@tfield int[4] winConditions
 	@tfield getWinConditionString getWinConditionString
 	@tfield int armiesNum
@@ -225,29 +218,51 @@ void luaP::initP2()
 
 	@table battleStruct.battleSide
 	*/
-	typeAll.battleSideTable= luaState.new_usertype<battleSide>("battleSide");
+	typeAll.battleSideTable = luaState.new_usertype<battleSide>("battleSide");
 	typeAll.battleSideTable.set("isDefender", &battleSide::isDefender);
 	typeAll.battleSideTable.set("isCanDeploy", &battleSide::isCanDeploy);
 	typeAll.battleSideTable.set("winConditions", sol::property([](battleSide& self) { return std::ref(self.winConditions); }));
 	/***
-	Get win condition string, for example: destroy_or_rout_enemy
-	@function battleSide:getWinConditionString
+	Get win condition string, for example: destroy\_or\_rout_enemy
+	@function battleSide.getWinConditionString
 	@tparam int condition
 	@treturn string winCondition
 	@usage
-	gameData=gameDataAll.get());
-	battleS=gameData.battleStruct;
-	side1=gameData.battleStruct.sides[1];
-	for i=1,4 do
-		winCond=side1.winConditions[i];
-		if(winCond~=0)then
-			print(side1.getWinConditionString(winCond));
+	function onPostBattle(character)
+		getBattleData()
+	end
+
+	function getBattleData()
+		local thisBattle, battleList = gameData.battleStruct, "Function: getBattleData()"
+		for i = 1, thisBattle.sidesNum, 1 do
+			local thisSide = thisBattle.sides[i]
+			battleList = battleList.."\n\tSide "..i.."\n\t\tisDefender: "..tostring(thisSide.isDefender).."\n\t\tisCanDeploy: "..tostring(thisSide.isCanDeploy).."\n\t\tarmiesNum: "..thisSide.armiesNum.."\n\t\twinConditions:"
+			for j = 1, 4, 1 do
+				local thisWinCond = thisSide.winConditions[j]
+				if thisWinCond ~= 0 then
+					battleList = battleList.."\n\t\t\t"..thisSide.getWinConditionString(thisWinCond)
+				end
+			end
+			if thisSide.armies[1] ~= nil then
+				local k = 1
+				repeat
+					local thisArmy = thisSide.armies[k].army
+					if thisArmy ~= nil then
+						battleList = battleList.."\n\t\tArmy "..k.."\n\t\t\tFaction: "..thisArmy.faction:getFactionName()
+						if thisArmy.leader ~= nil then
+							battleList = battleList.."\n\t\t\tLeader: "..thisArmy.leader.namedCharacter.fullName
+						end
+					end
+					k = k + 1
+				until thisSide.armies[k] == nil
+			end
 		end
+		print(battleList)
 	end
 	*/
 	typeAll.battleSideTable.set_function("getWinConditionString", &battleHandlerHelpers::getWinConditionS);
-	typeAll.battleSideTable.set("armies", sol::property([](battleSide& self) { return std::ref(self.armies); }));
 	typeAll.battleSideTable.set("armiesNum", &battleSide::armiesNum);
+	typeAll.battleSideTable.set("armies", sol::property([](battleSide& self) { return std::ref(self.armies); }));
 
 
 	///trackedPointerArmy table section
@@ -266,7 +281,7 @@ void luaP::initP2()
 	typeAll.trackedPointerArmyTable = luaState.new_usertype<trackedPointerArmy>("trackedPointerArmy");
 	typeAll.trackedPointerArmyTable.set("army", &trackedPointerArmy::stack);
 	typeAll.trackedPointerArmyTable.set("deploymentArea", &trackedPointerArmy::deploymentArea);
-	
+
 	///deploymentAreaS table section
 	//@section deploymentAreaS
 
@@ -298,5 +313,5 @@ void luaP::initP2()
 		print(xCoord,yCoord);
 	end
 	*/
-	typeAll.deploymentAreaTable.set("getCoordPair",[](deploymentAreaS& self, int pairNum) { return std::make_tuple(self.coordsPairs[0 + pairNum], self.coordsPairs[1 + pairNum]); });
+	typeAll.deploymentAreaTable.set("getCoordPair", [](deploymentAreaS& self, int pairNum) { return std::make_tuple(self.coordsPairs[0 + pairNum], self.coordsPairs[1 + pairNum]); });
 }

@@ -49,6 +49,12 @@ extern "C" PLUGINM2TWEOP_API void onBrotherAdopted(generalCharacterictics * gen)
 extern "C" PLUGINM2TWEOP_API void onBirth(generalCharacterictics * gen);
 extern "C" PLUGINM2TWEOP_API void onCharacterComesOfAge(generalCharacterictics * gen);
 extern "C" PLUGINM2TWEOP_API void onCharacterMarries(generalCharacterictics * gen);
+extern "C" PLUGINM2TWEOP_API void onCharacterMarriesPrincess(generalCharacterictics * gen);
 extern "C" PLUGINM2TWEOP_API void onCharacterBecomesAFather(generalCharacterictics * gen);
 
 extern "C" PLUGINM2TWEOP_API void onNewAdmiralCreated(generalCharacterictics * pers, settlementStruct * sett);
+
+extern "C" PLUGINM2TWEOP_API void onShortcutTriggered(const char* str);
+
+extern "C" PLUGINM2TWEOP_API void onBecomesFactionLeader(generalCharacterictics * gen);
+extern "C" PLUGINM2TWEOP_API void onBecomesFactionHeir(generalCharacterictics * gen);
