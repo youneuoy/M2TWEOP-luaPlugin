@@ -1,10 +1,10 @@
 ///
 //#<a href="./../../index.html">Main page of M2TWEOP docs</a>
-//#<a href="./../Introduction_to_ImGui_v2.pdf">Gui scripting basics by Erken, PDF file </a>
-//#<a href="./../Introduction_to_ImGui_v2.odt">Gui scripting basics by Erken, ODT file </a>
+//#<a href="./../Introduction_to_ImGui_v3.pdf">Gui scripting basics by Erken, PDF file </a>
+//#<a href="./../Introduction_to_ImGui_v3.odt">Gui scripting basics by Erken, ODT file </a>
 //![Lua logo](../Lua.png)
 //M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
-//@module LuaPlugin 
+//@module LuaPlugin
 //@author youneuoy
 //@license GPL-3.0
 #include "luaP.h"
