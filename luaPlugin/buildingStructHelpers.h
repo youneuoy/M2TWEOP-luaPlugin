@@ -2,16 +2,18 @@
 #include <string>
 #include "realGameTypes.h"
 #include "luaGetSetFuncs.h"
-#define building_dataStruct_type 1
+#include "lua/sol.hpp"
 
+#define building_dataStruct_type 1
 #define buildingDrawInfoStruct_name 1
+
 namespace buildingStructHelpers
 {
 	std::string getType(building* build);
 	std::string getName(building* build);
-
 	std::string getQueueType(buildingInQueue* build);
 	std::string getQueueName(buildingInQueue* build);
+	buildingInQueue* getBuildingInQueue(buildingsQueue* queue, int position);
 
 #pragma region buildingDrawInfo
 

@@ -109,6 +109,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		sol::usertype<watchTowerStruct>watchtowerStruct;
 		sol::usertype<fortStruct>fortStruct;
 		sol::usertype<portBuildingStruct>portStruct;
+		sol::usertype<portDockStrat>dockStruct;
 		sol::usertype<settlementStruct>settlementStruct;
 		sol::usertype<guild>guild;
 		sol::usertype<resStrat>tradeResource;
@@ -1338,10 +1339,10 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	local thisFac, portList = gameDataAll.get().campaignStruct.currentFaction, "Ports:"
 	for i = 0, thisFac.portsNum - 1, 1 do
 		local thisPort = thisFac:getPort(i)
-		local thisDock = thisPort:getDockCoords()
+		local thisDock = thisPort.dock
 		portList = portList.."\n\t"..i.." "..thisPort.settlement.name.." ("..thisPort.xCoord..", "..thisPort.yCoord..") "
 		if thisDock then
-			portList = portList.."\n\t\tDock: ("..thisDock.x..", "..thisDock.y..")"
+			portList = portList.."\n\t\tDock: ("..thisDock.xCoord..", "..thisDock.yCoord..")"
 		end
 		if thisPort.character then
 			portList = portList.."\n\t\tCharacter: "..thisPort.character.namedCharacter.fullName
@@ -1450,7 +1451,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield settlementStruct settlement
 	@tfield character character character on port tile, only the first one, check for nil
 	@tfield stackStruct blockadingArmy enemy army blockading port by standing on tile, check for nil
-	@tfield getDockCoords getDockCoords water tile, only upgraded ports have this
+	@tfield dockStruct dock water tile, only upgraded ports have this, check for nil
 
 	@table portStruct
 	*/
@@ -1461,19 +1462,23 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.portStruct.set("settlement", &portBuildingStruct::settlement);
 	types.portStruct.set("character", &portBuildingStruct::character);
 	types.portStruct.set("blockadingArmy", &portBuildingStruct::occupantsArmy);
+	types.portStruct.set("dock", &portBuildingStruct::portDock);
+
+
+	///DockStruct table section
+	//@section dockStructTable
+
 	/***
-	Get dock coords
-	@function portStruct:getDockCoords
-	@treturn bool isExist only upgraded ports have docks
-	@treturn int xCoord -1 if there is no dock
-	@treturn int yCoord -1 if there is no dock
-	@usage
-	local ourDock, x, y = ourPort:getDockCoords()
-	if ourDock then
-		print(x..", "..y)
-	end
+	Basic dockStruct table
+
+	@tfield int xCoord water tile, note: setting only moves dock strat model
+	@tfield int yCoord water tile, note: setting only moves dock strat model
+
+	@table dockStruct
 	*/
-	types.portStruct.set_function("getDockCoords", &factionHelpers::getDockCoords);
+	types.dockStruct = luaState.new_usertype<portDockStrat>("dockStruct");
+	types.dockStruct.set("xCoord", &portDockStrat::xCoord);
+	types.dockStruct.set("yCoord", &portDockStrat::yCoord);
 
 
 	///SettlementStruct table section
@@ -1645,7 +1650,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@table building
 	*/
 	types.building = luaState.new_usertype<building>("building");
-	types.building.set("buildingData", &building::bData);
 	types.building.set("level", &building::level);
 	types.building.set("hp", &building::hp);
 	types.building.set("settlement", &building::settlement);
@@ -1656,7 +1660,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@treturn string buildingType (building chain name)
 	@usage
 	if building:getType() == "core_building" then
-		--something
+		--do stuff
 	end
 	*/
 	types.building.set_function("getType", &buildingStructHelpers::getType);
@@ -1667,7 +1671,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@treturn string buildingName
 	@usage
 	if building:getName() == "large_stone_wall" then
-		--something
+		--do stuff
 	end
 	*/
 	types.building.set_function("getName", &buildingStructHelpers::getName);
@@ -1679,20 +1683,32 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Basic buildingsQueue table
 
-	@tfield int firstIndex index (0-5) of building in first position (currently under construction), not necessarily 0 as buildingsQueue uses a circular buffer
-	@tfield int lastIndex index (0-5) of last building in the queue
-	@tfield int currentBuildingPosition position in the queue (1-6) that is currently under construction, usually 1
+	@tfield int currentlyBuilding position in queue of building currently under construction, usually 1
 	@tfield int numBuildingsInQueue maximum is 6
-	@tfield buildingInQueue[6] buildingInQueue index+1 (1-6), see usage for getQueueName()
+	@tfield getBuildingInQueue getBuildingInQueue by position in queue (1-6)
 
 	@table buildingsQueue
 	*/
 	types.buildingsQueue = luaState.new_usertype<buildingsQueue>("buildingsQueue");
-	types.buildingsQueue.set("firstIndex", &buildingsQueue::firstIndex);
-	types.buildingsQueue.set("lastIndex", &buildingsQueue::lastIndex);
-	types.buildingsQueue.set("currentBuildingPosition", &buildingsQueue::currentBuildingIndex);
+	types.buildingsQueue.set("currentlyBuilding", &buildingsQueue::currentBuildingIndex);
 	types.buildingsQueue.set("numBuildingsInQueue", &buildingsQueue::buildingsInQueue);
-	types.buildingsQueue.set("buildingInQueue", sol::property([](buildingsQueue& self) { return std::ref(self.items); }));
+	/***
+	Get building in queue by position
+
+	@function buildingsQueue:getBuildingInQueue
+	@tparam int position
+	@treturn buildingInQueue buildingInQueue
+	@usage
+	if ourQueue.numBuildingsInQueue > 0 then
+		local result = "ourQueue:\n\t"
+		for i = 1, ourQueue.numBuildingsInQueue, 1 do
+			local ourQueueBuld = ourQueue:getBuildingInQueue(i)
+			result = result..i.." "..ourQueueBuld:getQueueBuildingName().."\n\t"
+		end
+		print(result)
+	end
+	*/
+	types.buildingsQueue.set_function("getBuildingInQueue", &buildingStructHelpers::getBuildingInQueue);
 
 
 	///BuildingInQueue table section
@@ -1709,13 +1725,12 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield int buildTurnsPassed
 	@tfield int buildTurnsRemaining
 	@tfield int percentBuilt
-	@tfield getQueueType getQueueType
-	@tfield getQueueName getQueueName
+	@tfield getQueueBuildingType getQueueBuildingType
+	@tfield getQueueBuildingName getQueueBuildingName
 
 	@table buildingInQueue
 	*/
 	types.buildingInQueue = luaState.new_usertype<buildingInQueue>("buildingInQueue");
-	types.buildingInQueue.set("buildingData", &buildingInQueue::buildingData);
 	types.buildingInQueue.set("building", &buildingInQueue::existsBuilding);
 	types.buildingInQueue.set("settlement", &buildingInQueue::settlement);
 	types.buildingInQueue.set("currentLevel", &buildingInQueue::currentLevel);
@@ -1727,42 +1742,25 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	/***
 	Get name of building in queue type (chain)
 
-	@function building:getQueueType
+	@function building:getQueueBuildingType
 	@treturn string buildingType (building chain name)
 	@usage
-	--see usage for getQueueName()
+	if ourQueueBld:getQueueBuildingType() = "core_building" then
+		--do stuff
+	end
 	*/
-	types.buildingInQueue.set_function("getQueueType", &buildingStructHelpers::getQueueType);
+	types.buildingInQueue.set_function("getQueueBuildingType", &buildingStructHelpers::getQueueType);
 	/***
 	Get name of building in queue level
 
-	@function building:getQueueName
+	@function building:getQueueBuildingName
 	@treturn string buildingName
 	@usage
-	function printBuildQueueInfo(i, j, sett, resultList)
-		local thisBuilding = sett.buildingsQueue.buildingInQueue[i]
-		resultList = resultList.."\n\tBuilding Position: "..j.." Index: "..i.."\n\t\tBuilding: "..thisBuilding:getQueueType().." "..thisBuilding:getQueueName().."\n\t\tcurrentLevel: "..thisBuilding.currentLevel.."\n\t\tpreviousLevel: "..thisBuilding.previousLevel.."\n\t\tbuildCost: "..thisBuilding.buildCost.."\n\t\tbuildTurnsRemaining: "..thisBuilding.buildTurnsRemaining.."\n\t\tbuildTurnsPassed: "..thisBuilding.buildTurnsPassed.."\n\t\tpercentBuilt: "..thisBuilding.percentBuilt
-		if thisBuilding.building ~= nil then
-			resultList = resultList.."\n\tBuilding upgraded from: "..thisBuilding.building:getName()
-		end
-		return resultList
-	end
-
-	function onAddedToBuildingQueue(sett, buildName)
-		local resultList, i, j = "Function: onAddedToBuildingQueue\n\tSettlement: "..sett.name.."\n\tBuilding: "..buildName.."\n\tBuilding Queue Data:\n\t\tfirstIndex: "..sett.buildingsQueue.firstIndex.."\n\t\tlastIndex: "..sett.buildingsQueue.lastIndex.."\n\t\tnumBuildingsInQueue: "..sett.buildingsQueue.numBuildingsInQueue.."\n\t\tcurrentBuildingPosition: "..sett.buildingsQueue.currentBuildingPosition, sett.buildingsQueue.firstIndex + 1, 1
-		if sett.buildingsQueue.firstIndex == sett.buildingsQueue.lastIndex then
-			resultList = printBuildQueueInfo(i, j, sett, resultList)
-		else
-			repeat
-				resultList = printBuildQueueInfo(i, j, sett, resultList)
-				j = j + 1; i = i + 1; if i > 6 then i = i - 6 end
-			until i == sett.buildingsQueue.lastIndex + 1
-			resultList = printBuildQueueInfo(i, j, sett, resultList)
-		end
-		print(resultList)
+	if ourQueueBld:getQueueBuildingName() = "wooden_pallisade" then
+		--do stuff
 	end
 	*/
-	types.buildingInQueue.set_function("getQueueName", &buildingStructHelpers::getQueueName);
+	types.buildingInQueue.set_function("getQueueBuildingName", &buildingStructHelpers::getQueueName);
 
 
 	///Guild table section
