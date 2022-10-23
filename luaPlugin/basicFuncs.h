@@ -202,6 +202,9 @@ public:
 
 	ProcLoader<guild* (_cdecl*)(unsigned char)> getGuild;
 
+
+	ProcLoader<int (_cdecl*)()> GetUnitSize;
+
 };
 
 

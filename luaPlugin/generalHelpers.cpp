@@ -26,7 +26,7 @@ namespace generalHelpers
 		{
 			un->general = gen;
 			un->trackedUnitPointerP = gen->bodyguards->trackedUnitPointerP;
-			gen->bodyguards->trackedUnitPointerP = 0;
+			gen->bodyguards->trackedUnitPointerP = 0;///
 			gen->bodyguards->general = 0;
 
 			gen->bodyguards = un;

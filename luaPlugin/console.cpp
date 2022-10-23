@@ -70,41 +70,32 @@ namespace console
 
 
 		ImGuiWindowFlags iwf = ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollWithMouse;
-		ImGui::SetNextWindowSize(ImVec2(800, 0), ImGuiCond_Once);
+		ImGui::SetNextWindowSize(ImVec2(800, 400), ImGuiCond_Once);
 		ImGui::SetNextWindowPos(ImVec2(0.5f, 0.5f), ImGuiCond_Always, ImVec2(0.0f, 0.0f));
 
-
-		ImGui::Begin("##consoleWindow", NULL, iwf);
-
-
-		ImGui::BeginChild("##consoleLogW", ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() * 12), false, ImGuiWindowFlags_HorizontalScrollbar);
-		
-		ImGui::PushStyleVar(ImGuiStyleVar_ItemInnerSpacing, ImVec2(0, 0));
-		ImGuiListClipper clipper;
-		clipper.Begin(plugData::data.luaAll.logS.size());
-		while (clipper.Step())
-		{
-			for (int line_no = clipper.DisplayStart; line_no < clipper.DisplayEnd; line_no++)
-			{
-				std::string* currS = &plugData::data.luaAll.logS[line_no];
-
-				ImGui::PushID(currS);
-				ImGui::SetNextItemWidth(-1);
-				ImGui::InputTextMultiline("##consoleLog", currS, ImVec2(0, 0), ImGuiInputTextFlags_ReadOnly);
-				ImGui::PopID();
-			}
-		}
-		clipper.End();
-		ImGui::PopStyleVar();
-		if (ImGui::GetScrollY() >= ImGui::GetScrollMaxY())
-			ImGui::SetScrollHereY(1.0f);
-		ImGui::EndChild();
-
-		ImGui::InputTextMultiline("##console", &consoleData.input, ImVec2(-FLT_MIN, ImGui::GetTextLineHeight() *4), ImGuiInputTextFlags_AllowTabInput);
+		ImGui::Begin("##consoleInWindow", NULL, iwf);
 		if (ImGui::Button("Run"))
 		{
 			applyCommand();
 		}
+
+		ImGui::InputTextMultiline("##console", &consoleData.input, ImVec2(-FLT_MIN, -FLT_MIN), ImGuiInputTextFlags_AllowTabInput);
+		ImGui::End();
+
+
+		ImGui::SetNextWindowPos(ImVec2(ImGui::GetIO().DisplaySize.x,0), ImGuiCond_Always, ImVec2(1.0f, 0.0f));
+		ImGui::SetNextWindowSize(ImVec2(800, 400), ImGuiCond_Once);
+		ImGui::Begin("##consoleWindow", NULL, iwf);
+
+		std::string outputs;
+
+		for (auto& str : plugData::data.luaAll.logS)
+		{
+			outputs += str;
+			outputs += "\n";
+		}
+
+		ImGui::InputTextMultiline("##consoleLog", &outputs, ImVec2(-FLT_MIN, -FLT_MIN), ImGuiInputTextFlags_ReadOnly);
 
 		ImGui::End();
 	}

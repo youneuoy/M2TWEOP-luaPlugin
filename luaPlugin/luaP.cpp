@@ -1344,12 +1344,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		if thisDock then
 			portList = portList.."\n\t\tDock: ("..thisDock.xCoord..", "..thisDock.yCoord..")"
 		end
-		if thisPort.character then
-			portList = portList.."\n\t\tCharacter: "..thisPort.character.namedCharacter.fullName
-		end
-		if thisPort.blockadingArmy then
-			portList = portList.."\n\t\tArmy Size: "..thisPort.blockadingArmy.numOfUnits
-		end
 	end
 	print(portList)
 	*/
@@ -1369,6 +1363,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	print(watchtowerList)
 	*/
 	types.factionStruct.set_function("getWatchtower", &factionHelpers::getWatchtower);
+
 
 	///FactionStratMapStruct table section
 	//@section factionStratMapStructTable
@@ -1400,6 +1395,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStratMapStruct.set("standardIndex", &factionStratMapDescrS::standard_index);
 	types.factionStratMapStruct.set("logoIndex", &factionStratMapDescrS::logo_index);
 	types.factionStratMapStruct.set("smallLogoIndex", &factionStratMapDescrS::small_logo_index);
+
 
 	///WatchtowerStruct table section
 	//@section watchtowerStructTable
@@ -1452,6 +1448,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield character character character on port tile, only the first one, check for nil
 	@tfield stackStruct blockadingArmy enemy army blockading port by standing on tile, check for nil
 	@tfield dockStruct dock water tile, only upgraded ports have this, check for nil
+
 
 	@table portStruct
 	*/

@@ -39,6 +39,7 @@ namespace m2tweopHelpers
 
 	bool checkDipStance(campaign*campaignStruct,campaignEnums::dipRelEnum dipType,factionStruct* fac1, factionStruct* fac2);
 	void setDipStance(campaign*campaignStruct,campaignEnums::dipRelEnum dipType,factionStruct* fac1, factionStruct* fac2);
+	int GetUnitSize();
 
 	void setAncLimit(unsigned char limit);
 	void seReligionsLimit(unsigned char limit);
