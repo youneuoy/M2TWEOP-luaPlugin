@@ -14,7 +14,6 @@ namespace factionHelpers
 	fortStruct* getFort(const factionStruct* fac, int index);
 	portBuildingStruct* getPort(const factionStruct* fac, int index);
 	watchTowerStruct* getWatchtower(const factionStruct* fac, int index);
-	sol::table getDockCoords(const portBuildingStruct* port, sol::this_state s);
 
 	//faction
 	template <char fieldIndex>

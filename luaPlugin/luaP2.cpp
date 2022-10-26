@@ -236,7 +236,7 @@ void luaP::initP2()
 	Get win condition string, for example: destroy\_or\_rout_enemy
 	@function battleSide.getWinConditionString
 	@tparam int condition
-	@treturn string winCondition
+	@treturn string winCondition destroy\_or\_rout\_enemy, balance\_of\_strength\_percent, destroy\_enemy\_strength\_percent, capture\_location, destroy\_character, capture\_major\_settlement, capture\_army\_settlement, unknown\_condition
 	@usage
 	function onPostBattle(character)
 		getBattleData()
