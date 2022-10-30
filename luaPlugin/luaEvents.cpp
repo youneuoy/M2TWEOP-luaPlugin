@@ -8,7 +8,7 @@
 #include "plugData.h"
 void luaP::onPluginLoadF()
 {
-	///EVENTS TABLE SECTION
+	///EOP Events
 	//@section eventsList
 
 	/***

@@ -19,7 +19,7 @@ void luaP::initCampaign()
 	}typeAll;
 	using namespace campaignEnums;
 
-	///campaign enums section
+	/// Campaign Enums
 	//@section campaignEnums
 
 	/***
@@ -48,7 +48,7 @@ void luaP::initCampaign()
 		"trade", dipRelEnum::trade
 	);
 
-	///campaign table section
+	/// Campaign
 	//@section campaignStruct
 
 	/***
@@ -156,7 +156,7 @@ void luaP::initP2()
 		sol::usertype<deploymentAreaS> deploymentAreaTable;
 
 	}typeAll;
-	///gameDataAll table section
+	///gameDataAll
 	//@section gameDataAll
 
 	/***
@@ -183,7 +183,7 @@ void luaP::initP2()
 
 
 
-	///battleStruct table section
+	///battleStruct
 	//@section battleStruct
 
 	/***
@@ -211,7 +211,7 @@ void luaP::initP2()
 	typeAll.battleTable.set("sides", sol::property([](battleDataS& self) { return std::ref(self.sides); }));
 
 
-	///battleSide table section
+	///battleSide
 	//@section battleSide
 
 	/***
@@ -275,7 +275,7 @@ void luaP::initP2()
 	typeAll.battleSideTable.set("armies", sol::property([](battleSide& self) { return std::ref(self.armies); }));
 
 
-	///trackedPointerArmy table section
+	///trackedPointerArmy
 	//@section trackedPointerArmy
 
 	/***
@@ -292,7 +292,7 @@ void luaP::initP2()
 	typeAll.trackedPointerArmyTable.set("army", &trackedPointerArmy::stack);
 	typeAll.trackedPointerArmyTable.set("deploymentArea", &trackedPointerArmy::deploymentArea);
 
-	///deploymentAreaS table section
+	///deploymentAreaS
 	//@section deploymentAreaS
 
 	/***

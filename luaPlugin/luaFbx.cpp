@@ -14,7 +14,7 @@ void luaP::initEopFbx()
 	{
 		sol::table M2TWEOPFBXTable;
 	}tables;
-	///M2TWEOPFBX table section
+	///M2TWEOPFBX
 	//@section M2TWEOPFBXTable
 
 	/***

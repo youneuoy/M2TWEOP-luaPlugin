@@ -1,9 +1,4 @@
 ///
-//#<a href="./../../index.html">Main page of M2TWEOP docs</a>
-//#<a href="./../Introduction_to_ImGui_v3.pdf">Gui scripting basics by Erken, PDF file </a>
-//#<a href="./../Introduction_to_ImGui_v3.odt">Gui scripting basics by Erken, ODT file </a>
-//![Lua logo](../Lua.png)
-//M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
 //@module LuaPlugin
 //@author youneuoy
 //@license GPL-3.0
@@ -166,7 +161,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		return nullptr;
 	}
 
-	///M2TWEOP table section
+	///M2TWEOP
 	//@section m2tweopTable
 
 	/***
@@ -364,7 +359,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("getRegionOwner", &m2tweopHelpers::getRegionOwner);
 
-	///gameSTDUI table section
+	///gameSTDUI
 	//@section gameSTDUITable
 
 	/***
@@ -397,7 +392,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.gameUITable.set_function("getUiElement", &gameSTDUIHelpers::getUiElement);
 
-	///uiElementStruct table section
+	///uiElementStruct
 	//@section uiElementStructTable
 
 	/***
@@ -444,7 +439,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement.set("execute", &gameSTDUIHelpers::useUiElement);
 
 
-	///Objects table section
+	///Objects
 	//@section objectsTable
 
 
@@ -496,7 +491,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.objectsTable.set_function("replaceTile", &objectsHelpers::replaceTile);
 
-	///Camera table section
+	///Camera
 	//@section cameraTable
 
 
@@ -537,7 +532,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.cameraTable.set_function("zoom", &cameraHelpers::zoomStratCamera);
 
-	///Game table section
+	///Game
 	//@section gameTable
 
 
@@ -648,7 +643,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	stratmap.game.setScriptCounter("SomeCounter", 25)
 	*/
 	tables.gameTable.set_function("setScriptCounter", &gameHelpers::setScriptCounter);
-	///Stratmap table section
+	///Stratmap
 	//@section stratmapTable
 
 	/***
@@ -668,7 +663,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.stratmapTable.set("camera", tables.cameraTable);
 	tables.stratmapTable.set("game", tables.gameTable);
 
-	///Unit table section
+	///Unit
 	//@section unitTable
 
 	/***
@@ -722,7 +717,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit.set("alias", sol::property(&technicalHelpers::unitUniStringToStr, &technicalHelpers::setUnitUniStr));
 
 
-	///EduEntry table section
+	///EduEntry
 	//@section eduEntryTable
 
 	/***
@@ -796,7 +791,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.EduEntry.set("StatCost8", &EduEntry::StatCost8);
 
 
-	///Character table section
+	///Character
 	//@section characterTable
 
 	/***
@@ -908,7 +903,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.character.set_function("setBodyguardUnit", &generalHelpers::setBodyguard);
 
 
-	///NamedCharacter table section
+	///NamedCharacter
 	//@section namedCharacterTable
 
 	/***
@@ -1165,7 +1160,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("battleSurgery", &generalCharacterictics::battleSurgery);
 
 
-	///Ancillary table section
+	///Ancillary
 	//@section ancillaryTable
 
 	/***
@@ -1187,7 +1182,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		));
 
 
-	///traitContainer table section
+	///traitContainer
 	//@section traitsTable
 
 	/***
@@ -1207,7 +1202,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.traitContainerT.set("prevTrait", sol::property(&luaGetSetFuncs::getPrevTrait));
 
 
-	///FactionStruct table section
+	///FactionStruct
 	//@section factionStructTable
 
 	/***
@@ -1365,7 +1360,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStruct.set_function("getWatchtower", &factionHelpers::getWatchtower);
 
 
-	///FactionStratMapStruct table section
+	///FactionStratMapStruct
 	//@section factionStratMapStructTable
 
 	/***
@@ -1397,7 +1392,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStratMapStruct.set("smallLogoIndex", &factionStratMapDescrS::small_logo_index);
 
 
-	///WatchtowerStruct table section
+	///WatchtowerStruct
 	//@section watchtowerStructTable
 
 	/***
@@ -1412,7 +1407,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.watchtowerStruct.set("xCoord", &watchTowerStruct::xCoord);
 	types.watchtowerStruct.set("yCoord", &watchTowerStruct::yCoord);
 
-	///FortStruct table section
+	///FortStruct
 	//@section fortStructTable
 
 	/***
@@ -1435,7 +1430,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.fortStruct.set("ownerFaction", &fortStruct::faction);
 	types.fortStruct.set("siege", &fortStruct::siege);
 
-	///PortStruct table section
+	///PortStruct
 	//@section portStructTable
 
 	/***
@@ -1462,7 +1457,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.portStruct.set("dock", &portBuildingStruct::portDock);
 
 
-	///DockStruct table section
+	///DockStruct
 	//@section dockStructTable
 
 	/***
@@ -1478,7 +1473,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.dockStruct.set("yCoord", &portDockStrat::yCoord);
 
 
-	///SettlementStruct table section
+	///SettlementStruct
 	//@section settlementStructTable
 
 	/***
@@ -1632,7 +1627,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.settlementStruct.set_function("getSiege", &settlementHelpers::getSiege);
 
 
-	///Building table section
+	///Building
 	//@section buildingTable
 
 	/***
@@ -1674,7 +1669,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.building.set_function("getName", &buildingStructHelpers::getName);
 
 
-	///BuildingsQueue table section
+	///BuildingsQueue
 	//@section buildingsQueueTable
 
 	/***
@@ -1708,7 +1703,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.buildingsQueue.set_function("getBuildingInQueue", &buildingStructHelpers::getBuildingInQueue);
 
 
-	///BuildingInQueue table section
+	///BuildingInQueue
 	//@section buildingInQueueTable
 
 	/***
@@ -1760,7 +1755,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.buildingInQueue.set_function("getQueueBuildingName", &buildingStructHelpers::getQueueName);
 
 
-	///Guild table section
+	///Guild
 	//@section guildTable
 
 	/***
@@ -1782,7 +1777,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.guild.set("level2", &guild::level2Threshold);
 	types.guild.set("level3", &guild::level3Threshold);
 
-	///TradeResource table section
+	///TradeResource
 	//@section tradeResource
 
 	/***
@@ -1857,7 +1852,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.tradeResource.set_function("getResourceImage", &resourcesHelpers::getImage);
 
-	///StackStruct table section
+	///StackStruct
 	//@section stackStructTable
 
 	/***
@@ -2011,7 +2006,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.stackStruct.set_function("attackArmy", &stackStructHelpers::attackArmy);
 
 	types.stackStruct.set("siege", &stackStruct::siege);
-	///siegeStruct table section
+	///siegeStruct
 	//@section siegeStruct
 
 	/***
