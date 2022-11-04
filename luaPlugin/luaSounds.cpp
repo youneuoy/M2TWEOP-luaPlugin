@@ -18,7 +18,7 @@ void luaP::initEopSounds()
 	}tables;
 
 
-	///M2TWEOPSounds table section
+	///M2TWEOPSounds
 	//@section M2TWEOPSounds
 
 	/***

@@ -1,9 +1,4 @@
 ///
-//#<a href="./../../index.html">Main page of M2TWEOP docs</a>
-//#<a href="./../Introduction_to_ImGui_v3.pdf">Gui scripting basics by Erken, PDF file </a>
-//#<a href="./../Introduction_to_ImGui_v3.odt">Gui scripting basics by Erken, ODT file </a>
-//![Lua logo](../Lua.png)
-//M2TWEOP structures and functions. There are not many examples and descriptions here. Also note that the examples do not include many of the checks that would be required when creating modifications.
 //@module LuaPlugin
 //@author youneuoy
 //@license GPL-3.0
@@ -50,8 +45,6 @@ void replaceAll2(std::string& s, const std::string& search, const std::string& r
 		s.insert(pos, replace);
 	}
 }
-
-
 
 void luaP::runScriptS(std::string* script)
 {
@@ -166,7 +159,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		return nullptr;
 	}
 
-	///M2TWEOP table section
+	///M2TWEOP
 	//@section m2tweopTable
 
 	/***
@@ -194,7 +187,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	/***
-	Get mod path
+	Function to return the path to the mod folder, starts from the drive not the game folder.
 
 
 	@function M2TWEOP.getModPath
@@ -207,7 +200,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.M2TWEOPTable.set_function("getModPath", &m2tweopHelpers::getModPath);
 	/***
-	Get path of the plugin(your lua files here)
+	Function to return the path to the plugin (location of your LUA files).
 	@function M2TWEOP.getPluginPath
 	@treturn string plugin path
 	@usage
@@ -242,7 +235,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("unloadTexture", &m2tweopHelpers::unloadTextureFromGame);
 	/***
-	Set limit of ancillaries
+	Sets the limit of ancillaries per character on the stratmap.
 	@function M2TWEOP.setAncillariesLimit
 	@tparam int newLimit default: 8, maximum: 127
 	@usage
@@ -250,23 +243,23 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("setAncillariesLimit", &m2tweopHelpers::setAncLimit);
 	/***
-	Unloc all console commands, also allow use change_faction console command
+	Unlocks all console commands, also allows the use of the 'control' command to change factions in singleplayer campaigns.
 	@function M2TWEOP.unlockGameConsoleCommands
 	@usage
 	M2TWEOP.unlockGameConsoleCommands();
 	*/
 	tables.M2TWEOPTable.set_function("unlockGameConsoleCommands", &m2tweopHelpers::unlockGameConsoleCommands);
 	/***
-	Set new max bodyguard size
+	Sets the maximum amount of soldiers a general's bodyguard unit can replenish to.
 	@function M2TWEOP.setMaxBgSize
-	@tparam int newSize maximum: 255
+	@tparam int newSize default: 77, maximum: 255 (Huge unit size).
 	@usage
 	M2TWEOP.setMaxBgSize(222);
 	*/
 	tables.M2TWEOPTable.set_function("setMaxBgSize", &m2tweopHelpers::setMaxBgSize);
 
 	/***
-	Set new edu units size
+	Sets the new maximum soldier count.
 	@function M2TWEOP.setEDUUnitsSize
 	@tparam int minSize maximum: 300
 	@tparam int maxSize maximum: 300
@@ -276,7 +269,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setEDUUnitsSize", &m2tweopHelpers::setEDUUnitsSize);
 
 	/***
-	* Set the new limit of building levels in a building chain
+	* Sets the new maximum amount of building levels within a chain.
 	* @function M2TWEOP.setBuildingChainLimit
 	* @tparam int limit default: 9
 	* @usage
@@ -286,7 +279,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setBuildingChainLimit", &m2tweopHelpers::setBuildingChainLimit);
 
 	/***
-	* Set which level of castle converts to which lvl of city
+	* Sets which level of castle converts to which level of city.
 	* @function M2TWEOP.setConversionLvlFromCastle
 	* @tparam int castleLvl 0-5
 	* @tparam int convertToLvl 0-6, 6 means conversion from that level is disabled
@@ -296,7 +289,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setConversionLvlFromCastle", &m2tweopHelpers::setConversionLvlFromCastle);
 
 	/***
-	* Set which level of city converts to which lvl of castle
+	* Sets which level of city converts to which level of castle.
 	* @function M2TWEOP.setConversionLvlFromCity
 	* @tparam int cityLvl 0-5
 	* @tparam int convertToLvl 0-6, 6 means conversion from that level is disabled
@@ -306,7 +299,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setConversionLvlFromCity", &m2tweopHelpers::setConversionLvlFromCity);
 
 	/***
-	* Set min number turns until next guild offer after a rejection
+	* Sets the minimum number of turns until the next guild offer after a rejection by the player.
 	* @function M2TWEOP.setGuildCooldown
 	* @tparam int turns default: 10
 	* @usage
@@ -316,7 +309,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	/***
-	toggle the highlighting of units on the tactical map.
+	Toggle the highlighting of units on the tactical map (Currently broken!).
 	@function M2TWEOP.toggleUnitsBMapHighlight
 	@usage
 	M2TWEOP.toggleUnitsBMapHighlight();
@@ -325,7 +318,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	/***
-	Set limit of religions
+	Set the maximum number of religions in the mod (per descr_religions.txt)
 	@function M2TWEOP.setReligionsLimit
 	@tparam int newLimit maximum: 127
 	@usage
@@ -334,17 +327,17 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setReligionsLimit", &m2tweopHelpers::seReligionsLimit);
 
 	/***
-	Check tile
+	Checks if a tile is free.
 	@function M2TWEOP.isTileFree
-	@tparam int x
-	@tparam int y
-	@treturn bool isFree
+   	@tparam int X coordinate of the tile.
+   	@tparam int Y coordinate of the tile.
+   	@return boolean isFree
 	@usage
 	M2TWEOP.isTileFree(55,25);
 	*/
 	tables.M2TWEOPTable.set_function("isTileFree", &m2tweopHelpers::isTileFree);
 	/***
-	Get tile region ID
+	Get the RegionID of a tile.
 	@function M2TWEOP.getTileRegionID
 	@tparam int x
 	@tparam int y
@@ -354,7 +347,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("getTileRegionID", &m2tweopHelpers::getTileRegionID);
 	/***
-	Get faction owner region with ID
+	Get the owner of a region by RegionID.
 	@function M2TWEOP.getRegionOwner
 	@tparam int regionID
 	@treturn factionStruct owner
@@ -364,7 +357,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("getRegionOwner", &m2tweopHelpers::getRegionOwner);
 
-	///gameSTDUI table section
+	/// gameSTDUITable
 	//@section gameSTDUITable
 
 	/***
@@ -379,7 +372,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.gameUITable = luaState.create_table("gameSTDUI");
 	/***
-	get standart game UI element, element must be opened
+	Get a game UI element, element must be opened.
 	@function gameSTDUI.getUiElement
 	@tparam string elementName
 	@treturn uiElementStruct element
@@ -397,7 +390,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.gameUITable.set_function("getUiElement", &gameSTDUIHelpers::getUiElement);
 
-	///uiElementStruct table section
+	///uiElementStruct
 	//@section uiElementStructTable
 
 	/***
@@ -423,9 +416,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement.set("yPos", &uiElement::yPos);
 	types.uiElement.set("subElementsNum", &uiElement::subElementsNum);
 	/***
-	get subelement of UI element with index
+	Get a subelement of an UI element using the index.
 	@function gameSTDUI.getSubElement
-	@tparam int index starting from 0
+	@tparam int index Starts from 0.
 	@treturn uiElementStruct subelement
 	@usage
 	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
@@ -444,7 +437,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement.set("execute", &gameSTDUIHelpers::useUiElement);
 
 
-	///Objects table section
+	///Strat Map Objects
 	//@section objectsTable
 
 
@@ -456,8 +449,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield replaceTile  replaceTile
 
 	@table stratmap.objects
-	*/
 	tables.objectsTable = luaState.create_table();
+	*/
 
 
 	/***
@@ -496,7 +489,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.objectsTable.set_function("replaceTile", &objectsHelpers::replaceTile);
 
-	///Camera table section
+	///Camera
 	//@section cameraTable
 
 
@@ -537,7 +530,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.cameraTable.set_function("zoom", &cameraHelpers::zoomStratCamera);
 
-	///Game table section
+	///Game
 	//@section gameTable
 
 
@@ -648,7 +641,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	stratmap.game.setScriptCounter("SomeCounter", 25)
 	*/
 	tables.gameTable.set_function("setScriptCounter", &gameHelpers::setScriptCounter);
-	///Stratmap table section
+	///Stratmap
 	//@section stratmapTable
 
 	/***
@@ -668,7 +661,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.stratmapTable.set("camera", tables.cameraTable);
 	tables.stratmapTable.set("game", tables.gameTable);
 
-	///Unit table section
+	///Unit
 	//@section unitTable
 
 	/***
@@ -722,7 +715,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.unit.set("alias", sol::property(&technicalHelpers::unitUniStringToStr, &technicalHelpers::setUnitUniStr));
 
 
-	///EduEntry table section
+	///EduEntry
 	//@section eduEntryTable
 
 	/***
@@ -796,7 +789,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.EduEntry.set("StatCost8", &EduEntry::StatCost8);
 
 
-	///Character table section
+	///Character
 	//@section characterTable
 
 	/***
@@ -908,7 +901,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.character.set_function("setBodyguardUnit", &generalHelpers::setBodyguard);
 
 
-	///NamedCharacter table section
+	///NamedCharacter
 	//@section namedCharacterTable
 
 	/***
@@ -1165,7 +1158,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.namedCharacter.set("battleSurgery", &generalCharacterictics::battleSurgery);
 
 
-	///Ancillary table section
+	///Ancillary
 	//@section ancillaryTable
 
 	/***
@@ -1187,7 +1180,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 		));
 
 
-	///traitContainer table section
+	///traitContainer
 	//@section traitsTable
 
 	/***
@@ -1207,7 +1200,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.traitContainerT.set("prevTrait", sol::property(&luaGetSetFuncs::getPrevTrait));
 
 
-	///FactionStruct table section
+	///FactionStruct
 	//@section factionStructTable
 
 	/***
@@ -1365,7 +1358,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStruct.set_function("getWatchtower", &factionHelpers::getWatchtower);
 
 
-	///FactionStratMapStruct table section
+	///FactionStratMapStruct
 	//@section factionStratMapStructTable
 
 	/***
@@ -1397,7 +1390,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.factionStratMapStruct.set("smallLogoIndex", &factionStratMapDescrS::small_logo_index);
 
 
-	///WatchtowerStruct table section
+	///WatchtowerStruct
 	//@section watchtowerStructTable
 
 	/***
@@ -1412,7 +1405,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.watchtowerStruct.set("xCoord", &watchTowerStruct::xCoord);
 	types.watchtowerStruct.set("yCoord", &watchTowerStruct::yCoord);
 
-	///FortStruct table section
+	///FortStruct
 	//@section fortStructTable
 
 	/***
@@ -1435,7 +1428,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.fortStruct.set("ownerFaction", &fortStruct::faction);
 	types.fortStruct.set("siege", &fortStruct::siege);
 
-	///PortStruct table section
+	///PortStruct
 	//@section portStructTable
 
 	/***
@@ -1462,7 +1455,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.portStruct.set("dock", &portBuildingStruct::portDock);
 
 
-	///DockStruct table section
+	///DockStruct
 	//@section dockStructTable
 
 	/***
@@ -1478,7 +1471,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.dockStruct.set("yCoord", &portDockStrat::yCoord);
 
 
-	///SettlementStruct table section
+	///SettlementStruct
 	//@section settlementStructTable
 
 	/***
@@ -1632,7 +1625,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.settlementStruct.set_function("getSiege", &settlementHelpers::getSiege);
 
 
-	///Building table section
+	///Building
 	//@section buildingTable
 
 	/***
@@ -1674,7 +1667,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.building.set_function("getName", &buildingStructHelpers::getName);
 
 
-	///BuildingsQueue table section
+	///BuildingsQueue
 	//@section buildingsQueueTable
 
 	/***
@@ -1708,7 +1701,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.buildingsQueue.set_function("getBuildingInQueue", &buildingStructHelpers::getBuildingInQueue);
 
 
-	///BuildingInQueue table section
+	///BuildingInQueue
 	//@section buildingInQueueTable
 
 	/***
@@ -1760,7 +1753,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.buildingInQueue.set_function("getQueueBuildingName", &buildingStructHelpers::getQueueName);
 
 
-	///Guild table section
+	///Guild
 	//@section guildTable
 
 	/***
@@ -1782,7 +1775,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.guild.set("level2", &guild::level2Threshold);
 	types.guild.set("level3", &guild::level3Threshold);
 
-	///TradeResource table section
+	///TradeResource
 	//@section tradeResource
 
 	/***
@@ -1857,7 +1850,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	types.tradeResource.set_function("getResourceImage", &resourcesHelpers::getImage);
 
-	///StackStruct table section
+	///StackStruct
 	//@section stackStructTable
 
 	/***
@@ -2011,7 +2004,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.stackStruct.set_function("attackArmy", &stackStructHelpers::attackArmy);
 
 	types.stackStruct.set("siege", &stackStruct::siege);
-	///siegeStruct table section
+	///siegeStruct
 	//@section siegeStruct
 
 	/***
@@ -2037,10 +2030,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	return &luaState;
 }
 
-
-
-
-
 void luaP::checkLuaFunc(sol::function** lRef)
 {
 	if ((*lRef)->valid() == false)
@@ -2048,7 +2037,6 @@ void luaP::checkLuaFunc(sol::function** lRef)
 		*lRef = nullptr;
 	}
 }
-
 
 void luaP::onChangeTurnNum(int num)
 {

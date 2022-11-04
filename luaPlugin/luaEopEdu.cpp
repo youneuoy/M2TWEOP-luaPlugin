@@ -13,16 +13,16 @@ void luaP::initEopEdu()
 	{
 		sol::table M2TWEOPEDUTable;
 	}tables;
-	///M2TWEOPDU table section
+	///M2TWEOPDU
 	//@section M2TWEOPDUTable
 
 	/***
 	Basic M2TWEOPDU table. Contains descriptions of m2tweop unit types.
 
 	@tfield addEopEduEntryFromFile addEopEduEntryFromFile
-	@tfield addEopEduEntryFromEDUID addEopEduEntryFromEDUID 
+	@tfield addEopEduEntryFromEDUID addEopEduEntryFromEDUID
 	@tfield getEopEduEntryByID getEopEduEntryByID Needed for change many parameters of entry.
-	@tfield getDataEopDu getDataEopDu 
+	@tfield getDataEopDu getDataEopDu
 	@tfield setEntryUnitCardTga setEntryUnitCardTga
 	@tfield setEntryInfoCardTga setEntryInfoCardTga
 	@tfield setEntrySoldierModel setEntrySoldierModel
@@ -51,7 +51,7 @@ void luaP::initEopEdu()
 	/***
 	Create new M2TWEOPDU entry
 	@function M2TWEOPDU.addEopEduEntryFromEDUID
-	@tparam int baseEnryIndex Entry index number, which will be taken as the base for this DU record. 
+	@tparam int baseEnryIndex Entry index number, which will be taken as the base for this DU record.
 	@tparam int eopEnryIndex Entry index, which will be assigned to a new record in DU (recommend starting from 1000, so that there is no confusion with records from EDU).
 	@treturn eduEntry retEntry Usually you shouldn't use this value.
 	@usage
@@ -63,7 +63,7 @@ void luaP::initEopEdu()
 	Get eduEntry of M2TWEOPDU entry. Needed for change many parameters of entry.
 	@function M2TWEOPDU.getEopEduEntryByID
 	@tparam int eopEnryIndex Entry index
-	@treturn eduEntry retEntry 
+	@treturn eduEntry retEntry
 	@usage
 	local eduEntryOfEOPDU=M2TWEOPDU.getEopEduEntryByID(1000);
 	eduEntryOfEOPDU.SoldierCount=20;
@@ -97,13 +97,13 @@ void luaP::initEopEdu()
 	Set unit info card for M2TWEOPDU entry. Requirements for the location and parameters of the image are unchanged in relation to the game.
 	@function M2TWEOPDU.setEntryInfoCardTga
 	@tparam int eopEnryIndex Entry index
-	@tparam string newInfoCardTga 
+	@tparam string newInfoCardTga
 	@usage
 	M2TWEOPDU.setEntryInfoCardTga(1000,"akavir_swordsmen_info.tga");
 	*/
 	tables.M2TWEOPEDUTable.set_function("setEntryInfoCardTga", &eopEduHelpers::setEntryInfoCardTga);
 
-	
+
 	/***
 	Set soldier model for M2TWEOPDU entry. The required entry must be correctly recorded in game files.
 	@function M2TWEOPDU.setEntrySoldierModel
@@ -112,7 +112,7 @@ void luaP::initEopEdu()
 	@usage
 	M2TWEOPDU.setEntrySoldierModel(1000,"Sword_and_Buckler_Men");
 	*/
-	tables.M2TWEOPEDUTable.set_function("setEntrySoldierModel", &eopEduHelpers::setEntrySoldierModel);	
+	tables.M2TWEOPEDUTable.set_function("setEntrySoldierModel", &eopEduHelpers::setEntrySoldierModel);
 
 
 	/***
@@ -125,7 +125,7 @@ void luaP::initEopEdu()
 	*/
 	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedName", &eopEduHelpers::setEntryLocalizedName);
 
-	
+
 	/***
 	Set localized description for M2TWEOPDU entry. This does not require any entries in the text folder.
 	@function M2TWEOPDU.setEntryLocalizedDescr
@@ -135,7 +135,7 @@ void luaP::initEopEdu()
 	M2TWEOPDU.setEntryLocalizedDescr(1000,"This is test unit description\n123321\nCreated with m2tweop");
 	*/
 	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedDescr", &eopEduHelpers::setEntryLocalizedDescr);
-	
+
 	/***
 	Set localized short description for M2TWEOPDU entry. This does not require any entries in the text folder.
 	@function M2TWEOPDU.setEntryLocalizedShortDescr
@@ -144,7 +144,7 @@ void luaP::initEopEdu()
 	@usage
 	M2TWEOPDU.setEntryLocalizedShortDescr(1000,"This is test unit short description\n123321\nCreated with m2tweop");
 	*/
-	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedShortDescr", &eopEduHelpers::setEntryLocalizedShortDescr);	
+	tables.M2TWEOPEDUTable.set_function("setEntryLocalizedShortDescr", &eopEduHelpers::setEntryLocalizedShortDescr);
 
 
 
