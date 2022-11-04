@@ -46,8 +46,6 @@ void replaceAll2(std::string& s, const std::string& search, const std::string& r
 	}
 }
 
-
-
 void luaP::runScriptS(std::string* script)
 {
 	const char* retS = nullptr;
@@ -189,7 +187,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	/***
-	Get mod path
+	Function to return the path to the mod folder, starts from the drive not the game folder.
 
 
 	@function M2TWEOP.getModPath
@@ -202,7 +200,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.M2TWEOPTable.set_function("getModPath", &m2tweopHelpers::getModPath);
 	/***
-	Get path of the plugin(your lua files here)
+	Function to return the path to the plugin (location of your LUA files).
 	@function M2TWEOP.getPluginPath
 	@treturn string plugin path
 	@usage
@@ -237,7 +235,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("unloadTexture", &m2tweopHelpers::unloadTextureFromGame);
 	/***
-	Set limit of ancillaries
+	Sets the limit of ancillaries per character on the stratmap.
 	@function M2TWEOP.setAncillariesLimit
 	@tparam int newLimit default: 8, maximum: 127
 	@usage
@@ -245,23 +243,23 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("setAncillariesLimit", &m2tweopHelpers::setAncLimit);
 	/***
-	Unloc all console commands, also allow use change_faction console command
+	Unlocks all console commands, also allows the use of the 'control' command to change factions in singleplayer campaigns.
 	@function M2TWEOP.unlockGameConsoleCommands
 	@usage
 	M2TWEOP.unlockGameConsoleCommands();
 	*/
 	tables.M2TWEOPTable.set_function("unlockGameConsoleCommands", &m2tweopHelpers::unlockGameConsoleCommands);
 	/***
-	Set new max bodyguard size
+	Sets the maximum amount of soldiers a general's bodyguard unit can replenish to.
 	@function M2TWEOP.setMaxBgSize
-	@tparam int newSize maximum: 255
+	@tparam int newSize default: 77, maximum: 255 (Huge unit size).
 	@usage
 	M2TWEOP.setMaxBgSize(222);
 	*/
 	tables.M2TWEOPTable.set_function("setMaxBgSize", &m2tweopHelpers::setMaxBgSize);
 
 	/***
-	Set new edu units size
+	Sets the new maximum soldier count.
 	@function M2TWEOP.setEDUUnitsSize
 	@tparam int minSize maximum: 300
 	@tparam int maxSize maximum: 300
@@ -271,7 +269,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setEDUUnitsSize", &m2tweopHelpers::setEDUUnitsSize);
 
 	/***
-	* Set the new limit of building levels in a building chain
+	* Sets the new maximum amount of building levels within a chain.
 	* @function M2TWEOP.setBuildingChainLimit
 	* @tparam int limit default: 9
 	* @usage
@@ -281,7 +279,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setBuildingChainLimit", &m2tweopHelpers::setBuildingChainLimit);
 
 	/***
-	* Set which level of castle converts to which lvl of city
+	* Sets which level of castle converts to which level of city.
 	* @function M2TWEOP.setConversionLvlFromCastle
 	* @tparam int castleLvl 0-5
 	* @tparam int convertToLvl 0-6, 6 means conversion from that level is disabled
@@ -291,7 +289,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setConversionLvlFromCastle", &m2tweopHelpers::setConversionLvlFromCastle);
 
 	/***
-	* Set which level of city converts to which lvl of castle
+	* Sets which level of city converts to which level of castle.
 	* @function M2TWEOP.setConversionLvlFromCity
 	* @tparam int cityLvl 0-5
 	* @tparam int convertToLvl 0-6, 6 means conversion from that level is disabled
@@ -301,7 +299,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setConversionLvlFromCity", &m2tweopHelpers::setConversionLvlFromCity);
 
 	/***
-	* Set min number turns until next guild offer after a rejection
+	* Sets the minimum number of turns until the next guild offer after a rejection by the player.
 	* @function M2TWEOP.setGuildCooldown
 	* @tparam int turns default: 10
 	* @usage
@@ -311,7 +309,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	/***
-	toggle the highlighting of units on the tactical map.
+	Toggle the highlighting of units on the tactical map (Currently broken!).
 	@function M2TWEOP.toggleUnitsBMapHighlight
 	@usage
 	M2TWEOP.toggleUnitsBMapHighlight();
@@ -320,7 +318,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 
 	/***
-	Set limit of religions
+	Set the maximum number of religions in the mod (per descr_religions.txt)
 	@function M2TWEOP.setReligionsLimit
 	@tparam int newLimit maximum: 127
 	@usage
@@ -329,17 +327,17 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	tables.M2TWEOPTable.set_function("setReligionsLimit", &m2tweopHelpers::seReligionsLimit);
 
 	/***
-	Check tile
+	Checks if a tile is free.
 	@function M2TWEOP.isTileFree
-	@tparam int x
-	@tparam int y
-	@treturn bool isFree
+   	@tparam int X coordinate of the tile.
+   	@tparam int Y coordinate of the tile.
+   	@return boolean isFree
 	@usage
 	M2TWEOP.isTileFree(55,25);
 	*/
 	tables.M2TWEOPTable.set_function("isTileFree", &m2tweopHelpers::isTileFree);
 	/***
-	Get tile region ID
+	Get the RegionID of a tile.
 	@function M2TWEOP.getTileRegionID
 	@tparam int x
 	@tparam int y
@@ -349,7 +347,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("getTileRegionID", &m2tweopHelpers::getTileRegionID);
 	/***
-	Get faction owner region with ID
+	Get the owner of a region by RegionID.
 	@function M2TWEOP.getRegionOwner
 	@tparam int regionID
 	@treturn factionStruct owner
@@ -359,7 +357,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	*/
 	tables.M2TWEOPTable.set_function("getRegionOwner", &m2tweopHelpers::getRegionOwner);
 
-	///gameSTDUI
+	/// gameSTDUITable
 	//@section gameSTDUITable
 
 	/***
@@ -374,7 +372,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 
 	tables.gameUITable = luaState.create_table("gameSTDUI");
 	/***
-	get standart game UI element, element must be opened
+	Get a game UI element, element must be opened.
 	@function gameSTDUI.getUiElement
 	@tparam string elementName
 	@treturn uiElementStruct element
@@ -418,9 +416,9 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement.set("yPos", &uiElement::yPos);
 	types.uiElement.set("subElementsNum", &uiElement::subElementsNum);
 	/***
-	get subelement of UI element with index
+	Get a subelement of an UI element using the index.
 	@function gameSTDUI.getSubElement
-	@tparam int index starting from 0
+	@tparam int index Starts from 0.
 	@treturn uiElementStruct subelement
 	@usage
 	local financeScroll = gameSTDUI.getUiElement("finance_scroll");
@@ -439,7 +437,7 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	types.uiElement.set("execute", &gameSTDUIHelpers::useUiElement);
 
 
-	///Objects
+	///Strat Map Objects
 	//@section objectsTable
 
 
@@ -451,8 +449,8 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	@tfield replaceTile  replaceTile
 
 	@table stratmap.objects
-	*/
 	tables.objectsTable = luaState.create_table();
+	*/
 
 
 	/***
@@ -2032,10 +2030,6 @@ sol::state* luaP::init(std::string& luaFilePath, std::string& modPath)
 	return &luaState;
 }
 
-
-
-
-
 void luaP::checkLuaFunc(sol::function** lRef)
 {
 	if ((*lRef)->valid() == false)
@@ -2043,7 +2037,6 @@ void luaP::checkLuaFunc(sol::function** lRef)
 		*lRef = nullptr;
 	}
 }
-
 
 void luaP::onChangeTurnNum(int num)
 {
