@@ -9,4 +9,4 @@
   </p>
 </div>
 
-For more information about the project -> [M2TWEOP-library](https://github.com/youneuoy/M2TWEOP-library)
+Now moved to -> [M2TWEOP-library](https://github.com/youneuoy/M2TWEOP-library)
